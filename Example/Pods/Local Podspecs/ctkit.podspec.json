@@ -1,0 +1,23 @@
+{
+  "name": "ctkit",
+  "version": "0.1.0",
+  "summary": "SDK to communicate with the connected bike api",
+  "swift_version": "4.2",
+  "description": "The iOS implementation of our SDK, it allows developers to do cool things with our API.",
+  "homepage": "https://bitbucket.org/nfnty_admin/ctkit_ios",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "jookes": "gert-jan@nfnty.nl"
+  },
+  "source": {
+    "git": "https://github.com/jookes/ctkit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "ctkit/Classes/**/*"
+}
