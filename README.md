@@ -1,29 +1,29 @@
-# README #
+# ctkit
 
-This README would normally document whatever steps are necessary to get your application up and running.
+[![CI Status](https://img.shields.io/travis/jookes/ctkit.svg?style=flat)](https://travis-ci.org/jookes/ctkit)
+[![Version](https://img.shields.io/cocoapods/v/ctkit.svg?style=flat)](https://cocoapods.org/pods/ctkit)
+[![License](https://img.shields.io/cocoapods/l/ctkit.svg?style=flat)](https://cocoapods.org/pods/ctkit)
+[![Platform](https://img.shields.io/cocoapods/p/ctkit.svg?style=flat)](https://cocoapods.org/pods/ctkit)
 
-### What is this repository for? ###
+## Example
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-### How do I get set up? ###
+## Requirements
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## Installation
 
-### Contribution guidelines ###
+ctkit is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
 
-* Writing tests
-* Code review
-* Other guidelines
+```ruby
+pod 'ctkit'
+```
 
-### Who do I talk to? ###
+## Author
 
-* Repo owner or admin
-* Other community or team contact
+jookes, gert-jan@nfnty.nl
+
+## License
+
+ctkit is available under the MIT license. See the LICENSE file for more info.

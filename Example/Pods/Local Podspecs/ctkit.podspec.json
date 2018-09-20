@@ -1,0 +1,22 @@
+{
+  "name": "ctkit",
+  "version": "0.1.0",
+  "summary": "A short description of ctkit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/jookes/ctkit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "jookes": "gert-jan@nfnty.nl"
+  },
+  "source": {
+    "git": "https://github.com/jookes/ctkit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "ctkit/Classes/**/*"
+}
