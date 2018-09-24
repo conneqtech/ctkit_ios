@@ -13,11 +13,19 @@
     "jookes": "gert-jan@nfnty.nl"
   },
   "source": {
-    "git": "https://github.com/jookes/ctkit.git",
+    "git": "https://jookes@bitbucket.org/nfnty_admin/ctkit_ios.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "ctkit/Classes/**/*"
+  "source_files": "ctkit/Classes/**/*",
+  "dependencies": {
+    "Alamofire": [
+      "~> 4.7"
+    ],
+    "RxSwift": [
+      "~> 4.0"
+    ]
+  }
 }
