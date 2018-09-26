@@ -18,6 +18,7 @@ class ViewController: UIViewController {
             switch event {
             case .next(let value):
                 print("DONE")
+                self.getBikes()
                 print(value)
             case .error(let error):
                 print(error)
@@ -28,6 +29,20 @@ class ViewController: UIViewController {
         
 //        subscription.dispose()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func getBikes() {
+        let sub = CTBikeService().fetchAll().subscribe { event in
+            switch event {
+            case .next(let value):
+                print("DONE BIKE")
+                print(value)
+            case .error(let error):
+                print(error)
+            case .completed:
+                print("Completed")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
