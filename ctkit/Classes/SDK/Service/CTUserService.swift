@@ -9,32 +9,28 @@ import Foundation
 import RxSwift
 
 public class CTUserService: NSObject {
-    public func login(email: String, password:String) -> Observable<CTUser> {
-        let user = CTUser(id: 1, email: "gert-jan@conneqtech.com", firstName: "Gert-Jan", lastName: "Vercauteren")
+    public func login(username: String, password:String) -> Observable<CTUserModel> {
+        return CTBike.shared.authManager.login(username: username, password: password).flatMap { _ in self.fetchCurrentUser() }
+    }
+    
+    public func create(email: String, password: String) -> Observable<CTUserModel> {
+        return CTBike.shared.restManager.post(endpoint: "user", data:["username":email, "password":password])
+    }
+    
+    public func patch(user: CTUserModel) -> Observable<CTUserModel> {
         return Observable.of(user)
     }
     
-    public func create(email: String, password: String) -> Observable<CTUser> {
-        let user = CTUser(id: 1, email: email, firstName: "Gert-Jan", lastName: "Vercauteren")
-        return Observable.of(user)
+    public func fetchWith(identifier: Int) -> Observable<CTUserModel> {
+        return CTBike.shared.restManager.get(endpoint: "user/\(identifier)", parameters: nil)
     }
     
-    public func patch(user: CTUser) -> Observable<CTUser> {
-        return Observable.of(user)
+    public func fetchCurrentUser() -> Observable<CTUserModel> {
+        return CTBike.shared.restManager.get(endpoint: "user/me", parameters: nil)
     }
     
-    public func fetchWithId(identifier: Int) -> Observable<CTUser> {
-        let user = CTUser(id: 1, email: "gert-jan@conneqtech.com", firstName: "Gert-Jan", lastName: "Vercauteren")
-        return Observable.of(user)
-    }
-    
-    public func fetchCurrentUser() -> Observable<CTUser> {
-        let user = CTUser(id: 1, email: "gert-jan@conneqtech.com", firstName: "Gert-Jan", lastName: "Vercauteren")
-        return Observable.of(user)
-    }
-    
-    public  func recoverUser(email: String) -> Observable<CTUser> {
-        let user = CTUser(id: 1, email: "gert-jan@conneqtech.com", firstName: "Gert-Jan", lastName: "Vercauteren")
+    public  func recoverUser(email: String) -> Observable<CTUserModel> {
+        let user = CTUserModel(id: 1, email: "gert-jan@conneqtech.com", firstName: "Gert-Jan", lastName: "Vercauteren")
         return Observable.of(user)
     }
     

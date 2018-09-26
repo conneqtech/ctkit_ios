@@ -7,13 +7,13 @@
 
 import Foundation
 
-public struct CTBike: CTModel {
+public struct CTBikeModel: CTBaseModel {
     public let id: Int?
     public let imei: String
     public let name: String
     public let state: CTEntityState
     public let frameIdentifier: String // frame_number
     public let keyIdentifier: String // key_number
-    public let owner: CTUser
-    public let linkedUsers: [CTUser]
+    public let owner: CTUserModel
+    public let linkedUsers: [CTUserModel]
 }

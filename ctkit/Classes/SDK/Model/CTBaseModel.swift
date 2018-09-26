@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol CTModel: Codable {
+public protocol CTBaseModel: Codable {
     
 }

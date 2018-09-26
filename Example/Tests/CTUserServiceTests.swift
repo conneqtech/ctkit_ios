@@ -16,21 +16,12 @@ import RxBlocking
 class CTUserServiceTests: QuickSpec {
     
     override func spec() {
-        describe("Login") {
-            it("logs in with correct username/password") {
-                let userService = CTUserService()
-                let subscription = userService.login(email: "gert-jan@test.com", password: "testpass").subscribe { event in
-                    switch event {
-                    case .next(let value):
-                        print(value.displayName)
-                    case .error(let error):
-                        print(error)
-                    case .completed:
-                        print("Completed")
-                    }
-                }
+        describe("RUN") {
+            it("crashes") {
+                CTBike.configure(withClientId: "test", clientSecret: "ys", baseURL: "tt")
+                CTBike.shared.testRun()
                 
-                subscription.dispose()
+                expect(2) == 2
             }
         }
     }

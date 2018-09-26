@@ -13,6 +13,20 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let subscription = CTUserService().login(username: "jens+11@conneqtech.com", password: "testpass").subscribe { event in
+            switch event {
+            case .next(let value):
+                print("DONE")
+                print(value)
+            case .error(let error):
+                print(error)
+            case .completed:
+                print("Completed")
+            }
+        }
+        
+//        subscription.dispose()
         // Do any additional setup after loading the view, typically from a nib.
     }
 

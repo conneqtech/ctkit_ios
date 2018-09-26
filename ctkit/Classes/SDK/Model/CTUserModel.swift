@@ -7,7 +7,8 @@
 
 import Foundation
 
-public struct CTUser: CTModel {
+public struct CTUserModel: CTBaseModel {
+    
     public let id: Int
     public let email: String
     public var displayName: String {
@@ -18,7 +19,7 @@ public struct CTUser: CTModel {
     
     public let firstName: String
     public let lastName: String
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case email = "username"
