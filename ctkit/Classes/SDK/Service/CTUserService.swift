@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 public class CTUserService: NSObject {
+    
     public func login(username: String, password:String) -> Observable<CTUserModel> {
         return CTBike.shared.authManager.login(username: username, password: password).flatMap { _ in self.fetchCurrentUser() }
     }
@@ -18,7 +19,7 @@ public class CTUserService: NSObject {
     }
     
     public func patch(user: CTUserModel) -> Observable<CTUserModel> {
-        return Observable.of(user)
+        return Observable.empty()
     }
     
     public func fetchWith(identifier: Int) -> Observable<CTUserModel> {
@@ -30,8 +31,7 @@ public class CTUserService: NSObject {
     }
     
     public  func recoverUser(email: String) -> Observable<CTUserModel> {
-        let user = CTUserModel(id: 1, email: "gert-jan@conneqtech.com", firstName: "Gert-Jan", lastName: "Vercauteren")
-        return Observable.of(user)
+        return Observable.empty()
     }
     
     public func hasActiveSession() -> Bool {
