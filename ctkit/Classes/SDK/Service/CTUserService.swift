@@ -15,7 +15,7 @@ public class CTUserService: NSObject {
     }
     
     public func create(email: String, password: String) -> Observable<CTUserModel> {
-        return CTBike.shared.restManager.post(endpoint: "user", data:["username":email, "password":password])
+        return CTBike.shared.restManager.post(endpoint: "user", parameters:["username":email, "password":password])
     }
     
     public func patch(user: CTUserModel) -> Observable<CTUserModel> {
@@ -30,8 +30,8 @@ public class CTUserService: NSObject {
         return CTBike.shared.restManager.get(endpoint: "user/me", parameters: nil)
     }
     
-    public  func recoverUser(email: String) -> Observable<CTUserModel> {
-        return Observable.empty()
+    public func recoverUser(email: String) -> Observable<[String: Bool]> {
+        return CTBike.shared.restManager.post(endpoint: "user", parameters:["username":email])
     }
     
     public func hasActiveSession() -> Bool {

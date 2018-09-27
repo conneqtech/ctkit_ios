@@ -10,11 +10,13 @@ import UIKit
 import ctkit
 
 class ViewController: UIViewController {
+    
+    let userService = CTUserService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let subscription = CTUserService().login(username: "jens+11@conneqtech.com", password: "testpass").subscribe { event in
+        let subscription = self.userService.login(username: "jens+11@conneqtech.com", password: "testpass").subscribe { event in
             switch event {
             case .next(let value):
                 print("DONE")

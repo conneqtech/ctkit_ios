@@ -9,17 +9,6 @@ import Foundation
 import RxSwift
 import Alamofire
 
-class AccessTokenAdapter: RequestAdapter {
-    func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
-        var urlRequest = urlRequest
-        print(CTBike.shared.authManager.getAccesToken());
-        let accessToken = CTBike.shared.authManager.getAccesToken();
-        urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        return urlRequest
-    }
-}
-
-
 public class CTRestManager {
 
     private let apiConfig:CTApiConfig
@@ -28,38 +17,49 @@ public class CTRestManager {
     public init(withConfig config:CTApiConfig) {
         self.apiConfig = config
         self.sessionManager = SessionManager()
-        sessionManager.adapter = AccessTokenAdapter()
+        sessionManager.adapter = CTRequestAdapter()
+        sessionManager.retrier = CTRequestRetrier(apiConfig: self.apiConfig)
     }
     
     public func get<T>(endpoint:String, parameters:[String:Any]?) -> Observable<T> where T:Codable {
+        return genericCall(.get, endpoint: endpoint, parameters: parameters)
+    }
+    
+    public func post<T>(endpoint:String, parameters: [String:Any]?) -> Observable<T> where T:Codable {
+        return genericCall(.post, endpoint: endpoint, parameters: parameters)
+    }
+    
+    public func patch<T>(endpoint:String, parameters: [String:Any]?) -> Observable<T> where T:Codable {
+        return genericCall(.patch, endpoint: endpoint, parameters: parameters)
+    }
+    
+    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]?, encoding: ParameterEncoding = JSONEncoding.default) -> Observable<T> where T:Codable {
         return Observable<T>.create { (observer) -> Disposable in
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             let requestReference = self.sessionManager.request(url,
-                                            method: .get,
-                                            parameters: parameters)
-            .validate()
-            .responseJSON { (response) in
-                switch response.result {
-                case .success:
-                    guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                                                               method: method,
+                                                               parameters: parameters)
+                .validate(statusCode: 200..<300)
+                .validate(contentType: ["application/json"])
+                .responseJSON { (response) in
+                    switch response.result {
+                    case .success:
+                        
+                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                            observer.onError(NSError(domain: "test", code: 400, userInfo: nil))
+                            return
+                        }
+                        
+                        observer.onNext(getResponse)
+                        observer.onCompleted()
+                    case .failure:
                         observer.onError(response.error!)
-                        return
                     }
-                    
-                    observer.onNext(getResponse)
-                    observer.onCompleted()
-                case .failure:
-                    observer.onError(response.error!)
-                }
             }
             
             return Disposables.create(with: {
                 requestReference.cancel()
             })
         }
-    }
-    
-    public func post<T, U:Codable>(endpoint:String, data: U) -> Observable<T> where T:Codable {
-        return Observable.empty()
     }
 }

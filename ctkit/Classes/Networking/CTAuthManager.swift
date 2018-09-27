@@ -41,7 +41,7 @@ public class CTAuthManager {
                             observer.onError(response.error!)
                             return
                         }
-                        
+                    
                         self.saveTokenResponse(getResponse)
                         observer.onNext(getResponse)
                         observer.onCompleted()
@@ -63,21 +63,8 @@ public class CTAuthManager {
     func getRefreshToken() -> String {
         return retrieveDataFromStore(forKey: REFRESH_TOKEN_KEY)
     }
-}
-
-private extension CTAuthManager {
-    private func retrieveDataFromStore(forKey key: String) -> String {
-        switch CTBike.shared.credentialSaveLocation {
-        case .keychain:
-            return KeychainSwift().get(key) ?? ""
-        case .userDefaults:
-            return UserDefaults.standard.string(forKey: key) ?? ""
-        default:
-            return ""
-        }
-    }
     
-    private func saveTokenResponse(_ tokenResponse: CTOAuth2TokenResponse) {
+    func saveTokenResponse(_ tokenResponse: CTOAuth2TokenResponse) {
         switch CTBike.shared.credentialSaveLocation {
         case .keychain:
             let keychain = KeychainSwift()
@@ -88,6 +75,19 @@ private extension CTAuthManager {
             UserDefaults.standard.set(tokenResponse.refreshToken, forKey: REFRESH_TOKEN_KEY)
         default:
             print("NOTH")
+        }
+    }
+}
+
+extension CTAuthManager {
+    private func retrieveDataFromStore(forKey key: String) -> String {
+        switch CTBike.shared.credentialSaveLocation {
+        case .keychain:
+            return KeychainSwift().get(key) ?? ""
+        case .userDefaults:
+            return UserDefaults.standard.string(forKey: key) ?? ""
+        default:
+            return ""
         }
     }
 }

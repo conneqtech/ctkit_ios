@@ -8,12 +8,21 @@
 import Foundation
 
 public struct CTBikeModel: CTBaseModel {
-    public let id: Int?
+    public let id: Int
     public let imei: String
     public let name: String
-    public let state: CTEntityState
-    public let frameIdentifier: String // frame_number
-    public let keyIdentifier: String // key_number
+    public let frameIdentifier: String
+    public let keyIdentifier: String?
     public let owner: CTUserModel
     public let linkedUsers: [CTUserModel]
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case imei = "imei"
+        case name = "name"
+        case frameIdentifier = "frame_number"
+        case keyIdentifier = "key_number"
+        case owner = "owning_user"
+        case linkedUsers = "linked_users"
+    }
 }

@@ -19,8 +19,6 @@ class CTUserServiceTests: QuickSpec {
         describe("RUN") {
             it("crashes") {
                 CTBike.configure(withClientId: "test", clientSecret: "ys", baseURL: "tt")
-                CTBike.shared.testRun()
-                
                 expect(2) == 2
             }
         }

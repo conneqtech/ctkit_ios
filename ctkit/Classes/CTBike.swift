@@ -28,8 +28,4 @@ public class CTBike {
     public static func configure(withClientId clientId: String, clientSecret: String, baseURL: String) {
         CTBike.shared = CTBike.init(clientId: clientId, clientSecret: clientSecret, baseURL: baseURL)
     }
-    
-    public func testRun() {
-        print("RUN BABY RUN")
-    }
 }
