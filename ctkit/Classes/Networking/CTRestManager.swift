@@ -21,34 +21,56 @@ public class CTRestManager {
         sessionManager.retrier = CTRequestRetrier(apiConfig: self.apiConfig)
     }
     
-    public func get<T>(endpoint:String, parameters:[String:Any]?) -> Observable<T> where T:Codable {
-        return genericCall(.get, endpoint: endpoint, parameters: parameters)
+    public func get<T:Codable>(endpoint:String, parameters:[String:Any]?,  useToken:String? = nil) -> Observable<T> {
+        return genericCall(.get, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
     
-    public func post<T>(endpoint:String, parameters: [String:Any]?) -> Observable<T> where T:Codable {
-        return genericCall(.post, endpoint: endpoint, parameters: parameters)
+    public func post<T:Codable>(endpoint:String, parameters: [String:Any]?, useToken:String? = nil) -> Observable<T> {
+        return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken:useToken)
     }
     
-    public func patch<T>(endpoint:String, parameters: [String:Any]?) -> Observable<T> where T:Codable {
-        return genericCall(.patch, endpoint: endpoint, parameters: parameters)
+    public func patch<T:Codable>(endpoint:String, parameters: [String:Any]?,  useToken:String? = nil) -> Observable<T> {
+        return genericCall(.patch, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
     
-    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]?, encoding: ParameterEncoding = JSONEncoding.default) -> Observable<T> where T:Codable {
+    public func delete<T:Codable>(endpoint:String, parameters: [String:Any]?, useToken:String? = nil) -> Observable<T>  {
+        return genericCall(.delete, endpoint: endpoint, parameters: parameters, useToken:useToken)
+    }
+    
+    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]?, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T:Codable {
         return Observable<T>.create { (observer) -> Disposable in
+            
+            var headers: [String:String] = [:]
+            
+            if let bearer = useToken {
+                 headers["Authorization"] = "Bearer \(bearer)"
+            }
+           
+            
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             let requestReference = self.sessionManager.request(url,
                                                                method: method,
-                                                               parameters: parameters)
+                                                               parameters: parameters,
+                                                               encoding: encoding,
+                                                               headers: headers)
                 .validate(statusCode: 200..<300)
                 .validate(contentType: ["application/json"])
                 .responseJSON { (response) in
                     switch response.result {
                     case .success:
-                        
-                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
-                            observer.onError(NSError(domain: "test", code: 400, userInfo: nil))
-                            return
+                        do {
+                            let getResponse = try JSONDecoder().decode(T.self, from: response.data!)
+                        } catch {
+                            print("GECATCHED")
+                            print(error)
                         }
+                            guard let data = response.data, let getResponse = try?JSONDecoder().decode(T.self, from: data) else {
+                                print(T.self)
+                                observer.onError(NSError(domain: "test", code: 400, userInfo: nil))
+                                return
+                            }
+                        
+                        
                         
                         observer.onNext(getResponse)
                         observer.onCompleted()

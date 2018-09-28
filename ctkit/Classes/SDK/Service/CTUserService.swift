@@ -15,7 +15,8 @@ public class CTUserService: NSObject {
     }
     
     public func create(email: String, password: String) -> Observable<CTUserModel> {
-        return CTBike.shared.restManager.post(endpoint: "user", parameters:["username":email, "password":password])
+        return CTBike.shared.authManager.getClientToken().flatMap { token in CTBike.shared.restManager.post(endpoint: "user", parameters:["username":email, "password":password], useToken:token)
+        }
     }
     
     public func patch(user: CTUserModel) -> Observable<CTUserModel> {

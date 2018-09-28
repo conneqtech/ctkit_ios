@@ -8,7 +8,7 @@
 
 public struct CTOAuth2TokenResponse: Codable {
     var accessToken: String
-    var refreshToken: String
+    var refreshToken: String?
     var expiresIn: Int
     var scope: String?
     var tokenType: String

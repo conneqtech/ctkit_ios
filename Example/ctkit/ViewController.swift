@@ -21,6 +21,7 @@ class ViewController: UIViewController {
             case .next(let value):
                 print("DONE")
                 self.getBikes()
+                self.createUser()
                 print(value)
             case .error(let error):
                 print(error)
@@ -38,6 +39,20 @@ class ViewController: UIViewController {
             switch event {
             case .next(let value):
                 print("DONE BIKE")
+                print(value)
+            case .error(let error):
+                print(error)
+            case .completed:
+                print("Completed")
+            }
+        }
+    }
+    
+    func createUser() {
+        let sub = CTUserService().create(email: "gert-jan+eewrewriweuriew@conneqtech.com", password: "testpass").subscribe { event in
+            switch event {
+            case .next(let value):
+                print("DONE HSER")
                 print(value)
             case .error(let error):
                 print(error)
