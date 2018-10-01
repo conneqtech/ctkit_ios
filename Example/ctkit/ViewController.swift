@@ -49,7 +49,7 @@ class ViewController: UIViewController {
     }
     
     func createUser() {
-        let sub = CTUserService().create(email: "gert-jan+eewrewriweuriew@conneqtech.com", password: "testpass").subscribe { event in
+        let sub = CTUserService().create(email: "gert-jan+erewrwtethrjytukutrefftyu6rutytdfgr@conneqtech.com", password: "testpass").subscribe { event in
             switch event {
             case .next(let value):
                 print("DONE HSER")
