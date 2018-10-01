@@ -10,6 +10,7 @@ import Foundation
 public class CTUserModel: CTBaseModel {
     
     public let id: Int
+    
     public let email: String
     public var displayName: String {
         get {
@@ -21,8 +22,8 @@ public class CTUserModel: CTBaseModel {
         }
     }
     
-    public let firstName: String?
-    public let lastName: String?
+    public var firstName: String?
+    public var lastName: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -31,12 +32,9 @@ public class CTUserModel: CTBaseModel {
         case lastName = "last_name"
     }
     
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CTUserModel.CodingKeys.self)
-        
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.email = try container.decode(String.self, forKey: .email)
-        self.firstName = try container.decodeIfPresent(String.self, forKey: .firstName)
-        self.lastName = try container.decodeIfPresent(String.self, forKey: .lastName)
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(firstName, forKey: .firstName)
+        try container.encode(lastName, forKey: .lastName)
     }
 }

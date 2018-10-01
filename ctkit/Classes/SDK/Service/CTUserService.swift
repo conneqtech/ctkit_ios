@@ -18,9 +18,10 @@ public class CTUserService: NSObject {
         return CTBike.shared.authManager.getClientToken().flatMap { token in CTBike.shared.restManager.post(endpoint: "user", parameters:["username":email, "password":password], useToken:token)
         }
     }
+
     
     public func patch(user: CTUserModel) -> Observable<CTUserModel> {
-        return Observable.empty()
+        return CTBike.shared.restManager.patch(endpoint: "user/\(user.id)", parameters: try? user.asDictionary())
     }
     
     public func fetchWith(identifier: Int) -> Observable<CTUserModel> {

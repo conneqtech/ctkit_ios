@@ -22,6 +22,7 @@ class ViewController: UIViewController {
                 print("DONE")
                 self.getBikes()
                 self.createUser()
+                self.patchUser(value)
                 print(value)
             case .error(let error):
                 print(error)
@@ -32,6 +33,25 @@ class ViewController: UIViewController {
         
 //        subscription.dispose()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func patchUser(_ user: CTUserModel) {
+        var mUser = user
+        mUser.firstName = "Test"
+        mUser.lastName = "User"
+        print("PATCHING USER")
+        
+        let sub = CTUserService().patch(user: mUser).subscribe { event in
+            switch event {
+            case .next(let value):
+                print("DONE USER")
+                print(value.firstName!)
+            case .error(let error):
+                print(error)
+            case .completed:
+                print("Completed")
+            }
+        }
     }
     
     func getBikes() {
@@ -49,11 +69,11 @@ class ViewController: UIViewController {
     }
     
     func createUser() {
-        let sub = CTUserService().create(email: "gert-jan+erewrwtethrjytukutrefftyu6rutytdfgr@conneqtech.com", password: "testpass").subscribe { event in
+        let sub = CTUserService().create(email: "gert-jan+eqwerwetyrytukylkjjtdfgfgdfgwe@conneqtech.com", password: "testpass").subscribe { event in
             switch event {
             case .next(let value):
-                print("DONE HSER")
-                print(value)
+                print("DONE User")
+                print(value.email)
             case .error(let error):
                 print(error)
             case .completed:
