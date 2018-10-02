@@ -1,0 +1,44 @@
+//
+//  CreateAccountViewController.swift
+//  ctkit_Example
+//
+//  Created by Gert-Jan Vercauteren on 02/10/2018.
+//  Copyright © 2018 CocoaPods. All rights reserved.
+//
+
+import Foundation
+import UIKit
+import ctkit
+import RxSwift
+
+class CreateAccountViewController: UIViewController {
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    let disposeBag = DisposeBag()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    @IBAction func createAccount(_ sender: Any) {
+        let subscription = CTUserService().create(
+            email: self.emailTextField.text!,
+            password: self.passwordTextField.text!
+            ).subscribe { event in
+                switch event {
+                case .next(let value):
+                    print("User is created")
+                    print(value)
+                case .error(let error):
+                    print(error)
+                case .completed:
+                    print("Completed")
+                }
+            }
+        
+        disposeBag.insert(subscription)
+    }
+}

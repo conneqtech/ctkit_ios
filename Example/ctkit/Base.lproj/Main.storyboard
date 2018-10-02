@@ -52,12 +52,25 @@
                                     <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yVr-K9-q1b"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6oJ-o2-AXO">
+                                <rect key="frame" x="16" y="332" width="343" height="30"/>
+                                <state key="normal" title="Create new account">
+                                    <color key="titleColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="YVZ-9W-wMH" kind="show" id="HFd-0o-IPa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6oJ-o2-AXO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="1Mg-K3-4hk"/>
                             <constraint firstItem="X4h-bg-VAq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="1f4-1S-beS"/>
                             <constraint firstItem="pnr-90-wK9" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="4cE-9i-7Un"/>
+                            <constraint firstItem="6oJ-o2-AXO" firstAttribute="top" secondItem="X4h-bg-VAq" secondAttribute="bottom" constant="8" id="6VH-lN-Vbb"/>
                             <constraint firstItem="bku-Sh-bE0" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="E53-AU-hxn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6oJ-o2-AXO" secondAttribute="trailing" id="MqA-Xj-uxL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X4h-bg-VAq" secondAttribute="trailing" id="N2z-V7-m9F"/>
                             <constraint firstItem="bku-Sh-bE0" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="VKf-B7-vxz"/>
                             <constraint firstItem="pnr-90-wK9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Vzd-2s-zBs"/>
@@ -76,6 +89,74 @@
             </objects>
             <point key="canvasLocation" x="996" y="26.53673163418291"/>
         </scene>
+        <!--Create account-->
+        <scene sceneID="veK-MW-2gv">
+            <objects>
+                <viewController title="Create account" id="YVZ-9W-wMH" customClass="CreateAccountViewController" customModule="ctkit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lus-Pc-hi6"/>
+                        <viewControllerLayoutGuide type="bottom" id="cSm-Cg-Jdo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6EY-Jf-nZo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wCE-ev-fzQ">
+                                <rect key="frame" x="16" y="132" width="343" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="OXG-n5-oku"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0yU-Kk-jzd">
+                                <rect key="frame" x="16" y="204" width="343" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="No5-hu-xkd"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swo-Y6-aYf">
+                                <rect key="frame" x="16" y="276" width="343" height="48"/>
+                                <color key="backgroundColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="dvZ-Ye-6wJ"/>
+                                </constraints>
+                                <state key="normal" title="Create account">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="createAccount:" destination="YVZ-9W-wMH" eventType="touchUpInside" id="ey4-Hb-oKc"/>
+                                    <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PMF-Nj-Pm4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="swo-Y6-aYf" firstAttribute="top" secondItem="0yU-Kk-jzd" secondAttribute="bottom" constant="8" id="DKG-CX-hvl"/>
+                            <constraint firstItem="wCE-ev-fzQ" firstAttribute="top" secondItem="lus-Pc-hi6" secondAttribute="bottom" constant="16" id="P59-G4-hrj"/>
+                            <constraint firstItem="swo-Y6-aYf" firstAttribute="trailing" secondItem="6EY-Jf-nZo" secondAttribute="trailingMargin" id="Q8F-PX-uzv"/>
+                            <constraint firstItem="wCE-ev-fzQ" firstAttribute="trailing" secondItem="6EY-Jf-nZo" secondAttribute="trailingMargin" id="TAx-VB-Ubl"/>
+                            <constraint firstItem="wCE-ev-fzQ" firstAttribute="leading" secondItem="6EY-Jf-nZo" secondAttribute="leadingMargin" id="hqY-Cd-Hrk"/>
+                            <constraint firstItem="0yU-Kk-jzd" firstAttribute="leading" secondItem="6EY-Jf-nZo" secondAttribute="leadingMargin" id="kJH-vb-ghR"/>
+                            <constraint firstItem="0yU-Kk-jzd" firstAttribute="top" secondItem="wCE-ev-fzQ" secondAttribute="bottom" constant="8" id="lRU-Gw-3NW"/>
+                            <constraint firstItem="0yU-Kk-jzd" firstAttribute="trailing" secondItem="6EY-Jf-nZo" secondAttribute="trailingMargin" id="ooi-zO-kxo"/>
+                            <constraint firstItem="swo-Y6-aYf" firstAttribute="leading" secondItem="6EY-Jf-nZo" secondAttribute="leadingMargin" id="yH4-ao-rpR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="wCE-ev-fzQ" id="wCS-CV-WwC"/>
+                        <outlet property="passwordTextField" destination="0yU-Kk-jzd" id="CHi-SN-yGU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u0d-gU-GsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1713" y="27"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="h34-gQ-4E7">
             <objects>
@@ -84,6 +165,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="htv-Jy-tnB">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
