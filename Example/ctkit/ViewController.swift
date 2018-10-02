@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(CTUserService().getActiveUserId())
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -31,70 +32,17 @@ class ViewController: UIViewController {
             .subscribe { event in
                 switch event {
                 case .next(let value):
-                    print("User is logged in")
-                    print(value)
+                    let navViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "accountNavigationController")
+                    self.present(navViewController, animated: true, completion: nil)
                 case .error(let error):
                     print(error)
+                    CTUserService().logout()
                 case .completed:
                     print("Completed")
                 }
             }
         self.subscriptions.insert(subscription)
     }
-    
-    func patchUser(_ user: CTUserModel) {
-        var mUser = user
-        mUser.firstName = "Test"
-        mUser.lastName = "User"
-        print("PATCHING USER")
-        
-        let sub = CTUserService().patch(user: mUser).subscribe { event in
-            switch event {
-            case .next(let value):
-                print("DONE USER")
-                print(value.firstName!)
-            case .error(let error):
-                print(error)
-            case .completed:
-                print("Completed")
-            }
-        }
-    }
-    
-    func getBikes() {
-        let sub = CTBikeService().fetchAll().subscribe { event in
-            switch event {
-            case .next(let value):
-                print("DONE BIKE")
-                print(value)
-            case .error(let error):
-                print(error)
-            case .completed:
-                print("Completed")
-            }
-        }
-    }
-    
-    func createUser() {
-        let sub = CTUserService().create(email: "gert-jan+eqwerwetyrytukylkjjtdfgfgdfgwe@conneqtech.com", password: "testpass").subscribe { event in
-            switch event {
-            case .next(let value):
-                print("DONE User")
-                print(value.email)
-            case .error(let error):
-                print(error)
-            case .completed:
-                print("Completed")
-            }
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-        
-    }
-
 }
 
 // Put this piece of code anywhere you like

@@ -28,7 +28,10 @@ public class CTUserService: NSObject {
     }
     
     public func fetchCurrentUser() -> Observable<CTUserModel> {
-        return CTBike.shared.restManager.get(endpoint: "user/me")
+        return CTBike.shared.restManager.get(endpoint: "user/me").map { (user:CTUserModel) in
+            CTBike.shared.currentActiveUser = user
+            return user
+        }
     }
     
     public func recoverUser(email: String) -> Observable<[String: Bool]> {
@@ -36,14 +39,14 @@ public class CTUserService: NSObject {
     }
     
     public func hasActiveSession() -> Bool {
-        return false
+        return CTBike.shared.currentActiveUserId != -1
     }
     
     public func getActiveUserId() -> Int {
-        return 10
+        return CTBike.shared.currentActiveUserId
     }
     
     public func logout() {
-        
+        CTBike.shared.currentActiveUser = nil
     }
 }
