@@ -8,31 +8,45 @@
 
 import UIKit
 import ctkit
+import RxSwift
 
 class ViewController: UIViewController {
     
     let userService = CTUserService()
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextfield: UITextField!
+    
+    var subscriptions = DisposeBag()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let subscription = self.userService.login(username: "jens+11@conneqtech.com", password: "testpass").subscribe { event in
-            switch event {
-            case .next(let value):
-                print("DONE")
-                self.getBikes()
-                self.createUser()
-                self.patchUser(value)
-                print(value)
-            case .error(let error):
-                print(error)
-            case .completed:
-                print("Completed")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    @IBAction func login(_ sender: Any) {
+        let subscription = self.userService.login(
+            username: self.emailTextField.text!,
+            password: self.passwordTextfield.text!)
+            .subscribe { event in
+                switch event {
+                case .next(let value):
+                    print("User is logged in")
+                    print(value)
+                case .error(let error):
+                    print(error)
+                case .completed:
+                    print("Completed")
+                }
             }
-        }
-        
-//        subscription.dispose()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.subscriptions.insert(subscription)
     }
     
     func patchUser(_ user: CTUserModel) {

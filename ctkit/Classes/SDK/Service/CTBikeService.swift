@@ -11,7 +11,11 @@ import RxSwift
 public class CTBikeService: NSObject {
     
     public func create(withName name: String, imei: String, frameNumber: String) -> Observable<CTBikeModel> {
-        return Observable.empty() //TODO: Implement this function
+        return CTBike.shared.restManager.post(endpoint: "bike", parameters: [
+            "name":name,
+            "imei":imei,
+            "frame_number":frameNumber]
+        )
     }
     
     
@@ -22,7 +26,7 @@ public class CTBikeService: NSObject {
     public func delete(withBikeId: Int) -> Observable<CTBikeModel> {
          return Observable.empty()
         //TODO: Implement this function
-        //TODO: Find out how to handle the empty success response of a delete cal
+        //TODO: Find out how to handle the empty success response of a delete call
     }
     
     public func fetchAll() -> Observable<[CTBikeModel]> {
