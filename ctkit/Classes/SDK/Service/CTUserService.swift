@@ -37,9 +37,12 @@ public class CTUserService: NSObject {
     public func recoverUser(email: String) -> Observable<[String: Bool]> {
         return CTBike.shared.restManager.post(endpoint: "user", parameters:["username":email])
     }
-    
+}
+
+//MARK: - Session related functions
+public extension CTUserService {
     public func hasActiveSession() -> Bool {
-        return CTBike.shared.currentActiveUserId != -1
+        return self.getActiveUserId() != -1
     }
     
     public func getActiveUserId() -> Int {
