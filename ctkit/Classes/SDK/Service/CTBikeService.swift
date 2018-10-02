@@ -15,8 +15,8 @@ public class CTBikeService: NSObject {
     }
     
     
-    public func patch(withBike: CTBikeModel) -> Observable<CTBikeModel> {
-        return Observable.empty() //TODO: Implement this function
+    public func patch(withBike bike: CTBikeModel) -> Observable<CTBikeModel> {
+        return CTBike.shared.restManager.patch(endpoint: "bike", parameters: try? bike.asDictionary())
     }
     
     public func delete(withBikeId: Int) -> Observable<CTBikeModel> {
@@ -26,6 +26,6 @@ public class CTBikeService: NSObject {
     }
     
     public func fetchAll() -> Observable<[CTBikeModel]> {
-        return CTBike.shared.restManager.get(endpoint: "bike", parameters: nil)
+        return CTBike.shared.restManager.get(endpoint: "bike")
     }
 }

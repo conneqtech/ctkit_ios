@@ -21,23 +21,23 @@ public class CTRestManager {
         sessionManager.retrier = CTRequestRetrier(apiConfig: self.apiConfig)
     }
     
-    public func get<T:Codable>(endpoint:String, parameters:[String:Any]?,  useToken:String? = nil) -> Observable<T> {
+    public func get<T:Codable>(endpoint:String, parameters:[String:Any]? = nil,  useToken:String? = nil) -> Observable<T> {
         return genericCall(.get, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
     
-    public func post<T:Codable>(endpoint:String, parameters: [String:Any]?, useToken:String? = nil) -> Observable<T> {
+    public func post<T:Codable>(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Observable<T> {
         return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken:useToken)
     }
     
-    public func patch<T:Codable>(endpoint:String, parameters: [String:Any]?,  useToken:String? = nil) -> Observable<T> {
+    public func patch<T:Codable>(endpoint:String, parameters: [String:Any]? = nil,  useToken:String? = nil) -> Observable<T> {
         return genericCall(.patch, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
     
-    public func delete<T:Codable>(endpoint:String, parameters: [String:Any]?, useToken:String? = nil) -> Observable<T>  {
+    public func delete<T:Codable>(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Observable<T>  {
         return genericCall(.delete, endpoint: endpoint, parameters: parameters, useToken:useToken)
     }
     
-    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]?, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T:Codable {
+    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T:Codable {
         return Observable<T>.create { (observer) -> Disposable in
             
             var headers: [String:String] = [:]

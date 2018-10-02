@@ -19,17 +19,16 @@ public class CTUserService: NSObject {
         }
     }
 
-    
     public func patch(user: CTUserModel) -> Observable<CTUserModel> {
         return CTBike.shared.restManager.patch(endpoint: "user/\(user.id)", parameters: try? user.asDictionary())
     }
     
     public func fetchWith(identifier: Int) -> Observable<CTUserModel> {
-        return CTBike.shared.restManager.get(endpoint: "user/\(identifier)", parameters: nil)
+        return CTBike.shared.restManager.get(endpoint: "user/\(identifier)")
     }
     
     public func fetchCurrentUser() -> Observable<CTUserModel> {
-        return CTBike.shared.restManager.get(endpoint: "user/me", parameters: nil)
+        return CTBike.shared.restManager.get(endpoint: "user/me")
     }
     
     public func recoverUser(email: String) -> Observable<[String: Bool]> {
