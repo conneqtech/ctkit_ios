@@ -10,13 +10,17 @@ import RxSwift
 
 public class CTUserService: NSObject {
     
-    public func login(username: String, password:String) -> Observable<CTUserModel> {
-        return CTBike.shared.authManager.login(username: username, password: password).flatMap { _ in self.fetchCurrentUser() }
+    public func login(email: String, password:String) -> Observable<CTUserModel> {
+        return CTBike.shared.authManager.login(username: email, password: password).flatMap { _ in self.fetchCurrentUser() }
     }
     
     public func create(email: String, password: String) -> Observable<CTUserModel> {
         return CTBike.shared.authManager.getClientToken().flatMap { token in CTBike.shared.restManager.post(endpoint: "user", parameters:["username":email, "password":password], useToken:token)
         }
+    }
+    
+    public func createAndLogin(email: String, password: String) -> Observable<CTUserModel> {
+        return self.create(email: email, password: password).flatMap{ _ in self.login(email: email, password: password) }
     }
 
     public func patch(user: CTUserModel) -> Observable<CTUserModel> {

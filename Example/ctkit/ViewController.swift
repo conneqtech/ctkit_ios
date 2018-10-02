@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     
     @IBAction func login(_ sender: Any) {
         let subscription = self.userService.login(
-            username: self.emailTextField.text!,
+            email: self.emailTextField.text!,
             password: self.passwordTextfield.text!)
             .subscribe { event in
                 switch event {
