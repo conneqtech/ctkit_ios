@@ -171,19 +171,31 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89s-pJ-dyI">
                                 <rect key="frame" x="16" y="629" width="343" height="30"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Sign out">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="signOut:" destination="6aI-un-TKq" eventType="touchUpInside" id="p92-Jr-qQo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yaA-eJ-zeW">
+                                <rect key="frame" x="16" y="124" width="343" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Bikes"/>
+                                <connections>
+                                    <segue destination="LUt-Lh-jR0" kind="show" id="uGH-XJ-Qdd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="yaA-eJ-zeW" secondAttribute="trailing" id="6Ow-Up-Slj"/>
+                            <constraint firstItem="yaA-eJ-zeW" firstAttribute="leading" secondItem="4MR-Bm-2Z5" secondAttribute="leadingMargin" id="G3f-KL-qAL"/>
                             <constraint firstItem="89s-pJ-dyI" firstAttribute="leading" secondItem="4MR-Bm-2Z5" secondAttribute="leadingMargin" id="P3a-9q-xpO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="89s-pJ-dyI" secondAttribute="trailing" id="QsT-mS-0nW"/>
+                            <constraint firstItem="yaA-eJ-zeW" firstAttribute="top" secondItem="jFN-fy-fpv" secondAttribute="bottom" constant="8" id="g8q-Hc-IpQ"/>
                             <constraint firstItem="BFO-6z-0yb" firstAttribute="top" secondItem="89s-pJ-dyI" secondAttribute="bottom" constant="8" id="kYg-yU-Y5s"/>
                         </constraints>
                     </view>
@@ -192,6 +204,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A8U-Lo-UwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="996" y="745"/>
+        </scene>
+        <!--Bikes-->
+        <scene sceneID="KXO-Zb-Lgu">
+            <objects>
+                <tableViewController title="Bikes" id="LUt-Lh-jR0" customClass="BikeTableViewController" customModule="ctkit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gA6-zs-OQc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bikeCell" textLabel="6Km-Bh-faa" detailTextLabel="q7N-Il-Pab" style="IBUITableViewCellStyleSubtitle" id="dc0-77-fJ3">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dc0-77-fJ3" id="dpg-mO-R8G">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Km-Bh-faa">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="q7N-Il-Pab">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LUt-Lh-jR0" id="UIP-Vc-bgS"/>
+                            <outlet property="delegate" destination="LUt-Lh-jR0" id="eRj-hh-aeF"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1LY-Ch-Wlp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1686" y="737"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h34-gQ-4E7">

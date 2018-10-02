@@ -28,10 +28,14 @@ class AccountViewController: UIViewController {
         }
     }
     
+    func getBikes() {
+        
+    }
+    
     @IBAction func signOut(_ sender: Any) {
         CTUserService().logout()
         
-        var loadingViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loadingViewController")
+        let loadingViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loadingViewController")
         self.present(loadingViewController, animated: true, completion: nil)
     }
 }

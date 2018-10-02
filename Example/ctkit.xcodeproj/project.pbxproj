@@ -17,6 +17,7 @@
 		C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9B21635B250010617A /* CreateAccountViewController.swift */; };
 		C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9D21635EEB0010617A /* AccountViewController.swift */; };
 		C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9F216373660010617A /* LoadingViewController.swift */; };
+		C02A3DA22163A1C40010617A /* BikeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3DA12163A1C40010617A /* BikeTableViewController.swift */; };
 		C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */; };
 		D9CAE1C4001BBCCC8BCBF7D0 /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6194CB303E3D445B94E743A /* Pods_ctkit_Example.framework */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,7 @@
 		C02A3D9B21635B250010617A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		C02A3D9D21635EEB0010617A /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		C02A3D9F216373660010617A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		C02A3DA12163A1C40010617A /* BikeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeTableViewController.swift; sourceTree = "<group>"; };
 		C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUserServiceTests.swift; sourceTree = "<group>"; };
 		D6194CB303E3D445B94E743A /* Pods_ctkit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -110,6 +112,7 @@
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				C02A3D9D21635EEB0010617A /* AccountViewController.swift */,
 				C02A3D9F216373660010617A /* LoadingViewController.swift */,
+				C02A3DA12163A1C40010617A /* BikeTableViewController.swift */,
 			);
 			name = "Example for ctkit";
 			path = ctkit;
@@ -382,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C02A3DA22163A1C40010617A /* BikeTableViewController.swift in Sources */,
 				C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */,

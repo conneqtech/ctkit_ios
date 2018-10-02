@@ -32,4 +32,12 @@ public class CTBikeService: NSObject {
     public func fetchAll() -> Observable<[CTBikeModel]> {
         return CTBike.shared.restManager.get(endpoint: "bike")
     }
+    
+    public func fetchOwned() -> Observable<[CTBikeModel]> {
+        return self.fetchAll().map { $0.filter{ $0.owner.id == CTBike.shared.currentActiveUserId }}
+    }
+    
+    public func fetchShared() -> Observable<[CTBikeModel]> {
+         return self.fetchAll().map { $0.filter{ $0.owner.id != CTBike.shared.currentActiveUserId }}
+    }
 }
