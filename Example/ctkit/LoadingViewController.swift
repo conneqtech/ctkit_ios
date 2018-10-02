@@ -20,6 +20,6 @@ class LoadingViewController: UIViewController {
             navViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "accountNavigationController")
         }
         
-        self.present(navViewController, animated: true, completion: nil)
+        self.present(navViewController, animated: false, completion: nil)
     }
 }

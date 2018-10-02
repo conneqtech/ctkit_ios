@@ -9,12 +9,23 @@
 import Foundation
 import UIKit
 import ctkit
+import RxSwift
 
 class AccountViewController: UIViewController {
+
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
-        print(CTUserService().hasActiveSession())
-        print(CTUserService().getActiveUserId())
+        if CTUserService().hasActiveSession() {
+            let subscription = CTUserService().fetchCurrentUser().subscribe (onNext: { user in
+                print(user.email)
+                print(user.firstName)
+            }, onError: { error in
+                print(error)
+            })
+            
+            disposeBag.insert(subscription)
+        }
     }
     
     @IBAction func signOut(_ sender: Any) {
