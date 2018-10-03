@@ -22,7 +22,7 @@ public class CTRestManager {
     }
     
     public func get<T:Codable>(endpoint:String, parameters:[String:Any]? = nil,  useToken:String? = nil) -> Observable<T> {
-        return genericCall(.get, endpoint: endpoint, parameters: parameters, useToken: useToken)
+        return genericCall(.get, endpoint: endpoint, parameters: parameters, encoding: URLEncoding.default, useToken: useToken)
     }
     
     public func post<T:Codable>(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Observable<T> {

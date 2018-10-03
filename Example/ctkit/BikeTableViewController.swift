@@ -14,22 +14,45 @@ import ctkit
 class BikeTableViewController: UITableViewController {
     
     var bikes: [CTBikeModel] = []
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CTBikeService().fetchAll().subscribe(onNext: { bikes in
+        let subscription = CTBikeService().fetchAll().subscribe(onNext: { bikes in
             self.bikes = bikes
             self.tableView.reloadData()
         })
+        
+        disposeBag.insert(subscription)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "bikeCell", for: indexPath)
-        cell.textLabel?.text = self.bikes[indexPath.row].name
-        cell.detailTextLabel?.text = self.bikes[indexPath.row].owner.displayName
+        let bike = self.bikes[indexPath.row]
+        cell.textLabel?.text = "\(bike.id) \(bike.name)"
+        cell.detailTextLabel?.text = "\(bike.owner.displayName) owner=\(bike.owner.id == CTUserService().getActiveUserId())"
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let bike = self.bikes[indexPath.row]
+        let calendar = Calendar.current
+       
+        let from = calendar.date(byAdding: .hour, value: -10, to: Date())!
+        
+        let subscription = CTBikeLocationService().getHistoryForBike(withId: bike.id, from: from, until: Date()).subscribe(onNext: { locations in
+            print("Locations: \(locations.count)")
+            locations.forEach { location in
+                print("\(location.latitude) \(location.longitude)")
+            }
+        }, onError: { error in
+            print("DEAD")
+            print(error)
+        })
+        
+        disposeBag.insert(subscription)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
