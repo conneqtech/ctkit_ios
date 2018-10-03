@@ -32,7 +32,6 @@ class CTRequestRetrier: RequestRetrier {
                     guard let strongSelf = self else { return }
                     
                     strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
-                    
                     if let tokenResponse = tokenResponse {
                         CTBike.shared.authManager.saveTokenResponse(tokenResponse)
                     }
@@ -63,7 +62,6 @@ class CTRequestRetrier: RequestRetrier {
         let _ = Alamofire.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { [weak self] response in
                 guard let strongSelf = self else { return }
-                
                 guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
                     completion(false, nil)
                     return

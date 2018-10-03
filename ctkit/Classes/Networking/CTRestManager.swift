@@ -58,14 +58,16 @@ public class CTRestManager {
                 .responseJSON { (response) in
                     switch response.result {
                     case .success:
+                        //FIXME: Remove debug code
                         do {
                             let getResponse = try JSONDecoder().decode(T.self, from: response.data!)
                         } catch {
                             print("GECATCHED")
                             print(error)
                         }
+                        //End of debug code
+                        
                             guard let data = response.data, let getResponse = try?JSONDecoder().decode(T.self, from: data) else {
-                                print(T.self)
                                 observer.onError(NSError(domain: "test", code: 400, userInfo: nil))
                                 return
                             }

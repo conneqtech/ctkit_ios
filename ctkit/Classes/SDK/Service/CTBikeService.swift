@@ -29,6 +29,10 @@ public class CTBikeService: NSObject {
         //TODO: Find out how to handle the empty success response of a delete call
     }
     
+    public func fetch(withId identifier: Int) -> Observable<CTBikeModel> {
+        return CTBike.shared.restManager.get(endpoint: "bike/\(identifier)")
+    }
+    
     public func fetchAll() -> Observable<[CTBikeModel]> {
         return CTBike.shared.restManager.get(endpoint: "bike")
     }

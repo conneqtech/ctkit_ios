@@ -13,6 +13,7 @@ public struct CTBikeModel: CTBaseModel {
     public let name: String
     public let frameIdentifier: String
     public let keyIdentifier: String?
+    public let lastLocation: CTBikeLocationModel?
     public let owner: CTUserModel
     public let linkedUsers: [CTUserModel]
     
@@ -22,6 +23,7 @@ public struct CTBikeModel: CTBaseModel {
         case name = "name"
         case frameIdentifier = "frame_number"
         case keyIdentifier = "key_number"
+        case lastLocation = "last_location"
         case owner = "owning_user"
         case linkedUsers = "linked_users"
     }

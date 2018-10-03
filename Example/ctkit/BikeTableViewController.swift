@@ -53,6 +53,20 @@ class BikeTableViewController: UITableViewController {
         })
         
         disposeBag.insert(subscription)
+        
+        let subscription2 = CTBikeLocationService().getLastLocationOfBike(withId: bike.id).subscribe(onNext: { location in
+            print("Last location")
+            if let location = location {
+                 print("\(location.latitude) \(location.longitude)")
+            } else {
+                print("no last location known")
+            }
+        }, onError: { error in
+            print("DEAD")
+            print(error)
+        })
+        
+         disposeBag.insert(subscription2)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

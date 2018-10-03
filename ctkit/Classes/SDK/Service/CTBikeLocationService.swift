@@ -15,6 +15,10 @@ public class CTBikeLocationService: NSObject {
             "till":until.toAPIDate()
         ])
     }
+    
+    public func getLastLocationOfBike(withId identifier: Int) -> Observable<CTBikeLocationModel?> {
+        return CTBikeService().fetch(withId: identifier).map { (bike:CTBikeModel) in return bike.lastLocation}
+    }
 }
 
 internal extension Date {
