@@ -23,10 +23,8 @@ public class CTBikeService: NSObject {
         return CTBike.shared.restManager.patch(endpoint: "bike", parameters: try? bike.asDictionary())
     }
     
-    public func delete(withBikeId: Int) -> Observable<CTBikeModel> {
-         return Observable.empty()
-        //TODO: Implement this function
-        //TODO: Find out how to handle the empty success response of a delete call
+    public func delete(withBikeId identifier: Int) -> Completable {
+        return CTBike.shared.restManager.archive(endpoint: "bike/\(identifier)")
     }
     
     public func fetch(withId identifier: Int) -> Observable<CTBikeModel> {

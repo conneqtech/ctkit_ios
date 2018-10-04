@@ -65,8 +65,20 @@ class BikeTableViewController: UITableViewController {
             print("DEAD")
             print(error)
         })
+
+        disposeBag.insert(subscription2)
+    
+        let sub4 = CTGeofenceService().fetchAll(withBikeId: bike.id).subscribe(onNext: { geofences in
+            print("Geofences")
+            geofences.forEach { geofence in
+                print(geofence.name)
+            }
+        }, onError: { error in
+            print("GEOFENCE FETCH ERRR")
+            print(error)
+        })
         
-         disposeBag.insert(subscription2)
+        disposeBag.insert(sub4)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -33,8 +33,43 @@ public class CTRestManager {
         return genericCall(.patch, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
     
-    public func delete<T:Codable>(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Observable<T>  {
-        return genericCall(.delete, endpoint: endpoint, parameters: parameters, useToken:useToken)
+    public func delete(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Completable  {
+        return genericCompletableCall(.delete, endpoint: endpoint, parameters: parameters, useToken:useToken)
+    }
+    
+    public func archive(endpoint:String, useToken:String? = nil) -> Completable {
+        return genericCompletableCall(.patch, endpoint: endpoint, parameters: ["active_state":2], useToken:useToken)
+    }
+    
+    private func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Completable {
+        return Completable.create { (completable) in
+            var headers: [String:String] = [:]
+            
+            if let bearer = useToken {
+                headers["Authorization"] = "Bearer \(bearer)"
+            }
+            
+            let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+            let requestReference = self.sessionManager.request(url,
+                                                               method: method,
+                                                               parameters: parameters,
+                                                               encoding: encoding,
+                                                               headers: headers)
+                .validate(statusCode: 200..<300)
+                .validate(contentType: ["application/json"])
+                .responseJSON { (response) in
+                    switch response.result {
+                    case .success:
+                        completable(.completed)
+                    case .failure:
+                        completable(.error(response.error!))
+                    }
+            }
+            
+            return Disposables.create(with: {
+                requestReference.cancel()
+            })
+        }
     }
     
     private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T:Codable {
