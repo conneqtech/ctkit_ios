@@ -44,9 +44,9 @@ class BikeTableViewController: UITableViewController {
         
         let subscription = CTBikeLocationService().getHistoryForBike(withId: bike.id, from: from, until: Date()).subscribe(onNext: { locations in
             print("Locations: \(locations.count)")
-            locations.forEach { location in
-                print("\(location.latitude) \(location.longitude)")
-            }
+//            locations.forEach { location in
+//                print("\(location.latitude) \(location.longitude)")
+//            }
         }, onError: { error in
             print("DEAD")
             print(error)
@@ -79,6 +79,20 @@ class BikeTableViewController: UITableViewController {
         })
         
         disposeBag.insert(sub4)
+        
+        let sub5 = CTGeofenceService()
+            .create(withBikeId: bike.id,
+                    name: "Test geo CTkit",
+                    latitude: 51.446975,
+                    longitude: 3.574013,
+                    radius: 1000.0)
+            .subscribe(onNext: { geofence in
+                print(geofence.name)
+            }, onError: { error in
+                print(error)
+            })
+        
+        disposeBag.insert(sub5)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

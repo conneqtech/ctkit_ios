@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        CTBike.configure(withClientId: "dfbc635c-1aa5-4299-bb91-db54bd6b5026", clientSecret: "wia])N*vUc]FyTNeTdr4MkQVAq6cU4shy#27{oAjsJrD3%bP/i", baseURL: "https://api.sparta.staging.conneq.tech")
+        CTBike.configure(withClientId: "dfbc635c-1aa5-4299-bb91-db54bd6b5026", clientSecret: "wia])N*vUc]FyTNeTdr4MkQVAq6cU4shy#27{oAjsJrD3%bP/i", baseURL: "https://sparta.api.bike.staging.conneq.tech")
         return true
     }
 

@@ -14,6 +14,17 @@ public class CTGeofenceService: NSObject {
         return CTBike.shared.restManager.get(endpoint: "bike/geofence/\(identifier)")
     }
     
+    public func create(withBikeId identifier: Int, name: String, latitude: Double, longitude: Double, radius: Double) -> Observable<CTGeofenceModel> {
+        return CTBike.shared.restManager.post(endpoint: "bike/\(identifier)/geofence", parameters: [
+            "name":name,
+            "center": [
+                "lat":latitude,
+                "lon":longitude
+            ],
+            "radius":radius
+            ])
+    }
+    
     public func patch(geofence: CTGeofenceModel) -> Observable<CTGeofenceModel> {
         return CTBike.shared.restManager.patch(endpoint: "bike/geofence/\(geofence.id)", parameters: try? geofence.asDictionary())
     }
