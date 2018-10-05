@@ -38,61 +38,33 @@ class BikeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let bike = self.bikes[indexPath.row]
-        let calendar = Calendar.current
-       
-        let from = calendar.date(byAdding: .hour, value: -10, to: Date())!
         
-        let subscription = CTBikeLocationService().getHistoryForBike(withId: bike.id, from: from, until: Date()).subscribe(onNext: { locations in
-            print("Locations: \(locations.count)")
-//            locations.forEach { location in
-//                print("\(location.latitude) \(location.longitude)")
-//            }
-        }, onError: { error in
-            print("DEAD")
-            print(error)
-        })
         
-        disposeBag.insert(subscription)
+        let alertController = UIAlertController(title: "Bike options", message: "", preferredStyle: .actionSheet)
         
-        let subscription2 = CTBikeLocationService().getLastLocationOfBike(withId: bike.id).subscribe(onNext: { location in
-            print("Last location")
-            if let location = location {
-                 print("\(location.latitude) \(location.longitude)")
-            } else {
-                print("no last location known")
-            }
-        }, onError: { error in
-            print("DEAD")
-            print(error)
+        let routeButton = UIAlertAction(title: "Route", style: .default) { (action) -> Void in
+            print("To the geozaune")
+        }
+        
+        let geofenceButton = UIAlertAction(title: "Geofences", style: .default) { (action) -> Void in
+             var geofenceTableViewController: GeofenceTableViewController = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "geofenceTableViewController") as! GeofenceTableViewController
+            
+            geofenceTableViewController.bikeId = bike.id
+            
+            self.navigationController?.pushViewController(geofenceTableViewController, animated: true)
+        }
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+            print("Cancel button tapped")
         })
 
-        disposeBag.insert(subscription2)
-    
-        let sub4 = CTGeofenceService().fetchAll(withBikeId: bike.id).subscribe(onNext: { geofences in
-            print("Geofences")
-            geofences.forEach { geofence in
-                print(geofence.name)
-            }
-        }, onError: { error in
-            print("GEOFENCE FETCH ERRR")
-            print(error)
-        })
+        //Buttons
+        alertController.addAction(routeButton)
+        alertController.addAction(geofenceButton)
+        alertController.addAction(cancelButton)
         
-        disposeBag.insert(sub4)
-        
-        let sub5 = CTGeofenceService()
-            .create(withBikeId: bike.id,
-                    name: "Test geo CTkit",
-                    latitude: 51.446975,
-                    longitude: 3.574013,
-                    radius: 1000.0)
-            .subscribe(onNext: { geofence in
-                print(geofence.name)
-            }, onError: { error in
-                print(error)
-            })
-        
-        disposeBag.insert(sub5)
+        self.present(alertController, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -18,6 +18,7 @@
 		C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9D21635EEB0010617A /* AccountViewController.swift */; };
 		C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9F216373660010617A /* LoadingViewController.swift */; };
 		C02A3DA22163A1C40010617A /* BikeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3DA12163A1C40010617A /* BikeTableViewController.swift */; };
+		C0DF759021674E0900260751 /* GeofenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */; };
 		C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */; };
 		D9CAE1C4001BBCCC8BCBF7D0 /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6194CB303E3D445B94E743A /* Pods_ctkit_Example.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		C02A3D9D21635EEB0010617A /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		C02A3D9F216373660010617A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		C02A3DA12163A1C40010617A /* BikeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeTableViewController.swift; sourceTree = "<group>"; };
+		C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceTableViewController.swift; sourceTree = "<group>"; };
 		C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUserServiceTests.swift; sourceTree = "<group>"; };
 		D6194CB303E3D445B94E743A /* Pods_ctkit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -113,6 +115,7 @@
 				C02A3D9D21635EEB0010617A /* AccountViewController.swift */,
 				C02A3D9F216373660010617A /* LoadingViewController.swift */,
 				C02A3DA12163A1C40010617A /* BikeTableViewController.swift */,
+				C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */,
 			);
 			name = "Example for ctkit";
 			path = ctkit;
@@ -390,6 +393,7 @@
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */,
 				C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */,
+				C0DF759021674E0900260751 /* GeofenceTableViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
