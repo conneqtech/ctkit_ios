@@ -14,17 +14,16 @@ import RxSwift
 class AccountViewController: UIViewController {
 
     let disposeBag = DisposeBag()
+    let userService = CTUserService()
     
     override func viewDidLoad() {
-        if CTUserService().hasActiveSession() {
-            let subscription = CTUserService().fetchCurrentUser().subscribe (onNext: { user in
+        if self.userService.hasActiveSession() {
+            self.userService.fetchCurrentUser().subscribe (onNext: { user in
                 print(user.email)
                 print(user.firstName)
             }, onError: { error in
                 print(error)
-            })
-            
-            disposeBag.insert(subscription)
+            }).disposed(by: disposeBag)
         }
     }
     
@@ -33,7 +32,7 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func signOut(_ sender: Any) {
-        CTUserService().logout()
+        self.userService.logout()
         
         let loadingViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loadingViewController")
         self.present(loadingViewController, animated: true, completion: nil)

@@ -17,7 +17,6 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = 'https://bitbucket.org/nfnty_admin/ctkit_ios'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Conneqtech B.V.' => 'info@conneqtech.com' }
   s.source           = { :git => 'https://jookes@bitbucket.org/nfnty_admin/ctkit_ios.git', :tag => s.version.to_s }
@@ -26,12 +25,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Source/**/*.swift'
   
-  # s.resource_bundles = {
-  #   'ctkit' => ['ctkit/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-    s.dependency 'Alamofire', '~> 4.7'
-    s.dependency 'RxSwift', '~> 4.0'
+  s.dependency 'Alamofire', '~> 4.7'
+  s.dependency 'RxSwift', '~> 4.0'
 end
