@@ -14,8 +14,14 @@ public class CTUserService: NSObject {
         return CTBike.shared.authManager.login(username: email, password: password).flatMap { _ in self.fetchCurrentUser() }
     }
     
-    public func create(email: String, password: String) -> Observable<CTUserModel> {
-        return CTBike.shared.authManager.getClientToken().flatMap { token in CTBike.shared.restManager.post(endpoint: "user", parameters:["username":email, "password":password], useToken:token)
+    public func create(email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
+        return CTBike.shared.authManager.getClientToken().flatMap {
+            token in CTBike.shared.restManager.post(endpoint: "user",
+                                                    parameters:[
+                                                        "username":email,
+                                                        "password":password,
+                                                        "privacy_statement_accepted": agreedToPrivacyStatement
+                                                    ], useToken:token)
         }
     }
     

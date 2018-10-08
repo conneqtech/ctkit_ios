@@ -31,7 +31,7 @@ class BikeTableViewController: UITableViewController {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "bikeCell", for: indexPath)
         let bike = self.bikes[indexPath.row]
         cell.textLabel?.text = "\(bike.id) \(bike.name)"
-        cell.detailTextLabel?.text = "\(bike.owner.displayName) owner=\(bike.owner.id == CTUserService().getActiveUserId())"
+        cell.detailTextLabel?.text = "\(bike.owner.displayName)"
         
         return cell
     }
@@ -47,7 +47,7 @@ class BikeTableViewController: UITableViewController {
         }
         
         let geofenceButton = UIAlertAction(title: "Geofences", style: .default) { (action) -> Void in
-             var geofenceTableViewController: GeofenceTableViewController = UIStoryboard(name: "Main", bundle: nil)
+             let geofenceTableViewController: GeofenceTableViewController = UIStoryboard(name: "Main", bundle: nil)
                 .instantiateViewController(withIdentifier: "geofenceTableViewController") as! GeofenceTableViewController
             
             geofenceTableViewController.bikeId = bike.id
@@ -68,9 +68,8 @@ class BikeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let bike = self.bikes[indexPath.row]
         let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
-            let bike = self.bikes[indexPath.row]
-            
             CTBikeService().delete(withBikeId: bike.id).subscribe(onCompleted: {
                 self.bikes.remove(at: indexPath.row)
                 self.tableView.reloadData()
@@ -84,7 +83,11 @@ class BikeTableViewController: UITableViewController {
             print("Editing")
         }
         
-        return [delete, edit]
+        if bike.owner.id == CTUserService().getActiveUserId() {
+            return [delete, edit]
+        } else {
+            return [delete]
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
