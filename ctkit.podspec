@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://bitbucket.org/nfnty_admin/ctkit_ios'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'gert-jan vercauteren' => 'gert-jan@conneqtech.com' }
+  s.author           = { 'Conneqtech B.V.' => 'info@conneqtech.com' }
   s.source           = { :git => 'https://jookes@bitbucket.org/nfnty_admin/ctkit_ios.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
