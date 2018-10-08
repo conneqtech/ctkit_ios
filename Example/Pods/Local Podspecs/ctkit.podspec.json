@@ -10,7 +10,7 @@
     "file": "LICENSE"
   },
   "authors": {
-    "jookes": "gert-jan@nfnty.nl"
+    "Conneqtech B.V.": "info@conneqtech.com"
   },
   "source": {
     "git": "https://jookes@bitbucket.org/nfnty_admin/ctkit_ios.git",
@@ -19,7 +19,7 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "ctkit/Classes/**/*",
+  "source_files": "Source/**/*.swift",
   "dependencies": {
     "Alamofire": [
       "~> 4.7"
