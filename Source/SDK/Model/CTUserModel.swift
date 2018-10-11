@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CTUserModel: CTBaseModel {
+public struct CTUserModel: CTBaseModel {
     
     public let id: Int
     
@@ -24,12 +24,45 @@ public class CTUserModel: CTBaseModel {
     
     public var firstName: String?
     public var lastName: String?
+    
+    public let initials:String
+    public let gender:String
+    public let avatar:String
+    public let emailIsVerified:Bool
+    
+    //Address attributes
+    public let address:String
+    public let houseNumber:String
+    public let city:String
+    public let country:String
+    public let postalCode:String
+
+    //Location
+    public let lat:Double
+    public let lon:Double
+    
+    public let updatedLocation:Date?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case email = "username"
         case firstName = "first_name"
         case lastName = "last_name"
+        
+        case initials = "initials"
+        case gender = "gender"
+        case avatar = "avatar"
+        case emailIsVerified = "emailIsVerified"
+        
+        case address = "address"
+        case houseNumber = "houseNumber"
+        case city = "city"
+        case country = "country"
+        case postalCode = "postalCode"
+        
+        case lat = "lat"
+        case lon = "lon"
+        case updatedLocation = "updatedLocation"
     }
     
     public func encode(to encoder: Encoder) throws {
