@@ -52,17 +52,17 @@ public struct CTUserModel: CTBaseModel {
         case initials = "initials"
         case gender = "gender"
         case avatar = "avatar_url"
-        case emailIsVerified = "emailIsVerified"
+        case emailIsVerified = "email_is_verified"
         
         case address = "address"
-        case houseNumber = "houseNumber"
+        case houseNumber = "house_number"
         case city = "city"
         case country = "country"
-        case postalCode = "postalCode"
+        case postalCode = "postal_code"
         
         case lat = "lat"
         case lon = "lon"
-        case updatedLocation = "updatedLocation"
+        case updatedLocation = "updated_location"
     }
     
     public func encode(to encoder: Encoder) throws {
