@@ -9,16 +9,11 @@ import Foundation
 import RxSwift
 
 public class CTRideService:NSObject {
-    
-    public func fetch(withRideId identifier: Int) -> Observable<CTRideModel> {
-        return CTBike.shared.restManager.get(endpoint: "bike/ride/\(identifier)")
-    }
-    
-    public func create(withBikeId identifier: Int, startDate:Date, endDate:Date, creationDate:Date, rideType:String, name:String) -> Observable<CTRideModel> {
+
+    public func create(withBikeId identifier: Int, startDate:Date, endDate:Date, rideType:String, name:String) -> Observable<CTRideModel> {
         return CTBike.shared.restManager.post(endpoint: "bike/\(identifier)/ride", parameters: [
             "startDate":startDate,
             "endDate":endDate,
-            "creationDate":creationDate,
             "rideType":rideType,
             "name":name
             ])
@@ -29,12 +24,19 @@ public class CTRideService:NSObject {
     }
     
     
+    public func delete(withRideId identifier:Int) -> Completable {
+        return CTBike.shared.restManager.archive(endpoint: "bike/ride/\(identifier)")
+    }
+    
+    
+    public func fetch(withRideId identifier: Int) -> Observable<CTRideModel> {
+        return CTBike.shared.restManager.get(endpoint: "bike/ride/\(identifier)")
+    }
+    
+    
     public func fetchAll(withBikeId identifier:Int) -> Observable<CTRideModel> {
         return CTBike.shared.restManager.get(endpoint: "bike/\(identifier)/ride")
     }
     
     
-    public func delete(withRideId identifier:Int) -> Completable {
-        return CTBike.shared.restManager.archive(endpoint: "bike/ride/\(identifier)")
-    }
 }

@@ -51,7 +51,7 @@ public struct CTUserModel: CTBaseModel {
         
         case initials = "initials"
         case gender = "gender"
-        case avatar = "avatar"
+        case avatar = "avatar_url"
         case emailIsVerified = "emailIsVerified"
         
         case address = "address"
