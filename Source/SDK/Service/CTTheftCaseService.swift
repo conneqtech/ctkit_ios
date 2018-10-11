@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 public class CTTheftCaseService:NSObject {
+    
     public func create(theftCase:CTTheftCaseModel) -> Observable<CTTheftCaseModel> {
         return CTBike.shared.restManager.post(endpoint: "theft-case", parameters: try? theftCase.asDictionary())
     }
