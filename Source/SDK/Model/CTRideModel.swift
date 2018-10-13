@@ -27,25 +27,26 @@ public struct CTRideModel: CTBaseModel {
     public let co2:Double
     public let weatherIconURL:String
     
-/*    Thinking.... */
-//    public var coordinateList:CTLatLonModel?
+    public var coordinateList:[CTLatLonModel]?
     
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
-        case userId = "userId"
-        case bikeId = "bikeId"
+        case userId = "user_id"
+        case bikeId = "bike_id"
         case name = "name"
-        case rideType = "rideType"
-        case creationDate = "creationDate"
-        case startDate = "startDate"
-        case endDate = "endDate"
+        case rideType = "ride_type"
+        case creationDate = "creation_date"
+        case startDate = "start_date"
+        case endDate = "end_date"
         
         case calories = "calories"
-        case averageSpeed = "averageSpeed"
-        case distanceTraveled = "distanceTraveled"
+        case averageSpeed = "average_speed"
+        case distanceTraveled = "distance_traveled"
         case co2 = "co2"
-        case weatherIconURL = "weatherIconURL"
+        case weatherIconURL = "weather_icon_url"
+        
+        
     }
     
 }

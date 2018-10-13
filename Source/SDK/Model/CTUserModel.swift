@@ -60,8 +60,8 @@ public struct CTUserModel: CTBaseModel {
         case country = "country"
         case postalCode = "postal_code"
         
-        case lat = "lat"
-        case lon = "lon"
+        case latitude = "lat"
+        case longitude = "lon"
         case updatedLocation = "updated_location"
     }
     

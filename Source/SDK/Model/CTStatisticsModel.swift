@@ -27,7 +27,7 @@ public struct CTStatisticsModel:CTBaseModel {
         case calories = "calories"
         case avg_speed = "avg_speed"
         case distance_traveled = "distance_traveled"
-        case bikeId = "bikeId"
+        case bikeId = "bike_id"
     }
     
     

@@ -12,9 +12,9 @@ public class CTRideService:NSObject {
 
     public func create(withBikeId identifier: Int, startDate:Date, endDate:Date, rideType:String, name:String) -> Observable<CTRideModel> {
         return CTBike.shared.restManager.post(endpoint: "bike/\(identifier)/ride", parameters: [
-            "startDate":startDate,
-            "endDate":endDate,
-            "rideType":rideType,
+            "start_date":startDate.toAPIDate(),
+            "end_date":endDate.toAPIDate(),
+            "ride_type":rideType,
             "name":name
             ])
     }
