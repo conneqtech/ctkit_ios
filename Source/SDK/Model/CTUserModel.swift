@@ -38,10 +38,8 @@ public struct CTUserModel: CTBaseModel {
     public let postalCode:String
 
     //Location
-    public let lat:Double
-    public let lon:Double
-    
-    public let updatedLocation:Date?
+
+    public let updatedLocation:CTLatLonModel?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -60,8 +58,6 @@ public struct CTUserModel: CTBaseModel {
         case country = "country"
         case postalCode = "postal_code"
         
-        case latitude = "lat"
-        case longitude = "lon"
         case updatedLocation = "updated_location"
     }
     

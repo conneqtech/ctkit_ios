@@ -8,16 +8,18 @@
 import Foundation
 
 public struct CTTheftCaseModel:CTBaseModel {
+    
     public let id:Int
     public let caseNumber:String
     public let partnerCaseNumber:String
     public let partnerId:Int
+    
     //RecoveryPartner
     public let bikeFrameType:String
     public let bikeType:String
     public let bikeColor:String
     public let bikeAdditionalDetails:String
-    public let images:[UIImage]
+//    public let images:[UIImage]
     
     //Owner details
     public let ownerName:String
@@ -45,7 +47,7 @@ public struct CTTheftCaseModel:CTBaseModel {
         case bikeType = "bike_type"
         case bikeColor = "bike_color"
         case bikeAdditionalDetails = "bike_additional_details"
-        case images = "bike_images"
+//        case images = "bike_images"
         
         case ownerName = "owner_name"
         case ownerEmail = "owner_email"

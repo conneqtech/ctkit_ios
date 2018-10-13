@@ -10,12 +10,12 @@ import RxSwift
 import Alamofire
 
 public class CTUploadService:NSObject {
-    public func uploadImage(withImageURL URL:String) -> Observable<CTUploadedFile> {
-      
-    }
-    
-    public func uploadImage(withImage image:UIImage) -> Observable<CTUploadedFile> {
-        
-    }
-    
+//    public func uploadImage(withImageURL URL:String) -> Observable<CTUploadedFile> {
+//      
+//    }
+//    
+//    public func uploadImage(withImage image:UIImage) -> Observable<CTUploadedFile> {
+//        
+//    }
+//    
 }
