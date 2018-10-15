@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CTGeofenceModel: CTBaseModel {
+public struct CTGeofenceModel: CTBaseModel {
     
     public let id:Int
     public let name:String

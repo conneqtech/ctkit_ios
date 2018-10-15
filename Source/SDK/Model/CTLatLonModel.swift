@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CTLatLonModel: CTBaseModel {
+public struct CTLatLonModel: CTBaseModel {
     public let latitude:Double
     public let longitude:Double
     

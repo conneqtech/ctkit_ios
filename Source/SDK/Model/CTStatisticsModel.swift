@@ -1,0 +1,34 @@
+//
+//  CTStatisticsModel.swift
+//  ctkit
+//
+//  Created by Daan van der Jagt on 11/10/2018.
+//
+
+import Foundation
+
+
+public struct CTStatisticsModel:CTBaseModel {
+    public let id:Int
+    public let from:Date
+    public let till:Date
+    public let co2:Int
+    public let calories:Int
+    public let avg_speed:Int
+    public let distance_traveled:Int
+    public let bikeId:Int
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case from = "from"
+        case till = "till"
+        case co2 = "co2"
+        case calories = "calories"
+        case avg_speed = "avg_speed"
+        case distance_traveled = "distance_traveled"
+        case bikeId = "bike_id"
+    }
+    
+    
+}
