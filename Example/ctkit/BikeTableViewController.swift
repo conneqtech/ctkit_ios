@@ -19,9 +19,14 @@ class BikeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let subscription = CTBikeService().fetchAll().subscribe(onNext: { bikes in
-            self.bikes = bikes
-            self.tableView.reloadData()
+        let subscription = CTBikeService().fetchAll().subscribe(onNext: { result in
+            switch result {
+            case .success(let bikes):
+                self.bikes = bikes
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
         })
         
         disposeBag.insert(subscription)

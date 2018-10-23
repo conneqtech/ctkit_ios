@@ -31,12 +31,18 @@ class ViewController: UIViewController {
             password: self.passwordTextfield.text!)
             .subscribe { event in
                 switch event {
-                case .next(let value):
+                case .next(_):
                     let navViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "accountNavigationController")
                     self.present(navViewController, animated: true, completion: nil)
                 case .error(let error):
-                    print(error)
-                    CTUserService().logout()
+                    if let ctError = error as? CTErrorProtocol {
+                        let alert = UIAlertController(title: "Error", message: ctError.translationKey, preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                        alert.addAction(okAction)
+                        
+                        self.present(alert, animated: true)
+                    }
+                    
                 case .completed:
                     print("Completed")
                 }

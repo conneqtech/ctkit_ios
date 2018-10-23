@@ -25,17 +25,17 @@ public struct CTUserModel: CTBaseModel {
     public var firstName: String?
     public var lastName: String?
     
-    public let initials:String
-    public let gender:String
-    public let avatar:String
-    public let emailIsVerified:Bool
+    public let initials:String?
+    public let gender:String?
+    public let avatar:String?
+    public let emailIsVerified:Bool?
     
     //Address attributes
-    public let address:String
-    public let houseNumber:String
-    public let city:String
-    public let country:String
-    public let postalCode:String
+    public let address:String?
+    public let houseNumber:Int?
+    public let city:String?
+    public let country:String?
+    public let postalCode:String?
 
     //Location
 
@@ -50,7 +50,7 @@ public struct CTUserModel: CTBaseModel {
         case initials = "initials"
         case gender = "gender"
         case avatar = "avatar_url"
-        case emailIsVerified = "email_is_verified"
+        case emailIsVerified = "is_email_verified"
         
         case address = "address"
         case houseNumber = "house_number"

@@ -15,12 +15,16 @@ class CTGeofenceServiceTests: QuickSpec {
     
     override func spec() {
         beforeEach {
+            CTBike.configure(withClientId: "", clientSecret: "", baseURL: "")
+            
             //Setup code for tests
             //Use mocked networking layer here?
-            let service = CTGeofenceService()
-            let idToTest = 8248
-            var geofenceModel:CTGeofenceModel?
+//            let service = CTGeofenceService()
+//            let idToTest = 8248
+//            var geofenceModel:CTGeofenceModel?
             
+            // GET -> /bike -> Return mock
+        
             describe(".fetchGeofence") {
                 context("Geofence variable is not empty") {
                     //Test mocked call in succes scenario..

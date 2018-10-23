@@ -10,26 +10,31 @@ import RxSwift
 
 public class CTTheftCaseService:NSObject {
     
-    public func create(theftCase:CTTheftCaseModel) -> Observable<CTTheftCaseModel> {
+    public func create(theftCase:CTTheftCaseModel) -> Observable<CTResult<CTTheftCaseModel, CTBasicError>> {
         return CTBike.shared.restManager.post(endpoint: "theft-case", parameters: try? theftCase.asDictionary())
     }
     
-    public func patchPoliceId(withCaseId identifier:Int, policeId:String) -> Observable<CTTheftCaseModel> {
+    public func patchPoliceId(withCaseId identifier:Int, policeId:String) -> Observable<CTResult<CTTheftCaseModel, CTBasicError>> {
         return CTBike.shared.restManager.patch(endpoint: "theft-case/\(identifier)", parameters: [
             "police_id":policeId])
     }
     
-    public func fetch(withCaseId identifier:Int) -> Observable<CTTheftCaseModel> {
+    public func fetch(withCaseId identifier:Int) -> Observable<CTResult<CTTheftCaseModel, CTBasicError>> {
         return CTBike.shared.restManager.get(endpoint: "theft-case/\(identifier)")
     }
     
-    public func fetchMostRecent(withBikeId identifier:Int) -> Observable<CTTheftCaseModel> {
-        return self.fetchAll(withBikeId: identifier).map { theftCases in
-            return theftCases[0]
+    public func fetchMostRecent(withBikeId identifier:Int) -> Observable<CTResult<CTTheftCaseModel, CTBasicError>> {
+        return self.fetchAll(withBikeId: identifier).map { result in
+            switch result {
+            case .success(let theftCases):
+                return CTResult.success(theftCases[0])
+            case .failure(let error):
+                return CTResult.failure(error)
+            }
         }
     }
     
-    public func fetchAll(withBikeId identifier:Int) -> Observable<[CTTheftCaseModel]> {
+    public func fetchAll(withBikeId identifier:Int) -> Observable<CTResult<[CTTheftCaseModel], CTBasicError>> {
         let params = [
             "filter": [
                 "and;bike_id;eq;\(identifier)"
@@ -38,7 +43,7 @@ public class CTTheftCaseService:NSObject {
                 "report_date;desc"
             ]
         ]
-        return CTBike.shared.restManager.get(endpoint: "theft-case")
+        return CTBike.shared.restManager.get(endpoint: "theft-case", parameters: params)
     }
     
 }

@@ -10,11 +10,11 @@ import RxSwift
 
 public class CTGeofenceService: NSObject {
     
-    public func fetch(withGeofenceId identifier: Int) -> Observable<CTGeofenceModel> {
+    public func fetch(withGeofenceId identifier: Int) -> Observable<CTResult<CTGeofenceModel, CTBasicError>> {
         return CTBike.shared.restManager.get(endpoint: "bike/geofence/\(identifier)")
     }
     
-    public func create(withBikeId identifier: Int, name: String, latitude: Double, longitude: Double, radius: Double) -> Observable<CTGeofenceModel> {
+    public func create(withBikeId identifier: Int, name: String, latitude: Double, longitude: Double, radius: Double) -> Observable<CTResult<CTGeofenceModel, CTBasicError>> {
         return CTBike.shared.restManager.post(endpoint: "bike/\(identifier)/geofence", parameters: [
             "name":name,
             "center": [
@@ -25,7 +25,7 @@ public class CTGeofenceService: NSObject {
             ])
     }
     
-    public func patch(geofence: CTGeofenceModel) -> Observable<CTGeofenceModel> {
+    public func patch(geofence: CTGeofenceModel) -> Observable<CTResult<CTGeofenceModel, CTBasicError>> {
         return CTBike.shared.restManager.patch(endpoint: "bike/geofence/\(geofence.id)", parameters: try? geofence.asDictionary())
     }
     
@@ -33,7 +33,7 @@ public class CTGeofenceService: NSObject {
         return CTBike.shared.restManager.archive(endpoint: "bike/geofence/\(identifier)")
     }
     
-    public func fetchAll(withBikeId identifier: Int) -> Observable<[CTGeofenceModel]> {
+    public func fetchAll(withBikeId identifier: Int) -> Observable<CTResult<[CTGeofenceModel], CTBasicError>> {
         return CTBike.shared.restManager.get(endpoint: "bike/\(identifier)/geofence")
     }
 }

@@ -43,7 +43,7 @@ public class CTAuthManager {
                         observer.onNext(getResponse.accessToken)
                         observer.onCompleted()
                     case .failure:
-                        observer.onError(response.error!)
+                        observer.onError(CTErrorHandler().handle(response: response))
                     }
             }
             
@@ -71,7 +71,7 @@ public class CTAuthManager {
                     switch response.result {
                     case .success:
                         guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
-                            observer.onError(response.error!)
+                            observer.onError(CTDecodingError(translationKey: "error.ctkit.decode", description: "Could not decode the response received"))
                             return
                         }
                     
@@ -79,7 +79,7 @@ public class CTAuthManager {
                         observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure:
-                        observer.onError(response.error!)
+                        observer.onError(CTErrorHandler().handle(response: response))
                     }
             }
             

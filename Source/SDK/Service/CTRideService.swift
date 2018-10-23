@@ -10,7 +10,7 @@ import RxSwift
 
 public class CTRideService:NSObject {
 
-    public func create(withBikeId identifier: Int, startDate:Date, endDate:Date, rideType:String, name:String) -> Observable<CTRideModel> {
+    public func create(withBikeId identifier: Int, startDate:Date, endDate:Date, rideType:String, name:String) -> Observable<CTResult<CTRideModel, CTBasicError>> {
         return CTBike.shared.restManager.post(endpoint: "bike/\(identifier)/ride", parameters: [
             "start_date":startDate.toAPIDate(),
             "end_date":endDate.toAPIDate(),
@@ -19,7 +19,7 @@ public class CTRideService:NSObject {
             ])
     }
     
-    public func patch(ride: CTRideModel) -> Observable<CTRideModel> {
+    public func patch(ride: CTRideModel) -> Observable<CTResult<CTRideModel, CTBasicError>> {
         return CTBike.shared.restManager.patch(endpoint: "bike/ride/\(ride.id)", parameters: try? ride.asDictionary())
     }
     
@@ -29,12 +29,12 @@ public class CTRideService:NSObject {
     }
     
     
-    public func fetch(withRideId identifier: Int) -> Observable<CTRideModel> {
+    public func fetch(withRideId identifier: Int) -> Observable<CTResult<CTRideModel, CTBasicError>> {
         return CTBike.shared.restManager.get(endpoint: "bike/ride/\(identifier)")
     }
     
     
-    public func fetchAll(withBikeId identifier:Int) -> Observable<CTRideModel> {
+    public func fetchAll(withBikeId identifier:Int) -> Observable<CTResult<[CTRideModel], CTBasicError>> {
         return CTBike.shared.restManager.get(endpoint: "bike/\(identifier)/ride")
     }
     

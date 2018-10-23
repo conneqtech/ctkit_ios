@@ -18,11 +18,15 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         if self.userService.hasActiveSession() {
-            self.userService.fetchCurrentUser().subscribe (onNext: { user in
-                print(user.email)
-                print(user.firstName)
-            }, onError: { error in
-                print(error)
+            self.userService.fetchCurrentUser().subscribe (onNext: { result in
+                switch result {
+                case .success(let user):
+                    print(user.email)
+                    print(user.firstName)
+                case .failure(let error):
+                    print(error)
+                }
+               
             }).disposed(by: disposeBag)
         }
     }

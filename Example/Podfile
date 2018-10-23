@@ -10,5 +10,6 @@ target 'ctkit_Example' do
     pod 'Nimble', '~> 7.0.2'
     pod 'RxBlocking', '~> 4.0'
     pod 'RxTest',     '~> 4.0'
+    pod 'Mockingjay'
   end
 end
