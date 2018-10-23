@@ -10,47 +10,59 @@ import Foundation
 import Quick
 import Nimble
 import ctkit
+import Mockingjay
+import RxBlocking
+import RxSwift
 
 class CTGeofenceServiceTests: QuickSpec {
     
     override func spec() {
-        beforeEach {
-            CTBike.configure(withClientId: "", clientSecret: "", baseURL: "")
-            
-            //Setup code for tests
-            //Use mocked networking layer here?
-//            let service = CTGeofenceService()
-//            let idToTest = 8248
-//            var geofenceModel:CTGeofenceModel?
-            
-            // GET -> /bike -> Return mock
+        describe("Geofence tests") {
+            let geofence = ["id": 262,
+                        "bike_id": 312,
+                        "user_id": 47,
+                        "name": "Home",
+                        "center": [
+                            "lat": 0,
+                            "lon": 0
+                ],
+                        "radius": 500,
+                        "active_state": 0,
+                        "creation_date": "2018-09-17T09:31:36+0000"
+                ] as [String: Any]
         
-            describe(".fetchGeofence") {
-                context("Geofence variable is not empty") {
-                    //Test mocked call in succes scenario..
-                }
+            
+            it("fetches a geofence with id") {
+                var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>? = nil
+              
+                self.stub(uri("/bike/geofence/262"), json(geofence))
                 
-                context("The given Id does not exist") {
-                    //Test call in fail scenario, id that doesn't exist
-                }
+                let result = try! CTGeofenceService().fetch(withGeofenceId: 262).toBlocking().first()
+                jsonResponse = result
+                expect(jsonResponse).toEventuallyNot(beNil())
+
             }
             
-            describe(".fetchAllGeofencesWithBikeId") {
-                context("bikeId exists and has atleast 1 geofence") {
-                    //Mock fetchAllWithBikeId for existing bike that has atleast one geofence
-                }
+            it("creates a new geofence for a bike") {
+                var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>? = nil
+                self.stub(uri("/bike/312/geofence"), json(geofence))
                 
-                context("bikeId exists but has no geofences") {
-                    //Mock call where bikeId exists but has no geofences
-                }
+                let result = try! CTGeofenceService().create(withBikeId: 312, name: "geofence", latitude: 46, longitude: 12, radius: 30).toBlocking().first()
+                jsonResponse = result
                 
-                context("bikeId does not exist") {
-                    //Mock call where bikeId doesn't existß
-                }
+                expect(jsonResponse).toEventuallyNot(beNil())
+            }
+            
+            it("fetches a list of geofences for a bike") {
+                var jsonResponse:CTResult<[CTGeofenceModel], CTBasicError>? = nil
+                let list = [geofence, geofence, geofence]
+                self.stub(uri("/bike/geofence"), json(list))
+                
+                let result = try! CTGeofenceService().fetchAll(withBikeId: 312).toBlocking().first()
+                jsonResponse = result
+                
+                expect(jsonResponse).toEventuallyNot(beNil())
             }
         }
     }
-    
-    
-    
 }
