@@ -18,7 +18,7 @@ class CTTheftCaseServiceTests: QuickSpec {
     
     override func spec() {
         describe("Theftcase tests") {
-            let theftcase = [
+           let theftCase = [
                 "filters": [
                 [
                 "type": "or",
@@ -100,10 +100,21 @@ class CTTheftCaseServiceTests: QuickSpec {
                 "bike_id": 0,
                 "police_case_number": nil,
                 "finalized": false
-                ]] as [String : Any]
+                ]
+                    ]] as [String : Any]
+            
 
             it("fetches a certain theftcase") {
-                
+                var jsonResponse:CTResult<CTTheftCaseModel, CTBasicError>?
+                self.stub(uri("/theft-case/"), json(theftCase))
+                try! CTTheftCaseService().fetch(withCaseId: 0).toBlocking().first().map { (result:CTResult<CTTheftCaseModel, CTBasicError>) in
+                    switch result {
+                    case .success:
+                        jsonResponse = result
+                    case .failure(_):
+                        jsonResponse = nil
+                    }
+                }
             }
         }
     }

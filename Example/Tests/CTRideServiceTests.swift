@@ -66,7 +66,7 @@ class CTRideServiceTests:QuickSpec {
                 "ride_type": "ride.type.leisure"
                 ] as [String : Any]
             
-            it("Fetches a certain ride") {
+            it("fetches a certain ride") {
                 var jsonResponse:CTResult<CTRideModel, CTBasicError>?
                 self.stub(uri("/bike/ride/92"), json(ride))
                 
@@ -81,7 +81,7 @@ class CTRideServiceTests:QuickSpec {
                 
             }
             
-            it("Fetches a list of rides linked to a bike") {
+            it("fetches a list of rides linked to a bike") {
                 var jsonResponse:CTResult<[CTRideModel], CTBasicError>?
                 self.stub(uri("bike/312/ride"), json([ride, ride, ride]))
                 
@@ -95,7 +95,7 @@ class CTRideServiceTests:QuickSpec {
                 }
             }
             
-            it("Creates a new ride for a bike") {
+            it("creates a new ride for a bike") {
                 var jsonResponse:CTResult<CTRideModel, CTBasicError>?
                 self.stub(uri("bike/312/ride"), json(ride))
                 
