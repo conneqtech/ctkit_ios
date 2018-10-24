@@ -21,25 +21,27 @@ class CTUserServiceTests: QuickSpec {
     
     override func spec() {
         describe("CTUserServiceTests") {
-            it("refreshes an accesstoken") {
-                let oauth : [String: Any] = [
-                    "access_token": "1234",
-                    "expires_in": 3600,
-                    "scope": "",
-                    "token_type": "Bearer"
-                ]
-                
-                self.stub(uri("/oauth"), json(oauth))
-                
-                let body = ["id" : 10,
-                            "username": "test@test.com",
-                            "name":"Gert-Jan"
-                    ] as [String : Any]
-                self.stub(uri("/user/me"), json(body))
-                
-                let result = try! CTUserService().login(email: "test@test.com", password: "test").toBlocking().first()
-
-            }
+//            describe("create") {
+                it("Handles the error when the username and password field are empty") {
+                    let url = Bundle(for: type(of: self)).url(forResource: "createValidationError", withExtension: "json")!
+                    let data = try! Data(contentsOf: url)
+                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 422))
+                    
+                    let callToTest = try! CTUserService().create(email: "", password: "").toBlocking().first()
+                    
+                    if let unWrappedCallToTest = callToTest {
+                        switch unWrappedCallToTest {
+                        case .failure(let error):
+                             expect("Error") == "Stubby"
+                            print("Will happen")
+                        default:
+                            expect("Should not be called") == "Called"
+                        }
+                    } else {
+                        expect("Should not be called") == "Called"
+                    }
+                }
+//            }
         }
     }
 }
