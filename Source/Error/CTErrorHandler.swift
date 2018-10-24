@@ -23,6 +23,8 @@ internal class CTErrorHandler: NSObject {
                 handledError = handleUnauthorized(body: unwrappedResponse)
             case 400:
                 handledError = handleBadRequest(body: unwrappedResponse)
+            case 422:
+                handledError = handleUnprocessableEntity(body: unwrappedResponse)
             default:
                 handledError = CTBasicError(translationKey: "ddd", description: "")
             }
@@ -38,7 +40,6 @@ internal class CTErrorHandler: NSObject {
     
     func handleUnauthorized(body: [String:Any]) -> CTBasicError? {
         if let detail = body["detail"] as? String {
-            
             if detail == "Invalid username and password combination" {
                 return CTBasicError(translationKey: "api.error.401.invalid-username-password-combination", description: "Invalid username and password combination", code: 401)
             }
@@ -49,5 +50,27 @@ internal class CTErrorHandler: NSObject {
     
     func handleBadRequest(body: [String:Any]) -> CTBasicError? {
         return CTBasicError(translationKey: "api.error.400.bad-request", description: "The server encountered a bad request", errorBody: body)
+    }
+    
+    func handleUnprocessableEntity(body: [String:Any]) -> CTBasicError? {
+        if let detail = body["detail"] as? String {
+            print(detail)
+            switch detail {
+            case "Failed Validation":
+                return handleValidationError(body: body)
+            default:
+                return handleInvalidFields(body:body)
+            }
+        }
+        
+        return nil
+    }
+    
+    func handleValidationError(body: [String:Any]) -> CTBasicError? {
+        return CTBasicError(translationKey: "error.api.validation-failed", description: "Failed Validation", code: 422)
+    }
+    
+    func handleInvalidFields(body: [String:Any]) -> CTBasicError? {
+        return CTBasicError(translationKey: "error.api.fields-invalid", description: "One or more supplied fields are invalid", code: 422)
     }
 }
