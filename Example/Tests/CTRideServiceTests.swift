@@ -78,7 +78,6 @@ class CTRideServiceTests:QuickSpec {
                         jsonResponse = nil
                     }
                 }
-                
             }
             
             it("fetches a list of rides linked to a bike") {
