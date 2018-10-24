@@ -10,20 +10,20 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
-  - Nimble (7.0.3)
-  - Quick (1.2.0)
-  - RxBlocking (4.3.0):
+  - Nimble (7.3.1)
+  - Quick (1.3.2)
+  - RxBlocking (4.3.1):
     - RxSwift (~> 4.0)
-  - RxSwift (4.3.0)
-  - RxTest (4.3.0):
+  - RxSwift (4.3.1)
+  - RxTest (4.3.1):
     - RxSwift (~> 4.0)
   - URITemplate (2.0.3)
 
 DEPENDENCIES:
   - ctkit (from `../`)
   - Mockingjay
-  - Nimble (~> 7.0.2)
-  - Quick (~> 1.2.0)
+  - Nimble
+  - Quick
   - RxBlocking (~> 4.0)
   - RxTest (~> 4.0)
 
@@ -46,13 +46,13 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   ctkit: ebdb211f0a03f1283b7fdbbeb762b85d5168d45a
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
-  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  RxBlocking: ab8b3ac2aa5d030146fe3a3e7916d8efa202beae
-  RxSwift: a9717a34df3179fe63563f76e046ad345078dd3a
-  RxTest: 831444848ac3c5efdd7d80ff5dc4b50ba08877a9
+  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
+  Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
+  RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: 7409a7541057c7a8840443de4beea870a948e422
+PODFILE CHECKSUM: 11d97a141c6e46ca191d23c80c4de7a4cda9f676
 
 COCOAPODS: 1.5.3
