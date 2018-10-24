@@ -21,27 +21,28 @@ class CTUserServiceTests: QuickSpec {
     
     override func spec() {
         describe("CTUserServiceTests") {
-//            describe("create") {
+            describe("create") {
                 it("Handles the error when the username and password field are empty") {
                     let url = Bundle(for: type(of: self)).url(forResource: "createValidationError", withExtension: "json")!
                     let data = try! Data(contentsOf: url)
-                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 422))
+//                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 422))
                     
                     let callToTest = try! CTUserService().create(email: "", password: "").toBlocking().first()
                     
                     if let unWrappedCallToTest = callToTest {
                         switch unWrappedCallToTest {
                         case .failure(let error):
-                             expect("Error") == "Stubby"
-                            print("Will happen")
+                            expect(error.code) == 422
+                            expect(error.translationKey) == "error.api.invalidfields"
+                            expect(error.description) == "A validation error occured"
                         default:
-                            expect("Should not be called") == "Called"
+                            fail("We expect errors")
                         }
                     } else {
-                        expect("Should not be called") == "Called"
+                        fail("We expect to unwrap")
                     }
                 }
-//            }
+            }
         }
     }
 }
