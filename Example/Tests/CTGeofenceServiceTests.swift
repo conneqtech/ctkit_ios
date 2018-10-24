@@ -16,12 +16,6 @@ import RxSwift
 
 class CTGeofenceServiceTests: QuickSpec {
     
-    enum result {
-        case success
-        case failure
-    }
-    
-    
     override func spec() {
         describe("Geofence tests") {
 
@@ -34,7 +28,7 @@ class CTGeofenceServiceTests: QuickSpec {
             
             it("fetches a geofence with id") {
                 var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
-                self.stub(http(.get, uri: "/bike/geofence/262"), jsonData(geofenceData))
+                self.stub(http(.get, uri: ("/bike/geofence/262")), jsonData(geofenceData))
                 try! CTGeofenceService().fetch(withGeofenceId: 262).toBlocking().first().map { (result:CTResult<CTGeofenceModel, CTBasicError>) in
                     switch result {
                     case .success:
@@ -47,6 +41,7 @@ class CTGeofenceServiceTests: QuickSpec {
             }
             
             it("creates a new geofence for a bike") {
+                
                 var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
                 self.stub(http(.post, uri: ("/bike/312/geofence")), jsonData(geofenceData))
 
@@ -58,6 +53,11 @@ class CTGeofenceServiceTests: QuickSpec {
                         jsonResponse = nil
                     }
                 }
+            }
+            
+            it("creates an invalid geofence") {
+                
+                self.stub(http(.post, uri: ("/bike/312/geofence")), jsonData(geofenceData, status: 422))
             }
             
             it("fetches a list of geofences for a bike") {

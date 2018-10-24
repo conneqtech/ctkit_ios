@@ -178,6 +178,13 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		85019D7C2180A89500080099 /* CTGeofenceService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CTGeofenceService;
+			sourceTree = "<group>";
+		};
 		85066E2B21809C7100131B77 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +205,7 @@
 		C0EC37F3218078F500E7EAC4 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				85019D7C2180A89500080099 /* CTGeofenceService */,
 				C0EC37F42180790000E7EAC4 /* CTUserService */,
 			);
 			path = Responses;
