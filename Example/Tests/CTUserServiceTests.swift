@@ -20,8 +20,8 @@ class CTUserServiceTests: QuickSpec {
     let bag = DisposeBag()
     
     override func spec() {
-        describe("RUN") {
-            it("crashes") {
+        describe("CTUserServiceTests") {
+            it("refreshes an accesstoken") {
                 let oauth : [String: Any] = [
                     "access_token": "1234",
                     "expires_in": 3600,
@@ -38,15 +38,7 @@ class CTUserServiceTests: QuickSpec {
                 self.stub(uri("/user/me"), json(body))
                 
                 let result = try! CTUserService().login(email: "test@test.com", password: "test").toBlocking().first()
-                
-                if let result = result {
-                    switch result {
-                    case .success(let user):
-                        expect(user.email) == "test@test.com"
-                    case .failure(let error):
-                        print("bleh")
-                    }
-                }
+
             }
         }
     }

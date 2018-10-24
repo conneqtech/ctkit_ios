@@ -10,47 +10,77 @@ import Foundation
 import Quick
 import Nimble
 import ctkit
+import Mockingjay
+import RxBlocking
+import RxSwift
 
 class CTGeofenceServiceTests: QuickSpec {
     
-    override func spec() {
-        beforeEach {
-            CTBike.configure(withClientId: "", clientSecret: "", baseURL: "")
-            
-            //Setup code for tests
-            //Use mocked networking layer here?
-//            let service = CTGeofenceService()
-//            let idToTest = 8248
-//            var geofenceModel:CTGeofenceModel?
-            
-            // GET -> /bike -> Return mock
-        
-            describe(".fetchGeofence") {
-                context("Geofence variable is not empty") {
-                    //Test mocked call in succes scenario..
-                }
-                
-                context("The given Id does not exist") {
-                    //Test call in fail scenario, id that doesn't exist
-                }
-            }
-            
-            describe(".fetchAllGeofencesWithBikeId") {
-                context("bikeId exists and has atleast 1 geofence") {
-                    //Mock fetchAllWithBikeId for existing bike that has atleast one geofence
-                }
-                
-                context("bikeId exists but has no geofences") {
-                    //Mock call where bikeId exists but has no geofences
-                }
-                
-                context("bikeId does not exist") {
-                    //Mock call where bikeId doesn't existß
-                }
-            }
-        }
+    enum result {
+        case success
+        case failure
     }
     
     
-    
+    override func spec() {
+        describe("Geofence tests") {
+            let geofence = ["id": 262,
+                        "bike_id": 312,
+                        "user_id": 47,
+                        "name": "Home",
+                        "center": [
+                            "lat": 0,
+                            "lon": 0
+                ],
+                        "radius": 500,
+                        "active_state": 0,
+                        "creation_date": "2018-09-17T09:31:36+0000"
+                ] as [String: Any]
+        
+            
+            it("fetches a geofence with id") {
+                var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
+                self.stub(uri("/bike/geofence/262"), json(geofence))
+                try! CTGeofenceService().fetch(withGeofenceId: 262).toBlocking().first().map { (result:CTResult<CTGeofenceModel, CTBasicError>) in
+                    switch result {
+                    case .success:
+                        jsonResponse = result
+                    case .failure(_):
+                        jsonResponse = nil
+                    }
+                }
+               
+            }
+            
+            it("creates a new geofence for a bike") {
+                var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
+                self.stub(uri("/bike/312/geofence"), json(geofence))
+                
+                try! CTGeofenceService().create(withBikeId: 312, name: "geofence", latitude: 46, longitude: 12, radius: 30).toBlocking().first().map { (result:CTResult<CTGeofenceModel, CTBasicError>) in
+                    switch result {
+                    case .success:
+                        jsonResponse = result
+                    case .failure(_):
+                        jsonResponse = nil
+                    }
+                }
+            }
+            
+            it("fetches a list of geofences for a bike") {
+                var jsonResponse:CTResult<[CTGeofenceModel], CTBasicError>?
+                let list = [geofence, geofence, geofence]
+                self.stub(uri("/bike/geofence"), json(list))
+                
+                try! CTGeofenceService().fetchAll(withBikeId: 312).toBlocking().first().map { (result:CTResult<[CTGeofenceModel], CTBasicError>) in
+                    switch result {
+                    case .success:
+                        jsonResponse = result
+                    case .failure(_):
+                        jsonResponse = nil
+                    }
+                }
+             
+            }
+        }
+    }
 }
