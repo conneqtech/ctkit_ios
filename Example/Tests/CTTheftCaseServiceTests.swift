@@ -106,8 +106,40 @@ class CTTheftCaseServiceTests: QuickSpec {
 
             it("fetches a certain theftcase") {
                 var jsonResponse:CTResult<CTTheftCaseModel, CTBasicError>?
-                self.stub(uri("/theft-case/"), json(theftCase))
+                self.stub(uri("/theft-case/0"), json(theftCase))
                 try! CTTheftCaseService().fetch(withCaseId: 0).toBlocking().first().map { (result:CTResult<CTTheftCaseModel, CTBasicError>) in
+                    switch result {
+                    case .success:
+                        jsonResponse = result
+                    case .failure(_):
+                        jsonResponse = nil
+                    }
+                }
+            }
+            
+            it("creates a theft case") {
+                var jsonResponse:CTResult<CTTheftCaseModel, CTBasicError>?
+                self.stub(uri("theft-case"), json(theftCase))
+                try! CTTheftCaseService().create(theftCase: CTTheftCaseModel(from: theftCase as! Decoder))
+            }
+            
+            it("fetches most recent theftcase for bike") {
+                var jsonResponse:CTResult<CTTheftCaseModel, CTBasicError>?
+                self.stub(uri("/theft-case"), json(theftCase))
+                try! CTTheftCaseService().fetchMostRecent(withBikeId: 0).toBlocking().first().map { (result:CTResult<CTTheftCaseModel, CTBasicError>) in
+                    switch result {
+                    case .success:
+                        jsonResponse = result
+                    case .failure(_):
+                        jsonResponse = nil
+                    }
+                }
+            }
+            
+            it("fetches theft cases for bike") {
+                var jsonResponse:CTResult<[CTTheftCaseModel], CTBasicError>?
+                self.stub(uri("/theft-case"), json([theftCase, theftCase, theftCase]))
+                try! CTTheftCaseService().fetchAll(withBikeId: 0).toBlocking().first().map { (result:CTResult<[CTTheftCaseModel], CTBasicError>) in
                     switch result {
                     case .success:
                         jsonResponse = result
