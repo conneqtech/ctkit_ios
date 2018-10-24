@@ -25,6 +25,7 @@
 		C0DF759021674E0900260751 /* GeofenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */; };
 		C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */; };
 		C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37F52180792300E7EAC4 /* createValidationError.json */; };
+		C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */; };
 		C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceTableViewController.swift; sourceTree = "<group>"; };
 		C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUserServiceTests.swift; sourceTree = "<group>"; };
 		C0EC37F52180792300E7EAC4 /* createValidationError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = createValidationError.json; sourceTree = "<group>"; };
+		C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalidEmailAndPassword.json; sourceTree = "<group>"; };
 		C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTErrorHandlerTests.swift; sourceTree = "<group>"; };
 		E623B3B1226190D69C9FEEE4 /* Pods_ctkit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				C0EC37F52180792300E7EAC4 /* createValidationError.json */,
+				C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */,
 			);
 			path = CTUserService;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */,
+				C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
