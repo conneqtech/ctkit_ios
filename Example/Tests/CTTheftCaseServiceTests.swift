@@ -117,11 +117,11 @@ class CTTheftCaseServiceTests: QuickSpec {
                 }
             }
             
-            it("creates a theft case") {
-                var jsonResponse:CTResult<CTTheftCaseModel, CTBasicError>?
-                self.stub(uri("theft-case"), json(theftCase))
-                try! CTTheftCaseService().create(theftCase: CTTheftCaseModel(from: theftCase as! Decoder))
-            }
+//            it("creates a theft case") {
+//                var jsonResponse:CTResult<CTTheftCaseModel, CTBasicError>?
+//                self.stub(uri("theft-case"), json(theftCase))
+//                try! CTTheftCaseService().create(theftCase: CTTheftCaseModel(from: theftCase as! Decoder))
+//            }
             
             it("fetches most recent theftcase for bike") {
                 var jsonResponse:CTResult<CTTheftCaseModel, CTBasicError>?
