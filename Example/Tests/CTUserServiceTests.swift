@@ -22,6 +22,7 @@ class CTUserServiceTests: QuickSpec {
     override func spec() {
         describe("CTUserServiceTests") {
             describe("create") {
+                
                 it("Handles the error when the username and password field are empty") {
                     let url = Bundle(for: type(of: self)).url(forResource: "createValidationError", withExtension: "json")!
                     let data = try! Data(contentsOf: url)
@@ -63,6 +64,22 @@ class CTUserServiceTests: QuickSpec {
                         fail("We expect to unwrap")
                     }
                 }
+                
+                //TODO: Handles the error when the user already exists
+                
+                //TODO: Creates a user successfully and returns the created user
+            }
+            
+            describe("createAndLogin") {
+                //TODO: Handles the error when the username and password field are empty
+                
+                //TODO: Handles the error when the username is not a valid email address
+                
+                //TODO: Handles the error when the user already exists
+                
+                //TODO: Creates a user successfully and returns the created user
+                
+                //TODO: Creates a user and requests an access token and sets up a session (CTBike gets filled)
             }
         }
     }
