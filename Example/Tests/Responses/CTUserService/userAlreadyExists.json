@@ -1,13 +1,13 @@
 
 {
-    "error_translatable": "This username is already taken"
+    "error_translatable": "That username is already taken"
     "validation_messages": {
         "username": {
             "usernameAlreadyTaken": "User already exists"
         }
     },
     "type": 102,
-    "title": "This username is already taken",
+    "title": "That username is already taken",
     "status": 422,
     "detail": "error.api.username.alreadytaken"
 }

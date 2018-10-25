@@ -31,13 +31,7 @@ class GeofenceTableViewController: UITableViewController {
         }
         
         let sub = CTGeofenceService().fetchAll(withBikeId: bikeId).subscribe(onNext: { result in
-            switch result {
-            case .success(let geofences):
-                self.geofences = geofences
-                self.tableView.reloadData()
-            case .failure(let error):
-                print(error)
-            }
+            self.tableView.reloadData()
         })
         
         disposeBag.insert(sub)

@@ -28,13 +28,8 @@ class CTGeofenceServiceTests: QuickSpec {
             it("fetches a geofence with id") {
                 var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
                 self.stub(http(.get, uri: ("/bike/geofence/262")), jsonData(geofenceData))
-                try! CTGeofenceService().fetch(withGeofenceId: 262).toBlocking().first().map { (result:CTResult<CTGeofenceModel, CTBasicError>) in
-                    switch result {
-                    case .success:
-                        jsonResponse = result
-                    case .failure(_):
-                        jsonResponse = nil
-                    }
+                try! CTGeofenceService().fetch(withGeofenceId: 262).toBlocking().first().map { (result:CTGeofenceModel) in
+                  
                 }
                
             }
@@ -43,13 +38,8 @@ class CTGeofenceServiceTests: QuickSpec {
                 var jsonResponse:CTResult<[CTGeofenceModel], CTBasicError>?
                 self.stub(http(.get,uri: ("/bike/geofence")), json(geofenceListData))
                 
-                try! CTGeofenceService().fetchAll(withBikeId: 312).toBlocking().first().map { (result:CTResult<[CTGeofenceModel], CTBasicError>) in
-                    switch result {
-                    case .success:
-                        jsonResponse = result
-                    case .failure(_):
-                        jsonResponse = nil
-                    }
+                try! CTGeofenceService().fetchAll(withBikeId: 312).toBlocking().first().map { (result:[CTGeofenceModel]) in
+                    
                 }
             }
         }
@@ -61,13 +51,8 @@ class CTGeofenceServiceTests: QuickSpec {
                 var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
                 self.stub(http(.post, uri: ("/bike/312/geofence")), jsonData(geofenceData))
                 
-                try! CTGeofenceService().create(withBikeId: 312, name: "geofence", latitude: 46, longitude: 12, radius: 30).toBlocking().first().map { (result:CTResult<CTGeofenceModel, CTBasicError>) in
-                    switch result {
-                    case .success:
-                        jsonResponse = result
-                    case .failure(_):
-                        jsonResponse = nil
-                    }
+                try! CTGeofenceService().create(withBikeId: 312, name: "geofence", latitude: 46, longitude: 12, radius: 30).toBlocking().first().map { (result:CTGeofenceModel) in
+                  
                 }
             }
             
@@ -78,19 +63,7 @@ class CTGeofenceServiceTests: QuickSpec {
                 self.stub(http(.post, uri: ("/bike/312/geofence")), jsonData(response, status: 422))
                 
                 let callToTest = try! CTGeofenceService().create(withBikeId: 0, name: "", latitude: 0, longitude: 0, radius: 0).toBlocking().first()
-                if let unWrappedCallToTest = callToTest {
-                    switch unWrappedCallToTest {
-                    case .failure(let error):
-                        expect(error.code) == 422
-                        expect(error.translationKey) == "error.api.validation-failed"
-                        expect(error.description) == "Failed Validation"
-                    default:
-                        fail("We expect errors")
-                    }
-                } else {
-                    fail("We expect to unwrap")
-                }
-                
+             
             }
         }
     }
