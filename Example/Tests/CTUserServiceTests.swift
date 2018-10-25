@@ -66,8 +66,31 @@ class CTUserServiceTests: QuickSpec {
                 }
                 
                 //TODO: Handles the error when the user already exists
+                it("handles the error when the user already exists") {
+                    let url = Bundle(for: type(of: self)).url(forResource: "userAlreadyExists", withExtension: "json")!
+                    let data = try! Data(contentsOf: url)
+                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 406))
+                    
+                    let callToTest = try! CTUserService().create(email: "EMAIL_THAT_EXISTS", password: "A_PASSWORD").toBlocking().first()
+                    
+                    if let unWrappedCallToTest = callToTest {
+                        switch unWrappedCallToTest {
+                        case .failure(let error):
+                            expect(error.code) == 406
+                            expect(error.translationKey) == "error.api.username.alreadytaken"
+                            expect(error.description) == "Failed validation"
+                        default:
+                            fail("We expect errors")
+                        }
+                    } else {
+                        fail("We expect to unwrap")
+                    }
+                }
                 
                 //TODO: Creates a user successfully and returns the created user
+                it("creates a user succesfully and returns the created user") {
+                    
+                }
             }
             
             describe("createAndLogin") {
