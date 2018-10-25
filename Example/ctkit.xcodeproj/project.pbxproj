@@ -16,6 +16,8 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		855C5985217F533C00F6983D /* CTRideServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5984217F533C00F6983D /* CTRideServiceTests.swift */; };
 		855C5987217F6D8500F6983D /* CTTheftCaseServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5986217F6D8500F6983D /* CTTheftCaseServiceTests.swift */; };
+		8565CCBF21819ECD00D01486 /* geofence.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCBD21819ECD00D01486 /* geofence.json */; };
+		8565CCC021819ECD00D01486 /* geofenceList.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCBE21819ECD00D01486 /* geofenceList.json */; };
 		859D519D21723C350070DB69 /* CTGeofenceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859D519C21723C350070DB69 /* CTGeofenceServiceTests.swift */; };
 		B57938623B24C4F138759C79 /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C79E5626B08B9E0268AB37E /* Pods_ctkit_Example.framework */; };
 		C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9B21635B250010617A /* CreateAccountViewController.swift */; };
@@ -57,6 +59,8 @@
 		6CA44E7F3150B084A4066032 /* Pods-ctkit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		855C5984217F533C00F6983D /* CTRideServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTRideServiceTests.swift; sourceTree = "<group>"; };
 		855C5986217F6D8500F6983D /* CTTheftCaseServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTTheftCaseServiceTests.swift; sourceTree = "<group>"; };
+		8565CCBD21819ECD00D01486 /* geofence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofence.json; sourceTree = "<group>"; };
+		8565CCBE21819ECD00D01486 /* geofenceList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofenceList.json; sourceTree = "<group>"; };
 		859D519C21723C350070DB69 /* CTGeofenceServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTGeofenceServiceTests.swift; sourceTree = "<group>"; };
 		AA81EECC2BEA5016338F8ACC /* ctkit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ctkit.podspec; path = ../ctkit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ABE31016D690DA6F44A7AF83 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8565CCBB21819ECD00D01486 /* Resources */,
 				C0EC37F3218078F500E7EAC4 /* Responses */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */,
@@ -173,6 +178,23 @@
 				5535CE0605CA21FBACD7DE9B /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		8565CCBB21819ECD00D01486 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8565CCBC21819ECD00D01486 /* geofence */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8565CCBC21819ECD00D01486 /* geofence */ = {
+			isa = PBXGroup;
+			children = (
+				8565CCBD21819ECD00D01486 /* geofence.json */,
+				8565CCBE21819ECD00D01486 /* geofenceList.json */,
+			);
+			path = geofence;
 			sourceTree = "<group>";
 		};
 		C0EC37F3218078F500E7EAC4 /* Responses */ = {
@@ -302,7 +324,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */,
+				8565CCC021819ECD00D01486 /* geofenceList.json in Resources */,
 				C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */,
+				8565CCBF21819ECD00D01486 /* geofence.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
