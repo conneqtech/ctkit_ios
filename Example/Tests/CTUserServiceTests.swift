@@ -69,16 +69,15 @@ class CTUserServiceTests: QuickSpec {
                 it("handles the error when the user already exists") {
                     let url = Bundle(for: type(of: self)).url(forResource: "userAlreadyExists", withExtension: "json")!
                     let data = try! Data(contentsOf: url)
-                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 406))
-                    
+                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 422))
                     let callToTest = try! CTUserService().create(email: "EMAIL_THAT_EXISTS", password: "A_PASSWORD").toBlocking().first()
                     
                     if let unWrappedCallToTest = callToTest {
                         switch unWrappedCallToTest {
                         case .failure(let error):
-                            expect(error.code) == 406
+                            expect(error.code) == 422
                             expect(error.translationKey) == "error.api.username.alreadytaken"
-                            expect(error.description) == "Failed validation"
+                            expect(error.description) == "This Username is already taken"
                         default:
                             fail("We expect errors")
                         }
@@ -89,7 +88,6 @@ class CTUserServiceTests: QuickSpec {
                 
                 //TODO: Creates a user successfully and returns the created user
                 it("creates a user succesfully and returns the created user") {
-                    var userResponse:CTResult<CTUserModel, CTBasicError>?
                     let url = Bundle(for: type(of: self)).url(forResource: "user", withExtension: "json")!
                     let data = try! Data(contentsOf: url)
                     self.stub(http(.post, uri: "/user"), jsonData(data))
@@ -98,26 +96,37 @@ class CTUserServiceTests: QuickSpec {
                     
                     if let unWrappedCallToTest = callToTest {
                         switch unWrappedCallToTest {
-                        case .success(let response) :
+                        case .success(let response):
                             expect(response.id).toNot(equal(0))
                         default:
                             fail("We expect the user to be created")
+                        }
+                    }
                 }
-            }
             
             describe("createAndLogin") {
                 //TODO: Handles the error when the username and password field are empty
-                
+
                 
                 //TODO: Handles the error when the username is not a valid email address
                 
+                
                 //TODO: Handles the error when the user already exists
+
+                
                 
                 //TODO: Creates a user successfully and returns the created user
+
+                
                 
                 //TODO: Creates a user and requests an access token and sets up a session (CTBike gets filled)
+                
+                
+                //TODO: Creates account through create and login, then does the same thing again
+                //Should not be possible but is probably gonna fail in current setup
             }
         }
     }
+}
 }
 
