@@ -1,0 +1,7 @@
+{
+    "error_translatable": "This username is already taken",
+    "type": 102,
+    "title": "Username already taken",
+    "status": 406,
+    "detail": "error.api.username.alreadytaken"
+}

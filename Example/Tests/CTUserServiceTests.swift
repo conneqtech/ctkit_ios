@@ -89,12 +89,25 @@ class CTUserServiceTests: QuickSpec {
                 
                 //TODO: Creates a user successfully and returns the created user
                 it("creates a user succesfully and returns the created user") {
+                    var userResponse:CTResult<CTUserModel, CTBasicError>?
+                    let url = Bundle(for: type(of: self)).url(forResource: "user", withExtension: "json")!
+                    let data = try! Data(contentsOf: url)
+                    self.stub(http(.post, uri: "/user"), jsonData(data))
                     
+                    let callToTest = try! CTUserService().create(email: "user@login.bike", password: "test").toBlocking().first()
+                    
+                    if let unWrappedCallToTest = callToTest {
+                        switch unWrappedCallToTest {
+                        case .success(let response) :
+                            expect(response.id).toNot(equal(0))
+                        default:
+                            fail("We expect the user to be created")
                 }
             }
             
             describe("createAndLogin") {
                 //TODO: Handles the error when the username and password field are empty
+                
                 
                 //TODO: Handles the error when the username is not a valid email address
                 
