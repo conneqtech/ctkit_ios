@@ -53,6 +53,10 @@ class CTRideServiceTests:QuickSpec {
                 }
                 expect(jsonResponse).toNot(beNil())
             }
+            
+            it("handles the error when the ride is invalid") {
+//                self.stub(http(.post, uri: "bike/312/ride"), jsondata())
+            }
         }
     }
 }

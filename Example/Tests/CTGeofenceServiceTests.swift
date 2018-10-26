@@ -26,7 +26,6 @@ class CTGeofenceServiceTests: QuickSpec {
             let geofenceListData = try! Data(contentsOf: url)
             
             it("fetches a geofence with id") {
-                var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
                 self.stub(http(.get, uri: ("/bike/geofence/262")), jsonData(geofenceData))
                 try! CTGeofenceService().fetch(withGeofenceId: 262).toBlocking().first().map { (result:CTGeofenceModel) in
                   
@@ -35,7 +34,6 @@ class CTGeofenceServiceTests: QuickSpec {
             }
             
             it("fetches a list of geofences for a bike") {
-                var jsonResponse:CTResult<[CTGeofenceModel], CTBasicError>?
                 self.stub(http(.get,uri: ("/bike/geofence")), json(geofenceListData))
                 
                 try! CTGeofenceService().fetchAll(withBikeId: 312).toBlocking().first().map { (result:[CTGeofenceModel]) in
@@ -48,7 +46,6 @@ class CTGeofenceServiceTests: QuickSpec {
                 var url = Bundle(for: type(of: self)).url(forResource: "geofence", withExtension: "json")!
                 let geofenceData = try! Data(contentsOf: url)
                 
-                var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
                 self.stub(http(.post, uri: ("/bike/312/geofence")), jsonData(geofenceData))
                 
                 try! CTGeofenceService().create(withBikeId: 312, name: "geofence", latitude: 46, longitude: 12, radius: 30).toBlocking().first().map { (result:CTGeofenceModel) in
