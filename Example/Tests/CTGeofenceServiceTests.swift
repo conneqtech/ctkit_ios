@@ -27,40 +27,36 @@ class CTGeofenceServiceTests: QuickSpec {
             
             it("fetches a geofence with id") {
                 self.stub(http(.get, uri: ("/bike/geofence/262")), jsonData(geofenceData))
-                try! CTGeofenceService().fetch(withGeofenceId: 262).toBlocking().first().map { (result:CTGeofenceModel) in
-                  
-                }
-               
+                let result = try! CTGeofenceService().fetch(withGeofenceId: 262).toBlocking().first()
+                expect(result).toNot(beNil())
             }
             
             it("fetches a list of geofences for a bike") {
-                self.stub(http(.get,uri: ("/bike/geofence")), json(geofenceListData))
-                
-                try! CTGeofenceService().fetchAll(withBikeId: 312).toBlocking().first().map { (result:[CTGeofenceModel]) in
-                    
-                }
+                self.stub(http(.get,uri: ("/bike/312/geofence")), jsonData(geofenceListData))
+                let result = try! CTGeofenceService().fetchAll(withBikeId: 312).toBlocking().first()
+                expect(result).toNot(beNil())
             }
-        }
+            
         describe("Geofence create tests") {
             it("creates a new geofence for a bike") {
                 var url = Bundle(for: type(of: self)).url(forResource: "geofence", withExtension: "json")!
                 let geofenceData = try! Data(contentsOf: url)
-                
+
                 self.stub(http(.post, uri: ("/bike/312/geofence")), jsonData(geofenceData))
-                
+
                 try! CTGeofenceService().create(withBikeId: 312, name: "geofence", latitude: 46, longitude: 12, radius: 30).toBlocking().first().map { (result:CTGeofenceModel) in
-                  
+
                 }
             }
-            
+        
             it("creates an invalid geofence") {
                 let url = Bundle(for: type(of: self)).url(forResource: "createGeofenceValidationError", withExtension: "json")!
                 let response = try! Data(contentsOf: url)
-                
+
                 self.stub(http(.post, uri: ("/bike/312/geofence")), jsonData(response, status: 422))
-                
+
                 let callToTest = try! CTGeofenceService().create(withBikeId: 0, name: "", latitude: 0, longitude: 0, radius: 0).toBlocking().first()
-             
+
             }
         }
     }
