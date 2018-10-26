@@ -31,6 +31,7 @@ class GeofenceTableViewController: UITableViewController {
         }
         
         let sub = CTGeofenceService().fetchAll(withBikeId: bikeId).subscribe(onNext: { result in
+            self.geofences = result
             self.tableView.reloadData()
         })
         
