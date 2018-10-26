@@ -1,0 +1,22 @@
+{
+    "error_translatable": "One or more supplied fields are invalid",
+    "validation_messages": {
+        "name": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "radius": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "user_id": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "bike_id": {
+            "isEmpty": "Value is required and can't be empty"
+        }
+    },
+    "type": 10,
+    "title": "Unprocessable Entity",
+    "status": 422,
+    "detail": "error.api.invalidfields"
+}
+

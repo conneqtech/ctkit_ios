@@ -15,70 +15,54 @@ import RxBlocking
 import RxSwift
 
 class CTGeofenceServiceTests: QuickSpec {
-    
-    enum result {
-        case success
-        case failure
-    }
-    
-    
     override func spec() {
+  
         describe("Geofence tests") {
-            let geofence = ["id": 262,
-                        "bike_id": 312,
-                        "user_id": 47,
-                        "name": "Home",
-                        "center": [
-                            "lat": 0,
-                            "lon": 0
-                ],
-                        "radius": 500,
-                        "active_state": 0,
-                        "creation_date": "2018-09-17T09:31:36+0000"
-                ] as [String: Any]
-        
+            var url = Bundle(for: type(of: self)).url(forResource: "geofence", withExtension: "json")!
+            let geofenceData = try! Data(contentsOf: url)
+            
+            //Json resource for a list of geofences
+            url = Bundle(for: type(of: self)).url(forResource: "geofenceList", withExtension: "json")!
+            let geofenceListData = try! Data(contentsOf: url)
             
             it("fetches a geofence with id") {
                 var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
-                self.stub(uri("/bike/geofence/262"), json(geofence))
-                try! CTGeofenceService().fetch(withGeofenceId: 262).toBlocking().first().map { (result:CTResult<CTGeofenceModel, CTBasicError>) in
-                    switch result {
-                    case .success:
-                        jsonResponse = result
-                    case .failure(_):
-                        jsonResponse = nil
-                    }
+                self.stub(http(.get, uri: ("/bike/geofence/262")), jsonData(geofenceData))
+                try! CTGeofenceService().fetch(withGeofenceId: 262).toBlocking().first().map { (result:CTGeofenceModel) in
+                  
                 }
                
             }
             
-            it("creates a new geofence for a bike") {
-                var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
-                self.stub(uri("/bike/312/geofence"), json(geofence))
+            it("fetches a list of geofences for a bike") {
+                var jsonResponse:CTResult<[CTGeofenceModel], CTBasicError>?
+                self.stub(http(.get,uri: ("/bike/geofence")), json(geofenceListData))
                 
-                try! CTGeofenceService().create(withBikeId: 312, name: "geofence", latitude: 46, longitude: 12, radius: 30).toBlocking().first().map { (result:CTResult<CTGeofenceModel, CTBasicError>) in
-                    switch result {
-                    case .success:
-                        jsonResponse = result
-                    case .failure(_):
-                        jsonResponse = nil
-                    }
+                try! CTGeofenceService().fetchAll(withBikeId: 312).toBlocking().first().map { (result:[CTGeofenceModel]) in
+                    
+                }
+            }
+        }
+        describe("Geofence create tests") {
+            it("creates a new geofence for a bike") {
+                var url = Bundle(for: type(of: self)).url(forResource: "geofence", withExtension: "json")!
+                let geofenceData = try! Data(contentsOf: url)
+                
+                var jsonResponse:CTResult<CTGeofenceModel, CTBasicError>?
+                self.stub(http(.post, uri: ("/bike/312/geofence")), jsonData(geofenceData))
+                
+                try! CTGeofenceService().create(withBikeId: 312, name: "geofence", latitude: 46, longitude: 12, radius: 30).toBlocking().first().map { (result:CTGeofenceModel) in
+                  
                 }
             }
             
-            it("fetches a list of geofences for a bike") {
-                var jsonResponse:CTResult<[CTGeofenceModel], CTBasicError>?
-                let list = [geofence, geofence, geofence]
-                self.stub(uri("/bike/geofence"), json(list))
+            it("creates an invalid geofence") {
+                let url = Bundle(for: type(of: self)).url(forResource: "createGeofenceValidationError", withExtension: "json")!
+                let response = try! Data(contentsOf: url)
                 
-                try! CTGeofenceService().fetchAll(withBikeId: 312).toBlocking().first().map { (result:CTResult<[CTGeofenceModel], CTBasicError>) in
-                    switch result {
-                    case .success:
-                        jsonResponse = result
-                    case .failure(_):
-                        jsonResponse = nil
-                    }
-                }
+                self.stub(http(.post, uri: ("/bike/312/geofence")), jsonData(response, status: 422))
+                
+                let callToTest = try! CTGeofenceService().create(withBikeId: 0, name: "", latitude: 0, longitude: 0, radius: 0).toBlocking().first()
              
             }
         }

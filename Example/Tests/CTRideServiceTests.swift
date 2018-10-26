@@ -70,28 +70,16 @@ class CTRideServiceTests:QuickSpec {
                 var jsonResponse:CTResult<CTRideModel, CTBasicError>?
                 self.stub(uri("/bike/ride/92"), json(ride))
                 
-                try! CTRideService().fetch(withRideId: 262).toBlocking().first().map { (result:CTResult<CTRideModel, CTBasicError>) in
-                    switch result {
-                    case .success:
-                        jsonResponse = result
-                    case .failure(_):
-                        jsonResponse = nil
-                    }
+                try! CTRideService().fetch(withRideId: 262).toBlocking().first().map { (result:CTRideModel) in
                 }
-                
             }
             
             it("fetches a list of rides linked to a bike") {
                 var jsonResponse:CTResult<[CTRideModel], CTBasicError>?
                 self.stub(uri("bike/312/ride"), json([ride, ride, ride]))
                 
-                try! CTRideService().fetchAll(withBikeId: 312).toBlocking().first().map { (result:CTResult<[CTRideModel], CTBasicError>) in
-                    switch result {
-                    case .success:
-                        jsonResponse = result
-                    case .failure(_):
-                        jsonResponse = nil
-                    }
+                try! CTRideService().fetchAll(withBikeId: 312).toBlocking().first().map { (result:[CTRideModel]) in
+                 
                 }
             }
             
@@ -99,13 +87,8 @@ class CTRideServiceTests:QuickSpec {
                 var jsonResponse:CTResult<CTRideModel, CTBasicError>?
                 self.stub(uri("bike/312/ride"), json(ride))
                 
-                try! CTRideService().create(withBikeId: 312, startDate: Date(), endDate: Date(), rideType: "ride.type.leisure", name: "ride").toBlocking().first().map { (result:CTResult<CTRideModel, CTBasicError>) in
-                    switch result {
-                    case .success:
-                        jsonResponse = result
-                    case .failure(_):
-                        jsonResponse = nil
-                    }
+                try! CTRideService().create(withBikeId: 312, startDate: Date(), endDate: Date(), rideType: "ride.type.leisure", name: "ride").toBlocking().first().map { (result:CTRideModel) in
+                    
                 }
             }
         }

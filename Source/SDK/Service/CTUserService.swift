@@ -10,11 +10,11 @@ import RxSwift
 
 public class CTUserService: NSObject {
     
-    public func login(email: String, password:String) -> Observable<CTResult<CTUserModel, CTBasicError>> {
-        return CTBike.shared.authManager.login(username: email, password: password).flatMap { _ in self.fetchCurrentUser() }
+    public func login(email: String, password:String) -> Observable<CTUserModel> {
+        return CTBike.shared.authManager.login(username: email, password: password).flatMap { _ -> Observable<CTUserModel> in self.fetchCurrentUser() }
     }
     
-    public func create(email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTResult<CTUserModel, CTBasicError>> {
+    public func create(email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
         return CTBike.shared.authManager.getClientToken().flatMap {
             token in CTBike.shared.restManager.post(endpoint: "user",
                                                     parameters:[
@@ -25,33 +25,26 @@ public class CTUserService: NSObject {
         }
     }
     
-    public func createAndLogin(email: String, password: String) -> Observable<CTResult<CTUserModel, CTBasicError>> {
-        return self.create(email: email, password: password).flatMap{ _ in self.login(email: email, password: password) }
+    public func createAndLogin(email: String, password: String) -> Observable<CTUserModel> {
+       return self.create(email: email, password: password).flatMap{ _ in self.login(email: email, password: password) }
     }
 
-    public func patch(user: CTUserModel) -> Observable<CTResult<CTUserModel, CTBasicError>> {
+    public func patch(user: CTUserModel) -> Observable<CTUserModel> {
         return CTBike.shared.restManager.patch(endpoint: "user/\(user.id)", parameters: try? user.asDictionary())
     }
     
-    public func fetchWith(identifier: Int) -> Observable<CTResult<CTUserModel, CTBasicError>> {
+    public func fetchWith(identifier: Int) -> Observable<CTUserModel> {
         return CTBike.shared.restManager.get(endpoint: "user/\(identifier)")
     }
     
-    public func fetchCurrentUser() -> Observable<CTResult<CTUserModel, CTBasicError>> {
-        return CTBike.shared.restManager.get(endpoint: "user/me").map { (result:CTResult<CTUserModel, CTBasicError>) in
-            
-            switch result {
-            case .success(let user):
-                CTBike.shared.currentActiveUser = user
-            case .failure(_):
-                CTBike.shared.currentActiveUser = nil
-            }
-        
-            return result
+    public func fetchCurrentUser() -> Observable<CTUserModel> {
+        return CTBike.shared.restManager.get(endpoint: "user/me").map { (user:CTUserModel) in
+            CTBike.shared.currentActiveUser = user
+            return user
         }
     }
     
-    public func recoverUser(email: String) -> Observable<CTResult<[String: Bool], CTBasicError>> {
+    public func recoverUser(email: String) -> Observable<[String: Bool]> {
         return CTBike.shared.restManager.post(endpoint: "user", parameters:["username":email])
     }
 }

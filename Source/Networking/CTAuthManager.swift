@@ -53,8 +53,8 @@ public class CTAuthManager {
         }
     }
     
-    public func login(username: String, password: String) -> Observable<Any> {
-        return Observable<Any>.create { (observer) -> Disposable in
+    public func login(username: String, password: String) -> Observable<CTOAuth2TokenResponse> {
+        return Observable<CTOAuth2TokenResponse>.create { (observer) -> Disposable in
             let url = URL(string: "\(self.apiConfig.fullUrl)/oauth")!
             let requestReference = Alamofire.request(url,
                                                     method: .post,
@@ -71,15 +71,15 @@ public class CTAuthManager {
                     switch response.result {
                     case .success:
                         guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
-                            observer.onError(CTDecodingError(translationKey: "error.ctkit.decode", description: "Could not decode the response received"))
+                            observer.onError(response.error!)
                             return
                         }
-                    
+                        
                         self.saveTokenResponse(getResponse)
                         observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure:
-                        observer.onError(CTErrorHandler().handle(response: response))
+                        observer.onError(response.error!)
                     }
             }
             

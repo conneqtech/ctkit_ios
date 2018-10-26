@@ -20,15 +20,15 @@ public class CTRestManager {
         sessionManager.retrier = CTRequestRetrier(apiConfig: self.apiConfig)
     }
     
-    public func get<T:Codable, E:CTErrorProtocol>(endpoint:String, parameters:[String:Any]? = nil,  useToken:String? = nil) -> Observable<CTResult<T, E>> {
+    public func get<T:Codable>(endpoint:String, parameters:[String:Any]? = nil,  useToken:String? = nil) -> Observable<T> {
         return genericCall(.get, endpoint: endpoint, parameters: parameters, encoding: URLEncoding.default, useToken: useToken)
     }
     
-    public func post<T:Codable, E:CTErrorProtocol>(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Observable<CTResult<T, E>> {
+    public func post<T:Codable>(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Observable<T> {
         return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken:useToken)
     }
     
-    public func patch<T:Codable, E:CTErrorProtocol>(endpoint:String, parameters: [String:Any]? = nil,  useToken:String? = nil) -> Observable<CTResult<T, E>> {
+    public func patch<T:Codable>(endpoint:String, parameters: [String:Any]? = nil,  useToken:String? = nil) -> Observable<T> {
         return genericCall(.patch, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
     
@@ -61,7 +61,7 @@ public class CTRestManager {
                     case .success:
                         completable(.completed)
                     case .failure:
-                        completable(.error(CTErrorHandler().handle(response: response)))
+                        completable(.error(response.error!))
                     }
             }
             
@@ -71,15 +71,15 @@ public class CTRestManager {
         }
     }
     
-    private func genericCall<T:Codable, E:CTErrorProtocol>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<CTResult<T, E>> {
-        return Observable<CTResult<T, E>>.create { (observer) -> Disposable in
+    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T:Codable {
+        return Observable<T>.create { (observer) -> Disposable in
             
             var headers: [String:String] = [:]
             
             if let bearer = useToken {
-                 headers["Authorization"] = "Bearer \(bearer)"
+                headers["Authorization"] = "Bearer \(bearer)"
             }
-           
+            
             
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             let requestReference = self.sessionManager.request(url,
@@ -92,18 +92,26 @@ public class CTRestManager {
                 .responseJSON { (response) in
                     switch response.result {
                     case .success:
-                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                        //FIXME: Remove debug code
+                        do {
+                            let getResponse = try JSONDecoder().decode(T.self, from: response.data!)
+                        } catch {
+                            print("GECATCHED")
+                            print(error)
+                        }
+                        //End of debug code
+                        
+                        guard let data = response.data, let getResponse = try?JSONDecoder().decode(T.self, from: data) else {
                             observer.onError(NSError(domain: "test", code: 400, userInfo: nil))
                             return
                         }
-                    
-                        observer.onNext(CTResult.success(getResponse))
+                        
+                        
+                        
+                        observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure:
-//                        CTResult.failure(CTErrorHandler().handle(response: response))l
-                        let error = CTErrorHandler().handle(response: response)
-                        observer.onNext(CTResult.failure(error as! E)) //FIXME: WHAT? NOW? Why would we need the forcecast if it assumes the protocol?
-                        observer.onCompleted()
+                        observer.onError(response.error!)
                     }
             }
             

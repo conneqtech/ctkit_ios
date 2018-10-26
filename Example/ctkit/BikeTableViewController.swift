@@ -20,13 +20,7 @@ class BikeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         let subscription = CTBikeService().fetchAll().subscribe(onNext: { result in
-            switch result {
-            case .success(let bikes):
-                self.bikes = bikes
-                self.tableView.reloadData()
-            case .failure(let error):
-                print(error)
-            }
+            self.tableView.reloadData()
         })
         
         disposeBag.insert(subscription)
