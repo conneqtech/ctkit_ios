@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 public class CTBike {
     
@@ -14,6 +15,7 @@ public class CTBike {
     
     public var restManager: CTRestManager!
     public var authManager: CTAuthManager!
+    public var authToken = PublishSubject<CTOAuth2TokenResponse>()
     
     private let ACTIVE_USER_ID_KEY = "activeUserId"
     
