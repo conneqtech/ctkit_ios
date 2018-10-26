@@ -35,6 +35,7 @@ class ViewController: UIViewController {
                     let navViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "accountNavigationController")
                     self.present(navViewController, animated: true, completion: nil)
                 case .error(let error):
+                    print(error)
                     if let ctError = error as? CTErrorProtocol {
                         let alert = UIAlertController(title: "Error", message: ctError.translationKey, preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)

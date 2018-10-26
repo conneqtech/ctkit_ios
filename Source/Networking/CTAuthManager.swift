@@ -53,8 +53,8 @@ public class CTAuthManager {
         }
     }
     
-    public func login(username: String, password: String) -> Observable<CTOAuth2TokenResponse> {
-        return Observable<CTOAuth2TokenResponse>.create { (observer) -> Disposable in
+    public func login(username: String, password: String) -> Observable<Any> {
+        return Observable<Any>.create { (observer) -> Disposable in
             let url = URL(string: "\(self.apiConfig.fullUrl)/oauth")!
             let requestReference = Alamofire.request(url,
                                                     method: .post,

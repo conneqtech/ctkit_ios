@@ -11,7 +11,7 @@ import RxSwift
 public class CTUserService: NSObject {
     
     public func login(email: String, password:String) -> Observable<CTUserModel> {
-        return CTBike.shared.authManager.login(username: email, password: password).flatMap { _ -> Observable<CTUserModel> in self.fetchCurrentUser() }
+        return CTBike.shared.authManager.login(username: email, password: password).flatMap { _ in self.fetchCurrentUser() }
     }
     
     public func create(email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
