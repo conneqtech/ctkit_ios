@@ -21,15 +21,18 @@ class CTTheftCaseServiceTests: QuickSpec {
             var url = Bundle(for: type(of: self)).url(forResource: "theftcase", withExtension: "json")!
             let theftCaseData = try! Data(contentsOf: url)
             
-            var otherUrl = Bundle(for: type(of: self)).url(forResource: "theftcaselist", withExtension: "json")!
-            let theftCaseListData = try! Data(contentsOf: otherUrl)
+            url = Bundle(for: type(of: self)).url(forResource: "theftcaseList", withExtension: "json")!
+            let theftCaseListData = try! Data(contentsOf: url)
             
             
             it("fetches a certain theftcase") {
                 var jsonResponse:CTTheftCaseModel?
                 self.stub(uri("/theft-case/0"), json(theftCaseData))
                 try! CTTheftCaseService().fetch(withCaseId: 0).toBlocking().first().map { (result:CTTheftCaseModel) in
+                    jsonResponse = result
+                    
                 }
+                expect(jsonResponse).toNot(beNil())
             }
             
 //            it("creates a theft case") {
@@ -42,7 +45,7 @@ class CTTheftCaseServiceTests: QuickSpec {
                 var jsonResponse:CTTheftCaseModel?
                 self.stub(uri("/theft-case"), json(theftCaseData))
                 try! CTTheftCaseService().fetchMostRecent(withBikeId: 0).toBlocking().first().map { (result:CTTheftCaseModel) in
-
+                    
                 }
             }
             
