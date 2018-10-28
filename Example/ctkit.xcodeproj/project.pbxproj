@@ -23,6 +23,7 @@
 		859D519D21723C350070DB69 /* CTGeofenceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859D519C21723C350070DB69 /* CTGeofenceServiceTests.swift */; };
 		85B6E93E218302EE00F44404 /* ridelist.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B6E93C218302EE00F44404 /* ridelist.json */; };
 		85B6E93F218302EE00F44404 /* ride.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B6E93D218302EE00F44404 /* ride.json */; };
+		85B6E945218351DB00F44404 /* RideTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B6E944218351DB00F44404 /* RideTableViewController.swift */; };
 		85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4B2181D9AE0097D7A7 /* theftcase.json */; };
 		85D33A4E2181DA120097D7A7 /* theftcaseList.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4D2181DA120097D7A7 /* theftcaseList.json */; };
 		B57938623B24C4F138759C79 /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C79E5626B08B9E0268AB37E /* Pods_ctkit_Example.framework */; };
@@ -72,6 +73,7 @@
 		859D519C21723C350070DB69 /* CTGeofenceServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTGeofenceServiceTests.swift; sourceTree = "<group>"; };
 		85B6E93C218302EE00F44404 /* ridelist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ridelist.json; sourceTree = "<group>"; };
 		85B6E93D218302EE00F44404 /* ride.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ride.json; sourceTree = "<group>"; };
+		85B6E944218351DB00F44404 /* RideTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideTableViewController.swift; sourceTree = "<group>"; };
 		85D33A4B2181D9AE0097D7A7 /* theftcase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftcase.json; sourceTree = "<group>"; };
 		85D33A4D2181DA120097D7A7 /* theftcaseList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftcaseList.json; sourceTree = "<group>"; };
 		AA81EECC2BEA5016338F8ACC /* ctkit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ctkit.podspec; path = ../ctkit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -153,6 +155,7 @@
 				C02A3D9F216373660010617A /* LoadingViewController.swift */,
 				C02A3DA12163A1C40010617A /* BikeTableViewController.swift */,
 				C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */,
+				85B6E944218351DB00F44404 /* RideTableViewController.swift */,
 			);
 			name = "Example for ctkit";
 			path = ctkit;
@@ -488,6 +491,7 @@
 				C02A3DA22163A1C40010617A /* BikeTableViewController.swift in Sources */,
 				C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				85B6E945218351DB00F44404 /* RideTableViewController.swift in Sources */,
 				C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */,
 				C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */,
 				C0DF759021674E0900260751 /* GeofenceTableViewController.swift in Sources */,
