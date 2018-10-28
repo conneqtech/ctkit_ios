@@ -60,4 +60,5 @@ class CTGeofenceServiceTests: QuickSpec {
             }
         }
     }
+    }
 }

@@ -20,6 +20,7 @@ class BikeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         let subscription = CTBikeService().fetchAll().subscribe(onNext: { result in
+            self.bikes = result
             self.tableView.reloadData()
         })
         
@@ -54,6 +55,13 @@ class BikeTableViewController: UITableViewController {
             self.navigationController?.pushViewController(geofenceTableViewController, animated: true)
         }
         
+        let rideButton = UIAlertAction(title: "Rides", style: .default) { (action)  -> Void in
+            let rideTableViewController: RideTableViewController = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "rideTableViewController") as! RideTableViewController
+            rideTableViewController.bikeId = bike.id
+            self.navigationController?.pushViewController(rideTableViewController, animated: true)
+        }
+        
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
             print("Cancel button tapped")
         })
@@ -61,6 +69,7 @@ class BikeTableViewController: UITableViewController {
         //Buttons
         alertController.addAction(routeButton)
         alertController.addAction(geofenceButton)
+        alertController.addAction(rideButton)
         alertController.addAction(cancelButton)
         
         self.present(alertController, animated: true)
