@@ -98,6 +98,8 @@ public class CTAuthManager {
     }
     
     func saveTokenResponse(_ tokenResponse: CTOAuth2TokenResponse) {
+        CTBike.shared.authToken.onNext(tokenResponse)
+        
         switch CTBike.shared.credentialSaveLocation {
         case .keychain:
             let keychain = KeychainSwift()
