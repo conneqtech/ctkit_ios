@@ -1,17 +1,19 @@
 //
-//  CTBasicError.swift
+//  CTValidationError.swift
 //  ctkit
 //
-//  Created by Gert-Jan Vercauteren on 19/10/2018.
+//  Created by Gert-Jan Vercauteren on 29/10/2018.
 //
 
 import Foundation
 
-public struct CTBasicError: CTErrorProtocol {
+public class CTValidationError: CTErrorProtocol {
+    public var type: CTErrorType
     public var code: Int
     
     public var translationKey: String
-    public var errorBody: [String: Any]
+    
+    public var errorBody: [String : Any]
     
     public var description: String
     
@@ -20,5 +22,6 @@ public struct CTBasicError: CTErrorProtocol {
         self.description = description
         self.errorBody = errorBody
         self.code = code
+        self.type = .validation
     }
 }

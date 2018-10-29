@@ -8,6 +8,7 @@
 import Foundation
 
 struct CTDecodingError: CTErrorProtocol {
+    var type: CTErrorType
     var code: Int
     
     var translationKey: String
@@ -20,5 +21,6 @@ struct CTDecodingError: CTErrorProtocol {
         self.description = description
         self.errorBody = errorBody
         self.code = code
+        self.type = .decoding
     }
 }
