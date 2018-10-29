@@ -79,7 +79,7 @@ public class CTAuthManager {
                         observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure:
-                        observer.onError(response.error!)
+                        observer.onError(CTErrorHandler().handle(response: response))
                     }
             }
             

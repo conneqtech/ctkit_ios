@@ -13,4 +13,5 @@ public protocol CTErrorProtocol: LocalizedError {
     var errorBody: [String: Any]  { get }
     
     var description: String  { get }
+    var type: CTErrorType { get }
 }

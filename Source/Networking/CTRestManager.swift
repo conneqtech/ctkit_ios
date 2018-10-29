@@ -111,7 +111,8 @@ public class CTRestManager {
                         observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure:
-                        observer.onError(response.error!)
+                        print("WE fail")
+                        observer.onError(CTErrorHandler().handle(response: response))
                     }
             }
             
