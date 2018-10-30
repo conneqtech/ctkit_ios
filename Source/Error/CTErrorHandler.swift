@@ -10,23 +10,15 @@ import Alamofire
 
 internal class CTErrorHandler: NSObject {
     
-    func handle(response: DataResponse<Any>) -> CTErrorProtocol {
-        print("DO WE EVEN")
-        guard let jsonResponse = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:Any] else {
-            return CTBasicError(translationKey: "ddd", description: "")
-        }
-        
-        print(jsonResponse)
-        
+    func handle(withJSONData data: [String:Any]?) -> CTErrorProtocol {
         var handledError: CTErrorProtocol?
         
-        if let unwrappedResponse = jsonResponse, let httpCode = unwrappedResponse["status"] as? Int {
+        if let unwrappedResponse = data, let httpCode = unwrappedResponse["status"] as? Int {
             print(unwrappedResponse)
             switch httpCode {
             case 401:
                 handledError = handleUnauthorized(body: unwrappedResponse)
             case 400:
-                print("GO 400")
                 handledError = handleBadRequest(body: unwrappedResponse)
             case 422:
                 handledError = handleUnprocessableEntity(body: unwrappedResponse)
@@ -38,11 +30,20 @@ internal class CTErrorHandler: NSObject {
         if let handledError = handledError {
             return handledError
         }
-
+        
         
         return CTBasicError(translationKey: "COULD NOT PARSE", description: "COULD NOT PARSE")
     }
     
+    func handle(response: DataResponse<Any>) -> CTErrorProtocol {
+        guard let jsonData = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:Any] else {
+            return CTBasicError(translationKey: "ddd", description: "")
+        }
+        
+        return self.handle(withJSONData: jsonData)
+    }
+    
+    // Specialized handler functions
     func handleUnauthorized(body: [String:Any]) -> CTBasicError? {
         if let detail = body["detail"] as? String {
             if detail == "Invalid username and password combination" {
@@ -75,7 +76,7 @@ internal class CTErrorHandler: NSObject {
     }
     
     func handleValidationError(body: [String:Any]) -> CTValidationError? {
-        return CTValidationError(translationKey: "error.api.validation-failed", description: "Failed Validation", code: 422)
+        return CTValidationError(translationKey: "api.error.validation-failed", description: "Failed Validation", errorBody: body, code: 422)
     }
     
     func handleInvalidFields(body: [String:Any]) -> CTBasicError? {

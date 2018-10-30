@@ -27,6 +27,9 @@
 		85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4B2181D9AE0097D7A7 /* theftcase.json */; };
 		85D33A4E2181DA120097D7A7 /* theftcaseList.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4D2181DA120097D7A7 /* theftcaseList.json */; };
 		B57938623B24C4F138759C79 /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C79E5626B08B9E0268AB37E /* Pods_ctkit_Example.framework */; };
+		C00A8A3121873348003F67CB /* validation-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A3021873348003F67CB /* validation-error.json */; };
+		C00A8A33218735A9003F67CB /* 400-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A32218735A9003F67CB /* 400-error.json */; };
+		C00A8A36218735DC003F67CB /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A8A35218735DC003F67CB /* Resolver.swift */; };
 		C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9B21635B250010617A /* CreateAccountViewController.swift */; };
 		C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9D21635EEB0010617A /* AccountViewController.swift */; };
 		C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9F216373660010617A /* LoadingViewController.swift */; };
@@ -78,6 +81,9 @@
 		85D33A4D2181DA120097D7A7 /* theftcaseList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftcaseList.json; sourceTree = "<group>"; };
 		AA81EECC2BEA5016338F8ACC /* ctkit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ctkit.podspec; path = ../ctkit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ABE31016D690DA6F44A7AF83 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C00A8A3021873348003F67CB /* validation-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "validation-error.json"; sourceTree = "<group>"; };
+		C00A8A32218735A9003F67CB /* 400-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "400-error.json"; sourceTree = "<group>"; };
+		C00A8A35218735DC003F67CB /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		C02A3D9B21635B250010617A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		C02A3D9D21635EEB0010617A /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		C02A3D9F216373660010617A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +178,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C00A8A34218735CD003F67CB /* Helpers */,
 				8565CCBB21819ECD00D01486 /* Resources */,
 				C0EC37F3218078F500E7EAC4 /* Responses */,
 				C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */,
@@ -197,6 +204,7 @@
 		8565CCBB21819ECD00D01486 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C00A8A2F218711B9003F67CB /* api-error */,
 				85B6E93B2183029C00F44404 /* ride */,
 				85D33A4A2181D9860097D7A7 /* theftcase */,
 				8565CCC82181AC0C00D01486 /* user */,
@@ -246,6 +254,23 @@
 				85D33A4B2181D9AE0097D7A7 /* theftcase.json */,
 			);
 			path = theftcase;
+			sourceTree = "<group>";
+		};
+		C00A8A2F218711B9003F67CB /* api-error */ = {
+			isa = PBXGroup;
+			children = (
+				C00A8A3021873348003F67CB /* validation-error.json */,
+				C00A8A32218735A9003F67CB /* 400-error.json */,
+			);
+			path = "api-error";
+			sourceTree = "<group>";
+		};
+		C00A8A34218735CD003F67CB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C00A8A35218735DC003F67CB /* Resolver.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C0EC37F3218078F500E7EAC4 /* Responses */ = {
@@ -382,10 +407,12 @@
 				8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */,
 				8565CCC021819ECD00D01486 /* geofenceList.json in Resources */,
 				85B6E93E218302EE00F44404 /* ridelist.json in Resources */,
+				C00A8A3121873348003F67CB /* validation-error.json in Resources */,
 				85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */,
 				C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */,
 				85D33A4E2181DA120097D7A7 /* theftcaseList.json in Resources */,
 				8565CCBF21819ECD00D01486 /* geofence.json in Resources */,
+				C00A8A33218735A9003F67CB /* 400-error.json in Resources */,
 				85B6E93F218302EE00F44404 /* ride.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,6 +533,7 @@
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
 				855C5987217F6D8500F6983D /* CTTheftCaseServiceTests.swift in Sources */,
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
+				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 				859D519D21723C350070DB69 /* CTGeofenceServiceTests.swift in Sources */,
 				855C5985217F533C00F6983D /* CTRideServiceTests.swift in Sources */,
 			);
