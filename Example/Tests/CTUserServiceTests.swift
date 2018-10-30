@@ -23,34 +23,46 @@ class CTUserServiceTests: QuickSpec {
             describe("create") {
                 
                 it("Handles the error when the username and password field are empty") {
-                    let url = Bundle(for: type(of: self)).url(forResource: "createValidationError", withExtension: "json")!
-                    let data = try! Data(contentsOf: url)
-                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 422))
+                    self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "createValidationError"), status: 422))
                     
                     do {
-                        let _ = try CTUserService().create(email: "", password: "").toBlocking().first()
+                        let _ = try CTUserService().create(email: "", password: "", agreedToPrivacyStatement: true).toBlocking().first()
                     } catch {
                         if let ctError = error as? CTErrorProtocol {
                             expect(ctError.type) == .validation
+                            expect(ctError.translationKey) == "api.error.validation-failed"
+                            
+                            if let validationError = ctError as? CTValidationError {
+                                expect(validationError.validationMessages).to(haveCount(2))
+                            }
                         } else {
                             expect("error") == "ctError"
                         }
                     }
                 }
                 
-//                it("Handles the error when the username is not a valid email address") {
-//                    let url = Bundle(for: type(of: self)).url(forResource: "invalidEmailAndPassword", withExtension: "json")!
-//                    let data = try! Data(contentsOf: url)
-//                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 422))
-//
-//                    do {
-//                        let callToTest = try CTUserService().create(email: "NOT_VALID_EMAIL", password: "").toBlocking().first()
-//                    } catch {
-//                        print(error)
-//                        expect(error.localizedDescription) == "error"
-//                    }
-//
-//                }
+                it("Handles the error when the username is not a valid email address") {
+                    self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "invalidEmailAndPassword"), status: 422))
+
+                    do {
+                        let _ = try CTUserService().create(email: "NOT_VALID_EMAIL", password: "validPasswordThatIsLongEnough").toBlocking().first()
+                    } catch {
+                        do {
+                            let _ = try CTUserService().create(email: "", password: "", agreedToPrivacyStatement: true).toBlocking().first()
+                        } catch {
+                            if let ctError = error as? CTErrorProtocol {
+                                expect(ctError.type) == .validation
+                                expect(ctError.translationKey) == "api.error.validation-failed"
+                                
+                                if let validationError = ctError as? CTValidationError {
+                                    expect(validationError.validationMessages).to(haveCount(2))
+                                }
+                            } else {
+                                expect("error") == "ctError"
+                            }
+                        }
+                    }
+                }
 //
 //                //TODO: Handles the error when the user already exists
 //                it("handles the error when the user already exists") {

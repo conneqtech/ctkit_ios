@@ -17,7 +17,7 @@ public class CTValidationError: CTErrorProtocol {
     
     public var description: String
     
-    public var validationMessages: [String] = []
+    public var validationMessages: [CTApiValidationMessage] = []
     
     public init(translationKey: String, description: String, errorBody: [String:Any] = [:], code: Int = 0) {
         self.translationKey = translationKey
@@ -27,14 +27,19 @@ public class CTValidationError: CTErrorProtocol {
         self.type = .validation
         
         if let validationMessages = errorBody["validation_messages"] as? [String:Any] {
-            print(validationMessages)
-            
-            print("⚠️⚠️")
-            for (key, value) in validationMessages {
-                self.validationMessages.append(key)
-                print(key)
+            for (field, value) in validationMessages {
+                if let value = value as? [String:Any] {
+                    for (type, subvalue) in value {
+                        let message = CTApiValidationMessage(
+                            field: field,
+                            type: type,
+                            translatableKey: "dummy",
+                            originalMessage: subvalue as! String
+                        )
+                        self.validationMessages.append(message)
+                    }
+                }
             }
-            print("⚠️⚠️")
         }
     }
 }
