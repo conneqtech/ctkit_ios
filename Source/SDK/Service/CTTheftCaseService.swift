@@ -11,16 +11,16 @@ import RxSwift
 public class CTTheftCaseService:NSObject {
     
     public func create(theftCase:CTTheftCaseModel) -> Observable<CTTheftCaseModel> {
-        return CTBike.shared.restManager.post(endpoint: "theft-case", parameters: try? theftCase.asDictionary())
+        return CTKit.shared.restManager.post(endpoint: "theft-case", parameters: try? theftCase.asDictionary())
     }
     
     public func patchPoliceId(withCaseId identifier:Int, policeId:String) -> Observable<CTTheftCaseModel> {
-        return CTBike.shared.restManager.patch(endpoint: "theft-case/\(identifier)", parameters: [
+        return CTKit.shared.restManager.patch(endpoint: "theft-case/\(identifier)", parameters: [
             "police_id":policeId])
     }
     
     public func fetch(withCaseId identifier:Int) -> Observable<CTTheftCaseModel> {
-        return CTBike.shared.restManager.get(endpoint: "theft-case/\(identifier)")
+        return CTKit.shared.restManager.get(endpoint: "theft-case/\(identifier)")
     }
     
     public func fetchMostRecent(withBikeId identifier:Int) -> Observable<CTTheftCaseModel> {
@@ -38,7 +38,7 @@ public class CTTheftCaseService:NSObject {
                 "report_date;desc"
             ]
         ]
-        return CTBike.shared.restManager.get(endpoint: "theft-case", parameters: params)
+        return CTKit.shared.restManager.get(endpoint: "theft-case", parameters: params)
     }
     
 }

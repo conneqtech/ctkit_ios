@@ -33,7 +33,7 @@ class CTRequestRetrier: RequestRetrier {
                     
                     strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
                     if let tokenResponse = tokenResponse {
-                        CTBike.shared.authManager.saveTokenResponse(tokenResponse)
+                        CTKit.shared.authManager.saveTokenResponse(tokenResponse)
                     }
                     
                     strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
@@ -53,7 +53,7 @@ class CTRequestRetrier: RequestRetrier {
         let urlString = "\(apiConfig.fullUrl)/oauth"
         
         let params: [String:Any] = [
-            "refresh_token": CTBike.shared.authManager.getRefreshToken(),
+            "refresh_token": CTKit.shared.authManager.getRefreshToken(),
             "client_id":apiConfig.clientId,
             "client_secret":apiConfig.clientSecret,
             "grant_type":"refresh_token"

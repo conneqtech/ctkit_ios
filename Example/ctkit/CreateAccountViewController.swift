@@ -26,7 +26,8 @@ class CreateAccountViewController: UIViewController {
     @IBAction func createAccount(_ sender: Any) {
         let subscription = CTUserService().createAndLogin(
             email: self.emailTextField.text!,
-            password: self.passwordTextField.text!
+            password: self.passwordTextField.text!,
+            agreedToPrivacyStatement: true
             ).subscribe { event in
                 switch event {
                 case .next(let value):

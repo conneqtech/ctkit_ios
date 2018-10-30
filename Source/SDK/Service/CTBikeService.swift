@@ -11,7 +11,7 @@ import RxSwift
 public class CTBikeService: NSObject {
     
     public func create(withName name: String, imei: String, frameNumber: String) -> Observable<CTBikeModel> {
-        return CTBike.shared.restManager.post(endpoint: "bike", parameters: [
+        return CTKit.shared.restManager.post(endpoint: "bike", parameters: [
             "name":name,
             "imei":imei,
             "frame_number":frameNumber]
@@ -20,30 +20,30 @@ public class CTBikeService: NSObject {
     
     
     public func patch(withBike bike: CTBikeModel) -> Observable<CTBikeModel> {
-        return CTBike.shared.restManager.patch(endpoint: "bike", parameters: try? bike.asDictionary())
+        return CTKit.shared.restManager.patch(endpoint: "bike", parameters: try? bike.asDictionary())
     }
     
     public func delete(withBikeId identifier: Int) -> Completable {
-        return CTBike.shared.restManager.archive(endpoint: "bike/\(identifier)")
+        return CTKit.shared.restManager.archive(endpoint: "bike/\(identifier)")
     }
     
     public func fetch(withId identifier: Int) -> Observable<CTBikeModel> {
-        return CTBike.shared.restManager.get(endpoint: "bike/\(identifier)")
+        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)")
     }
     
     public func fetchAll() -> Observable<[CTBikeModel]> {
-        return CTBike.shared.restManager.get(endpoint: "bike")
+        return CTKit.shared.restManager.get(endpoint: "bike")
     }
     
     public func fetchOwned() -> Observable<[CTBikeModel]> {
         return self.fetchAll().map { result in
-            return result.filter{ $0.owner.id == CTBike.shared.currentActiveUserId }
+            return result.filter{ $0.owner.id == CTKit.shared.currentActiveUserId }
         }
     }
     
     public func fetchShared() -> Observable<[CTBikeModel]> {
         return self.fetchAll().map { result in
-            return result.filter{ $0.owner.id != CTBike.shared.currentActiveUserId }
+            return result.filter{ $0.owner.id != CTKit.shared.currentActiveUserId }
         }
     }
 }

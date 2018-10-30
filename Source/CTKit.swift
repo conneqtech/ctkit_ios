@@ -8,9 +8,9 @@
 import Foundation
 import RxSwift
 
-public class CTBike {
+public class CTKit {
     
-    public static var shared:CTBike!
+    public static var shared:CTKit!
   
     
     public var restManager: CTRestManager!
@@ -53,11 +53,11 @@ public class CTBike {
     }
     
     public static func configure(withClientId clientId: String, clientSecret: String, baseURL: String) {
-        CTBike.shared = CTBike.init(clientId: clientId, clientSecret: clientSecret, baseURL: baseURL)
+        CTKit.shared = CTKit.init(clientId: clientId, clientSecret: clientSecret, baseURL: baseURL)
     }
 }
 
-private extension CTBike {
+private extension CTKit {
     
     func saveCurrentActiveUserId(user: CTUserModel?) {
         guard let activeUser = user else {
@@ -68,7 +68,7 @@ private extension CTBike {
             return
         }
         
-        switch CTBike.shared.credentialSaveLocation {
+        switch CTKit.shared.credentialSaveLocation {
         case .keychain:
             KeychainSwift().set("\(activeUser.id)", forKey: ACTIVE_USER_ID_KEY)
         case .userDefaults:
@@ -79,7 +79,7 @@ private extension CTBike {
     }
     
     func getCurrentActiveUserId() -> Int {
-        switch CTBike.shared.credentialSaveLocation {
+        switch CTKit.shared.credentialSaveLocation {
         case .keychain:
             if let userId = KeychainSwift().get(ACTIVE_USER_ID_KEY) {
                 return Int(userId)!

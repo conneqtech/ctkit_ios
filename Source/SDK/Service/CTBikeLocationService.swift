@@ -10,7 +10,7 @@ import RxSwift
 
 public class CTBikeLocationService: NSObject {
     public func fetchHistoryForBike(withId identifier: Int, from: Date, until: Date) -> Observable<[CTBikeLocationModel]> {
-        return CTBike.shared.restManager.get(endpoint: "bike/\(identifier)/location", parameters: [
+        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/location", parameters: [
             "from":from.toAPIDate(),
             "till":until.toAPIDate()
         ])

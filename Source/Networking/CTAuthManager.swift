@@ -98,9 +98,9 @@ public class CTAuthManager {
     }
     
     func saveTokenResponse(_ tokenResponse: CTOAuth2TokenResponse) {
-        CTBike.shared.authToken.onNext(tokenResponse)
+        CTKit.shared.authToken.onNext(tokenResponse)
         
-        switch CTBike.shared.credentialSaveLocation {
+        switch CTKit.shared.credentialSaveLocation {
         case .keychain:
             let keychain = KeychainSwift()
             keychain.set(tokenResponse.accessToken, forKey: ACCESS_TOKEN_KEY)
@@ -123,7 +123,7 @@ public class CTAuthManager {
 
 extension CTAuthManager {
     private func retrieveDataFromStore(forKey key: String) -> String {
-        switch CTBike.shared.credentialSaveLocation {
+        switch CTKit.shared.credentialSaveLocation {
         case .keychain:
             return KeychainSwift().get(key) ?? ""
         case .userDefaults:
