@@ -8,6 +8,11 @@
 import Foundation
 import RxSwift
 
+/**
+ The CTUserService can be used to create new users for the Conneqtech connected bike platform. This service has some convenience methods like `createAndLogin` to automatically create a session once the user has been created.
+ 
+ This service is the main entry point for user based interactions, including checking for an active session, getting the active user identifier and logging out (and thus destroying the session).
+ */
 public class CTUserService: NSObject {
     
     /**

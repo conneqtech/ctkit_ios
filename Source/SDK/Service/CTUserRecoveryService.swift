@@ -8,7 +8,10 @@
 import Foundation
 import RxSwift
 
-class CTUserRecoveryService: NSObject {
+/**
+ The CTUserRecoveryService can be used to initiate a password recovery flow from within the app. This service is responsible for starting and ending the recovery process.
+ */
+public class CTUserRecoveryService: NSObject {
     
     
     /**

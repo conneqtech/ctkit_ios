@@ -15,7 +15,7 @@ public class CTGeofenceService: NSObject {
      
      - Note: You are only able to request the geofences the user has created for their account. Requesting random other users geofences will result in a 403 error.
      
-     - Parameter withGeofenceId: The ID used to reference the geofence
+     - Parameter identifier: The ID used to reference the geofence
      
      - Returns: An observable containing the requested geofence when found
      */
@@ -26,9 +26,9 @@ public class CTGeofenceService: NSObject {
     /**
      Fetch all the geofences that belong to a single bike
      
-      - Note: You are only able to create a geofence for a bike that is linked to the current active user. Adding a geofence to a random bike will result in a 403 error
+     - Note: You are only able to create a geofence for a bike that is linked to the current active user. Adding a geofence to a random bike will result in a 403 error
      
-     - Parameter withBikeId: The identifier of the bike you want the geofences for
+     - Parameter identifier: The identifier of the bike you want the geofences for
      
      - Returns: An observable with an array of Geofences, this can also be an empty array when the bike has no geofences.
      */
@@ -41,9 +41,9 @@ public class CTGeofenceService: NSObject {
      
       - Note: You are only able to create a geofence for a bike that is linked to the current active user. Adding a geofence to a random bike will result in a 403 error
      
-     - Precondition: Radius can't be larger that 10km (10.000m)
+     - Precondition: Radius can't be larger than 10km (10.000m)
      
-     - Parameter withBikeId: The identifier of the bike you want to create the geofence for
+     - Parameter identifier: The identifier of the bike you want to create the geofence for
      - Parameter name: The name of your geofence
      - Parameter latitude: The latitude part of the _center_ of the geofence
      - Parameter longitude: The longitude part of the _center_ of the geofence
@@ -76,7 +76,7 @@ public class CTGeofenceService: NSObject {
     /**
      Remove the geofence from the user and delete it on the API
      
-     - Parameter withGeofenceId: The identifier of the geofence you want to delete
+     - Parameter identifier: The identifier of the geofence you want to delete
      
      - Returns: A completable that notifies you the action completed. There will be no result other than 'finished'
      */
