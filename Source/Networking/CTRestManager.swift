@@ -61,7 +61,7 @@ public class CTRestManager {
                     case .success:
                         completable(.completed)
                     case .failure:
-                        completable(CTErrorHandler().handle(response: response))
+                        completable(CTErrorHandler().handle(response: response) as! CompletableEvent)
                     }
             }
             
