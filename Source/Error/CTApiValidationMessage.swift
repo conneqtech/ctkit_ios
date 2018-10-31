@@ -7,7 +7,12 @@
 
 import Foundation
 
+
+public enum CTValidationMessageType {
+}
+
 public struct CTApiValidationMessage {
+    
     public var field:String
     public var type:String
     public var translatableKey: String

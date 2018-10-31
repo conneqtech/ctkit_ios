@@ -1,6 +1,6 @@
 
 {
-    "error_translatable": "That username is already taken"
+    "error_translatable": "That username is already taken",
     "validation_messages": {
         "username": {
             "usernameAlreadyTaken": "User already exists"

@@ -34,6 +34,7 @@ class CTUserServiceTests: QuickSpec {
                             
                             if let validationError = ctError as? CTValidationError {
                                 expect(validationError.validationMessages).to(haveCount(2))
+                                //TODO: Check actual messages
                             }
                         } else {
                             expect("error") == "ctError"
@@ -56,6 +57,7 @@ class CTUserServiceTests: QuickSpec {
                                 
                                 if let validationError = ctError as? CTValidationError {
                                     expect(validationError.validationMessages).to(haveCount(2))
+                                    //TODO: Check actual messages
                                 }
                             } else {
                                 expect("error") == "ctError"
@@ -63,86 +65,51 @@ class CTUserServiceTests: QuickSpec {
                         }
                     }
                 }
-//
-//                //TODO: Handles the error when the user already exists
-//                it("handles the error when the user already exists") {
-//                    let url = Bundle(for: type(of: self)).url(forResource: "userAlreadyExists", withExtension: "json")!
-//                    let data = try! Data(contentsOf: url)
-//                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 422))
-//
-//                    do {
-//                        let callToTest = try CTUserService().create(email: "EMAIL_THAT_EXISTS", password: "A_PASSWORD").toBlocking().first()
-//                    } catch {
-//                        print(error)
-//                    }
-//                }
-//
-//                //TODO: Creates a user successfully and returns the created user
-//                it("creates a user succesfully and returns the created user") {
-//                    let url = Bundle(for: type(of: self)).url(forResource: "user", withExtension: "json")!
-//                    let data = try! Data(contentsOf: url)
-//                    self.stub(http(.post, uri: "/user"), jsonData(data))
-//
-//                    let callToTest = try! CTUserService().create(email: "user@login.bike", password: "test").toBlocking().first()
-//                  
-//                }
-//
-//            describe("createAndLogin") {
-//                //TODO: Handles the error when the username and password field are empty
-//                it("Handles the error when the username and password field are empty") {
-//                    let url = Bundle(for: type(of: self)).url(forResource: "createValidationError", withExtension: "json")!
-//                    let data = try! Data(contentsOf: url)
-//                    
-//                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 422))
-//                    
-//                    do {
-//                        let callToTest = try CTUserService().createAndLogin(email: "", password: "").toBlocking().first()
-//                    } catch {
-//                        print(error)
-//                    }
-//                }
-//        
-//                it("Handles the error when the username is not a valid email address") {
-//                    let url = Bundle(for: type(of: self)).url(forResource: "invalidEmailAndPassword", withExtension: "json")!
-//                    let data = try! Data(contentsOf: url)
-//                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 422))
-//
-//                    do {
-//                        let callToTest = try CTUserService().createAndLogin(email: "NOT_VALID_EMAIL", password: "").toBlocking().first()
-//                    } catch {
-//                        print(error)
-//                    }
-//                    
-//                }
-//
-//                //TODO: Handles the error when the user already exists
-//                it("handles the error when the user already exists") {
-//                    let url = Bundle(for: type(of: self)).url(forResource: "userAlreadyExists", withExtension: "json")!
-//                    let data = try! Data(contentsOf: url)
-//                    self.stub(http(.post, uri: "/user"), jsonData(data, status: 422))
-//                    
-//                    do {
-//                         let callToTest = try CTUserService().create(email: "EMAIL_THAT_EXISTS", password: "A_PASSWORD").toBlocking().first()
-//                    } catch {
-//                        print(error)
-//                    }
-//
-//
-//
-//                }
-//
-//
-//                //TODO: Creates a user successfully and returns the created user
-//
-//
-//
-//                //TODO: Creates a user and requests an access token and sets up a session (CTBike gets filled)
-//
-//
-//                //TODO: Creates account through create and login, then does the same thing again
-//                //Should not be possible but is probably gonna fail in current setup
-//            }
-//        }
+
+                it("Handles the error when the user already exists") {
+                    self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "userAlreadyExists"), status: 422))
+
+                    do {
+                        let _ = try CTUserService().create(email: "EMAIL_THAT_EXISTS", password: "A_PASSWORD").toBlocking().first()
+                    } catch {
+                        if let ctError = error as? CTErrorProtocol {
+                            expect(ctError.type) == .validation
+                            expect(ctError.translationKey) == "api.error.validation-failed"
+                            
+                            if let validationError = ctError as? CTValidationError {
+                                print(validationError.validationMessages)
+                                expect(validationError.validationMessages).to(haveCount(1))
+                                
+                                let messageToTest = validationError.validationMessages[0]
+                                expect(messageToTest.type) == "usernameAlreadyTaken"
+                                expect(messageToTest.originalMessage) == "User already exists"
+                            }
+                        } else {
+                            expect("error") == "ctError"
+                        }
+                    }
+                }
+                
+                it("Creates a user succesfully and returns the created user") {
+                    var jsonDict = Resolver().getJSONForResource(name: "user")
+                    
+                    let randomUsername = "\(Int.random(in: 0 ... 1000))@login.bike"
+                    jsonDict["username"] = randomUsername
+                    
+                    self.stub(http(.post, uri: "/user"), json(jsonDict, status: 200))
+
+                    let callToTest = try! CTUserService().create(email: randomUsername, password: "A_VALID_PASSWORD").toBlocking().first()
+                    
+                    if let user = callToTest {
+                        expect(user.email) == randomUsername
+                    } else {
+                        expect("can unwrap") == "did not unwrap"
+                    }
+                }
+            }
+            
+            describe("createAndLogin") {
+                
             }
         }
     }
