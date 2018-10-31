@@ -26,10 +26,11 @@ class CreateAccountViewController: UIViewController {
     @IBAction func createAccount(_ sender: Any) {
         let subscription = CTUserService().createAndLogin(
             email: self.emailTextField.text!,
-            password: self.passwordTextField.text!
+            password: self.passwordTextField.text!,
+            agreedToPrivacyStatement: true
             ).subscribe { event in
                 switch event {
-                case .next(let value):
+                case .next(let _):
                     let navViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "accountNavigationController")
                     self.present(navViewController, animated: true, completion: nil)
                 case .error(let error):

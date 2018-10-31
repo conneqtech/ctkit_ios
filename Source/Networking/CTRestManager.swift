@@ -61,7 +61,7 @@ public class CTRestManager {
                     case .success:
                         completable(.completed)
                     case .failure:
-                        completable(.error(response.error!))
+                        completable(CTErrorHandler().handle(response: response) as! CompletableEvent)
                     }
             }
             
@@ -94,15 +94,15 @@ public class CTRestManager {
                     case .success:
                         //FIXME: Remove debug code
                         do {
-                            let getResponse = try JSONDecoder().decode(T.self, from: response.data!)
+                            let _ = try JSONDecoder().decode(T.self, from: response.data!)
                         } catch {
-                            print("GECATCHED")
+                            print("DEBUG: Decoding gave us the following error")
                             print(error)
                         }
                         //End of debug code
                         
-                        guard let data = response.data, let getResponse = try?JSONDecoder().decode(T.self, from: data) else {
-                            observer.onError(NSError(domain: "test", code: 400, userInfo: nil))
+                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                            observer.onError(CTErrorHandler().handle(withDecodingError:nil))
                             return
                         }
                         
@@ -111,7 +111,6 @@ public class CTRestManager {
                         observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure:
-                        print("WE fail")
                         observer.onError(CTErrorHandler().handle(response: response))
                     }
             }

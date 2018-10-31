@@ -13,24 +13,25 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		855C5985217F533C00F6983D /* CTRideServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5984217F533C00F6983D /* CTRideServiceTests.swift */; };
-		855C5987217F6D8500F6983D /* CTTheftCaseServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5986217F6D8500F6983D /* CTTheftCaseServiceTests.swift */; };
 		8565CCBF21819ECD00D01486 /* geofence.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCBD21819ECD00D01486 /* geofence.json */; };
 		8565CCC021819ECD00D01486 /* geofenceList.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCBE21819ECD00D01486 /* geofenceList.json */; };
 		8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC42181A47100D01486 /* createGeofenceValidationError.json */; };
 		8565CCC72181A7D200D01486 /* userAlreadyExists.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC62181A7D200D01486 /* userAlreadyExists.json */; };
 		8565CCCA2181ACB300D01486 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC92181ACB300D01486 /* user.json */; };
-		859D519D21723C350070DB69 /* CTGeofenceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859D519C21723C350070DB69 /* CTGeofenceServiceTests.swift */; };
 		85B6E93E218302EE00F44404 /* ridelist.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B6E93C218302EE00F44404 /* ridelist.json */; };
 		85B6E93F218302EE00F44404 /* ride.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B6E93D218302EE00F44404 /* ride.json */; };
 		85B6E945218351DB00F44404 /* RideTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B6E944218351DB00F44404 /* RideTableViewController.swift */; };
 		85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4B2181D9AE0097D7A7 /* theftcase.json */; };
 		85D33A4E2181DA120097D7A7 /* theftcaseList.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4D2181DA120097D7A7 /* theftcaseList.json */; };
 		B57938623B24C4F138759C79 /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C79E5626B08B9E0268AB37E /* Pods_ctkit_Example.framework */; };
+		C00A8A3121873348003F67CB /* validation-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A3021873348003F67CB /* validation-error.json */; };
+		C00A8A33218735A9003F67CB /* 400-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A32218735A9003F67CB /* 400-error.json */; };
+		C00A8A36218735DC003F67CB /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A8A35218735DC003F67CB /* Resolver.swift */; };
 		C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9B21635B250010617A /* CreateAccountViewController.swift */; };
 		C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9D21635EEB0010617A /* AccountViewController.swift */; };
 		C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9F216373660010617A /* LoadingViewController.swift */; };
 		C02A3DA22163A1C40010617A /* BikeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3DA12163A1C40010617A /* BikeTableViewController.swift */; };
+		C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */ = {isa = PBXBuildFile; fileRef = C07FEDB721899BDC005577C1 /* oauth-success.json */; };
 		C0DF759021674E0900260751 /* GeofenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */; };
 		C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */; };
 		C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37F52180792300E7EAC4 /* createValidationError.json */; };
@@ -63,14 +64,11 @@
 		607FACE51AFB9204008FA782 /* ctkit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ctkit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C3BCF536DE4A862F50071DD /* Pods-ctkit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6CA44E7F3150B084A4066032 /* Pods-ctkit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		855C5984217F533C00F6983D /* CTRideServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTRideServiceTests.swift; sourceTree = "<group>"; };
-		855C5986217F6D8500F6983D /* CTTheftCaseServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTTheftCaseServiceTests.swift; sourceTree = "<group>"; };
 		8565CCBD21819ECD00D01486 /* geofence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofence.json; sourceTree = "<group>"; };
 		8565CCBE21819ECD00D01486 /* geofenceList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofenceList.json; sourceTree = "<group>"; };
 		8565CCC42181A47100D01486 /* createGeofenceValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createGeofenceValidationError.json; sourceTree = "<group>"; };
 		8565CCC62181A7D200D01486 /* userAlreadyExists.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userAlreadyExists.json; sourceTree = "<group>"; };
 		8565CCC92181ACB300D01486 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
-		859D519C21723C350070DB69 /* CTGeofenceServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTGeofenceServiceTests.swift; sourceTree = "<group>"; };
 		85B6E93C218302EE00F44404 /* ridelist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ridelist.json; sourceTree = "<group>"; };
 		85B6E93D218302EE00F44404 /* ride.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ride.json; sourceTree = "<group>"; };
 		85B6E944218351DB00F44404 /* RideTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideTableViewController.swift; sourceTree = "<group>"; };
@@ -78,11 +76,15 @@
 		85D33A4D2181DA120097D7A7 /* theftcaseList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftcaseList.json; sourceTree = "<group>"; };
 		AA81EECC2BEA5016338F8ACC /* ctkit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ctkit.podspec; path = ../ctkit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ABE31016D690DA6F44A7AF83 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C00A8A3021873348003F67CB /* validation-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "validation-error.json"; sourceTree = "<group>"; };
+		C00A8A32218735A9003F67CB /* 400-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "400-error.json"; sourceTree = "<group>"; };
+		C00A8A35218735DC003F67CB /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		C02A3D9B21635B250010617A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		C02A3D9D21635EEB0010617A /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		C02A3D9F216373660010617A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		C02A3DA12163A1C40010617A /* BikeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeTableViewController.swift; sourceTree = "<group>"; };
 		C04C0AAE21746E9B00F9ADE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C07FEDB721899BDC005577C1 /* oauth-success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "oauth-success.json"; sourceTree = "<group>"; };
 		C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceTableViewController.swift; sourceTree = "<group>"; };
 		C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUserServiceTests.swift; sourceTree = "<group>"; };
 		C0EC37F52180792300E7EAC4 /* createValidationError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = createValidationError.json; sourceTree = "<group>"; };
@@ -172,14 +174,12 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C00A8A34218735CD003F67CB /* Helpers */,
 				8565CCBB21819ECD00D01486 /* Resources */,
 				C0EC37F3218078F500E7EAC4 /* Responses */,
 				C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */,
-				859D519C21723C350070DB69 /* CTGeofenceServiceTests.swift */,
-				C04C0AAE21746E9B00F9ADE0 /* Info.plist */,
 				C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */,
-				855C5984217F533C00F6983D /* CTRideServiceTests.swift */,
-				855C5986217F6D8500F6983D /* CTTheftCaseServiceTests.swift */,
+				C04C0AAE21746E9B00F9ADE0 /* Info.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -197,6 +197,7 @@
 		8565CCBB21819ECD00D01486 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C00A8A2F218711B9003F67CB /* api-error */,
 				85B6E93B2183029C00F44404 /* ride */,
 				85D33A4A2181D9860097D7A7 /* theftcase */,
 				8565CCC82181AC0C00D01486 /* user */,
@@ -248,9 +249,35 @@
 			path = theftcase;
 			sourceTree = "<group>";
 		};
+		C00A8A2F218711B9003F67CB /* api-error */ = {
+			isa = PBXGroup;
+			children = (
+				C00A8A3021873348003F67CB /* validation-error.json */,
+				C00A8A32218735A9003F67CB /* 400-error.json */,
+			);
+			path = "api-error";
+			sourceTree = "<group>";
+		};
+		C00A8A34218735CD003F67CB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C00A8A35218735DC003F67CB /* Resolver.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C07FEDB621899BC4005577C1 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				C07FEDB721899BDC005577C1 /* oauth-success.json */,
+			);
+			path = OAuth;
+			sourceTree = "<group>";
+		};
 		C0EC37F3218078F500E7EAC4 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				C07FEDB621899BC4005577C1 /* OAuth */,
 				8565CCC12181A3A000D01486 /* CTGeofenceService */,
 				C0EC37F42180790000E7EAC4 /* CTUserService */,
 			);
@@ -377,15 +404,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8565CCCA2181ACB300D01486 /* user.json in Resources */,
+				C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */,
 				C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */,
 				8565CCC72181A7D200D01486 /* userAlreadyExists.json in Resources */,
 				8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */,
 				8565CCC021819ECD00D01486 /* geofenceList.json in Resources */,
 				85B6E93E218302EE00F44404 /* ridelist.json in Resources */,
+				C00A8A3121873348003F67CB /* validation-error.json in Resources */,
 				85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */,
 				C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */,
 				85D33A4E2181DA120097D7A7 /* theftcaseList.json in Resources */,
 				8565CCBF21819ECD00D01486 /* geofence.json in Resources */,
+				C00A8A33218735A9003F67CB /* 400-error.json in Resources */,
 				85B6E93F218302EE00F44404 /* ride.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,10 +534,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
-				855C5987217F6D8500F6983D /* CTTheftCaseServiceTests.swift in Sources */,
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
-				859D519D21723C350070DB69 /* CTGeofenceServiceTests.swift in Sources */,
-				855C5985217F533C00F6983D /* CTRideServiceTests.swift in Sources */,
+				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

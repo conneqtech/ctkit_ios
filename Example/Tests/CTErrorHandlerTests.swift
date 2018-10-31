@@ -14,24 +14,28 @@ import Nimble
 class CTErrorHandlerTests: QuickSpec {
     
     override func spec() {
-        /*
-        {
-            detail = "Invalid username and password combination";
-            status = 401;
-            title = "invalid_grant";
-            type = "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html";
-        }
- 
-        */
-        
         describe("OAuth errors") {
-            context("Handles 401") {
+            it("Handles 400") {
+                let subjectUnderTest = CTErrorHandler()
+                let result = subjectUnderTest.handle(withJSONData: Resolver().getJSONForResource(name: "400-error"))
                 
+                expect(result.type) == .basic
+                expect(result.translationKey) == "api.error.400.bad-request"
+            }
+            
+            it("Handles 422 validation") {
+                let subjectUnderTest = CTErrorHandler()
+                let result = subjectUnderTest.handle(withJSONData: Resolver().getJSONForResource(name: "validation-error"))
+                
+                expect(result.type) == .validation
+                expect(result.translationKey) == "api.error.validation-failed"
+                
+                if let validationError = result as? CTValidationError {
+                    expect(validationError.validationMessages.count) == 2
+                } else {
+                    expect("validation") == "wrong error type"
+                }
             }
         }
     }
-    
-    
-    
-    
 }
