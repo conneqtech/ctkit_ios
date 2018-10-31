@@ -74,8 +74,8 @@ public class CTUserService: NSObject {
      
      - Returns: An observable containing the updated user from the API. This model should be near identical to the one you used to update the user.
      */
-    public func patch(user: CTUserModel) -> Observable<CTUserModel> {
-        return CTKit.shared.restManager.patch(endpoint: "user/\(user.id)", parameters: try? user.asDictionary())
+    public func patchCurrentUser(user: CTUserModel) -> Observable<CTUserModel> {
+        return CTKit.shared.restManager.patch(endpoint: "user/me", parameters: try? user.asDictionary())
     }
     
     /**
