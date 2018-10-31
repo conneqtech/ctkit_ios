@@ -10,11 +10,14 @@ import Alamofire
 
 internal class CTErrorHandler: NSObject {
     
+    func handle(withDecodingError data: Any?) -> CTErrorProtocol {
+        return CTDecodingError(translationKey: "ctkit.error.decoding-failed", description: "Failed to decode object")
+    }
+    
     func handle(withJSONData data: [String:Any]?) -> CTErrorProtocol {
         var handledError: CTErrorProtocol?
         
         if let unwrappedResponse = data, let httpCode = unwrappedResponse["status"] as? Int {
-            print(unwrappedResponse)
             switch httpCode {
             case 401:
                 handledError = handleUnauthorized(body: unwrappedResponse)
@@ -65,7 +68,6 @@ internal class CTErrorHandler: NSObject {
         
         
         if let detail = body["detail"] as? String {
-            print(detail)
             switch detail {
             default:
                 return handleInvalidFields(body:body)

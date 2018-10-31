@@ -181,6 +181,10 @@ class CTUserServiceTests: QuickSpec {
                     expect(CTUserService().getActiveUserId()) == -1
                 }
             }
+            
+            describe("patch") {
+                
+            }
         }
     }
 }

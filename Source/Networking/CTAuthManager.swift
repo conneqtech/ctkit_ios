@@ -71,7 +71,7 @@ public class CTAuthManager {
                     switch response.result {
                     case .success:
                         guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
-                            observer.onError(response.error!)
+                            observer.onError(CTErrorHandler().handle(withDecodingError:nil))
                             return
                         }
                         
