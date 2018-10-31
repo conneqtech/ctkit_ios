@@ -34,6 +34,7 @@
 		C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9D21635EEB0010617A /* AccountViewController.swift */; };
 		C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9F216373660010617A /* LoadingViewController.swift */; };
 		C02A3DA22163A1C40010617A /* BikeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3DA12163A1C40010617A /* BikeTableViewController.swift */; };
+		C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */ = {isa = PBXBuildFile; fileRef = C07FEDB721899BDC005577C1 /* oauth-success.json */; };
 		C0DF759021674E0900260751 /* GeofenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */; };
 		C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */; };
 		C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37F52180792300E7EAC4 /* createValidationError.json */; };
@@ -89,6 +90,7 @@
 		C02A3D9F216373660010617A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		C02A3DA12163A1C40010617A /* BikeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeTableViewController.swift; sourceTree = "<group>"; };
 		C04C0AAE21746E9B00F9ADE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C07FEDB721899BDC005577C1 /* oauth-success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "oauth-success.json"; sourceTree = "<group>"; };
 		C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceTableViewController.swift; sourceTree = "<group>"; };
 		C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUserServiceTests.swift; sourceTree = "<group>"; };
 		C0EC37F52180792300E7EAC4 /* createValidationError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = createValidationError.json; sourceTree = "<group>"; };
@@ -273,9 +275,18 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		C07FEDB621899BC4005577C1 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				C07FEDB721899BDC005577C1 /* oauth-success.json */,
+			);
+			path = OAuth;
+			sourceTree = "<group>";
+		};
 		C0EC37F3218078F500E7EAC4 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				C07FEDB621899BC4005577C1 /* OAuth */,
 				8565CCC12181A3A000D01486 /* CTGeofenceService */,
 				C0EC37F42180790000E7EAC4 /* CTUserService */,
 			);
@@ -402,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8565CCCA2181ACB300D01486 /* user.json in Resources */,
+				C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */,
 				C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */,
 				8565CCC72181A7D200D01486 /* userAlreadyExists.json in Resources */,
 				8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */,

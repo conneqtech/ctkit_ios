@@ -21,7 +21,6 @@ class CTUserServiceTests: QuickSpec {
     override func spec() {
         describe("CTUserServiceTests") {
             describe("create") {
-                
                 it("Handles the error when the username and password field are empty") {
                     self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "createValidationError"), status: 422))
                     
@@ -109,7 +108,78 @@ class CTUserServiceTests: QuickSpec {
             }
             
             describe("createAndLogin") {
+                beforeEach {
+                    CTUserService().logout()
+                }
+            
+                it("Fails to create a user and doesn't log in") {
+                    
+                    self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "userAlreadyExists"), status: 422))
+                    
+                    do {
+                        let _ = try CTUserService().createAndLogin(email: "EMAIL_THAT_EXISTS", password: "A_PASSWORD").toBlocking().first()
+                    } catch {
+                        expect(CTUserService().getActiveUserId()) == -1
+                        expect(CTUserService().hasActiveSession()) == false
+                        
+                        if let ctError = error as? CTErrorProtocol {
+                            expect(ctError.type) == .validation
+                            expect(ctError.translationKey) == "api.error.validation-failed"
+                            
+                            if let validationError = ctError as? CTValidationError {
+                                print(validationError.validationMessages)
+                                expect(validationError.validationMessages).to(haveCount(1))
+                                
+                                let messageToTest = validationError.validationMessages[0]
+                                expect(messageToTest.type) == "usernameAlreadyTaken"
+                                expect(messageToTest.originalMessage) == "User already exists"
+                            }
+                        } else {
+                            expect("error") == "ctError"
+                        }
+                    }
+                }
                 
+                it("Creates a user and creates a session") {
+                    self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "user"), status: 200))
+                    self.stub(http(.post, uri: "/oauth"), json(Resolver().getJSONForResource(name: "oauth-success"), status: 200))
+                    self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "user"), status: 200))
+                    
+                    let callToTest = try! CTUserService().createAndLogin(email: "user@login.bike", password: "A_VALID_PASSWORD").toBlocking().first()
+                    
+                    if let user = callToTest {
+                        expect(user.email) == "user@login.bike"
+                        expect(CTUserService().hasActiveSession()) == true
+                        expect(CTUserService().getActiveUserId()) == 47
+                    } else {
+                        expect("can unwrap") == "did not unwrap"
+                    }
+                }
+            }
+            
+            describe("logout") {
+                beforeEach {
+                    //Ensure we start 'blank'
+                    CTUserService().logout()
+                }
+                
+                it("Destroys an active session") {
+                    self.stub(http(.post, uri: "/oauth"), json(Resolver().getJSONForResource(name: "oauth-success"), status: 200))
+                    self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "user"), status: 200))
+
+                    expect(CTUserService().hasActiveSession()) == false
+                    expect(CTUserService().getActiveUserId()) == -1
+                    
+                    let _ = try! CTUserService().login(email: "user@login.bike", password: "testpassword").toBlocking().first()
+                    
+                    expect(CTUserService().hasActiveSession()) == true
+                    expect(CTUserService().getActiveUserId()) == 47
+                    
+                    CTUserService().logout()
+                    
+                    expect(CTUserService().hasActiveSession()) == false
+                    expect(CTUserService().getActiveUserId()) == -1
+                }
             }
         }
     }
