@@ -183,7 +183,25 @@ class CTUserServiceTests: QuickSpec {
             }
             
             describe("patch") {
-                
+                it("Patches a user") {
+                    //FIXME: Needs a test to see what fields get patched
+                    let url = Bundle(for: type(of: self)).url(forResource: "user", withExtension: "json")!
+                    let data = try! Data(contentsOf: url)
+                    let originalUserModel = try! JSONDecoder().decode(CTUserModel.self, from: data)
+                    
+                    var updatedUserModel = Resolver().getJSONForResource(name: "user")
+                    updatedUserModel["first_name"] = "FIRSTNAME"
+                    updatedUserModel["last_name"] = "LASTNAME"
+                    
+                    self.stub(http(.patch, uri: "/user/me"), json(updatedUserModel, status: 200))
+                    
+                    let callToTest = try! CTUserService().patchCurrentUser(user: originalUserModel).toBlocking().first()
+                    
+                    if let patchedUser = callToTest {
+                        expect(patchedUser.firstName!) == "FIRSTNAME"
+                        expect(patchedUser.lastName!) == "LASTNAME"
+                    }
+                }
             }
         }
     }
