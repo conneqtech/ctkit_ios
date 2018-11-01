@@ -33,6 +33,7 @@ public class CTRestManager {
     }
     
     public func delete(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Completable  {
+//        return genericCall(.delete, endpoint: endpoint, parameters: parameters, useToken: useToken).map { _ in Completable.empty() }
         return genericCompletableCall(.delete, endpoint: endpoint, parameters: parameters, useToken:useToken)
     }
     
