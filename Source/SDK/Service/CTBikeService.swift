@@ -99,4 +99,15 @@ public class CTBikeService: NSObject {
             return result.filter{ $0.owner.id != CTKit.shared.currentActiveUserId }
         }
     }
+    
+    
+    /**
+     Search for a bike based on its framenumber. This call will return the first part of the IMEI so that a user has a hint of what number you need.
+     This call can return 0 or 1 results. When 0 results are returned the bike could already be registered or simply doesn't exist in our database
+     
+     - Parameter identifier: The frame number of a bike you want to fetch some information about
+     */
+    public func searchUnregisteredBike(withFrameIdentifier identifier: String) -> Observable<[CTUnregisteredBikeInformationModel]> {
+        return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["frame_number":identifier])
+    }
 }
