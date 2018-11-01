@@ -37,7 +37,7 @@ public struct CTUnregisteredBikeInformationModel: CTBaseModel {
         case manufacturerProductionDate = "fabrication_date"
     }
     
-    required public init (from decoder: Decoder) throws {
+    public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let params = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .params)
