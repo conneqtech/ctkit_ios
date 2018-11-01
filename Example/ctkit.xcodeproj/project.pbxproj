@@ -37,6 +37,9 @@
 		C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37F52180792300E7EAC4 /* createValidationError.json */; };
 		C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */; };
 		C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */; };
+		C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */; };
+		C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */; };
+		C0F40CDA218B3C3900F92CC9 /* bike-information.json in Resources */ = {isa = PBXBuildFile; fileRef = C0F40CD9218B3C3900F92CC9 /* bike-information.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +93,9 @@
 		C0EC37F52180792300E7EAC4 /* createValidationError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = createValidationError.json; sourceTree = "<group>"; };
 		C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalidEmailAndPassword.json; sourceTree = "<group>"; };
 		C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTErrorHandlerTests.swift; sourceTree = "<group>"; };
+		C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTRecoveryServiceTests.swift; sourceTree = "<group>"; };
+		C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeServiceTests.swift; sourceTree = "<group>"; };
+		C0F40CD9218B3C3900F92CC9 /* bike-information.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-information.json"; sourceTree = "<group>"; };
 		E623B3B1226190D69C9FEEE4 /* Pods_ctkit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -180,6 +186,8 @@
 				C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */,
 				C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */,
 				C04C0AAE21746E9B00F9ADE0 /* Info.plist */,
+				C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */,
+				C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -197,6 +205,7 @@
 		8565CCBB21819ECD00D01486 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C0F40CD8218B3C1F00F92CC9 /* bike */,
 				C00A8A2F218711B9003F67CB /* api-error */,
 				85B6E93B2183029C00F44404 /* ride */,
 				85D33A4A2181D9860097D7A7 /* theftcase */,
@@ -292,6 +301,14 @@
 				C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */,
 			);
 			path = CTUserService;
+			sourceTree = "<group>";
+		};
+		C0F40CD8218B3C1F00F92CC9 /* bike */ = {
+			isa = PBXGroup;
+			children = (
+				C0F40CD9218B3C3900F92CC9 /* bike-information.json */,
+			);
+			path = bike;
 			sourceTree = "<group>";
 		};
 		FF80AE8E324336919CCFF92F /* Pods */ = {
@@ -403,6 +420,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0F40CDA218B3C3900F92CC9 /* bike-information.json in Resources */,
 				8565CCCA2181ACB300D01486 /* user.json in Resources */,
 				C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */,
 				C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */,
@@ -534,6 +552,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
+				C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */,
+				C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */,
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 			);

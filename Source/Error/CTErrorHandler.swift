@@ -26,7 +26,7 @@ internal class CTErrorHandler: NSObject {
             case 422:
                 handledError = handleUnprocessableEntity(body: unwrappedResponse)
             default:
-                handledError = CTBasicError(translationKey: "ddd", description: "")
+                handledError = CTBasicError(translationKey: "DEFAULT ERROR HANDLE", description: "")
             }
         }
         
@@ -40,7 +40,7 @@ internal class CTErrorHandler: NSObject {
     
     func handle(response: DataResponse<Any>) -> CTErrorProtocol {
         guard let jsonData = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:Any] else {
-            return CTBasicError(translationKey: "ddd", description: "")
+            return CTBasicError(translationKey: "COULD NOT PARSE json", description: "")
         }
         
         return self.handle(withJSONData: jsonData)
@@ -82,6 +82,6 @@ internal class CTErrorHandler: NSObject {
     }
     
     func handleInvalidFields(body: [String:Any]) -> CTBasicError? {
-        return CTBasicError(translationKey: "error.api.fields-invalid", description: "One or more supplied fields are invalid", code: 422)
+        return CTBasicError(translationKey: body["detail"] as! String, description: "One or more supplied fields are invalid", code: 422)
     }
 }
