@@ -33,7 +33,6 @@ public class CTRestManager {
     }
     
     public func delete(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Completable  {
-//        return genericCall(.delete, endpoint: endpoint, parameters: parameters, useToken: useToken).map { _ in Completable.empty() }
         return genericCompletableCall(.delete, endpoint: endpoint, parameters: parameters, useToken:useToken)
     }
     
@@ -107,11 +106,11 @@ public class CTRestManager {
                             return
                         }
                         
-                        
-                        
                         observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure:
+                        print(response.error)
+                        print(response.data)
                         observer.onError(CTErrorHandler().handle(response: response))
                     }
             }

@@ -21,10 +21,10 @@ class CTBikeServiceTests: QuickSpec {
     override func spec () {
         describe("Bike information") {
             it("searches for a bike with a frame number") {
+                self.stub(http(.get, uri: "/bike/search"), json([Resolver().getJSONForResource(name: "bike-information")], status: 200))
                 let subjectUnderTest = CTBikeService()
                 
-                self.stub(http(.get, uri: "bike/search"), json([Resolver().getJSONForResource(name: "bike-information")], status: 200))
-                
+            
                 let response = try! subjectUnderTest.searchUnregisteredBike(withFrameIdentifier: "EN15194").toBlocking().first()
                 if let response = response {
                     let bike = response[0]
