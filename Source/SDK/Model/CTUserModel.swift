@@ -12,7 +12,7 @@ public struct CTUserModel: CTBaseModel {
     public let id: Int
     
     public let email: String
-    public var displayName: String {
+    public let displayName: String {
         get {
             if let firstName = firstName, let lastName = lastName {
                 return "\(firstName) \(lastName)"
@@ -25,18 +25,18 @@ public struct CTUserModel: CTBaseModel {
     public var firstName: String?
     public var lastName: String?
     
-    public let initials:String?
-    public let gender:String?
-    public let avatar:String?
+    public var initials:String?
+    public var gender:String?
+    public var avatar:String?
     public let emailIsVerified:Bool?
     
     //Address attributes
-    public let address:String?
-    public let houseNumber:Int?
-    public let houseNumberAddition:String?
-    public let city:String?
-    public let country:String?
-    public let postalCode:String?
+    public var address:String?
+    public var houseNumber:Int?
+    public var houseNumberAddition:String?
+    public var city:String?
+    public var country:String?
+    public var postalCode:String?
 
     //Location
 
