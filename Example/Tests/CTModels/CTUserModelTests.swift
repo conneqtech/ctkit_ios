@@ -24,7 +24,7 @@ class CTUserModelTests: QuickSpec {
                 
                 expect(subjectToTest.id) == 47
                 expect(subjectToTest.houseNumber) == 2
-                expect(subjectToTest.address) == "Example road"
+                expect(subjectToTest.street) == "Example road"
                 expect(subjectToTest.displayName) == "User Last name"
             }
             
