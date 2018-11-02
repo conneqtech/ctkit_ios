@@ -33,6 +33,7 @@ public struct CTUserModel: CTBaseModel {
     //Address attributes
     public let address:String?
     public let houseNumber:Int?
+    public let houseNumberAddition:String?
     public let city:String?
     public let country:String?
     public let postalCode:String?
@@ -54,6 +55,7 @@ public struct CTUserModel: CTBaseModel {
         
         case address = "address"
         case houseNumber = "house_number"
+        case houseNumberAddition = "house_number_addition"
         case city = "city"
         case country = "country"
         case postalCode = "postal_code"
@@ -71,6 +73,7 @@ public struct CTUserModel: CTBaseModel {
         
         try container.encode(address, forKey: .address)
         try container.encode(houseNumber, forKey: .houseNumber)
+        try container.encode(houseNumberAddition, forKey: .houseNumberAddition)
         try container.encode(city, forKey: .city)
         try container.encode(country, forKey: .country)
         try container.encode(postalCode, forKey: .postalCode)

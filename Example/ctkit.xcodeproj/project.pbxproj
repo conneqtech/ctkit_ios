@@ -40,7 +40,7 @@
 		C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */; };
 		C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */; };
 		C0F40CDA218B3C3900F92CC9 /* bike-information.json in Resources */ = {isa = PBXBuildFile; fileRef = C0F40CD9218B3C3900F92CC9 /* bike-information.json */; };
-		C0F40CDE218C518000F92CC9 /* CTUserModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */; };
+		C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -558,7 +558,6 @@
 				C02A3DA22163A1C40010617A /* BikeTableViewController.swift in Sources */,
 				C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
-				C0F40CDE218C518000F92CC9 /* CTUserModelTests.swift in Sources */,
 				85B6E945218351DB00F44404 /* RideTableViewController.swift in Sources */,
 				C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */,
 				C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */,
@@ -574,6 +573,7 @@
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
 				C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */,
 				C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */,
+				C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */,
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 			);
