@@ -12,7 +12,7 @@ public struct CTUserModel: CTBaseModel {
     public let id: Int
     
     public let email: String
-    public let displayName: String {
+    public var displayName: String {
         get {
             if let firstName = firstName, let lastName = lastName {
                 return "\(firstName) \(lastName)"
