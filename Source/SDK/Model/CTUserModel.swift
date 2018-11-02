@@ -65,5 +65,14 @@ public struct CTUserModel: CTBaseModel {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(firstName, forKey: .firstName)
         try container.encode(lastName, forKey: .lastName)
+        try container.encode(initials, forKey: .initials)
+        try container.encode(gender, forKey: .gender)
+        try container.encode(avatar, forKey: .avatar)
+        
+        try container.encode(address, forKey: .address)
+        try container.encode(houseNumber, forKey: .houseNumber)
+        try container.encode(city, forKey: .city)
+        try container.encode(country, forKey: .country)
+        try container.encode(postalCode, forKey: .postalCode)
     }
 }
