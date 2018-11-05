@@ -30,6 +30,20 @@ public class CTUserService: NSObject {
     }
     
     /**
+     Creates an authorised session for a social login swhen the credentials are valid.
+     
+     - Attention: This SDK will never save the user credentials and will remove them as soon as the call finishes. The developer implementing this SDK should also *never* save the username and password in their documentation
+     
+     - Parameter token: The token retrieved from the social network
+     - Parameter type: The type of social network used, this can be google or facebook
+     
+     - Returns: An observable containing the logged in user. The returned CTUserModel contains all information we have on the user and can later also be retrieved by calling @see fetchCurrentUser
+     */
+    public func login(socialToken token: String, type: String) -> Observable<CTUserModel> {
+        return CTKit.shared.authManager.login(token: token, type: type).flatMap { _ in self.fetchCurrentUser() }
+    }
+    
+    /**
      Create a new user for your app. This will try to register a user on the api with the given email and password. This call does not automatically create a session for your user.
      
      - Attention: This call *will not* an authorised session when creation of the account succeeds

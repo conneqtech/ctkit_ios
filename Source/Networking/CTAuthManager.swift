@@ -53,19 +53,42 @@ public class CTAuthManager {
         }
     }
     
+    public func login(token: String, type: String) -> Observable<Any> {
+        var parameters: [String:String] = [
+            "client_id":self.apiConfig.clientId,
+            "client_secret":self.apiConfig.clientSecret,
+            "grant_type":type
+        ]
+        
+        if (type == "facebook") {
+            parameters["facebook_token"] = token
+        }
+        
+        if (type == "google") {
+            parameters["google_token"] = token
+        }
+        
+        return self.login(parameters: parameters)
+    }
+    
     public func login(username: String, password: String) -> Observable<Any> {
+        let parameters: [String:String] = [
+            "username":username,
+            "password":password,
+            "client_id":self.apiConfig.clientId,
+            "client_secret":self.apiConfig.clientSecret,
+            "grant_type":"password"
+        ]
+        
+        return self.login(parameters: parameters)
+    }
+    
+    private func login(parameters: [String:String]) -> Observable<Any> {
         return Observable<Any>.create { (observer) -> Disposable in
             let url = URL(string: "\(self.apiConfig.fullUrl)/oauth")!
             let requestReference = Alamofire.request(url,
-                                                    method: .post,
-                                                   parameters: [
-                                                    "username":username,
-                                                    "password":password,
-                                                    "client_id":self.apiConfig.clientId,
-                                                    "client_secret":self.apiConfig.clientSecret,
-                                                    "grant_type":"password"
-                                                    
-                ])
+                                                     method: .post,
+                                                     parameters: parameters)
                 .validate()
                 .responseJSON { (response) in
                     switch response.result {
