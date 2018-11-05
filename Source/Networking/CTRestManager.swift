@@ -106,11 +106,11 @@ public class CTRestManager {
                             return
                         }
                         
-                        
-                        
                         observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure:
+                        print(response.error)
+                        print(response.data)
                         observer.onError(CTErrorHandler().handle(response: response))
                     }
             }

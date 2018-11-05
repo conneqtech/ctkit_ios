@@ -14,10 +14,12 @@ import Nimble
 public class Resolver {
     
     func getJSONForResource(name: String) -> [String:Any] {
-        let url = Bundle(for: type(of: self)).url(forResource: name, withExtension: "json")!
-        let data = try! Data(contentsOf: url)
-        let jsonData = try! JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]
-        
+        let jsonData = try! JSONSerialization.jsonObject(with: getDataForResource(name: name), options: []) as? [String:Any]
         return jsonData!
+    }
+    
+    func getDataForResource(name: String) -> Data {
+        let url = Bundle(for: type(of: self)).url(forResource: name, withExtension: "json")!
+        return try! Data(contentsOf: url)
     }
 }

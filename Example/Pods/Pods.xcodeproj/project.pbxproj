@@ -376,7 +376,6 @@
 		EEA02D468AC20475F08FB4201BB4BB64 /* Zip+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2437B053A3EC13939653F447F23345 /* Zip+Collection.swift */; };
 		EF1461221681BCA12A4147900A704727 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ED441205DCC1165FCA3FE320D9E400E8 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF52B7CFA6753F14EF8031DA475B859D /* BehaviorSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC5322C9BB561B8CEFA7ED42CA9A97 /* BehaviorSubject.swift */; };
-		F03ED2C711CBC5328BCB0AC8A5EA8ABF /* CTResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C77E7AE793C8AE9978130AAF0BFB61 /* CTResult.swift */; };
 		F088EE1AE386EEF27AC934DE13F455BB /* CwlCatchException.h in Headers */ = {isa = PBXBuildFile; fileRef = EEC66D90B3C70BF0117D6B430F8BF704 /* CwlCatchException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F10E99DC15AD2A7DE28BDF815E4C3651 /* QuickSelectedTestSuiteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC11C8A05A22D3E42C41DDE392CDDC5 /* QuickSelectedTestSuiteBuilder.swift */; };
 		F1B30B9CC26DB3BB2CC9A55EB370D51D /* AddRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CCD3ADD4E0AEE46EEC98900377AB12 /* AddRef.swift */; };
@@ -817,7 +816,6 @@
 		A5658CFE98C816CD530736F0A19FA8F3 /* DefaultIfEmpty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultIfEmpty.swift; path = RxSwift/Observables/DefaultIfEmpty.swift; sourceTree = "<group>"; };
 		A6A9127DBA5172D8D1AF56BCDFD40277 /* Quick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Quick-dummy.m"; sourceTree = "<group>"; };
 		A78716B15BE4BA9DB801B74CE7110B70 /* RxSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RxSwift-umbrella.h"; sourceTree = "<group>"; };
-		A7C77E7AE793C8AE9978130AAF0BFB61 /* CTResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTResult.swift; sourceTree = "<group>"; };
 		A80560FFFC6031294B6009DF31219E8E /* AssertionDispatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssertionDispatcher.swift; path = Sources/Nimble/Adapters/AssertionDispatcher.swift; sourceTree = "<group>"; };
 		A8530B9D9330AA295779B31CCD8E9B62 /* Pods-ctkit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ctkit_Example-umbrella.h"; sourceTree = "<group>"; };
 		A884EF23A5558EBFF17F57B197F0B508 /* ToArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToArray.swift; path = RxSwift/Observables/ToArray.swift; sourceTree = "<group>"; };
@@ -1303,7 +1301,6 @@
 				7C37DD8D058EF7A4A2936C4A69028EE4 /* CTRequestAdapter.swift */,
 				2EF495156FBEFAA19D24A77B7A130730 /* CTRequestRetrier.swift */,
 				63301BAFBD504D0C857670D68B1C81D9 /* CTRestManager.swift */,
-				A7C77E7AE793C8AE9978130AAF0BFB61 /* CTResult.swift */,
 			);
 			name = Networking;
 			path = Source/Networking;
@@ -2442,7 +2439,6 @@
 				D46A428E6363A95B7CF68F1EF482C745 /* CTRequestAdapter.swift in Sources */,
 				36EFF35E1036EE391916AA0B62B67496 /* CTRequestRetrier.swift in Sources */,
 				018CF78E4D227C23F529219F61CEE807 /* CTRestManager.swift in Sources */,
-				F03ED2C711CBC5328BCB0AC8A5EA8ABF /* CTResult.swift in Sources */,
 				591734CC3E90944FE285D48891394B14 /* CTRideModel.swift in Sources */,
 				F274359A7ADC7D0940059A0F091E22CF /* CTRideService.swift in Sources */,
 				887FA3D0F06190CCE675CFA53D18955D /* CTStatisticsModel.swift in Sources */,

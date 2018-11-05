@@ -40,6 +40,7 @@
 		C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */; };
 		C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */; };
 		C0F40CDA218B3C3900F92CC9 /* bike-information.json in Resources */ = {isa = PBXBuildFile; fileRef = C0F40CD9218B3C3900F92CC9 /* bike-information.json */; };
+		C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTRecoveryServiceTests.swift; sourceTree = "<group>"; };
 		C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeServiceTests.swift; sourceTree = "<group>"; };
 		C0F40CD9218B3C3900F92CC9 /* bike-information.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-information.json"; sourceTree = "<group>"; };
+		C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUserModelTests.swift; sourceTree = "<group>"; };
 		E623B3B1226190D69C9FEEE4 /* Pods_ctkit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -181,13 +183,10 @@
 			isa = PBXGroup;
 			children = (
 				C00A8A34218735CD003F67CB /* Helpers */,
-				8565CCBB21819ECD00D01486 /* Resources */,
-				C0EC37F3218078F500E7EAC4 /* Responses */,
-				C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */,
+				C0F40CDB218C4F3400F92CC9 /* CTServices */,
+				C0F40CDC218C4F5800F92CC9 /* CTModels */,
 				C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */,
 				C04C0AAE21746E9B00F9ADE0 /* Info.plist */,
-				C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */,
-				C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -270,6 +269,8 @@
 		C00A8A34218735CD003F67CB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8565CCBB21819ECD00D01486 /* Resources */,
+				C0EC37F3218078F500E7EAC4 /* Responses */,
 				C00A8A35218735DC003F67CB /* Resolver.swift */,
 			);
 			path = Helpers;
@@ -309,6 +310,24 @@
 				C0F40CD9218B3C3900F92CC9 /* bike-information.json */,
 			);
 			path = bike;
+			sourceTree = "<group>";
+		};
+		C0F40CDB218C4F3400F92CC9 /* CTServices */ = {
+			isa = PBXGroup;
+			children = (
+				C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */,
+				C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */,
+				C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */,
+			);
+			path = CTServices;
+			sourceTree = "<group>";
+		};
+		C0F40CDC218C4F5800F92CC9 /* CTModels */ = {
+			isa = PBXGroup;
+			children = (
+				C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */,
+			);
+			path = CTModels;
 			sourceTree = "<group>";
 		};
 		FF80AE8E324336919CCFF92F /* Pods */ = {
@@ -554,6 +573,7 @@
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
 				C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */,
 				C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */,
+				C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */,
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 			);
