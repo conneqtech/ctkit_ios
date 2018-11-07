@@ -19,6 +19,56 @@ class CTBikeServiceTests: QuickSpec {
     
     
     override func spec () {
+        describe("create") {
+            beforeEach {
+                let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()
+            }
+            
+            it("Fails to create a bike when it's already registered / unknown") {
+                let subjectUnderTest = CTBikeService()
+                self.stub(http(.post, uri:"/bike"), json(Resolver().getJSONForResource(name: "bike-registration-failed"), status: 422))
+                do {
+                    let _ = try subjectUnderTest.create(withName: "Test bike", imei: "123456789", frameNumber: "EMU12345").toBlocking().first()
+                } catch {
+                    if let ctError = error as? CTErrorProtocol {
+                        expect(ctError.type) == .basic
+                        expect(ctError.translationKey) == "error.api.registration.failed"
+                    } else {
+                        expect("error") == "ctError"
+                    }
+                }
+            }
+            
+            it("Creates a bike when it's not already registered / unknown") {
+                let subjectUnderTest = CTBikeService()
+                self.stub(http(.post, uri:"/bike"), json(Resolver().getJSONForResource(name: "bike-registration-successful"), status: 200))
+                
+                let response = try! subjectUnderTest.create(withName: "Test bike", imei: "123456789", frameNumber: "EMU12345").toBlocking().first()
+                if let unwrappedResponse = response {
+                    expect(unwrappedResponse.frameIdentifier) == "EMU8885"
+                    expect(unwrappedResponse.imei) == "888888888888885"
+                    expect(unwrappedResponse.name) == "TEST BIKE"
+                    expect(unwrappedResponse.id) == 152
+                    expect(unwrappedResponse.batteryPercentage) == 0
+                    
+                    //Check last location
+                    expect(unwrappedResponse.lastLocation!.latitude).to(beCloseTo(52.2567, within: 0.001))
+                    expect(unwrappedResponse.lastLocation!.longitude).to(beCloseTo(5.3760, within: 0.001))
+                    expect(unwrappedResponse.lastLocation!.speed) == 6
+                    expect(unwrappedResponse.lastLocation!.isMoving) == false
+                    expect(unwrappedResponse.lastLocation!.date) == "2018-11-06T09:45:00+0000"
+                    expect(unwrappedResponse.keyIdentifier).to(beNil())
+                    expect(unwrappedResponse.themeColor).to(beNil())
+                    expect(unwrappedResponse.imageUrl) == "https://cb4e5bc7a3dc43969015c331117f69c1.objectstore.eu/cnt/static/sparta-bikeimage-default-m8i.png"
+                    expect(unwrappedResponse.creationDate) == "2018-11-06T10:04:55+0000"
+ 
+                    expect(unwrappedResponse.owner.firstName) == "Paul"
+                    expect(unwrappedResponse.owner.displayName) == "Paul Jacobse"
+                }
+            }
+        }
+        
+        
         describe("Bike information") {
             it("searches for a bike with a frame number") {
                 self.stub(http(.get, uri: "/bike/search"), json([Resolver().getJSONForResource(name: "bike-information")], status: 200))

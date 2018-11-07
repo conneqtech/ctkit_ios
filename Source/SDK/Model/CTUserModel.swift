@@ -15,7 +15,10 @@ public struct CTUserModel: CTBaseModel {
     ///Identifier of the user in the database, this identifier is used in most calls to the API.
     public let id: Int
     
+    ///Email address the user used to login. If the login was with Facebook or Google we will use the accounts email address.
     public let email: String
+    
+    //Calculated variable created from firstName and lastName
     public var displayName: String {
         get {
             if let firstName = firstName, let lastName = lastName {

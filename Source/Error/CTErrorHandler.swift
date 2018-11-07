@@ -18,6 +18,8 @@ internal class CTErrorHandler: NSObject {
         var handledError: CTErrorProtocol?
         
         if let unwrappedResponse = data, let httpCode = unwrappedResponse["status"] as? Int {
+            print("UNWRP RESP")
+            print(unwrappedResponse)
             switch httpCode {
             case 401:
                 handledError = handleUnauthorized(body: unwrappedResponse)
@@ -82,6 +84,13 @@ internal class CTErrorHandler: NSObject {
     }
     
     func handleInvalidFields(body: [String:Any]) -> CTBasicError? {
-        return CTBasicError(translationKey: body["detail"] as! String, description: "One or more supplied fields are invalid", code: 422)
+        
+        var translatable = "One or more supplied fields are invalid"
+        
+        if let responseTranslatable = body["error_translatable"] as? String {
+            translatable = responseTranslatable
+        }
+        
+        return CTBasicError(translationKey: body["detail"] as! String, description: translatable, code: 422)
     }
 }
