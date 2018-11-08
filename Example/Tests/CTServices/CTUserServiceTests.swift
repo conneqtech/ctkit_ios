@@ -127,7 +127,6 @@ class CTUserServiceTests: QuickSpec {
                             expect(ctError.translationKey) == "api.error.validation-failed"
                             
                             if let validationError = ctError as? CTValidationError {
-                                print(validationError.validationMessages)
                                 expect(validationError.validationMessages).to(haveCount(1))
                                 
                                 let messageToTest = validationError.validationMessages[0]
@@ -146,6 +145,51 @@ class CTUserServiceTests: QuickSpec {
                     self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "user"), status: 200))
                     
                     let callToTest = try! CTUserService().createAndLogin(email: "user@login.bike", password: "A_VALID_PASSWORD").toBlocking().first()
+                    
+                    if let user = callToTest {
+                        expect(user.email) == "user@login.bike"
+                        expect(CTUserService().hasActiveSession()) == true
+                        expect(CTUserService().getActiveUserId()) == 47
+                    } else {
+                        expect("can unwrap") == "did not unwrap"
+                    }
+                }
+            }
+            
+            describe("fetch") {
+                it("Handles the error when user is not logged in") {
+                    self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "userNotLoggedIn"), status: 401))
+                    
+                    beforeEach {
+                        //Make sure user is logged out
+                        CTUserService().logout()
+                    }
+                    
+                    do {
+                        try _ = CTUserService().fetchCurrentUser().toBlocking().first()
+                    } catch {
+                        if let ctError = error as? CTErrorProtocol {
+                            expect(ctError.type) == .basic
+                            expect(ctError.translationKey) == "api.error.unauthorized"
+                            
+                            if let validationError = ctError as? CTValidationError {
+                                expect(validationError.validationMessages).to(haveCount(1))
+                                
+                                let messageToTest = validationError.validationMessages[0]
+                                expect(messageToTest.type) == "unauthorized"
+                                expect(messageToTest.originalMessage) == "User is not logged in"
+                            }
+                        } else {
+                            expect("error") == "ctError"
+                        }
+                    }
+                    
+                }
+                
+                it("Succesfully returns the active user") {
+                    self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "user"), status: 200))
+                    
+                    let callToTest = try! CTUserService().fetchCurrentUser().toBlocking().first()
                     
                     if let user = callToTest {
                         expect(user.email) == "user@login.bike"

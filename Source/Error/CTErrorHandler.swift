@@ -27,6 +27,8 @@ internal class CTErrorHandler: NSObject {
                 handledError = handleBadRequest(body: unwrappedResponse)
             case 422:
                 handledError = handleUnprocessableEntity(body: unwrappedResponse)
+            case 404:
+                handledError = handleNotFound(body: unwrappedResponse)
             default:
                 handledError = CTBasicError(translationKey: "DEFAULT ERROR HANDLE", description: "")
             }
@@ -54,9 +56,16 @@ internal class CTErrorHandler: NSObject {
             if detail == "Invalid username and password combination" {
                 return CTBasicError(translationKey: "api.error.401.invalid-username-password-combination", description: "Invalid username and password combination", code: 401)
             }
+            if detail == "User is not logged in" {
+                return CTBasicError(translationKey: "api.error.401.user_not_logged_in", description: "User is not logged in", code: 401)
+            }
         }
         
         return nil
+    }
+    
+    func handleNotFound(body: [String:Any]) -> CTBasicError? {
+        return CTBasicError(translationKey: "api.error.404.not-found", description: "Requested entity was not found", errorBody: body)
     }
     
     func handleBadRequest(body: [String:Any]) -> CTBasicError? {
