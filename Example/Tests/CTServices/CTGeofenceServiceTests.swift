@@ -19,11 +19,11 @@ class CTGeofenceServiceTests: QuickSpec {
     let bag = DisposeBag()
     
     override func spec() {
+        beforeEach {
+            let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()
+        }
+        
         describe("fetch") {
-            beforeEach {
-                let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()
-            }
-            
             describe("fetchwithgeofenceid") {
                 it("Handles the error when the geofence doesn't exist") {
                     self.stub(http(.get, uri: "/bike/geofence/0"), json(Resolver().getJSONForResource(name: "geofenceIdNotFound"), status: 404))
@@ -67,6 +67,7 @@ class CTGeofenceServiceTests: QuickSpec {
                     }
                 }
                 
+                //TODO: check whether this setup works for a list of geofences
                 it("Fetches all geofences for the given bike") {
                     self.stub(http(.get, uri: "bike/152/geofence/"), json(Resolver().getJSONForResource(name: "geofenceList"), status: 200))
                     let callToTest = try! CTGeofenceService().fetchAll(withBikeId: 152).toBlocking().first()
@@ -114,7 +115,71 @@ class CTGeofenceServiceTests: QuickSpec {
             }
             
             describe("patch") {
-                it("Handles the error when the entity ") {
+                it("Handles the error when the value is not accepted") {
+                    var updatedGeofence = Resolver().getJSONForResource(name: "geofence")
+                    updatedGeofence["user_id"] = 0
+                    updatedGeofence["radius"] = 0
+                    updatedGeofence["name"] = ""
+                    
+                    do {
+                    let updatedGeofenceModel = try JSONSerialization.data(withJSONObject: updatedGeofence, options: JSONSerialization.WritingOptions.prettyPrinted)
+                    
+                    self.stub(http(.post, uri: "bike/geofence/262"), json(Resolver().getJSONForResource(name: "createGeofenceValidationError"), status: 422))
+                    do {
+                        _ = try CTGeofenceService().patch(geofence: JSONDecoder().decode(CTGeofenceModel.self, from: updatedGeofenceModel)).toBlocking().first()
+                    } catch {
+                        if let ctError = error as? CTErrorProtocol {
+                            expect(ctError.type) == .validation
+                            expect(ctError.translationKey) == "api.error.validation-failed"
+                            
+                            //TODO: change to appropriate error
+                            if let validationError = ctError as? CTValidationError {
+                                expect(validationError.validationMessages).to(haveCount(1))
+                                
+                                let messageToTest = validationError.validationMessages[0]
+                                expect(messageToTest.type) == "usernameAlreadyTaken"
+                                expect(messageToTest.originalMessage) == "User already exists"
+                            }
+                        }
+                        }
+                    } catch {
+                        expect("can get data from jsonobject") == "did not get data out of jsonobject"
+                    }
+                }
+                
+                it("Succesfully patches an existing geofence") {
+                    let originalGeofenceModel = try! JSONDecoder().decode(CTGeofenceModel.self, from: Resolver().getDataForResource(name: "geofence"))
+                    var updatedGeofenceModel = Resolver().getJSONForResource(name: "geofence")
+                    updatedGeofenceModel["name"] = "PATCHED_NAME"
+                    
+                    self.stub(http(.post, uri: "bike/geofence/262"), json(updatedGeofenceModel))
+                    let callToTest = try! CTGeofenceService().patch(geofence: originalGeofenceModel).toBlocking().first()
+                    if let updatedGeofence = callToTest {
+                        expect(updatedGeofence.name).to(equal("PATCHED_NAME"))
+                    } else {
+                        expect("can unwrap") == "did not unwrap"
+                    }
+                }
+            }
+            
+            describe("delete") {
+                //TODO: check whether this works with completables
+                it("Handles the error when the geofence doesn't exist") {
+                    self.stub(http(.post, uri: "bike/geofence/0"), json(Resolver().getJSONForResource(name: "geofenceIdNotFound"), status: 404))
+                    
+                    do {
+                       _ = try CTGeofenceService().delete(withGeofenceId: 0).toBlocking().first()
+                    } catch {
+                        if let ctError = error as? CTErrorProtocol {
+                            expect(ctError.type) == .basic
+                            expect(ctError.translationKey) == "error.api.not-found"
+                        } else {
+                            expect("error") == "ctError"
+                        }
+                    }
+                }
+                
+                it("Succesfully deletes the geofence") {
                     
                 }
             }
