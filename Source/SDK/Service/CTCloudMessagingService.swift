@@ -31,7 +31,7 @@ public class CTCloudMessagingService: NSObject {
      */
     public func handleRemoteMessage(withUserInfo userInfo: [AnyHashable: Any]) -> CTBikeNotificationModel? {
         if let bike = userInfo["bike_id"] as? Int {
-            let notification = CTBikeNotificationModel()
+            var notification = CTBikeNotificationModel()
             notification.bikeId = bike
             
             if let alert:Dictionary<String, AnyObject> = userInfo["alert"] as? Dictionary<String, AnyObject> {

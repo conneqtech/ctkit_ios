@@ -13,6 +13,11 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		852B85DB21943F9B00A373F1 /* CTGeofenceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */; };
+		852B85DD219449FF00A373F1 /* userNotLoggedIn.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85DC219449FE00A373F1 /* userNotLoggedIn.json */; };
+		852B85DF21945FE100A373F1 /* geofenceIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */; };
+		852B85E12194614900A373F1 /* bikeIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85E02194614900A373F1 /* bikeIdNotFound.json */; };
+		853B34B62197042000FA50FB /* CTRideServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B34B52197042000FA50FB /* CTRideServiceTests.swift */; };
 		8565CCBF21819ECD00D01486 /* geofence.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCBD21819ECD00D01486 /* geofence.json */; };
 		8565CCC021819ECD00D01486 /* geofenceList.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCBE21819ECD00D01486 /* geofenceList.json */; };
 		8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC42181A47100D01486 /* createGeofenceValidationError.json */; };
@@ -70,6 +75,11 @@
 		607FACE51AFB9204008FA782 /* ctkit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ctkit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C3BCF536DE4A862F50071DD /* Pods-ctkit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6CA44E7F3150B084A4066032 /* Pods-ctkit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTGeofenceServiceTests.swift; sourceTree = "<group>"; };
+		852B85DC219449FE00A373F1 /* userNotLoggedIn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userNotLoggedIn.json; sourceTree = "<group>"; };
+		852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofenceIdNotFound.json; sourceTree = "<group>"; };
+		852B85E02194614900A373F1 /* bikeIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bikeIdNotFound.json; sourceTree = "<group>"; };
+		853B34B52197042000FA50FB /* CTRideServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTRideServiceTests.swift; sourceTree = "<group>"; };
 		8565CCBD21819ECD00D01486 /* geofence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofence.json; sourceTree = "<group>"; };
 		8565CCBE21819ECD00D01486 /* geofenceList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofenceList.json; sourceTree = "<group>"; };
 		8565CCC42181A47100D01486 /* createGeofenceValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createGeofenceValidationError.json; sourceTree = "<group>"; };
@@ -230,6 +240,8 @@
 		8565CCC12181A3A000D01486 /* CTGeofenceService */ = {
 			isa = PBXGroup;
 			children = (
+				852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */,
+				852B85E02194614900A373F1 /* bikeIdNotFound.json */,
 				8565CCC42181A47100D01486 /* createGeofenceValidationError.json */,
 			);
 			path = CTGeofenceService;
@@ -314,6 +326,7 @@
 				C0EC37F52180792300E7EAC4 /* createValidationError.json */,
 				8565CCC62181A7D200D01486 /* userAlreadyExists.json */,
 				C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */,
+				852B85DC219449FE00A373F1 /* userNotLoggedIn.json */,
 			);
 			path = CTUserService;
 			sourceTree = "<group>";
@@ -332,6 +345,8 @@
 				C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */,
 				C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */,
 				C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */,
+				852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */,
+				853B34B52197042000FA50FB /* CTRideServiceTests.swift */,
 			);
 			path = CTServices;
 			sourceTree = "<group>";
@@ -459,8 +474,11 @@
 				C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */,
 				8565CCC72181A7D200D01486 /* userAlreadyExists.json in Resources */,
 				8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */,
+				852B85DF21945FE100A373F1 /* geofenceIdNotFound.json in Resources */,
 				8565CCC021819ECD00D01486 /* geofenceList.json in Resources */,
+				852B85E12194614900A373F1 /* bikeIdNotFound.json in Resources */,
 				85B6E93E218302EE00F44404 /* ridelist.json in Resources */,
+				852B85DD219449FF00A373F1 /* userNotLoggedIn.json in Resources */,
 				C00A8A3121873348003F67CB /* validation-error.json in Resources */,
 				85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */,
 				C0DFD37A21919EF000AB4194 /* bike-registration-successful.json in Resources */,
@@ -588,10 +606,12 @@
 			files = (
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
 				C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */,
+				853B34B62197042000FA50FB /* CTRideServiceTests.swift in Sources */,
 				C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */,
 				C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */,
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
+				852B85DB21943F9B00A373F1 /* CTGeofenceServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
