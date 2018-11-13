@@ -39,6 +39,7 @@
 		C04F41B22199C502004FF81A /* CTBikeLocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */; };
 		C069CA60219B08E7003BE8C3 /* bike-history.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA5F219B08E7003BE8C3 /* bike-history.json */; };
 		C069CA63219B17D5003BE8C3 /* bike.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA62219B17D5003BE8C3 /* bike.json */; };
+		C069CA66219B1A1D003BE8C3 /* address-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA65219B1A1D003BE8C3 /* address-list.json */; };
 		C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */ = {isa = PBXBuildFile; fileRef = C07FEDB721899BDC005577C1 /* oauth-success.json */; };
 		C08B174B2190831F00A662E2 /* bike-registration-failed.json in Resources */ = {isa = PBXBuildFile; fileRef = C08B174A2190831F00A662E2 /* bike-registration-failed.json */; };
 		C0DF759021674E0900260751 /* GeofenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */; };
@@ -106,6 +107,7 @@
 		C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeLocationServiceTests.swift; sourceTree = "<group>"; };
 		C069CA5F219B08E7003BE8C3 /* bike-history.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-history.json"; sourceTree = "<group>"; };
 		C069CA62219B17D5003BE8C3 /* bike.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bike.json; sourceTree = "<group>"; };
+		C069CA65219B1A1D003BE8C3 /* address-list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "address-list.json"; sourceTree = "<group>"; };
 		C07FEDB721899BDC005577C1 /* oauth-success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "oauth-success.json"; sourceTree = "<group>"; };
 		C08B174A2190831F00A662E2 /* bike-registration-failed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-registration-failed.json"; sourceTree = "<group>"; };
 		C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceTableViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		8565CCBB21819ECD00D01486 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C069CA64219B19D5003BE8C3 /* address */,
 				C0F40CD8218B3C1F00F92CC9 /* bike */,
 				C00A8A2F218711B9003F67CB /* api-error */,
 				85B6E93B2183029C00F44404 /* ride */,
@@ -304,6 +307,14 @@
 				C069CA5F219B08E7003BE8C3 /* bike-history.json */,
 			);
 			path = CTBikeLocationService;
+			sourceTree = "<group>";
+		};
+		C069CA64219B19D5003BE8C3 /* address */ = {
+			isa = PBXGroup;
+			children = (
+				C069CA65219B1A1D003BE8C3 /* address-list.json */,
+			);
+			path = address;
 			sourceTree = "<group>";
 		};
 		C07FEDB621899BC4005577C1 /* OAuth */ = {
@@ -500,6 +511,7 @@
 				852B85DD219449FF00A373F1 /* userNotLoggedIn.json in Resources */,
 				C00A8A3121873348003F67CB /* validation-error.json in Resources */,
 				85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */,
+				C069CA66219B1A1D003BE8C3 /* address-list.json in Resources */,
 				C0DFD37A21919EF000AB4194 /* bike-registration-successful.json in Resources */,
 				C08B174B2190831F00A662E2 /* bike-registration-failed.json in Resources */,
 				C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */,
