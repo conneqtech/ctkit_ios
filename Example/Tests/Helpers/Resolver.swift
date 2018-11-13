@@ -14,8 +14,13 @@ import Nimble
 public class Resolver {
     
     func getJSONForResource(name: String) -> [String:Any] {
-        let jsonData = try! JSONSerialization.jsonObject(with: getDataForResource(name: name), options: []) as? [String:Any]
-        return jsonData!
+        let data = try! JSONSerialization.jsonObject(with: getDataForResource(name: name), options: []) as? [String:Any]
+        return data!
+    }
+    
+    func getJSONListForResource(name: String) -> [[String:Any]] {
+        let listData = try! JSONSerialization.jsonObject(with: getDataForResource(name: name), options: []) as? [[String:Any]]
+        return listData!
     }
     
     func getDataForResource(name: String) -> Data {

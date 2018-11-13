@@ -19,7 +19,7 @@ internal class CTErrorHandler: NSObject {
         
         if let unwrappedResponse = data, let httpCode = unwrappedResponse["status"] as? Int {
             print("UNWRP RESP")
-            print(unwrappedResponse)
+            print("HTTP CODE: \(httpCode)")
             switch httpCode {
             case 401:
                 handledError = handleUnauthorized(body: unwrappedResponse)
@@ -57,7 +57,7 @@ internal class CTErrorHandler: NSObject {
                 return CTBasicError(translationKey: "api.error.401.invalid-username-password-combination", description: "Invalid username and password combination", code: 401)
             }
             if detail == "User is not logged in" {
-                return CTBasicError(translationKey: "api.error.401.user_not_logged_in", description: "User is not logged in", code: 401)
+                return CTBasicError(translationKey: "api.error.401.user-not-logged-in", description: "User is not logged in", code: 401)
             }
         }
         

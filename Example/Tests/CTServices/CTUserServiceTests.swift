@@ -16,8 +16,6 @@ import RxSwift
 import RxBlocking
 
 class CTUserServiceTests: QuickSpec {
-    let bag = DisposeBag()
-    
     override func spec() {
         describe("CTUserServiceTests") {
             describe("create") {
@@ -159,18 +157,14 @@ class CTUserServiceTests: QuickSpec {
             describe("fetch") {
                 it("Handles the error when user is not logged in") {
                     self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "userNotLoggedIn"), status: 401))
-                    
-                    beforeEach {
-                        //Make sure user is logged out
-                        CTUserService().logout()
-                    }
+                    CTUserService().logout()
                     
                     do {
-                        try _ = CTUserService().fetchCurrentUser().toBlocking().first()
+                        _ = try CTUserService().fetchCurrentUser().toBlocking().first()
                     } catch {
                         if let ctError = error as? CTErrorProtocol {
                             expect(ctError.type) == .basic
-                            expect(ctError.translationKey) == "api.error.unauthorized"
+                            expect(ctError.translationKey) == "api.error.401.user-not-logged-in"
                             
                             if let validationError = ctError as? CTValidationError {
                                 expect(validationError.validationMessages).to(haveCount(1))
