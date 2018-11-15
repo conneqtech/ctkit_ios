@@ -69,7 +69,6 @@ class CTGeofenceServiceTests: QuickSpec {
                     }
                 }
                 
-                //TODO: check whether this setup works for a list of geofences
                 it("Fetches all geofences for the given bike") {
                     self.stub(http(.get, uri: "/bike/152/geofence"), json(Resolver().getJSONListForResource(name: "geofenceList"), status: 200))
                     let callToTest = try! CTGeofenceService().fetchAll(withBikeId: 152).toBlocking().first()
@@ -132,7 +131,6 @@ class CTGeofenceServiceTests: QuickSpec {
                                 expect(ctError.type) == .validation
                                 expect(ctError.translationKey) == "api.error.validation-failed"
                                 
-                                //TODO: change to appropriate error
                                 if let validationError = ctError as? CTValidationError {
                                     expect(validationError.validationMessages).to(haveCount(4))
                                     
@@ -163,7 +161,6 @@ class CTGeofenceServiceTests: QuickSpec {
             }
             
             describe("delete") {
-                //TODO: check whether this works with completables
                 it("Handles the error when the geofence doesn't exist") {
                     self.stub(http(.patch, uri: "/bike/geofence/0"), json(Resolver().getJSONForResource(name: "geofenceIdNotFound"), status: 404))
                     
@@ -179,8 +176,19 @@ class CTGeofenceServiceTests: QuickSpec {
                     }
                 }
                 
-                it("Succesfully deletes the geofence") {
-                    
+                it("Succesfully archives the geofence") {
+                    //                    TODO: Find way to test completables
+//                    let originalGeofenceModel = try! JSONDecoder().decode(CTGeofenceModel.self, from: Resolver().getDataForResource(name: "geofence"))
+//                    var updatedGeofenceModel = Resolver().getJSONForResource(name: "geofence")
+//                    updatedGeofenceModel["active_state"] = 2
+//
+//                    self.stub(http(.patch, uri: "/bike/geofence/262"), json(updatedGeofenceModel))
+//
+//                    let callToTest = try! CTGeofenceService().delete(withGeofenceId: 262).toBlocking().first()
+//                    if let updatedGeofence = callToTest {
+//
+//                    }
+//
                 }
             }
         }

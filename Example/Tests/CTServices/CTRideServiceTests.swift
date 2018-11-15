@@ -127,7 +127,6 @@ class CTRideServiceTests: QuickSpec {
                             expect(ctError.type) == .validation
                             expect(ctError.translationKey) == "api.error.validation-failed"
                             
-                            //TODO: change to appropriate error
                             if let validationError = ctError as? CTValidationError {
                                 expect(validationError.validationMessages).to(haveCount(6))
                                 
@@ -154,6 +153,38 @@ class CTRideServiceTests: QuickSpec {
                 } else {
                     expect("can unwrap") == "did not unwrap"
                 }
+            }
+        }
+        
+        describe("delete") {
+            it("Handles the error when the ride doesn't exist") {
+                self.stub(http(.patch, uri: "/bike/ride/0"), json(Resolver().getJSONForResource(name: "rideIdNotFound"), status: 404))
+                
+                do {
+                    _ = try CTRideService().delete(withRideId: 0).toBlocking().first()
+                } catch {
+                    if let ctError = error as? CTErrorProtocol {
+                        expect(ctError.type) == .basic
+                        expect(ctError.translationKey) == "api.error.404.not-found"
+                    } else {
+                        expect("error") == "ctError"
+                    }
+                }
+            }
+            
+            it("Succesfully archives the ride") {
+                //                    TODO: Find way to test completables
+                //                    let originalRideModel = try! JSONDecoder().decode(CTRideModel.self, from: Resolver().getDataForResource(name: "ride"))
+                //                    var updatedRideModel = Resolver().getJSONForResource(name: "ride")
+                //                    updatedRideModel["active_state"] = 2
+                //
+                //                    self.stub(http(.patch, uri: "/bike/ride/92"), json(updatedRideModel))
+                //
+                //                    let callToTest = try! CTRideService().delete(withRideId: 262).toBlocking().first()
+                //                    if let updatedRide = callToTest {
+                //
+                //                    }
+                //
             }
         }
         
