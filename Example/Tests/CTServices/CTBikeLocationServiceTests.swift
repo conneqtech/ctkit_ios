@@ -37,18 +37,17 @@ class CTBikeLocationServiceTests: QuickSpec {
             
             describe("Fetch last location of bike") {
                 it("Fetches last location successfully") {
-                    //TODO FIX THIS TEST
-//                    self.stub(http(.get, uri: "/bike/10"), json(Resolver().getJSONForResource(name: "bike"), status: 200))
-//
-//                    let response = try! CTBikeLocationService().fetchLastLocationOfBike(withId: 10).toBlocking().first()
-//
-//                    if let r = response {
-//                        expect(r?.latitude).to(beCloseTo(51.4546))
-//                        expect(r?.longitude).to(beCloseTo(3.5913))
-//                        expect(r?.speed) == 0
-//                        expect(r?.batteryPercentage) == 0
-//                        expect(r?.isMoving) == false
-//                    }
+                    self.stub(http(.get, uri: "/bike/10"), json(Resolver().getJSONForResource(name: "bike"), status: 200))
+
+                    let response = try! CTBikeLocationService().fetchLastLocationOfBike(withId: 10).toBlocking().first()
+
+                    if let r = response {
+                        expect(r?.latitude).to(beCloseTo(51.4546))
+                        expect(r?.longitude).to(beCloseTo(3.5913))
+                        expect(r?.speed) == 0
+                        expect(r?.batteryPercentage) == 0
+                        expect(r?.isMoving) == false
+                    }
                 }
             }
         }

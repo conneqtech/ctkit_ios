@@ -12,7 +12,7 @@ public struct CTBikeModel: CTBaseModel {
     public let imei: String
     public let frameIdentifier: String
     public let batteryPercentage:Int = 0
-    public let lastLocation: CTBikeLocationModel? = nil
+    public let lastLocation: CTBikeLocationModel?
     public let owner: CTUserModel? = nil
     public let linkedUsers: [CTUserModel]? = nil
     
@@ -21,12 +21,6 @@ public struct CTBikeModel: CTBaseModel {
     public var themeColor: String?
     public var imageUrl:String?
     public var creationDate:String?
-    
-    public init(name: String, imei: String, frameIdentifier: String) {
-        self.imei = imei
-        self.frameIdentifier = frameIdentifier
-        self.name = name
-    }
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
