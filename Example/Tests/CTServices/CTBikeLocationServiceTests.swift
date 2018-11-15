@@ -49,6 +49,16 @@ class CTBikeLocationServiceTests: QuickSpec {
                         expect(r?.isMoving) == false
                     }
                 }
+                
+                it("Returns nil when the bike has no last location") {
+                    var nilledJSON = Resolver().getJSONForResource(name: "bike")
+                    nilledJSON["last_location"] = nil
+                    
+                    self.stub(http(.get, uri: "/bike/10"), json(nilledJSON, status: 200))
+                    
+                    let response = try! CTBikeLocationService().fetchLastLocationOfBike(withId: 10).toBlocking().first()!
+                    expect(response).to(beNil())
+                }
             }
         }
     }
