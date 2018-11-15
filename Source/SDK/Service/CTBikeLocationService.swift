@@ -42,7 +42,7 @@ public class CTBikeLocationService: NSObject {
      
      - Returns: An observable that can contain the last known location of the bike or nil.
      */
-    public func fetchLastLocationOfBike(withId identifier: Int) -> Observable<CTBikeLocationModel>? {
-        return CTBikeService().fetch(withId: identifier).map { (bike:CTBikeModel) in return bike.lastLocation!}
+    public func fetchLastLocationOfBike(withId identifier: Int) -> Observable<CTBikeLocationModel?> {
+        return CTBikeService().fetch(withId: identifier).map { (bike:CTBikeModel) in return bike.lastLocation}
     }
 }
