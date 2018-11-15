@@ -22,7 +22,7 @@ class CTTheftCaseServiceTests:QuickSpec {
                 self.stub(http(.get, uri: "/theft-case/2"), json(Resolver().getJSONForResource(name: "theftCaseIdNotFound"),status: 404))
                 
                 do {
-                    try _ = CTTheftCaseService().fetch(withCaseId: 2).toBlocking().first()
+                    let _ = try CTTheftCaseService().fetch(withCaseId: 2).toBlocking().first()
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .basic
@@ -34,10 +34,26 @@ class CTTheftCaseServiceTests:QuickSpec {
             }
             
             it("Succesfully fetches the theftcase") {
-                self.stub(http(.get, uri: "theft-case/0"), json(Resolver().getJSONForResource(name: "theftcase"), status: 200))
+                self.stub(http(.get, uri: "/theft-case/0"), json(Resolver().getJSONForResource(name: "theftcase"), status: 200))
                 let callToTest = try! CTTheftCaseService().fetch(withCaseId: 0).toBlocking().first()
                 if let theftCase = callToTest {
                     expect(theftCase.id).to(equal(0))
+                }  else {
+                    expect("can unwrap") == "did not unwrap"
+                }
+            }
+            
+            it("Handles the error when the bikeId doesn't exist") {
+                self.stub(http(.get, uri: "/theft-case"), json(Resolver().getJSONForResource(name: "bikeIdNotFound"), status: 404))
+                do {
+                    let _ = try CTTheftCaseService().fetchAll(withBikeId: 0).toBlocking().first()
+                } catch {
+                    if let ctError = error as? CTErrorProtocol {
+                        expect(ctError.type) == .basic
+                        expect(ctError.translationKey) == "api.error.404.not-found"
+                    } else {
+                        expect("error") == "ctError"
+                    }
                 }
             }
         }
