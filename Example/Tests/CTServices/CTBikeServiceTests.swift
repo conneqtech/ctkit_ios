@@ -101,9 +101,9 @@ class CTBikeServiceTests: QuickSpec {
         describe("patch") {
             it("Patches a bike with CTBikeModel") {
                 self.stub(http(.get, uri: "/bike/10"), json(Resolver().getJSONForResource(name: "bike"), status: 200))
-                let bike = CTBikeService().fetch(withId: 10).toBlocking().first()!
+                let bike = try! CTBikeService().fetch(withId: 10).toBlocking().first()!
                 
-                bike.name = "Other bike"
+//                bike.name = "Other bike"
                 
 //                let patchedBike = CTBikeService().
                 
