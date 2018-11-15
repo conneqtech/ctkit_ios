@@ -15,9 +15,9 @@ public struct CTRideModel: CTBaseModel {
     public let bikeId:Int
     public let name:String
     public let rideType:String
-    public let creationDate:Date?
-    public let startDate:Date?
-    public let endDate:Date?
+    public let creationDate:String
+    public let startDate:String
+    public let endDate:String
     
     
     //Calculated things
@@ -31,6 +31,7 @@ public struct CTRideModel: CTBaseModel {
     
     
     enum CodingKeys: String, CodingKey {
+//        case params = "params"
         case id = "id"
         case userId = "user_id"
         case bikeId = "bike_id"
@@ -41,12 +42,18 @@ public struct CTRideModel: CTBaseModel {
         case endDate = "end_date"
         
         case calories = "calories"
-        case averageSpeed = "average_speed"
+        case averageSpeed = "avg_speed"
         case distanceTraveled = "distance_traveled"
         case co2 = "co2"
-        case weatherIconURL = "weather_icon_url"
-        
-        
+        case weatherIconURL = "icon_url"
     }
+    
+//    public func encode(to encoder: Encoder) throws {
+//        var container = encoder.container(keyedBy: CodingKeys.self)
+//        var params = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .params)
+//        
+//        try container.encode(weatherIconURL, forKey: .weatherIconURL)
+//    
+//    }
     
 }

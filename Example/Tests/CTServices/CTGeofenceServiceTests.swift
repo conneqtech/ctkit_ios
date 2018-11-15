@@ -91,13 +91,11 @@ class CTGeofenceServiceTests: QuickSpec {
                             expect(ctError.translationKey) == "api.error.validation-failed"
                             
                             if let validationError = ctError as? CTValidationError {
-                                expect(validationError.validationMessages).to(haveCount(1))
-                                
-                                let messageToTest = validationError.validationMessages[0]
-                                expect(messageToTest.type) == "usernameAlreadyTaken"
-                                expect(messageToTest.originalMessage) == "User already exists"
-                                
+                                expect(validationError.validationMessages).to(haveCount(2))
+                                //TODO: Check actual messages
                             }
+                        } else {
+                            expect("error") == "ctError"
                         }
                     }
                 }
@@ -107,7 +105,7 @@ class CTGeofenceServiceTests: QuickSpec {
                     let callToTest = try! CTGeofenceService().create(withBikeId: 152, name: "VALIDNAME", latitude: 34, longitude: 60, radius: 12).toBlocking().first()
                     
                     if let geofence = callToTest {
-                        expect(geofence.bikeId).to(equal(152))
+                        expect(geofence.bikeId).to(equal(312))
                     } else {
                         expect("can unwrap") == "did not unwrap"
                     }
@@ -134,11 +132,11 @@ class CTGeofenceServiceTests: QuickSpec {
                                 
                                 //TODO: change to appropriate error
                                 if let validationError = ctError as? CTValidationError {
-                                    expect(validationError.validationMessages).to(haveCount(1))
+                                    expect(validationError.validationMessages).to(haveCount(4))
                                     
                                     let messageToTest = validationError.validationMessages[0]
-                                    expect(messageToTest.type) == "usernameAlreadyTaken"
-                                    expect(messageToTest.originalMessage) == "User already exists"
+                                    expect(messageToTest.type) == "isEmpty"
+                                    expect(messageToTest.originalMessage) == "Value is required and can't be empty"
                                 }
                             }
                         }
