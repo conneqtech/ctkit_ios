@@ -19,11 +19,13 @@ class CTBikeServiceTests: QuickSpec {
     
     
     override func spec () {
+        beforeEach {
+            self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "user"), status: 200))
+            let _ = try! CTUserService().fetchCurrentUser().toBlocking().first()
+            expect(CTUserService().getActiveUserId()) == 47
+        }
+        
         describe("create") {
-            beforeEach {
-                let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()
-            }
-            
             it("Fails to create a bike when it's already registered / unknown") {
                 let subjectUnderTest = CTBikeService()
                 self.stub(http(.post, uri:"/bike"), json(Resolver().getJSONForResource(name: "bike-registration-failed"), status: 422))
@@ -62,9 +64,49 @@ class CTBikeServiceTests: QuickSpec {
                     expect(unwrappedResponse.imageUrl) == "https://cb4e5bc7a3dc43969015c331117f69c1.objectstore.eu/cnt/static/sparta-bikeimage-default-m8i.png"
                     expect(unwrappedResponse.creationDate) == "2018-11-06T10:04:55+0000"
  
-                    expect(unwrappedResponse.owner.firstName) == "Paul"
-                    expect(unwrappedResponse.owner.displayName) == "Paul Jacobse"
+                    expect(unwrappedResponse.owner?.firstName) == "Paul"
+                    expect(unwrappedResponse.owner?.displayName) == "Paul Jacobse"
                 }
+            }
+            
+            
+            it("Fetches a list of all bikes") {
+                self.stub(http(.get, uri: "/bike"), json(Resolver().getJSONListForResource(name: "bike-list"), status: 200))
+                
+                let response = try! CTBikeService().fetchAll().toBlocking().first()!
+                
+                expect(response.count) == 4
+            }
+            
+            it("Fetches a list of bikes we are the owner of") {
+                self.stub(http(.get, uri: "/bike"), json(Resolver().getJSONListForResource(name: "bike-list"), status: 200))
+                
+                let response = try! CTBikeService().fetchOwned().toBlocking().first()!
+                
+                expect(CTUserService().getActiveUserId()) != -1
+          
+                expect(response.count) == 3
+            }
+            
+            it("Fetches a list of bikes we have access to, but are not the owner") {
+                self.stub(http(.get, uri: "/bike"), json(Resolver().getJSONListForResource(name: "bike-list"), status: 200))
+                
+                let response = try! CTBikeService().fetchShared().toBlocking().first()!
+                
+                expect(CTUserService().getActiveUserId()) != -1
+                expect(response.count) == 1
+            }
+        }
+        
+        describe("patch") {
+            it("Patches a bike with CTBikeModel") {
+                self.stub(http(.get, uri: "/bike/10"), json(Resolver().getJSONForResource(name: "bike"), status: 200))
+                let bike = CTBikeService().fetch(withId: 10).toBlocking().first()!
+                
+                bike.name = "Other bike"
+                
+//                let patchedBike = CTBikeService().
+                
             }
         }
         

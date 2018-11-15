@@ -84,7 +84,7 @@ public class CTBikeService: NSObject {
      */
     public func fetchOwned() -> Observable<[CTBikeModel]> {
         return self.fetchAll().map { result in
-            return result.filter{ $0.owner.id == CTKit.shared.currentActiveUserId }
+            return result.filter{ $0.owner?.id == CTKit.shared.currentActiveUserId }
         }
     }
     
@@ -96,7 +96,7 @@ public class CTBikeService: NSObject {
      */
     public func fetchShared() -> Observable<[CTBikeModel]> {
         return self.fetchAll().map { result in
-            return result.filter{ $0.owner.id != CTKit.shared.currentActiveUserId }
+            return result.filter{ $0.owner?.id != CTKit.shared.currentActiveUserId }
         }
     }
     

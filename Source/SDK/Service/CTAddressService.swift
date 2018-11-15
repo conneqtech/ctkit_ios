@@ -30,5 +30,4 @@ public class CTAddressService: NSObject {
             "addition": addition
         ])
     }
-    
 }

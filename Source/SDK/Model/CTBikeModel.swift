@@ -8,18 +8,25 @@
 import Foundation
 
 public struct CTBikeModel: CTBaseModel {
-    public let id: Int
+    public let id: Int? = nil
     public let imei: String
-    public var name: String
     public let frameIdentifier: String
+    public let batteryPercentage:Int = 0
+    public let lastLocation: CTBikeLocationModel? = nil
+    public let owner: CTUserModel? = nil
+    public let linkedUsers: [CTUserModel]? = nil
+    
+    public var name: String
     public var keyIdentifier: String?
-    public let batteryPercentage:Int
-    public let lastLocation: CTBikeLocationModel?
-    public let owner: CTUserModel
-    public let linkedUsers: [CTUserModel]
     public var themeColor: String?
     public var imageUrl:String?
-    public var creationDate:String
+    public var creationDate:String?
+    
+    public init(name: String, imei: String, frameIdentifier: String) {
+        self.imei = imei
+        self.frameIdentifier = frameIdentifier
+        self.name = name
+    }
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
