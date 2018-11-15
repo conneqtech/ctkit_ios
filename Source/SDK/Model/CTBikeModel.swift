@@ -8,13 +8,13 @@
 import Foundation
 
 public struct CTBikeModel: CTBaseModel {
-    public let id: Int? = nil
+    public let id: Int?
     public let imei: String
     public let frameIdentifier: String
-    public let batteryPercentage:Int = 0
+    public let batteryPercentage:Int
     public let lastLocation: CTBikeLocationModel?
-    public let owner: CTUserModel? = nil
-    public let linkedUsers: [CTUserModel]? = nil
+    public let owner: CTUserModel?
+    public let linkedUsers: [CTUserModel]?
     
     public var name: String
     public var keyIdentifier: String?
