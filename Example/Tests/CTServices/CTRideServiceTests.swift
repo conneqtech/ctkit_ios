@@ -52,10 +52,10 @@ class CTRideServiceTests: QuickSpec {
         
         describe("fetchwithbikeid") {
             it("Handles the error when the bike has no rides") {
-                self.stub(http(.get, uri: "/bike/0/ride/"), json(Resolver().getJSONForResource(name: "rideIdNotFound"), status: 404))
+                self.stub(http(.get, uri: "/bike/152/ride"), json(Resolver().getJSONForResource(name: "rideIdNotFound"), status: 404))
                 
                 do {
-                    try _ = CTRideService().fetchAll(withBikeId: 0).toBlocking().first()
+                    try _ = CTRideService().fetchAll(withBikeId: 152).toBlocking().first()
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .basic

@@ -25,6 +25,8 @@
 		8565CCCA2181ACB300D01486 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC92181ACB300D01486 /* user.json */; };
 		85B5EAB5219D614E007ACF55 /* rideIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B5EAB4219D614E007ACF55 /* rideIdNotFound.json */; };
 		85B5EAB7219D6198007ACF55 /* createRideValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B5EAB6219D6197007ACF55 /* createRideValidationError.json */; };
+		85B5EAB9219D953A007ACF55 /* CTTheftCaseServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5EAB8219D953A007ACF55 /* CTTheftCaseServiceTests.swift */; };
+		85B5EABC219DA963007ACF55 /* theftCaseIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B5EABB219DA963007ACF55 /* theftCaseIdNotFound.json */; };
 		85B6E93E218302EE00F44404 /* ride-list.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B6E93C218302EE00F44404 /* ride-list.json */; };
 		85B6E93F218302EE00F44404 /* ride.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B6E93D218302EE00F44404 /* ride.json */; };
 		85B6E945218351DB00F44404 /* RideTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B6E944218351DB00F44404 /* RideTableViewController.swift */; };
@@ -94,6 +96,8 @@
 		8565CCC92181ACB300D01486 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
 		85B5EAB4219D614E007ACF55 /* rideIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rideIdNotFound.json; sourceTree = "<group>"; };
 		85B5EAB6219D6197007ACF55 /* createRideValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createRideValidationError.json; sourceTree = "<group>"; };
+		85B5EAB8219D953A007ACF55 /* CTTheftCaseServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTTheftCaseServiceTests.swift; sourceTree = "<group>"; };
+		85B5EABB219DA963007ACF55 /* theftCaseIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftCaseIdNotFound.json; sourceTree = "<group>"; };
 		85B6E93C218302EE00F44404 /* ride-list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ride-list.json"; sourceTree = "<group>"; };
 		85B6E93D218302EE00F44404 /* ride.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ride.json; sourceTree = "<group>"; };
 		85B6E944218351DB00F44404 /* RideTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideTableViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +283,14 @@
 			path = CTRideService;
 			sourceTree = "<group>";
 		};
+		85B5EABA219DA90E007ACF55 /* CTTheftCaseService */ = {
+			isa = PBXGroup;
+			children = (
+				85B5EABB219DA963007ACF55 /* theftCaseIdNotFound.json */,
+			);
+			path = CTTheftCaseService;
+			sourceTree = "<group>";
+		};
 		85B6E93B2183029C00F44404 /* ride */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +364,7 @@
 		C0EC37F3218078F500E7EAC4 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				85B5EABA219DA90E007ACF55 /* CTTheftCaseService */,
 				85B5EAB3219D6012007ACF55 /* CTRideService */,
 				C069CA5E219B08C5003BE8C3 /* CTBikeLocationService */,
 				C08B17492190830200A662E2 /* CTBikeService */,
@@ -392,6 +405,7 @@
 				852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */,
 				853B34B52197042000FA50FB /* CTRideServiceTests.swift */,
 				C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */,
+				85B5EAB8219D953A007ACF55 /* CTTheftCaseServiceTests.swift */,
 			);
 			path = CTServices;
 			sourceTree = "<group>";
@@ -524,6 +538,7 @@
 				852B85DF21945FE100A373F1 /* geofenceIdNotFound.json in Resources */,
 				C069CA60219B08E7003BE8C3 /* bike-history.json in Resources */,
 				C069CA63219B17D5003BE8C3 /* bike.json in Resources */,
+				85B5EABC219DA963007ACF55 /* theftCaseIdNotFound.json in Resources */,
 				8565CCC021819ECD00D01486 /* geofenceList.json in Resources */,
 				852B85E12194614900A373F1 /* bikeIdNotFound.json in Resources */,
 				85B6E93E218302EE00F44404 /* ride-list.json in Resources */,
@@ -655,6 +670,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85B5EAB9219D953A007ACF55 /* CTTheftCaseServiceTests.swift in Sources */,
 				C04F41B22199C502004FF81A /* CTBikeLocationServiceTests.swift in Sources */,
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
 				C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */,
