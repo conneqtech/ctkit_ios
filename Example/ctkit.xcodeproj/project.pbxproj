@@ -23,6 +23,8 @@
 		8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC42181A47100D01486 /* createGeofenceValidationError.json */; };
 		8565CCC72181A7D200D01486 /* userAlreadyExists.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC62181A7D200D01486 /* userAlreadyExists.json */; };
 		8565CCCA2181ACB300D01486 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC92181ACB300D01486 /* user.json */; };
+		85B2DE3321A015D9004F524A /* createTheftCaseValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B2DE3221A015D8004F524A /* createTheftCaseValidationError.json */; };
+		85B2DE3721A05193004F524A /* patchPoliceIdValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B2DE3621A05193004F524A /* patchPoliceIdValidationError.json */; };
 		85B5EAB5219D614E007ACF55 /* rideIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B5EAB4219D614E007ACF55 /* rideIdNotFound.json */; };
 		85B5EAB7219D6198007ACF55 /* createRideValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B5EAB6219D6197007ACF55 /* createRideValidationError.json */; };
 		85B5EAB9219D953A007ACF55 /* CTTheftCaseServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5EAB8219D953A007ACF55 /* CTTheftCaseServiceTests.swift */; };
@@ -96,6 +98,8 @@
 		8565CCC42181A47100D01486 /* createGeofenceValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createGeofenceValidationError.json; sourceTree = "<group>"; };
 		8565CCC62181A7D200D01486 /* userAlreadyExists.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userAlreadyExists.json; sourceTree = "<group>"; };
 		8565CCC92181ACB300D01486 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
+		85B2DE3221A015D8004F524A /* createTheftCaseValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createTheftCaseValidationError.json; sourceTree = "<group>"; };
+		85B2DE3621A05193004F524A /* patchPoliceIdValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = patchPoliceIdValidationError.json; sourceTree = "<group>"; };
 		85B5EAB4219D614E007ACF55 /* rideIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rideIdNotFound.json; sourceTree = "<group>"; };
 		85B5EAB6219D6197007ACF55 /* createRideValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createRideValidationError.json; sourceTree = "<group>"; };
 		85B5EAB8219D953A007ACF55 /* CTTheftCaseServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTTheftCaseServiceTests.swift; sourceTree = "<group>"; };
@@ -294,6 +298,8 @@
 		85B5EABA219DA90E007ACF55 /* CTTheftCaseService */ = {
 			isa = PBXGroup;
 			children = (
+				85B2DE3221A015D8004F524A /* createTheftCaseValidationError.json */,
+				85B2DE3621A05193004F524A /* patchPoliceIdValidationError.json */,
 				85B5EABB219DA963007ACF55 /* theftCaseIdNotFound.json */,
 			);
 			path = CTTheftCaseService;
@@ -570,6 +576,7 @@
 				8565CCCA2181ACB300D01486 /* user.json in Resources */,
 				C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */,
 				85B5EAB5219D614E007ACF55 /* rideIdNotFound.json in Resources */,
+				85B2DE3321A015D9004F524A /* createTheftCaseValidationError.json in Resources */,
 				C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */,
 				8565CCC72181A7D200D01486 /* userAlreadyExists.json in Resources */,
 				8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */,
@@ -584,6 +591,7 @@
 				85B6E93E218302EE00F44404 /* ride-list.json in Resources */,
 				852B85DD219449FF00A373F1 /* userNotLoggedIn.json in Resources */,
 				C00A8A3121873348003F67CB /* validation-error.json in Resources */,
+				85B2DE3721A05193004F524A /* patchPoliceIdValidationError.json in Resources */,
 				85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */,
 				C069CA66219B1A1D003BE8C3 /* address-list.json in Resources */,
 				C0DFD37A21919EF000AB4194 /* bike-registration-successful.json in Resources */,
