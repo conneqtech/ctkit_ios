@@ -8,8 +8,6 @@
 import Foundation
 import RxSwift
 
-
-
 /**
  The CTTheftCaseService is the main entry point to create, fetch and patch policeIds for theft-cases. Theft-cases are created for stolen bikes and are used as help for recovery.
  Theft-cases allow users to report their bikes as stolen and start the recovery process.
