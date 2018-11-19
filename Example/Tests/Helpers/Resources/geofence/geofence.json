@@ -1,0 +1,13 @@
+{
+    "id": 262,
+    "bike_id": 312,
+    "user_id": 47,
+    "name": "Home",
+    "center": {
+        "lat": 0,
+        "lon": 0
+    },
+    "radius": 500,
+    "active_state": 0,
+    "creation_date": "2018-09-17T09:31:36+0000"
+}

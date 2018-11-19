@@ -17,21 +17,14 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = 'https://bitbucket.org/nfnty_admin/ctkit_ios'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'jookes' => 'gert-jan@nfnty.nl' }
-  s.source           = { :git => 'https://github.com/jookes/ctkit.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { 'Conneqtech B.V.' => 'info@conneqtech.com' }
+  s.source           = { :git => 'https://jookes@bitbucket.org/nfnty_admin/ctkit_ios.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'ctkit/Classes/**/*'
+  s.source_files = 'Source/**/*.swift'
   
-  # s.resource_bundles = {
-  #   'ctkit' => ['ctkit/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'Alamofire', '~> 4.7'
+  s.dependency 'RxSwift', '~> 4.0'
 end

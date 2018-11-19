@@ -22,8 +22,9 @@ pod 'ctkit'
 
 ## Author
 
-jookes, gert-jan@nfnty.nl
+Conneqtech B.V.
+gert-jan@conneqtech.com
 
 ## License
 
-ctkit is available under the MIT license. See the LICENSE file for more info.
+All rights reserved Conneqtech B.V.

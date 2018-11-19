@@ -7,14 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		075B735056BB779706F51C1E /* Pods_ctkit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623B3B1226190D69C9FEEE4 /* Pods_ctkit_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		914FF9D805D2F39419E2693D /* Pods_ctkit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C3E0B0A854F586779A2BA1 /* Pods_ctkit_Tests.framework */; };
-		D9CAE1C4001BBCCC8BCBF7D0 /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6194CB303E3D445B94E743A /* Pods_ctkit_Example.framework */; };
+		852B85DB21943F9B00A373F1 /* CTGeofenceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */; };
+		852B85DD219449FF00A373F1 /* userNotLoggedIn.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85DC219449FE00A373F1 /* userNotLoggedIn.json */; };
+		852B85DF21945FE100A373F1 /* geofenceIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */; };
+		852B85E12194614900A373F1 /* bikeIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85E02194614900A373F1 /* bikeIdNotFound.json */; };
+		853B34B62197042000FA50FB /* CTRideServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B34B52197042000FA50FB /* CTRideServiceTests.swift */; };
+		8565CCBF21819ECD00D01486 /* geofence.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCBD21819ECD00D01486 /* geofence.json */; };
+		8565CCC021819ECD00D01486 /* geofenceList.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCBE21819ECD00D01486 /* geofenceList.json */; };
+		8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC42181A47100D01486 /* createGeofenceValidationError.json */; };
+		8565CCC72181A7D200D01486 /* userAlreadyExists.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC62181A7D200D01486 /* userAlreadyExists.json */; };
+		8565CCCA2181ACB300D01486 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC92181ACB300D01486 /* user.json */; };
+		85B6E93E218302EE00F44404 /* ridelist.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B6E93C218302EE00F44404 /* ridelist.json */; };
+		85B6E93F218302EE00F44404 /* ride.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B6E93D218302EE00F44404 /* ride.json */; };
+		85B6E945218351DB00F44404 /* RideTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B6E944218351DB00F44404 /* RideTableViewController.swift */; };
+		85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4B2181D9AE0097D7A7 /* theftcase.json */; };
+		85D33A4E2181DA120097D7A7 /* theftcaseList.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4D2181DA120097D7A7 /* theftcaseList.json */; };
+		B57938623B24C4F138759C79 /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C79E5626B08B9E0268AB37E /* Pods_ctkit_Example.framework */; };
+		C00A8A3121873348003F67CB /* validation-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A3021873348003F67CB /* validation-error.json */; };
+		C00A8A33218735A9003F67CB /* 400-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A32218735A9003F67CB /* 400-error.json */; };
+		C00A8A36218735DC003F67CB /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A8A35218735DC003F67CB /* Resolver.swift */; };
+		C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9B21635B250010617A /* CreateAccountViewController.swift */; };
+		C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9D21635EEB0010617A /* AccountViewController.swift */; };
+		C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9F216373660010617A /* LoadingViewController.swift */; };
+		C02A3DA22163A1C40010617A /* BikeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3DA12163A1C40010617A /* BikeTableViewController.swift */; };
+		C04F41B22199C502004FF81A /* CTBikeLocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */; };
+		C069CA60219B08E7003BE8C3 /* bike-history.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA5F219B08E7003BE8C3 /* bike-history.json */; };
+		C069CA63219B17D5003BE8C3 /* bike.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA62219B17D5003BE8C3 /* bike.json */; };
+		C069CA66219B1A1D003BE8C3 /* address-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA65219B1A1D003BE8C3 /* address-list.json */; };
+		C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */ = {isa = PBXBuildFile; fileRef = C07FEDB721899BDC005577C1 /* oauth-success.json */; };
+		C08B174B2190831F00A662E2 /* bike-registration-failed.json in Resources */ = {isa = PBXBuildFile; fileRef = C08B174A2190831F00A662E2 /* bike-registration-failed.json */; };
+		C098CA20219C60A3004174D5 /* bike-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C098CA1F219C60A3004174D5 /* bike-list.json */; };
+		C0DF759021674E0900260751 /* GeofenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */; };
+		C0DFD37A21919EF000AB4194 /* bike-registration-successful.json in Resources */ = {isa = PBXBuildFile; fileRef = C0DFD37921919EF000AB4194 /* bike-registration-successful.json */; };
+		C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */; };
+		C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37F52180792300E7EAC4 /* createValidationError.json */; };
+		C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */; };
+		C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */; };
+		C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */; };
+		C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */; };
+		C0F40CDA218B3C3900F92CC9 /* bike-information.json in Resources */ = {isa = PBXBuildFile; fileRef = C0F40CD9218B3C3900F92CC9 /* bike-information.json */; };
+		C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,9 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D907CD5EB8CE9B9FE647A7C /* Pods-ctkit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		35C3E0B0A854F586779A2BA1 /* Pods_ctkit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43FFCB62BDD0522DC399B913 /* Pods-ctkit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		10D1B27B021E830CD5443360 /* Pods-ctkit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3569C240343C780724FDE14B /* Pods-ctkit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.release.xcconfig"; sourceTree = "<group>"; };
+		3C79E5626B08B9E0268AB37E /* Pods_ctkit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5535CE0605CA21FBACD7DE9B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ctkit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ctkit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,13 +78,51 @@
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* ctkit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ctkit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		667537EAE32BAADDAE14B0C6 /* Pods-ctkit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		9FA6DF7DAE6FA6C871A4A085 /* Pods-ctkit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		AA81EECC2BEA5016338F8ACC /* ctkit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ctkit.podspec; path = ../ctkit.podspec; sourceTree = "<group>"; };
+		6C3BCF536DE4A862F50071DD /* Pods-ctkit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		6CA44E7F3150B084A4066032 /* Pods-ctkit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTGeofenceServiceTests.swift; sourceTree = "<group>"; };
+		852B85DC219449FE00A373F1 /* userNotLoggedIn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userNotLoggedIn.json; sourceTree = "<group>"; };
+		852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofenceIdNotFound.json; sourceTree = "<group>"; };
+		852B85E02194614900A373F1 /* bikeIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bikeIdNotFound.json; sourceTree = "<group>"; };
+		853B34B52197042000FA50FB /* CTRideServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTRideServiceTests.swift; sourceTree = "<group>"; };
+		8565CCBD21819ECD00D01486 /* geofence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofence.json; sourceTree = "<group>"; };
+		8565CCBE21819ECD00D01486 /* geofenceList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofenceList.json; sourceTree = "<group>"; };
+		8565CCC42181A47100D01486 /* createGeofenceValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createGeofenceValidationError.json; sourceTree = "<group>"; };
+		8565CCC62181A7D200D01486 /* userAlreadyExists.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userAlreadyExists.json; sourceTree = "<group>"; };
+		8565CCC92181ACB300D01486 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
+		85B6E93C218302EE00F44404 /* ridelist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ridelist.json; sourceTree = "<group>"; };
+		85B6E93D218302EE00F44404 /* ride.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ride.json; sourceTree = "<group>"; };
+		85B6E944218351DB00F44404 /* RideTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideTableViewController.swift; sourceTree = "<group>"; };
+		85D33A4B2181D9AE0097D7A7 /* theftcase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftcase.json; sourceTree = "<group>"; };
+		85D33A4D2181DA120097D7A7 /* theftcaseList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftcaseList.json; sourceTree = "<group>"; };
+		AA81EECC2BEA5016338F8ACC /* ctkit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ctkit.podspec; path = ../ctkit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ABE31016D690DA6F44A7AF83 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		D6194CB303E3D445B94E743A /* Pods_ctkit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C00A8A3021873348003F67CB /* validation-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "validation-error.json"; sourceTree = "<group>"; };
+		C00A8A32218735A9003F67CB /* 400-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "400-error.json"; sourceTree = "<group>"; };
+		C00A8A35218735DC003F67CB /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		C02A3D9B21635B250010617A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		C02A3D9D21635EEB0010617A /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		C02A3D9F216373660010617A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		C02A3DA12163A1C40010617A /* BikeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeTableViewController.swift; sourceTree = "<group>"; };
+		C04C0AAE21746E9B00F9ADE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeLocationServiceTests.swift; sourceTree = "<group>"; };
+		C069CA5F219B08E7003BE8C3 /* bike-history.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-history.json"; sourceTree = "<group>"; };
+		C069CA62219B17D5003BE8C3 /* bike.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bike.json; sourceTree = "<group>"; };
+		C069CA65219B1A1D003BE8C3 /* address-list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "address-list.json"; sourceTree = "<group>"; };
+		C07FEDB721899BDC005577C1 /* oauth-success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "oauth-success.json"; sourceTree = "<group>"; };
+		C08B174A2190831F00A662E2 /* bike-registration-failed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-registration-failed.json"; sourceTree = "<group>"; };
+		C098CA1F219C60A3004174D5 /* bike-list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-list.json"; sourceTree = "<group>"; };
+		C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceTableViewController.swift; sourceTree = "<group>"; };
+		C0DFD37921919EF000AB4194 /* bike-registration-successful.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-registration-successful.json"; sourceTree = "<group>"; };
+		C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUserServiceTests.swift; sourceTree = "<group>"; };
+		C0EC37F52180792300E7EAC4 /* createValidationError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = createValidationError.json; sourceTree = "<group>"; };
+		C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalidEmailAndPassword.json; sourceTree = "<group>"; };
+		C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTErrorHandlerTests.swift; sourceTree = "<group>"; };
+		C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTRecoveryServiceTests.swift; sourceTree = "<group>"; };
+		C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeServiceTests.swift; sourceTree = "<group>"; };
+		C0F40CD9218B3C3900F92CC9 /* bike-information.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-information.json"; sourceTree = "<group>"; };
+		C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUserModelTests.swift; sourceTree = "<group>"; };
+		E623B3B1226190D69C9FEEE4 /* Pods_ctkit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9CAE1C4001BBCCC8BCBF7D0 /* Pods_ctkit_Example.framework in Frameworks */,
+				B57938623B24C4F138759C79 /* Pods_ctkit_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,13 +138,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				914FF9D805D2F39419E2693D /* Pods_ctkit_Tests.framework in Frameworks */,
+				075B735056BB779706F51C1E /* Pods_ctkit_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22FAD8D38C33443FDC4819C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C79E5626B08B9E0268AB37E /* Pods_ctkit_Example.framework */,
+				E623B3B1226190D69C9FEEE4 /* Pods_ctkit_Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -76,8 +161,8 @@
 				607FACD21AFB9204008FA782 /* Example for ctkit */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
-				AD1DFA6755516884DDA0CFB2 /* Pods */,
-				FDD7B9F104DFBC030404DB89 /* Frameworks */,
+				FF80AE8E324336919CCFF92F /* Pods */,
+				22FAD8D38C33443FDC4819C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,10 +180,16 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				C02A3D9B21635B250010617A /* CreateAccountViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				C02A3D9D21635EEB0010617A /* AccountViewController.swift */,
+				C02A3D9F216373660010617A /* LoadingViewController.swift */,
+				C02A3DA12163A1C40010617A /* BikeTableViewController.swift */,
+				C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */,
+				85B6E944218351DB00F44404 /* RideTableViewController.swift */,
 			);
 			name = "Example for ctkit";
 			path = ctkit;
@@ -115,18 +206,13 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
+				C00A8A34218735CD003F67CB /* Helpers */,
+				C0F40CDB218C4F3400F92CC9 /* CTServices */,
+				C0F40CDC218C4F5800F92CC9 /* CTModels */,
+				C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */,
+				C04C0AAE21746E9B00F9ADE0 /* Info.plist */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		607FACE91AFB9204008FA782 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEA1AFB9204008FA782 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
@@ -139,24 +225,180 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		AD1DFA6755516884DDA0CFB2 /* Pods */ = {
+		8565CCBB21819ECD00D01486 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				43FFCB62BDD0522DC399B913 /* Pods-ctkit_Example.debug.xcconfig */,
-				2D907CD5EB8CE9B9FE647A7C /* Pods-ctkit_Example.release.xcconfig */,
-				9FA6DF7DAE6FA6C871A4A085 /* Pods-ctkit_Tests.debug.xcconfig */,
-				667537EAE32BAADDAE14B0C6 /* Pods-ctkit_Tests.release.xcconfig */,
+				C069CA64219B19D5003BE8C3 /* address */,
+				C0F40CD8218B3C1F00F92CC9 /* bike */,
+				C00A8A2F218711B9003F67CB /* api-error */,
+				85B6E93B2183029C00F44404 /* ride */,
+				85D33A4A2181D9860097D7A7 /* theftcase */,
+				8565CCC82181AC0C00D01486 /* user */,
+				8565CCBC21819ECD00D01486 /* geofence */,
 			);
-			name = Pods;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		FDD7B9F104DFBC030404DB89 /* Frameworks */ = {
+		8565CCBC21819ECD00D01486 /* geofence */ = {
 			isa = PBXGroup;
 			children = (
-				D6194CB303E3D445B94E743A /* Pods_ctkit_Example.framework */,
-				35C3E0B0A854F586779A2BA1 /* Pods_ctkit_Tests.framework */,
+				8565CCBD21819ECD00D01486 /* geofence.json */,
+				8565CCBE21819ECD00D01486 /* geofenceList.json */,
 			);
-			name = Frameworks;
+			path = geofence;
+			sourceTree = "<group>";
+		};
+		8565CCC12181A3A000D01486 /* CTGeofenceService */ = {
+			isa = PBXGroup;
+			children = (
+				852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */,
+				852B85E02194614900A373F1 /* bikeIdNotFound.json */,
+				8565CCC42181A47100D01486 /* createGeofenceValidationError.json */,
+			);
+			path = CTGeofenceService;
+			sourceTree = "<group>";
+		};
+		8565CCC82181AC0C00D01486 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				8565CCC92181ACB300D01486 /* user.json */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		85B6E93B2183029C00F44404 /* ride */ = {
+			isa = PBXGroup;
+			children = (
+				85B6E93D218302EE00F44404 /* ride.json */,
+				85B6E93C218302EE00F44404 /* ridelist.json */,
+			);
+			path = ride;
+			sourceTree = "<group>";
+		};
+		85D33A4A2181D9860097D7A7 /* theftcase */ = {
+			isa = PBXGroup;
+			children = (
+				85D33A4D2181DA120097D7A7 /* theftcaseList.json */,
+				85D33A4B2181D9AE0097D7A7 /* theftcase.json */,
+			);
+			path = theftcase;
+			sourceTree = "<group>";
+		};
+		C00A8A2F218711B9003F67CB /* api-error */ = {
+			isa = PBXGroup;
+			children = (
+				C00A8A3021873348003F67CB /* validation-error.json */,
+				C00A8A32218735A9003F67CB /* 400-error.json */,
+			);
+			path = "api-error";
+			sourceTree = "<group>";
+		};
+		C00A8A34218735CD003F67CB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8565CCBB21819ECD00D01486 /* Resources */,
+				C0EC37F3218078F500E7EAC4 /* Responses */,
+				C00A8A35218735DC003F67CB /* Resolver.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C069CA5E219B08C5003BE8C3 /* CTBikeLocationService */ = {
+			isa = PBXGroup;
+			children = (
+				C069CA5F219B08E7003BE8C3 /* bike-history.json */,
+			);
+			path = CTBikeLocationService;
+			sourceTree = "<group>";
+		};
+		C069CA64219B19D5003BE8C3 /* address */ = {
+			isa = PBXGroup;
+			children = (
+				C069CA65219B1A1D003BE8C3 /* address-list.json */,
+			);
+			path = address;
+			sourceTree = "<group>";
+		};
+		C07FEDB621899BC4005577C1 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				C07FEDB721899BDC005577C1 /* oauth-success.json */,
+			);
+			path = OAuth;
+			sourceTree = "<group>";
+		};
+		C08B17492190830200A662E2 /* CTBikeService */ = {
+			isa = PBXGroup;
+			children = (
+				C08B174A2190831F00A662E2 /* bike-registration-failed.json */,
+				C0DFD37921919EF000AB4194 /* bike-registration-successful.json */,
+			);
+			path = CTBikeService;
+			sourceTree = "<group>";
+		};
+		C0EC37F3218078F500E7EAC4 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				C069CA5E219B08C5003BE8C3 /* CTBikeLocationService */,
+				C08B17492190830200A662E2 /* CTBikeService */,
+				C07FEDB621899BC4005577C1 /* OAuth */,
+				8565CCC12181A3A000D01486 /* CTGeofenceService */,
+				C0EC37F42180790000E7EAC4 /* CTUserService */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		C0EC37F42180790000E7EAC4 /* CTUserService */ = {
+			isa = PBXGroup;
+			children = (
+				C0EC37F52180792300E7EAC4 /* createValidationError.json */,
+				8565CCC62181A7D200D01486 /* userAlreadyExists.json */,
+				C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */,
+				852B85DC219449FE00A373F1 /* userNotLoggedIn.json */,
+			);
+			path = CTUserService;
+			sourceTree = "<group>";
+		};
+		C0F40CD8218B3C1F00F92CC9 /* bike */ = {
+			isa = PBXGroup;
+			children = (
+				C0F40CD9218B3C3900F92CC9 /* bike-information.json */,
+				C069CA62219B17D5003BE8C3 /* bike.json */,
+				C098CA1F219C60A3004174D5 /* bike-list.json */,
+			);
+			path = bike;
+			sourceTree = "<group>";
+		};
+		C0F40CDB218C4F3400F92CC9 /* CTServices */ = {
+			isa = PBXGroup;
+			children = (
+				C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */,
+				C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */,
+				C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */,
+				852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */,
+				853B34B52197042000FA50FB /* CTRideServiceTests.swift */,
+				C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */,
+			);
+			path = CTServices;
+			sourceTree = "<group>";
+		};
+		C0F40CDC218C4F5800F92CC9 /* CTModels */ = {
+			isa = PBXGroup;
+			children = (
+				C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */,
+			);
+			path = CTModels;
+			sourceTree = "<group>";
+		};
+		FF80AE8E324336919CCFF92F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6CA44E7F3150B084A4066032 /* Pods-ctkit_Example.debug.xcconfig */,
+				3569C240343C780724FDE14B /* Pods-ctkit_Example.release.xcconfig */,
+				10D1B27B021E830CD5443360 /* Pods-ctkit_Tests.debug.xcconfig */,
+				6C3BCF536DE4A862F50071DD /* Pods-ctkit_Tests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,11 +408,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "ctkit_Example" */;
 			buildPhases = (
-				C339392D8DD48B13ECDD766F /* [CP] Check Pods Manifest.lock */,
+				19BD8E1F496758C4580F1EEA /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				33B8DE68388873C3A1D797B9 /* [CP] Embed Pods Frameworks */,
+				BB21517EB18E7CE30AAEE3B2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,11 +427,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "ctkit_Tests" */;
 			buildPhases = (
-				1D173E1EF0138C654CA20FE1 /* [CP] Check Pods Manifest.lock */,
+				929F7787DDB8612D3E5CC5E2 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				B458298B884EF0DFC1016164 /* [CP] Embed Pods Frameworks */,
+				9D5E9DC170B2D22FABAC0586 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,26 +499,64 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0F40CDA218B3C3900F92CC9 /* bike-information.json in Resources */,
+				8565CCCA2181ACB300D01486 /* user.json in Resources */,
+				C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */,
+				C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */,
+				8565CCC72181A7D200D01486 /* userAlreadyExists.json in Resources */,
+				8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */,
+				852B85DF21945FE100A373F1 /* geofenceIdNotFound.json in Resources */,
+				C069CA60219B08E7003BE8C3 /* bike-history.json in Resources */,
+				C069CA63219B17D5003BE8C3 /* bike.json in Resources */,
+				8565CCC021819ECD00D01486 /* geofenceList.json in Resources */,
+				852B85E12194614900A373F1 /* bikeIdNotFound.json in Resources */,
+				85B6E93E218302EE00F44404 /* ridelist.json in Resources */,
+				852B85DD219449FF00A373F1 /* userNotLoggedIn.json in Resources */,
+				C00A8A3121873348003F67CB /* validation-error.json in Resources */,
+				85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */,
+				C069CA66219B1A1D003BE8C3 /* address-list.json in Resources */,
+				C0DFD37A21919EF000AB4194 /* bike-registration-successful.json in Resources */,
+				C08B174B2190831F00A662E2 /* bike-registration-failed.json in Resources */,
+				C098CA20219C60A3004174D5 /* bike-list.json in Resources */,
+				C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */,
+				85D33A4E2181DA120097D7A7 /* theftcaseList.json in Resources */,
+				8565CCBF21819ECD00D01486 /* geofence.json in Resources */,
+				C00A8A33218735A9003F67CB /* 400-error.json in Resources */,
+				85B6E93F218302EE00F44404 /* ride.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1D173E1EF0138C654CA20FE1 /* [CP] Check Pods Manifest.lock */ = {
+		19BD8E1F496758C4580F1EEA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ctkit_Example-checkManifestLockResult.txt",
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		929F7787DDB8612D3E5CC5E2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ctkit_Tests-checkManifestLockResult.txt",
 			);
@@ -285,72 +565,56 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		33B8DE68388873C3A1D797B9 /* [CP] Embed Pods Frameworks */ = {
+		9D5E9DC170B2D22FABAC0586 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ctkit/ctkit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ctkit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B458298B884EF0DFC1016164 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C339392D8DD48B13ECDD766F /* [CP] Check Pods Manifest.lock */ = {
+		BB21517EB18E7CE30AAEE3B2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+				"${SRCROOT}/Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ctkit/ctkit.framework",
 			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ctkit_Example-checkManifestLockResult.txt",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ctkit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -360,7 +624,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C02A3DA22163A1C40010617A /* BikeTableViewController.swift in Sources */,
+				C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				85B6E945218351DB00F44404 /* RideTableViewController.swift in Sources */,
+				C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */,
+				C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */,
+				C0DF759021674E0900260751 /* GeofenceTableViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,7 +639,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				C04F41B22199C502004FF81A /* CTBikeLocationServiceTests.swift in Sources */,
+				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
+				C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */,
+				853B34B62197042000FA50FB /* CTRideServiceTests.swift in Sources */,
+				C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */,
+				C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */,
+				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
+				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
+				852B85DB21943F9B00A373F1 /* CTGeofenceServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +730,9 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -498,13 +778,14 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43FFCB62BDD0522DC399B913 /* Pods-ctkit_Example.debug.xcconfig */;
+			baseConfigurationReference = 6CA44E7F3150B084A4066032 /* Pods-ctkit_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PHFR6RN8YP;
@@ -514,13 +795,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D907CD5EB8CE9B9FE647A7C /* Pods-ctkit_Example.release.xcconfig */;
+			baseConfigurationReference = 3569C240343C780724FDE14B /* Pods-ctkit_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PHFR6RN8YP;
@@ -530,13 +811,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FA6DF7DAE6FA6C871A4A085 /* Pods-ctkit_Tests.debug.xcconfig */;
+			baseConfigurationReference = 10D1B27B021E830CD5443360 /* Pods-ctkit_Tests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -551,14 +832,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ctkit_Example.app/ctkit_Example";
 			};
 			name = Debug;
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 667537EAE32BAADDAE14B0C6 /* Pods-ctkit_Tests.release.xcconfig */;
+			baseConfigurationReference = 6C3BCF536DE4A862F50071DD /* Pods-ctkit_Tests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -569,7 +850,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ctkit_Example.app/ctkit_Example";
 			};
 			name = Release;
