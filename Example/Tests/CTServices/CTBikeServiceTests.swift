@@ -100,12 +100,21 @@ class CTBikeServiceTests: QuickSpec {
         
         describe("patch") {
             it("Patches a bike with CTBikeModel") {
-                self.stub(http(.get, uri: "/bike/10"), json(Resolver().getJSONForResource(name: "bike"), status: 200))
-                let bike = try! CTBikeService().fetch(withId: 10).toBlocking().first()!
+                var bikeJSON = Resolver().getJSONForResource(name: "bike")
                 
-//                bike.name = "Other bike"
+                self.stub(http(.get, uri: "/bike/312"), json(bikeJSON, status: 200))
+                var bike = try! CTBikeService().fetch(withId: 312).toBlocking().first()!
                 
-//                let patchedBike = CTBikeService().
+                expect(bike.name) == "Test bike"
+                
+                bike.name = "CHANGED NAME"
+                
+                //Set response proper.
+                bikeJSON["name"] = "CHANGED NAME"
+                self.stub(http(.patch, uri: "/bike/312"), json(bikeJSON, status: 200))
+                
+                let patchedBike = try! CTBikeService().patch(withBike: bike).toBlocking().first()!
+                expect(patchedBike.name) == "CHANGED NAME"
                 
             }
         }

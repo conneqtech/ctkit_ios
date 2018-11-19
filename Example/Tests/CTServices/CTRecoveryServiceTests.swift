@@ -45,8 +45,8 @@ class CTRecoveryServiceTests: QuickSpec {
             it("Should start password recovery with valid input") {
                 let subjectUnderTest = CTUserRecoveryService()
             
-                let result = try! subjectUnderTest.recoverUser(email: "fake-email@example.com").toBlocking().first()
-                expect(result) == ["success": true]
+                let result = try! subjectUnderTest.recoverUser(email: "test@conneqtech.com").toBlocking().first()
+                expect(result) == "test@conneqtech.com"
             }
         }
         
@@ -87,12 +87,12 @@ class CTRecoveryServiceTests: QuickSpec {
             it("Should succeed finishing password recovery with valid password and hash") {
                 let subjectUnderTest = CTUserRecoveryService()
                 
-                self.stub(http(.post, uri: "/user/recover"), json(["success":true] ,status: 201))
+                self.stub(http(.post, uri: "/user/recover"), json(["success":true, username":"test@conneqtech.com"] ,status: 201))
                 
                 let result = try! subjectUnderTest.finishPasswordRecovery(
                     password: "testpass",
                     resetHash: "8647a005420d3f3308e025e0f293d5d3cec695f1bd296d9562b2bcb70dc7330a").toBlocking().first()
-                expect(result) == ["success": true]
+                expect(result) == "test@conneqtech.com"
             }
         }
     }
