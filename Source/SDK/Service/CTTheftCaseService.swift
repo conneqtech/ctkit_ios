@@ -62,7 +62,7 @@ public class CTTheftCaseService:NSObject {
      */
     public func fetchMostRecent(withBikeId identifier:Int) -> Observable<CTTheftCaseModel> {
         return self.fetchAll(withBikeId: identifier).map { result in
-                return result[0]
+                return result.data[0]
         }
     }
     
@@ -74,7 +74,7 @@ public class CTTheftCaseService:NSObject {
      
      - Returns: An observable array containing all theft-cases for a bike.
      */
-    public func fetchAll(withBikeId identifier:Int) -> Observable<[CTTheftCaseModel]> {
+    public func fetchAll(withBikeId identifier:Int) -> Observable<CTPaginatableResponse<CTTheftCaseModel>> {
         let params = [
             "filter": [
                 "and;bike_id;eq;\(identifier)"

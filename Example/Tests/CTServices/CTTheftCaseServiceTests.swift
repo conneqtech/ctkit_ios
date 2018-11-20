@@ -80,17 +80,17 @@ class CTTheftCaseServiceTests:QuickSpec {
                 self.stub(http(.get, uri: "/theft-case"), json(emptyArray))
                 let callToTest = try! CTTheftCaseService().fetchAll(withBikeId: 0).toBlocking().first()
                 if let emptyArray = callToTest {
-                    expect(emptyArray.count).to(equal(0))
+                    expect(emptyArray.data.count).to(equal(0))
                 } else {
                     expect("can unwrap") == "did not unwrap"
                 }
             }
             
-            it("Succesfully fetches all theft-cases for a bike") {
-                self.stub(http(.get, uri: "/theft-case"), json(Resolver().getJSONListForResource(name: "theftcaseList"), status: 200))
+            fit("Succesfully fetches all theft-cases for a bike") {
+                self.stub(http(.get, uri: "/theft-case"), json(Resolver().getJSONForResource(name: "theftcaseList"), status: 200))
                 let callToTest = try! CTTheftCaseService().fetchAll(withBikeId: 0).toBlocking().first()
                 if let theftCases = callToTest {
-                    expect(theftCases.count).to(equal(1))
+                    expect(theftCases.data.count).to(equal(7))
                 } else {
                     expect("can unwrap") == "did not unwrap"
                 }

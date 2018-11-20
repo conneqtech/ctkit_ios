@@ -28,7 +28,7 @@ class CTRideServiceTests: QuickSpec {
                 self.stub(http(.get, uri: "/bike/ride/0"), json(Resolver().getJSONForResource(name: "rideIdNotFound"), status: 404))
                 
                 do {
-                    try _ = CTRideService().fetch(withRideId: 0).toBlocking().first()
+                    _ = try CTRideService().fetch(withRideId: 0).toBlocking().first()
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .basic
@@ -81,7 +81,7 @@ class CTRideServiceTests: QuickSpec {
             it("Handles the error when one or more fields are incorrect") {
                 self.stub(http(.post, uri: "/bike/0/ride"), json(Resolver().getJSONForResource(name: "createRideValidationError"), status: 422))
                 do {
-                    try _ = CTRideService().create(withBikeId: 0, startDate: Date(), endDate: Date(), rideType: "ride.type.other", name: "INVALIDNAME")
+                    _ = try CTRideService().create(withBikeId: 0, startDate: Date(), endDate: Date(), rideType: "ride.type.other", name: "INVALIDNAME").toBlocking().first()
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .validation

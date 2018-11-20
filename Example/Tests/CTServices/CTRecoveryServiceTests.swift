@@ -87,7 +87,7 @@ class CTRecoveryServiceTests: QuickSpec {
             it("Should succeed finishing password recovery with valid password and hash") {
                 let subjectUnderTest = CTUserRecoveryService()
                 
-                self.stub(http(.post, uri: "/user/recover"), json(["success":true, username":"test@conneqtech.com"] ,status: 201))
+                self.stub(http(.post, uri: "/user/recover"), json(["success":true, "username":"test@conneqtech.com"] ,status: 201))
                 
                 let result = try! subjectUnderTest.finishPasswordRecovery(
                     password: "testpass",
