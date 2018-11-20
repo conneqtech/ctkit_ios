@@ -18,19 +18,21 @@ import RxBlocking
 class CTRideServiceTests: QuickSpec {
     override func spec() {
         beforeEach {
-            let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()
+            self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "user"), status: 200))
+            let _ = try! CTUserService().fetchCurrentUser().toBlocking().first()
+            expect(CTUserService().getActiveUserId()) == 47
         }
         
         describe("fetchwithrideid") {
             it("Handles the error when the ride doesn't exist") {
-                self.stub(http(.get, uri: "bike/ride/0"), json(Resolver().getJSONForResource(name: "rideIdNotFound"), status: 404))
+                self.stub(http(.get, uri: "/bike/ride/0"), json(Resolver().getJSONForResource(name: "rideIdNotFound"), status: 404))
                 
                 do {
                     try _ = CTRideService().fetch(withRideId: 0).toBlocking().first()
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .basic
-                        expect(ctError.translationKey) == "error.api.not-found"
+                        expect(ctError.translationKey) == "api.error.404.not-found"
                     } else {
                         expect("error") == "ctError"
                     }
@@ -38,7 +40,7 @@ class CTRideServiceTests: QuickSpec {
             }
             
             it("Succesfully fetches a ride") {
-                self.stub(http(.get, uri: "bike/ride/92"), json(Resolver().getJSONForResource(name: "ride"), status: 200))
+                self.stub(http(.get, uri: "/bike/ride/92"), json(Resolver().getJSONForResource(name: "ride"), status: 200))
                 let callToTest = try! CTRideService().fetch(withRideId: 92).toBlocking().first()
                 if let ride = callToTest {
                     expect(ride.id).to(equal(92))
@@ -50,14 +52,14 @@ class CTRideServiceTests: QuickSpec {
         
         describe("fetchwithbikeid") {
             it("Handles the error when the bike has no rides") {
-                self.stub(http(.get, uri: "bike/0/ride/"), json(Resolver().getJSONForResource(name: "rideIdNotFound"), status: 404))
+                self.stub(http(.get, uri: "/bike/152/ride"), json(Resolver().getJSONForResource(name: "rideIdNotFound"), status: 404))
                 
                 do {
-                    try _ = CTRideService().fetchAll(withBikeId: 0).toBlocking().first()
+                    try _ = CTRideService().fetchAll(withBikeId: 152).toBlocking().first()
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .basic
-                        expect(ctError.translationKey) == "error.api.not-found"
+                        expect(ctError.translationKey) == "api.error.404.not-found"
                     } else {
                         expect("error") == "ctError"
                     }
@@ -65,7 +67,7 @@ class CTRideServiceTests: QuickSpec {
             }
             
             it("Succesfully fetches a list of all rides") {
-                self.stub(http(.get, uri: "bike/152/ride"), json(Resolver().getJSONForResource(name: "rideList"), status: 200))
+                self.stub(http(.get, uri: "/bike/152/ride"), json(Resolver().getJSONListForResource(name: "ride-list"), status: 200))
                 let callToTest = try! CTRideService().fetchAll(withBikeId: 152).toBlocking().first()
                 if let rides = callToTest {
                     expect(rides.count).to(beGreaterThan(0))
@@ -77,16 +79,16 @@ class CTRideServiceTests: QuickSpec {
         
         describe("create") {
             it("Handles the error when one or more fields are incorrect") {
-                self.stub(http(.post, uri: "bike/0/ride"), json(Resolver().getJSONForResource(name: "createRideValidationError"), status: 422))
+                self.stub(http(.post, uri: "/bike/0/ride"), json(Resolver().getJSONForResource(name: "createRideValidationError"), status: 422))
                 do {
-                    try _ = CTGeofenceService().create(withBikeId: 0, name: "INVALIDRIDENAME", latitude: 0, longitude: 0, radius: 0).toBlocking().first()
+                    try _ = CTRideService().create(withBikeId: 0, startDate: Date(), endDate: Date(), rideType: "ride.type.other", name: "INVALIDNAME")
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .validation
                         expect(ctError.translationKey) == "api.error.validation-failed"
                         
                         if let validationError = ctError as? CTValidationError {
-                            expect(validationError.validationMessages).to(haveCount(1))
+                            expect(validationError.validationMessages).to(haveCount(6))
                             
                             let messageToTest = validationError.validationMessages[0]
                             expect(messageToTest.type) == "validationError"
@@ -98,10 +100,10 @@ class CTRideServiceTests: QuickSpec {
             }
             
             it("Succesfully creates a ride") {
-                self.stub(http(.post, uri: "bike/152/ride"), json(Resolver().getJSONForResource(name: "ride"), status: 200))
-                let callToTest = try! CTRideService().create(withBikeId: 152, startDate: Date(), endDate: Date(), rideType: "ride.type.other", name: "AVALIDRIDENAME").toBlocking().first()
+                self.stub(http(.post, uri: "/bike/152/ride"), json(Resolver().getJSONForResource(name: "ride"), status: 201))
+                let callToTest = try! CTRideService().create(withBikeId: 152, startDate: Date(), endDate: Date(), rideType: "ride.type.other", name: "VALIDRIDENAME").toBlocking().first()
                 if let ride = callToTest {
-                    expect(ride.bikeId).to(equal(152))
+                    expect(ride.id).to(equal(92))
                 } else {
                     expect("can unwrap") == "did not unwrap"
                 }
@@ -117,7 +119,7 @@ class CTRideServiceTests: QuickSpec {
                 do {
                     let updatedRideModel = try JSONSerialization.data(withJSONObject: updatedRide, options: JSONSerialization.WritingOptions.prettyPrinted)
                     
-                    self.stub(http(.post, uri: "bike/geofence/262"), json(Resolver().getJSONForResource(name: "createRideValidationError"), status: 422))
+                    self.stub(http(.patch, uri: "/bike/ride/92"), json(Resolver().getJSONForResource(name: "createRideValidationError"), status: 422))
                     do {
                         _ = try CTRideService().patch(ride: JSONDecoder().decode(CTRideModel.self, from: updatedRideModel)).toBlocking().first()
                     } catch {
@@ -125,13 +127,12 @@ class CTRideServiceTests: QuickSpec {
                             expect(ctError.type) == .validation
                             expect(ctError.translationKey) == "api.error.validation-failed"
                             
-                            //TODO: change to appropriate error
                             if let validationError = ctError as? CTValidationError {
-                                expect(validationError.validationMessages).to(haveCount(1))
+                                expect(validationError.validationMessages).to(haveCount(6))
                                 
                                 let messageToTest = validationError.validationMessages[0]
-                                expect(messageToTest.type) == "usernameAlreadyTaken"
-                                expect(messageToTest.originalMessage) == "User already exists"
+                                expect(messageToTest.type) == "isEmpty"
+                                expect(messageToTest.originalMessage) == "Value is required and can't be empty"
                             }
                         }
                     }
@@ -140,18 +141,50 @@ class CTRideServiceTests: QuickSpec {
                 }
             }
             
-            it("Succesfully patches an existing geofence") {
-                let originalGeofenceModel = try! JSONDecoder().decode(CTGeofenceModel.self, from: Resolver().getDataForResource(name: "geofence"))
-                var updatedGeofenceModel = Resolver().getJSONForResource(name: "geofence")
-                updatedGeofenceModel["name"] = ""
+            it("Succesfully patches an existing ride") {
+                let originalRideModel = try! JSONDecoder().decode(CTRideModel.self, from: Resolver().getDataForResource(name: "ride"))
+                var updatedRideModel = Resolver().getJSONForResource(name: "ride")
+                updatedRideModel["name"] = "PATCHED_NAME"
                 
-                self.stub(http(.post, uri: "bike/geofence/262"), json(updatedGeofenceModel))
-                let callToTest = try! CTGeofenceService().patch(geofence: originalGeofenceModel).toBlocking().first()
-                if let updatedGeofence = callToTest {
-                    expect(updatedGeofence.name).to(equal("PATCHED_NAME"))
+                self.stub(http(.patch, uri: "/bike/ride/92"), json(updatedRideModel))
+                let callToTest = try! CTRideService().patch(ride: originalRideModel).toBlocking().first()
+                if let updatedRide = callToTest {
+                    expect(updatedRide.name).to(equal("PATCHED_NAME"))
                 } else {
                     expect("can unwrap") == "did not unwrap"
                 }
+            }
+        }
+        
+        describe("delete") {
+            it("Handles the error when the ride doesn't exist") {
+                self.stub(http(.patch, uri: "/bike/ride/0"), json(Resolver().getJSONForResource(name: "rideIdNotFound"), status: 404))
+                
+                do {
+                    _ = try CTRideService().delete(withRideId: 0).toBlocking().first()
+                } catch {
+                    if let ctError = error as? CTErrorProtocol {
+                        expect(ctError.type) == .basic
+                        expect(ctError.translationKey) == "api.error.404.not-found"
+                    } else {
+                        expect("error") == "ctError"
+                    }
+                }
+            }
+            
+            it("Succesfully archives the ride") {
+                //                    TODO: Find way to test completables
+                //                    let originalRideModel = try! JSONDecoder().decode(CTRideModel.self, from: Resolver().getDataForResource(name: "ride"))
+                //                    var updatedRideModel = Resolver().getJSONForResource(name: "ride")
+                //                    updatedRideModel["active_state"] = 2
+                //
+                //                    self.stub(http(.patch, uri: "/bike/ride/92"), json(updatedRideModel))
+                //
+                //                    let callToTest = try! CTRideService().delete(withRideId: 262).toBlocking().first()
+                //                    if let updatedRide = callToTest {
+                //
+                //                    }
+                //
             }
         }
         
