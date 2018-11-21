@@ -11,15 +11,15 @@ public struct CTTheftCaseModel:CTBaseModel {
     
     public let id:Int
     public let caseNumber:String
-    public let partnerCaseNumber:String
-    public let partnerId:Int
+    public let partnerCaseNumber: String?
     
-    //RecoveryPartner
+    public let partner: CTTheftCasePartnerModel
+    
     public let bikeFrameType:String
     public let bikeType:String
     public let bikeColor:String
     public let bikeAdditionalDetails:String
-//    public let images:[UIImage]
+    public let bikeImages:[String]
     
     //Owner details
     public let ownerName:String
@@ -29,11 +29,13 @@ public struct CTTheftCaseModel:CTBaseModel {
     public let ownerPostalCode:String
     public let ownerCity:String
     public let ownerCountry:String
-    public let reportDate:Date
+    public let reportDate:String
     public let caseStatus:String
     public let bikeIsInsured:Bool
-    public let policeCaseNumber:String
+    public let policeCaseNumber:String?
     public let caseFinalized:Bool
+    
+    
     
     
     
@@ -41,14 +43,14 @@ public struct CTTheftCaseModel:CTBaseModel {
         case id = "id"
         case caseNumber = "case_number"
         case partnerCaseNumber = "partner_case_number"
-        case partnerId = "partner_id"
+        case partner = "partner"
         
         case bikeFrameType = "bike_frame_type"
         case bikeType = "bike_type"
         case bikeColor = "bike_color"
         case bikeAdditionalDetails = "bike_additional_details"
-//        case images = "bike_images"
-        
+        case bikeImages = "bike_images"
+
         case ownerName = "owner_name"
         case ownerEmail = "owner_email"
         case ownerPhone = "owner_phone_number"
@@ -62,5 +64,4 @@ public struct CTTheftCaseModel:CTBaseModel {
         case policeCaseNumber = "police_case_number"
         case caseFinalized = "finalized"
     }
-    
 }

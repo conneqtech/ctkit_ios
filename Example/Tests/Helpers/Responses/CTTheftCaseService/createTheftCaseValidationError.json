@@ -1,0 +1,52 @@
+{
+    "error_translatable": "One or more supplied fields are invalid",
+    "validation_messages": {
+        "bike_additional_details": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "bike_color": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "bike_frame_type": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "bike_type": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "bike_images": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "owner_address": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "owner_city": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "owner_country": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "owner_email": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "owner_name": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "owner_phone_number": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "owner_postal_code": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "bike_is_insured": {
+            "isEmpty": "Value is required and can't be empty"
+        },
+        "bike_id": {
+            "isEmpty": "Value is required and can't be empty"
+        }
+    },
+    "type": 10,
+    "title": "Unprocessable Entity",
+    "status": 422,
+    "detail": "error.api.invalidfields"
+}
+

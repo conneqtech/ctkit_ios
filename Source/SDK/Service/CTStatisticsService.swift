@@ -20,8 +20,21 @@ public class CTStatisticsService:NSObject {
      
      - Returns: An observable containing an array of 7 items, one for each day.
      */
-    public func fetchAll(withBikeId identifier:Int) -> Observable<CTStatisticsModel> {
+    public func fetchAll(withBikeId identifier:Int) -> Observable<[CTStatisticsModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/stats")
     }
     
+    
+    /**
+     Fetch the hourly statistics for a bike
+     
+     - Parameter identifier: The identifier of the bike you want to fetch the hourly statistics for
+     
+     - Returns: And observable containing the hourly statistics for the bike.
+    */
+    public func fetchAll(withBikeId identifier:Int, after:Date) -> Observable<[CTStatisticsModel]> {
+        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/stats", parameters: [
+            "type":"hourly",
+            "from":after.toAPIDate()])
+    }
 }
