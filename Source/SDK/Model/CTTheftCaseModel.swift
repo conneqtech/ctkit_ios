@@ -15,7 +15,6 @@ public struct CTTheftCaseModel:CTBaseModel {
     
     public let partner: CTTheftCasePartnerModel
     
-    //RecoveryPartner
     public let bikeFrameType:String
     public let bikeType:String
     public let bikeColor:String
@@ -41,7 +40,6 @@ public struct CTTheftCaseModel:CTBaseModel {
     
     
     enum CodingKeys: String, CodingKey {
-//        case partner = "partner"
         case id = "id"
         case caseNumber = "case_number"
         case partnerCaseNumber = "partner_case_number"
@@ -53,7 +51,6 @@ public struct CTTheftCaseModel:CTBaseModel {
         case bikeAdditionalDetails = "bike_additional_details"
         case bikeImages = "bike_images"
 
-        
         case ownerName = "owner_name"
         case ownerEmail = "owner_email"
         case ownerPhone = "owner_phone_number"
