@@ -86,7 +86,7 @@ class CTTheftCaseServiceTests:QuickSpec {
                 }
             }
             
-            fit("Succesfully fetches all theft-cases for a bike") {
+            it("Succesfully fetches all theft-cases for a bike") {
                 self.stub(http(.get, uri: "/theft-case"), json(Resolver().getJSONForResource(name: "theftcaseList"), status: 200))
                 let callToTest = try! CTTheftCaseService().fetchAll(withBikeId: 0).toBlocking().first()
                 if let theftCases = callToTest {

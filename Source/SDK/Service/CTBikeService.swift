@@ -8,6 +8,12 @@
 import Foundation
 import RxSwift
 
+public enum CTBikeRegistrationFlow: String, Codable {
+    case IMEI = "imei_flow"
+    case Booklet = "booklet_flow"
+    case CustomerService = "customer-service_flow"
+}
+
 /**
  The CTBikeService is the main entry point to manage and create bikes for an authenticated user. It allows for all basic management and some convenience methods to help ease the management of bikes.
  */
@@ -111,3 +117,5 @@ public class CTBikeService: NSObject {
         return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["frame_number":identifier])
     }
 }
+
+

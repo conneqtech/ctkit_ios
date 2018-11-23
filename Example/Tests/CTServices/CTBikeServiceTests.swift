@@ -125,7 +125,6 @@ class CTBikeServiceTests: QuickSpec {
                 self.stub(http(.get, uri: "/bike/search"), json([Resolver().getJSONForResource(name: "bike-information")], status: 200))
                 let subjectUnderTest = CTBikeService()
                 
-            
                 let response = try! subjectUnderTest.searchUnregisteredBike(withFrameIdentifier: "EN15194").toBlocking().first()
                 if let response = response {
                     let bike = response[0]
@@ -137,7 +136,8 @@ class CTBikeServiceTests: QuickSpec {
                     expect(bike.manufacturerModelName) == ""
                     expect(bike.manufacturerProductionDate) == ""
                     expect(bike.manufacturerSKU) == "9999999"
-                }
+                    expect(bike.registrationFlow) == .Booklet
+                }s
             }
         }
     }
