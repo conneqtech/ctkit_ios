@@ -24,15 +24,30 @@ public class CTBikeService: NSObject {
      
      - Parameter name: The name of the bike
      - Parameter imei: The IMEI number of the bike
-     - Parameter frameNumber: The framenumber of the bike
+     - Parameter activationCode: The activationCode of the bike
      
      - Returns: An observable of the newly created bike.
      */
-    public func create(withName name: String, imei: String, frameNumber: String) -> Observable<CTBikeModel> {
+    public func create(withName name: String, imei: String, activationCode: String) -> Observable<CTBikeModel> {
         return CTKit.shared.restManager.post(endpoint: "bike", parameters: [
             "name":name,
             "imei":imei,
-            "frame_number":frameNumber]
+            "activation_code":activationCode]
+        )
+    }
+    
+    /**
+     Create a new bike with the minimal amount of data
+     
+     - Parameter name: The name of the bike
+     - Parameter activationCode: The activationCode of the bike
+     
+     - Returns: An observable of the newly created bike.
+     */
+    public func create(withName name: String, andActivationCode activationCode: String) -> Observable<CTBikeModel> {
+        return CTKit.shared.restManager.post(endpoint: "bike", parameters: [
+            "name":name,
+            "activation_code":activationCode]
         )
     }
     

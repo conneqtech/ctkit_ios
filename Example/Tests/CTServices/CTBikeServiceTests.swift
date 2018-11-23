@@ -121,12 +121,13 @@ class CTBikeServiceTests: QuickSpec {
         
         
         describe("Bike information") {
-            it("searches for a bike with a frame number") {
+            fit("searches for a bike with a frame number") {
                 self.stub(http(.get, uri: "/bike/search"), json([Resolver().getJSONForResource(name: "bike-information")], status: 200))
                 let subjectUnderTest = CTBikeService()
-                
-                let response = try! subjectUnderTest.searchUnregisteredBike(withFrameIdentifier: "EN15194").toBlocking().first()
+                                
+                let response = try! subjectUnderTest.searchUnregisteredBike(withFrameIdentifier: "EMU5587").toBlocking().first()
                 if let response = response {
+                    expect(response.count) > 0
                     let bike = response[0]
                     
                     expect(bike.partialIMEI) == "3515640561"
