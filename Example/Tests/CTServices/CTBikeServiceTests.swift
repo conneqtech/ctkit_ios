@@ -137,7 +137,7 @@ class CTBikeServiceTests: QuickSpec {
                     expect(bike.manufacturerProductionDate) == ""
                     expect(bike.manufacturerSKU) == "9999999"
                     expect(bike.registrationFlow) == .Booklet
-                }s
+                }
             }
         }
     }
