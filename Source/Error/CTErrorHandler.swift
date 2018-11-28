@@ -29,6 +29,8 @@ internal class CTErrorHandler: NSObject {
                 handledError = handleUnprocessableEntity(body: unwrappedResponse)
             case 404:
                 handledError = handleNotFound(body: unwrappedResponse)
+            case 406:
+                handledError = handleUserAlreadyTaken(body: unwrappedResponse)
             default:
                 handledError = CTBasicError(translationKey: "DEFAULT ERROR HANDLE", description: "")
             }
@@ -70,6 +72,10 @@ internal class CTErrorHandler: NSObject {
     
     func handleBadRequest(body: [String:Any]) -> CTBasicError? {
         return CTBasicError(translationKey: "api.error.400.bad-request", description: "The server encountered a bad request", errorBody: body)
+    }
+    
+    func handleUserAlreadyTaken(body: [String:Any]) -> CTBasicError? {
+        return CTBasicError(translationKey: "api.error.406.username-already-taken", description: "This username is already taken", errorBody: body)
     }
     
     func handleUnprocessableEntity(body: [String:Any]) -> CTErrorProtocol? {

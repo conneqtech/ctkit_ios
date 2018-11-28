@@ -17,6 +17,29 @@ import RxBlocking
 
 class CTUserServiceTests: QuickSpec {
     override func spec() {
+        describe("CTQuickTest") {
+            it("Handles the error when the username and password field are empty") {
+//                self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "createValidationError"), status: 422))
+                
+                do {
+                    let _ = try CTUserService().create(withName: "GJ VERC", email: "gert-jan@conneqtech.com", password: "testpass", agreedToPrivacyStatement: true).toBlocking().first()
+                } catch {
+                    if let ctError = error as? CTErrorProtocol {
+                        expect(ctError.type) == .basic
+                        expect(ctError.translationKey) == "api.error.406.username-already-taken"
+                        
+                        if let validationError = ctError as? CTValidationError {
+                            expect(validationError.validationMessages).to(haveCount(2))
+                            //TODO: Check actual messages
+                        }
+                    } else {
+                        expect("error") == "ctError"
+                    }
+                }
+            }
+        }
+        
+        
         describe("CTUserServiceTests") {
             describe("create") {
                 it("Handles the error when the username and password field are empty") {
