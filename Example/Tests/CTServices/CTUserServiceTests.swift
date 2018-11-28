@@ -23,7 +23,7 @@ class CTUserServiceTests: QuickSpec {
                     self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "createValidationError"), status: 422))
                     
                     do {
-                        let _ = try CTUserService().create(email: "", password: "", agreedToPrivacyStatement: true).toBlocking().first()
+                        let _ = try CTUserService().create(withEmail: "", password: "", agreedToPrivacyStatement: true).toBlocking().first()
                     } catch {
                         if let ctError = error as? CTErrorProtocol {
                             expect(ctError.type) == .validation
@@ -43,10 +43,10 @@ class CTUserServiceTests: QuickSpec {
                     self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "invalidEmailAndPassword"), status: 422))
 
                     do {
-                        let _ = try CTUserService().create(email: "NOT_VALID_EMAIL", password: "validPasswordThatIsLongEnough").toBlocking().first()
+                        let _ = try CTUserService().create(withEmail: "NOT_VALID_EMAIL", password: "validPasswordThatIsLongEnough").toBlocking().first()
                     } catch {
                         do {
-                            let _ = try CTUserService().create(email: "", password: "", agreedToPrivacyStatement: true).toBlocking().first()
+                            let _ = try CTUserService().create(withEmail: "", password: "", agreedToPrivacyStatement: true).toBlocking().first()
                         } catch {
                             if let ctError = error as? CTErrorProtocol {
                                 expect(ctError.type) == .validation
@@ -67,7 +67,7 @@ class CTUserServiceTests: QuickSpec {
                     self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "userAlreadyExists"), status: 422))
 
                     do {
-                        let _ = try CTUserService().create(email: "EMAIL_THAT_EXISTS", password: "A_PASSWORD").toBlocking().first()
+                        let _ = try CTUserService().create(withEmail: "EMAIL_THAT_EXISTS", password: "A_PASSWORD").toBlocking().first()
                     } catch {
                         if let ctError = error as? CTErrorProtocol {
                             expect(ctError.type) == .validation
@@ -95,7 +95,7 @@ class CTUserServiceTests: QuickSpec {
                     
                     self.stub(http(.post, uri: "/user"), json(jsonDict, status: 200))
 
-                    let callToTest = try! CTUserService().create(email: randomUsername, password: "A_VALID_PASSWORD").toBlocking().first()
+                    let callToTest = try! CTUserService().create(withEmail: randomUsername, password: "A_VALID_PASSWORD").toBlocking().first()
                     
                     if let user = callToTest {
                         expect(user.email) == randomUsername
@@ -115,7 +115,7 @@ class CTUserServiceTests: QuickSpec {
                     self.stub(http(.post, uri: "/user"), json(Resolver().getJSONForResource(name: "userAlreadyExists"), status: 422))
                     
                     do {
-                        let _ = try CTUserService().createAndLogin(email: "EMAIL_THAT_EXISTS", password: "A_PASSWORD").toBlocking().first()
+                        let _ = try CTUserService().createAndLogin(withEmail: "EMAIL_THAT_EXISTS", password: "A_PASSWORD").toBlocking().first()
                     } catch {
                         expect(CTUserService().getActiveUserId()) == -1
                         expect(CTUserService().hasActiveSession()) == false
@@ -142,7 +142,7 @@ class CTUserServiceTests: QuickSpec {
                     self.stub(http(.post, uri: "/oauth"), json(Resolver().getJSONForResource(name: "oauth-success"), status: 200))
                     self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "user"), status: 200))
                     
-                    let callToTest = try! CTUserService().createAndLogin(email: "user@login.bike", password: "A_VALID_PASSWORD").toBlocking().first()
+                    let callToTest = try! CTUserService().createAndLogin(withEmail: "user@login.bike", password: "A_VALID_PASSWORD").toBlocking().first()
                     
                     if let user = callToTest {
                         expect(user.email) == "user@login.bike"

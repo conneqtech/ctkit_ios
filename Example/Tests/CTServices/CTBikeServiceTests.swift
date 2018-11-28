@@ -30,7 +30,7 @@ class CTBikeServiceTests: QuickSpec {
                 let subjectUnderTest = CTBikeService()
                 self.stub(http(.post, uri:"/bike"), json(Resolver().getJSONForResource(name: "bike-registration-failed"), status: 422))
                 do {
-                    let _ = try subjectUnderTest.create(withName: "Test bike", imei: "123456789", frameNumber: "EMU12345").toBlocking().first()
+                    let _ = try subjectUnderTest.create(withName: "Test bike", imei: "123456789", activationCode: "EMU12345").toBlocking().first()
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .basic
@@ -45,7 +45,7 @@ class CTBikeServiceTests: QuickSpec {
                 let subjectUnderTest = CTBikeService()
                 self.stub(http(.post, uri:"/bike"), json(Resolver().getJSONForResource(name: "bike-registration-successful"), status: 200))
                 
-                let response = try! subjectUnderTest.create(withName: "Test bike", imei: "123456789", frameNumber: "EMU12345").toBlocking().first()
+                let response = try! subjectUnderTest.create(withName: "Test bike", imei: "123456789", activationCode: "EMU12345").toBlocking().first()
                 if let unwrappedResponse = response {
                     expect(unwrappedResponse.frameIdentifier) == "EMU8885"
                     expect(unwrappedResponse.imei) == "888888888888885"
