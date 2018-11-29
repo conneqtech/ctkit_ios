@@ -40,6 +40,47 @@ public class CTRestManager {
         return genericCompletableCall(.patch, endpoint: endpoint, parameters: ["active_state":2], useToken:useToken)
     }
     
+    
+    public func upload<T:Codable>(endpoint: String, image:UIImage, useToken:String? = nil) -> Observable<T> {
+        return Observable<T>.create { (observer) -> Disposable in
+            
+            var headers: [String:String] = [:]
+            
+            if let bearer = useToken {
+                headers["Authorization"] = "Bearer \(bearer)"
+            }
+            
+            let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            let requestReference = Alamofire.upload(multipartFormData: { formData in
+                if let imageData = image.pngData() {
+                    formData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
+                }
+            }, to: url, encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                            observer.onError(CTErrorHandler().handle(withDecodingError:nil))
+                            return
+                        }
+                        
+                        observer.onNext(getResponse)
+                        observer.onCompleted()
+                    }
+                case .failure(let encodingError):
+                    print(encodingError)
+                    observer.onError(CTBasicError(translationKey: "api.error.upload.failed", description: "Uploading failed"))
+                }
+            })
+            
+            return Disposables.create(with: {
+                requestReference
+            })
+        }
+    }
+    
     private func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Completable {
         return Completable.create { (completable) in
             var headers: [String:String] = [:]

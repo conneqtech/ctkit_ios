@@ -30,8 +30,9 @@ public class CTUploadService:NSObject {
      
      - Parameter image: The image to upload.
     */
-//    public func uploadImage(withImage image:UIImage) -> Observable<CTUploadedFile> {
-//        
-//    }
-//    
+    public func uploadImage(withImage image:UIImage) -> Observable<CTUploadedFile> {
+        return CTKit.shared.restManager.upload(endpoint: "upload", image: image).map { (result:[CTUploadedFile]) in
+            return result[0]
+        }
+    }
 }
