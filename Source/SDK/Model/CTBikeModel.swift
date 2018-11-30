@@ -36,4 +36,13 @@ public struct CTBikeModel: CTBaseModel {
         case imageUrl = "bike_image_url"
         case creationDate = "creation_date"
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(keyIdentifier, forKey: .keyIdentifier)
+        try container.encode(themeColor, forKey: .themeColor)
+        try container.encode(imageUrl, forKey: .imageUrl)
+    }
+    
 }
