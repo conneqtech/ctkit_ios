@@ -179,7 +179,7 @@ class CTRideServiceTests: QuickSpec {
                 if let result = callToTest {
                     //TODO: Check whether this idea is correct?
                     //Completable seems to returns a Never type with nothing in it
-                    expect(updatedRide).to(be(type(of: Never.self)))
+                    expect(result).to(be(type(of: Never.self)))
                 } else {
                     expect("It can unwrap") == ("did not unwrap")
                 }
