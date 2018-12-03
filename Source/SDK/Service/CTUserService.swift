@@ -56,7 +56,7 @@ public class CTUserService: NSObject {
      
      - Returns: An observable containing the created user
     */
-    public func create(email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
+    public func create(withEmail email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
         return CTKit.shared.authManager.getClientToken().flatMap {
             token in CTKit.shared.restManager.post(endpoint: "user",
                                                     parameters:[
@@ -64,6 +64,32 @@ public class CTUserService: NSObject {
                                                         "password":password,
                                                         "privacy_statement_accepted": agreedToPrivacyStatement
                                                     ], useToken:token)
+        }
+    }
+    
+    /**
+     Create a new user for your app. This will try to register a user on the api with the given email and password. This call does not automatically create a session for your user.
+     
+     - Attention: This call *will not* an authorised session when creation of the account succeeds
+     
+     - Precondition: The password must at least be 6 characters long
+     
+     - Parameter name: The name of the user
+     - Parameter email: The email address to create an account for
+     - Parameter password: The password the user picked
+     - Parameter agreedToPrivacyStatement: Add true to indicate the user has agreed to your privacy policy. This agreement will be saved in the API with an `agreed_on` date field.
+     
+     - Returns: An observable containing the created user
+     */
+    public func create(withName name: String, email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
+        return CTKit.shared.authManager.getClientToken().flatMap {
+            token in CTKit.shared.restManager.post(endpoint: "user",
+                                                   parameters:[
+                                                    "name": name,
+                                                    "username":email,
+                                                    "password":password,
+                                                    "privacy_statement_accepted": agreedToPrivacyStatement
+                ], useToken:token)
         }
     }
     
@@ -80,8 +106,26 @@ public class CTUserService: NSObject {
      
      - Returns: An observable containing the created user
      */
-    public func createAndLogin(email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
-        return self.create(email: email, password: password, agreedToPrivacyStatement: agreedToPrivacyStatement).flatMap{ _ in self.login(email: email, password: password) }
+    public func createAndLogin(withEmail email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
+        return self.create(withEmail: email, password: password, agreedToPrivacyStatement: agreedToPrivacyStatement).flatMap{ _ in self.login(email: email, password: password) }
+    }
+    
+    /**
+     Create a new user for your app. This will try to register a user on the api with the given email and password.
+     
+     - Attention: This call creates an authorised session when creation of the account succeeds
+     
+     - Precondition: The password must at least be 6 characters long
+     
+     - Parameter name: The name of the user
+     - Parameter email: The email address to create an account for
+     - Parameter password: The password the user picked
+     - Parameter agreedToPrivacyStatement: Add true to indicate the user has agreed to your privacy policy. This agreement will be saved in the API with an `agreed_on` date field.
+     
+     - Returns: An observable containing the created user
+     */
+    public func createAndLogin(withName name: String, email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
+        return self.create(withName: name, email: email, password: password, agreedToPrivacyStatement: agreedToPrivacyStatement).flatMap{ _ in self.login(email: email, password: password) }
     }
 
     /**

@@ -41,6 +41,9 @@
 		C00A8A3121873348003F67CB /* validation-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A3021873348003F67CB /* validation-error.json */; };
 		C00A8A33218735A9003F67CB /* 400-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A32218735A9003F67CB /* 400-error.json */; };
 		C00A8A36218735DC003F67CB /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A8A35218735DC003F67CB /* Resolver.swift */; };
+		C01C070C21AFDE46001DA570 /* CTUploadServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */; };
+		C01C070E21AFDEE2001DA570 /* uploadImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */; };
+		C01C070F21AFE05E001DA570 /* uploadImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */; };
 		C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9B21635B250010617A /* CreateAccountViewController.swift */; };
 		C02A3D9E21635EEB0010617A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9D21635EEB0010617A /* AccountViewController.swift */; };
 		C02A3DA0216373660010617A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A3D9F216373660010617A /* LoadingViewController.swift */; };
@@ -118,6 +121,8 @@
 		C00A8A3021873348003F67CB /* validation-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "validation-error.json"; sourceTree = "<group>"; };
 		C00A8A32218735A9003F67CB /* 400-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "400-error.json"; sourceTree = "<group>"; };
 		C00A8A35218735DC003F67CB /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUploadServiceTests.swift; sourceTree = "<group>"; };
+		C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = uploadImages.xcassets; sourceTree = "<group>"; };
 		C02A3D9B21635B250010617A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		C02A3D9D21635EEB0010617A /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		C02A3D9F216373660010617A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -333,6 +338,7 @@
 		85B5EAC5219DBA2C007ACF55 /* upload */ = {
 			isa = PBXGroup;
 			children = (
+				C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */,
 			);
 			path = upload;
 			sourceTree = "<group>";
@@ -453,6 +459,7 @@
 				C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */,
 				85B5EAB8219D953A007ACF55 /* CTTheftCaseServiceTests.swift */,
 				85B2DE3E21A2E5D0004F524A /* CTStatisticsServiceTests.swift */,
+				C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */,
 			);
 			path = CTServices;
 			sourceTree = "<group>";
@@ -564,6 +571,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C01C070F21AFE05E001DA570 /* uploadImages.xcassets in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -586,6 +594,7 @@
 				852B85DF21945FE100A373F1 /* geofenceIdNotFound.json in Resources */,
 				C069CA60219B08E7003BE8C3 /* bike-history.json in Resources */,
 				85B5EAC0219DB971007ACF55 /* recoveryPartnerResponse.json in Resources */,
+				C01C070E21AFDEE2001DA570 /* uploadImages.xcassets in Resources */,
 				C069CA63219B17D5003BE8C3 /* bike.json in Resources */,
 				85B5EABC219DA963007ACF55 /* theftCaseIdNotFound.json in Resources */,
 				85B5EAC3219DB9E2007ACF55 /* statisticsResponse.json in Resources */,
@@ -722,6 +731,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85B5EAB9219D953A007ACF55 /* CTTheftCaseServiceTests.swift in Sources */,
+				C01C070C21AFDE46001DA570 /* CTUploadServiceTests.swift in Sources */,
 				C04F41B22199C502004FF81A /* CTBikeLocationServiceTests.swift in Sources */,
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
 				C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */,

@@ -13,7 +13,7 @@ public struct CTUploadedFile:CTBaseModel {
     public let isDefault:Bool
     public let quality:Int
     public let downloadURL:String
-    public let creationDate:Date
+    public let creationDate:String
     
     enum CodingKeys: String, CodingKey {
         case isOriginal = "is_original"
