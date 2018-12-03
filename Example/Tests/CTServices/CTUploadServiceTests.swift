@@ -30,16 +30,14 @@ class CTUploadServiceTests:QuickSpec {
                 let uploadResult = try! CTUploadService().uploadImage(withImage: image).toBlocking().first()
                 
                 if let res = uploadResult {
-                    print(res)
                     expect(res.quality).to(equal(50))
                     expect(res.isOriginal).toNot(beTruthy())
                     expect(res.isDefault).to(beTruthy())
                 }
             }
             
-            it("handles the error when the imagesize is too big") {
-                let image = UIImage(named: "samplePngBig")!
-                
+            fit("handles the error when the imagesize is too big") {
+                let image = UIImage(named: "samplePngHuge")!
                 do {
                     _ = try CTUploadService().uploadImage(withImage: image).toBlocking().first()
                 } catch {
@@ -52,7 +50,6 @@ class CTUploadServiceTests:QuickSpec {
                     }
                 }
             }
-            
         }
     }
 }

@@ -176,14 +176,13 @@ class CTRideServiceTests: QuickSpec {
                 self.stub(http(.patch, uri: "/bike/ride/262"), json("", status: 200))
                 
                 let callToTest = try! CTRideService().delete(withRideId: 262).toBlocking().first()
-                if let updatedRide = callToTest {
+                if let result = callToTest {
                     //TODO: Check whether this idea is correct?
                     //Completable seems to returns a Never type with nothing in it
                     expect(updatedRide).to(be(type(of: Never.self)))
                 } else {
                     expect("It can unwrap") == ("did not unwrap")
                 }
-                
             }
         }
         
