@@ -31,6 +31,8 @@ internal class CTErrorHandler: NSObject {
                 handledError = handleNotFound(body: unwrappedResponse)
             case 406:
                 handledError = handleUserAlreadyTaken(body: unwrappedResponse)
+            case 500:
+                handledError = handleInternalServerError()
             default:
                 handledError = CTBasicError(translationKey: "DEFAULT ERROR HANDLE", description: "")
             }
@@ -45,8 +47,15 @@ internal class CTErrorHandler: NSObject {
     }
     
     func handle(response: DataResponse<Any>) -> CTErrorProtocol {
+        
         guard let jsonData = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:Any] else {
-            return CTBasicError(translationKey: "COULD NOT PARSE json", description: "")
+            var responseDict = [String:Any]()
+            if let response = response.response {
+                responseDict = [
+                    "status":response.statusCode
+                    ]
+            }
+            return self.handle(withJSONData: responseDict)
         }
         
         return self.handle(withJSONData: jsonData)
@@ -107,5 +116,9 @@ internal class CTErrorHandler: NSObject {
         }
         
         return CTBasicError(translationKey: body["detail"] as! String, description: translatable, code: 422)
+    }
+    
+    func handleInternalServerError() -> CTBasicError? {
+        return CTBasicError(translationKey: "api.error.500.internal-server-error", description: "Internal server error", code: 500)
     }
 }

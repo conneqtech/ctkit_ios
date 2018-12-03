@@ -60,14 +60,26 @@ public class CTRestManager {
             }, to: url, encodingCompletion: { encodingResult in
                 switch encodingResult {
                 case .success(let upload, _, _):
-                    upload.responseJSON { response in
-                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
-                            observer.onError(CTErrorHandler().handle(withDecodingError:nil))
-                            return
-                        }
+                    upload
+                        .validate(statusCode: 200..<300)
+                        .validate(contentType: ["application/json"])
+                        .responseJSON { response in
                         
-                        observer.onNext(getResponse)
-                        observer.onCompleted()
+                        switch response.result {
+                        case .success:
+                            guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                                observer.onError(CTErrorHandler().handle(withDecodingError:nil))
+                                return
+                            }
+                    
+                            observer.onNext(getResponse)
+                            observer.onCompleted()
+                                    
+                            
+                        case .failure:
+                            print("upload failed")
+                            observer.onError(CTErrorHandler().handle(response: response))
+                        }
                     }
                 case .failure(let encodingError):
                     print(encodingError)
