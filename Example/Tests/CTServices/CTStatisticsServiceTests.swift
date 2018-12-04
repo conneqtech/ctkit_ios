@@ -28,7 +28,7 @@ class CTStatisticServiceTests:QuickSpec {
                 self.stub(http(.get, uri: "/bike/152/stats/"), json( Resolver().getJSONListForResource(name: "statisticsResponse"), status: 200))
                 let callToTest = try! CTStatisticsService().fetchAll(withBikeId: 152).toBlocking().first()
                 if let statisticsResponse = callToTest {
-                    expect(statisticsResponse).toNot(beNil())
+                    expect(statisticsResponse.count).to(beGreaterThan(0))
                 } else {
                     expect("it can unwrap") == "did not unwrap"
                 }
@@ -38,7 +38,7 @@ class CTStatisticServiceTests:QuickSpec {
                 self.stub(http(.get, uri: "/bike/152/stats/"), json(Resolver().getJSONListForResource(name: "statisticsResponse"), status: 200))
                 let callToTest = try! CTStatisticsService().fetchAll(withBikeId: 152, after: Date()).toBlocking().first()
                 if let statisticsResponse = callToTest {
-                    expect(statisticsResponse).toNot(beNil())
+                    expect(statisticsResponse.count).to(beGreaterThan(0))
                 } else {
                     expect("it can unwrap") == "did not unwrap"
                 }

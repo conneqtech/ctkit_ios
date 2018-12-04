@@ -121,7 +121,7 @@ class CTBikeServiceTests: QuickSpec {
         
         
         describe("Bike information") {
-            fit("searches for a bike with a frame number") {
+            it("searches for a bike with a frame number") {
                 self.stub(http(.get, uri: "/bike/search"), json([Resolver().getJSONForResource(name: "bike-information")], status: 200))
                 let subjectUnderTest = CTBikeService()
                                 
