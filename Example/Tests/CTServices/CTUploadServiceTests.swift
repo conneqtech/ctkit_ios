@@ -19,7 +19,7 @@ import UIKit
 class CTUploadServiceTests:QuickSpec {
 
     override func spec() {
-        TODO: Mock these requests, so we don't spam the server with giant images
+//        TODO: Mock these requests, so we don't spam the server with giant images
         describe("File upload") {
             beforeEach {
                 let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()
