@@ -7,11 +7,11 @@
 //
 
 public struct CTOAuth2TokenResponse: Codable {
-    var accessToken: String
-    var refreshToken: String?
-    var expiresIn: Int
-    var scope: String?
-    var tokenType: String
+    public var accessToken: String
+    public var refreshToken: String?
+    public var expiresIn: Int
+    public var scope: String?
+    public var tokenType: String
     
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
