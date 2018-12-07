@@ -51,40 +51,41 @@ public class CTRestManager {
             }
             
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+            let requestReference = Alamofire.upload(multipartFormData: { formData in
+                if let imageData = image.pngData() {
+                    formData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
+                }
+            }, to: url, encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload
+                        .validate(statusCode: 200..<300)
+                        .validate(contentType: ["application/json"])
+                        .responseJSON { response in
+                            
+                            switch response.result {
+                            case .success:
+                                guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                                    observer.onError(CTErrorHandler().handle(withDecodingError:nil))
+                                    return
+                                }
+                                
+                                observer.onNext(getResponse)
+                                observer.onCompleted()
+                                
+                                
+                            case .failure:
+                                observer.onError(CTErrorHandler().handle(response: response))
+                            }
+                    }
+                case .failure(let encodingError):
+                    print(encodingError)
+                    observer.onError(CTBasicError(translationKey: "api.error.upload.failed", description: "Uploading failed"))
+                }
+            })
         
             return Disposables.create(with: {
-                Alamofire.upload(multipartFormData: { formData in
-                    if let imageData = image.pngData() {
-                        formData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
-                    }
-                }, to: url, encodingCompletion: { encodingResult in
-                    switch encodingResult {
-                    case .success(let upload, _, _):
-                        upload
-                            .validate(statusCode: 200..<300)
-                            .validate(contentType: ["application/json"])
-                            .responseJSON { response in
-                                
-                                switch response.result {
-                                case .success:
-                                    guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
-                                        observer.onError(CTErrorHandler().handle(withDecodingError:nil))
-                                        return
-                                    }
-                                    
-                                    observer.onNext(getResponse)
-                                    observer.onCompleted()
-                                    
-                                    
-                                case .failure:
-                                    observer.onError(CTErrorHandler().handle(response: response))
-                                }
-                        }
-                    case .failure(let encodingError):
-                        print(encodingError)
-                        observer.onError(CTBasicError(translationKey: "api.error.upload.failed", description: "Uploading failed"))
-                    }
-                })
+                requestReference
             })
         }
     }
