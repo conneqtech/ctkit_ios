@@ -38,6 +38,7 @@
 		85B6E945218351DB00F44404 /* RideTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B6E944218351DB00F44404 /* RideTableViewController.swift */; };
 		85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4B2181D9AE0097D7A7 /* theftcase.json */; };
 		85D33A4E2181DA120097D7A7 /* theftcaseList.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4D2181DA120097D7A7 /* theftcaseList.json */; };
+		85F58D8A21BC1A3100F723DD /* CTBikeModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F58D8921BC1A3100F723DD /* CTBikeModelTests.swift */; };
 		B57938623B24C4F138759C79 /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C79E5626B08B9E0268AB37E /* Pods_ctkit_Example.framework */; };
 		C00A8A3121873348003F67CB /* validation-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A3021873348003F67CB /* validation-error.json */; };
 		C00A8A33218735A9003F67CB /* 400-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A32218735A9003F67CB /* 400-error.json */; };
@@ -118,6 +119,7 @@
 		85B6E944218351DB00F44404 /* RideTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideTableViewController.swift; sourceTree = "<group>"; };
 		85D33A4B2181D9AE0097D7A7 /* theftcase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftcase.json; sourceTree = "<group>"; };
 		85D33A4D2181DA120097D7A7 /* theftcaseList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftcaseList.json; sourceTree = "<group>"; };
+		85F58D8921BC1A3100F723DD /* CTBikeModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeModelTests.swift; sourceTree = "<group>"; };
 		AA81EECC2BEA5016338F8ACC /* ctkit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ctkit.podspec; path = ../ctkit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ABE31016D690DA6F44A7AF83 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C00A8A3021873348003F67CB /* validation-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "validation-error.json"; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 			children = (
 				C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */,
 				85B2BDCD21BBCDA3009036E7 /* CTRideModelTests.swift */,
+				85F58D8921BC1A3100F723DD /* CTBikeModelTests.swift */,
 			);
 			path = CTModels;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85B5EAB9219D953A007ACF55 /* CTTheftCaseServiceTests.swift in Sources */,
+				85F58D8A21BC1A3100F723DD /* CTBikeModelTests.swift in Sources */,
 				C01C070C21AFDE46001DA570 /* CTUploadServiceTests.swift in Sources */,
 				C04F41B22199C502004FF81A /* CTBikeLocationServiceTests.swift in Sources */,
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
