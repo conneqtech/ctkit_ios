@@ -40,7 +40,6 @@ class CTTheftCaseModelTests:QuickSpec {
                 
                     // Convert it back to 'dumb' JSON so we can inspect some values
                     let jsonData = try! JSONSerialization.jsonObject(with: jsonBytes, options: []) as? [String:Any]
-                    print(jsonData)
                 
                     // Check for non encodings
                     if let _ = jsonData?["id"] {
@@ -69,7 +68,9 @@ class CTTheftCaseModelTests:QuickSpec {
                     
                     expect(jsonData?.count) == 14
                 
-            }
+                } else {
+                    expect("There's data available") == "no data available"
+                }
             }
         }
     }
