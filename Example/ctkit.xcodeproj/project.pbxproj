@@ -13,6 +13,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		850D66CE21BE6641002FED0D /* CTTheftCaseModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D66CD21BE6641002FED0D /* CTTheftCaseModelTests.swift */; };
 		852B85DB21943F9B00A373F1 /* CTGeofenceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */; };
 		852B85DD219449FF00A373F1 /* userNotLoggedIn.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85DC219449FE00A373F1 /* userNotLoggedIn.json */; };
 		852B85DF21945FE100A373F1 /* geofenceIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */; };
@@ -94,6 +95,7 @@
 		607FACE51AFB9204008FA782 /* ctkit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ctkit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C3BCF536DE4A862F50071DD /* Pods-ctkit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6CA44E7F3150B084A4066032 /* Pods-ctkit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		850D66CD21BE6641002FED0D /* CTTheftCaseModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTTheftCaseModelTests.swift; sourceTree = "<group>"; };
 		852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTGeofenceServiceTests.swift; sourceTree = "<group>"; };
 		852B85DC219449FE00A373F1 /* userNotLoggedIn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userNotLoggedIn.json; sourceTree = "<group>"; };
 		852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofenceIdNotFound.json; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 				C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */,
 				85B2BDCD21BBCDA3009036E7 /* CTRideModelTests.swift */,
 				85F58D8921BC1A3100F723DD /* CTBikeModelTests.swift */,
+				850D66CD21BE6641002FED0D /* CTTheftCaseModelTests.swift */,
 			);
 			path = CTModels;
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 			files = (
 				85B5EAB9219D953A007ACF55 /* CTTheftCaseServiceTests.swift in Sources */,
 				85F58D8A21BC1A3100F723DD /* CTBikeModelTests.swift in Sources */,
+				850D66CE21BE6641002FED0D /* CTTheftCaseModelTests.swift in Sources */,
 				C01C070C21AFDE46001DA570 /* CTUploadServiceTests.swift in Sources */,
 				C04F41B22199C502004FF81A /* CTBikeLocationServiceTests.swift in Sources */,
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,

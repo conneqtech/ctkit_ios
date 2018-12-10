@@ -8,8 +8,8 @@
 import Foundation
 
 public struct CTPaginatableResponse<T>: Codable where T:Codable {
-    public let filters: [String]
-    public let orderClauses: [String]
+    public let filters: [CTFilterModel]
+    public let orderClauses: [CTOrderClauseModel]
     public let data: [T]
     
     
@@ -17,7 +17,6 @@ public struct CTPaginatableResponse<T>: Codable where T:Codable {
     public let offset: Int
     public let availableFilterFieldNames: [String]
     public let availableOrderFieldNames: [String]
-    
     
     
     enum CodingKeys: String, CodingKey {
@@ -34,9 +33,8 @@ public struct CTPaginatableResponse<T>: Codable where T:Codable {
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let meta = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .meta)
-        
-        filters = try! container.decode([String].self, forKey: .filters)
-        orderClauses = try! container.decode([String].self, forKey: .orderClauses)
+        filters = try! container.decode([CTFilterModel].self, forKey: .filters)
+        orderClauses = try! container.decode([CTOrderClauseModel].self, forKey: .orderClauses)
         data = try! container.decode([T].self, forKey: .data)
         
         limit = try! meta.decode(Int.self, forKey: .limit)

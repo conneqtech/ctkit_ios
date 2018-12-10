@@ -21,6 +21,7 @@ public struct CTBikeModel: CTBaseModel {
     public var themeColor: String?
     public var imageUrl:String?
     public var creationDate:String?
+    public var isStolen:Bool?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -35,14 +36,19 @@ public struct CTBikeModel: CTBaseModel {
         case themeColor = "color_hex"
         case imageUrl = "bike_image_url"
         case creationDate = "creation_date"
+        case isStolen = "is_stolen"
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        
         try container.encode(name, forKey: .name)
         try container.encode(keyIdentifier, forKey: .keyIdentifier)
         try container.encode(themeColor, forKey: .themeColor)
         try container.encode(imageUrl, forKey: .imageUrl)
+        try container.encode(frameIdentifier, forKey: .frameIdentifier)
+        try container.encode(isStolen, forKey: .isStolen)
+        
     }
     
 }

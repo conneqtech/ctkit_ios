@@ -36,9 +36,6 @@ public struct CTTheftCaseModel:CTBaseModel {
     public let caseFinalized:Bool
     
     
-    
-    
-    
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case caseNumber = "case_number"
@@ -64,4 +61,27 @@ public struct CTTheftCaseModel:CTBaseModel {
         case policeCaseNumber = "police_case_number"
         case caseFinalized = "finalized"
     }
+    
+    
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(bikeFrameType, forKey: .bikeFrameType)
+        try container.encode(bikeType, forKey: .bikeType)
+        try container.encode(bikeColor, forKey: .bikeColor)
+        try container.encode(bikeAdditionalDetails, forKey: .bikeAdditionalDetails)
+        try container.encode(bikeImages, forKey: .bikeImages)
+        try container.encode(ownerName, forKey: .ownerName)
+        try container.encode(ownerEmail, forKey: .ownerEmail)
+        try container.encode(ownerPhone, forKey: .ownerPhone)
+        try container.encode(ownerAddress, forKey: .ownerAddress)
+        try container.encode(ownerPostalCode, forKey: .ownerPostalCode)
+        try container.encode(ownerCity, forKey: .ownerCity)
+        try container.encode(ownerCountry, forKey: .ownerCountry)
+        try container.encode(bikeIsInsured, forKey: .bikeIsInsured)
+        try container.encode(policeCaseNumber, forKey: .policeCaseNumber)
+        
+    }
+    
 }

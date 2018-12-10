@@ -23,6 +23,10 @@ class CTRideModelTests:QuickSpec {
                 expect(subjectToTest.bikeId) == 0
                 expect(subjectToTest.userId) == 4
                 expect(subjectToTest.creationDate) == "2018-09-17T13:09:02+0000"
+                expect(subjectToTest.calories) == 27
+                expect(subjectToTest.averageSpeed) == 11
+                expect(subjectToTest.distanceTraveled) == 857
+                expect(subjectToTest.co2) == 128
                 
             }
             
@@ -50,11 +54,11 @@ class CTRideModelTests:QuickSpec {
                 expect(jsonData!["start_date"] as? String) == "2018-09-13T01:40:00+0000"
                 expect(jsonData!["end_date"] as? String) == "2018-09-13T01:45:30+0000"
                 expect(jsonData!["ride_type"] as? String) == "ride.type.leisure"
-                expect(jsonData!["bike_id"] as? Int) == 0
-                expect(jsonData!["user_id"] as? Int) == 4
+
                 
+                print(jsonData)
                 
-                expect(jsonData?.count) == 6
+                expect(jsonData?.count) == 4
             }
         }
     }
