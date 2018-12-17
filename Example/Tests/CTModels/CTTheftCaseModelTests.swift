@@ -54,7 +54,7 @@ class CTTheftCaseModelTests:QuickSpec {
                     expect(jsonData!["bike_images"] as? [String]) == [
                         "https://cb4e5bc7a3dc43969015c331117f69c1.objectstore.eu/cnt/static/sparta-bikeimage-default-m8i.png"
                     ]
-                    expect(jsonData!["police_case_number"] as? String).to(beNil())
+                    expect(jsonData!["police_case_number"]).to(beNil())
                     expect(jsonData!["bike_is_insured"] as? Bool) == true
                     
                     expect(jsonData!["owner_address"] as? String) == "Edisonweg 41"

@@ -43,7 +43,7 @@ class CTBikeModelTests:QuickSpec {
                 // Check *all* fields!
                 
                 expect(jsonData!["name"] as? String) == "Test bike"
-                expect(jsonData!["color_hex"] as? String).to(beNil())
+                expect(jsonData!["color_hex"]).to(beNil())
                 expect(jsonData!["bike_image_url"] as? String) == "https://cb4e5bc7a3dc43969015c331117f69c1.objectstore.eu/cnt/static/sparta-bikeimage-default-m8i.png"
                 expect(jsonData!["key_number"] as? String) == "1234A"
                 expect(jsonData!["frame_number"] as? String) == "sp1000030"

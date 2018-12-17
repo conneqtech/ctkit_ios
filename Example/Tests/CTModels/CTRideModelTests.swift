@@ -54,9 +54,6 @@ class CTRideModelTests:QuickSpec {
                 expect(jsonData!["start_date"] as? String) == "2018-09-13T01:40:00+0000"
                 expect(jsonData!["end_date"] as? String) == "2018-09-13T01:45:30+0000"
                 expect(jsonData!["ride_type"] as? String) == "ride.type.leisure"
-
-                
-                print(jsonData)
                 
                 expect(jsonData?.count) == 4
             }
