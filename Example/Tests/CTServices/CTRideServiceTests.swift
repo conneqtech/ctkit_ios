@@ -172,17 +172,13 @@ class CTRideServiceTests: QuickSpec {
                 }
             }
             
-            it("Succesfully archives the ride") {
-                self.stub(http(.patch, uri: "/bike/ride/262"), json("", status: 200))
+            fit("Succesfully archives the ride") {
+                var updatedRideModel = Resolver().getJSONForResource(name: "ride")
+                updatedRideModel["active_state"] = "2"
+                self.stub(http(.patch, uri: "/bike/ride/92"), json(updatedRideModel, status: 200))
                 
-                let callToTest = try! CTRideService().delete(withRideId: 262).toBlocking().first()
-                if let result = callToTest {
-                    //TODO: Check whether this idea is correct?
-                    //Completable seems to returns a Never type with nothing in it
-                    expect(result).to(be(type(of: Never.self)))
-                } else {
-                    expect("It can unwrap") == ("did not unwrap")
-                }
+                let callToTest = try! CTRideService().delete(withRideId: 92).toBlocking().first()
+                expect(callToTest).to(beNil())
             }
         }
         

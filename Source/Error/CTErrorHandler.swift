@@ -47,7 +47,6 @@ internal class CTErrorHandler: NSObject {
     }
     
     func handle(response: DataResponse<Any>) -> CTErrorProtocol {
-        print(response.response)
         guard let jsonData = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:Any] else {
             var responseDict = [String:Any]()
             if let response = response.response {

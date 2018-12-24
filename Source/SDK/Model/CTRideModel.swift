@@ -73,22 +73,11 @@ public struct CTRideModel: CTBaseModel {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        var weatherInfo = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .weatherInfo)
         
-        try weatherInfo.encode(weatherIconURL, forKey: .weatherIconURL)
-        try container.encode(id, forKey: .id)
-        try container.encode(userId, forKey: .userId)
-        try container.encode(bikeId, forKey: .bikeId)
         try container.encode(name, forKey: .name)
         try container.encode(rideType, forKey: .rideType)
-        try container.encode(creationDate, forKey: .creationDate)
         try container.encode(startDate, forKey: .startDate)
         try container.encode(endDate, forKey: .endDate)
-        
-        try container.encode(calories, forKey: .calories)
-        try container.encode(averageSpeed, forKey: .averageSpeed)
-        try container.encode(distanceTraveled, forKey: .distanceTraveled)
-        try container.encode(co2, forKey: .co2)
         
     }
     
