@@ -52,7 +52,7 @@ public class CTKit {
         
         self.restManager = CTRestManager(withConfig: APIConfig)
         self.authManager = CTAuthManager(withConfig: APIConfig)
-        self.subscriptionManager = CTSubscriptionManager(withConfig: APIConfig)
+//        self.subscriptionManager = CTSubscriptionManager(withConfig: APIConfig)
     }
     
     public static func configure(withClientId clientId: String, clientSecret: String, baseURL: String) {
