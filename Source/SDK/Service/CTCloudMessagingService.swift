@@ -39,7 +39,7 @@ public class CTCloudMessagingService: NSObject {
                     
                     notification.translatableKey = locKey
                     
-                    if var args:[String] = (alert["loc-args"] as? [String]) , args.count > 1 {
+                    if let args:[String] = (alert["loc-args"] as? [String]) , args.count > 1 {
                         notification.translationFieldValues = args
                     }
                 }

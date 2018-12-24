@@ -35,6 +35,9 @@ public struct CTUserModel: CTBaseModel {
      ///Last name of the user, maximum length 255 is characters
     public var lastName: String?
     
+    //Full name of the user
+    public var name: String?
+    
     ///Initials of the user, maximum length 255 is characters
     public var initials:String?
     
@@ -73,6 +76,7 @@ public struct CTUserModel: CTBaseModel {
         case email = "username"
         case firstName = "first_name"
         case lastName = "last_name"
+        case name = "name"
         
         case initials = "initials"
         case gender = "gender"
@@ -97,6 +101,7 @@ public struct CTUserModel: CTBaseModel {
         try container.encode(initials, forKey: .initials)
         try container.encode(gender, forKey: .gender)
         try container.encode(avatar, forKey: .avatar)
+        try container.encode(name, forKey: .name)
         
         try container.encode(street, forKey: .street)
         try container.encode(houseNumber, forKey: .houseNumber)

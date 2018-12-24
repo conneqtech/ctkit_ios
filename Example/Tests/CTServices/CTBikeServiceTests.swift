@@ -30,7 +30,7 @@ class CTBikeServiceTests: QuickSpec {
                 let subjectUnderTest = CTBikeService()
                 self.stub(http(.post, uri:"/bike"), json(Resolver().getJSONForResource(name: "bike-registration-failed"), status: 422))
                 do {
-                    let _ = try subjectUnderTest.create(withName: "Test bike", imei: "123456789", frameNumber: "EMU12345").toBlocking().first()
+                    let _ = try subjectUnderTest.create(withName: "Test bike", imei: "123456789", activationCode: "EMU12345").toBlocking().first()
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .basic
@@ -45,7 +45,7 @@ class CTBikeServiceTests: QuickSpec {
                 let subjectUnderTest = CTBikeService()
                 self.stub(http(.post, uri:"/bike"), json(Resolver().getJSONForResource(name: "bike-registration-successful"), status: 200))
                 
-                let response = try! subjectUnderTest.create(withName: "Test bike", imei: "123456789", frameNumber: "EMU12345").toBlocking().first()
+                let response = try! subjectUnderTest.create(withName: "Test bike", imei: "123456789", activationCode: "EMU12345").toBlocking().first()
                 if let unwrappedResponse = response {
                     expect(unwrappedResponse.frameIdentifier) == "EMU8885"
                     expect(unwrappedResponse.imei) == "888888888888885"
@@ -124,10 +124,10 @@ class CTBikeServiceTests: QuickSpec {
             it("searches for a bike with a frame number") {
                 self.stub(http(.get, uri: "/bike/search"), json([Resolver().getJSONForResource(name: "bike-information")], status: 200))
                 let subjectUnderTest = CTBikeService()
-                
-            
-                let response = try! subjectUnderTest.searchUnregisteredBike(withFrameIdentifier: "EN15194").toBlocking().first()
+                                
+                let response = try! subjectUnderTest.searchUnregisteredBike(withFrameIdentifier: "EMU5587").toBlocking().first()
                 if let response = response {
+                    expect(response.count) > 0
                     let bike = response[0]
                     
                     expect(bike.partialIMEI) == "3515640561"
@@ -137,6 +137,7 @@ class CTBikeServiceTests: QuickSpec {
                     expect(bike.manufacturerModelName) == ""
                     expect(bike.manufacturerProductionDate) == ""
                     expect(bike.manufacturerSKU) == "9999999"
+                    expect(bike.registrationFlow) == .Booklet
                 }
             }
         }

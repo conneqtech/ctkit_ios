@@ -14,24 +14,16 @@ import Alamofire
  
  */
 public class CTUploadService:NSObject {
-    /**
-     Uploads an image with a URL String.
-     
-     - Parameter URL: The URL of the image.
 
-     */
-//    public func uploadImage(withImageURL URL:String) -> Observable<CTUploadedFile> {
-//      
-//    }
-
-    
     /**
-     Uploads an image with an actual image.
+     Uploads an image to the API using a UIImage.
      
      - Parameter image: The image to upload.
+     - Returns: The upload result, you can use downloadUrl from the object to get access to the uploaded file.
     */
-//    public func uploadImage(withImage image:UIImage) -> Observable<CTUploadedFile> {
-//        
-//    }
-//    
+    public func uploadImage(withImage image:UIImage) -> Observable<CTUploadedFile> {
+        return CTKit.shared.restManager.upload(endpoint: "upload", image: image).map { (result:[CTUploadedFile]) in
+            return result[0]
+        }
+    }
 }

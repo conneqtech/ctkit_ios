@@ -74,6 +74,30 @@ public class CTGeofenceService: NSObject {
     }
     
     /**
+     Activate the geofence, at this point the API will resume / start sending push notifications when the user
+     enters / leaves the geofence
+     
+     - Parameter identifier: The id of the geofence you want to activate
+     - Returns:  An observable with the updated geofence created from the API response
+     */
+    public func activate(withGeofenceId identifier: Int) -> Observable<CTGeofenceModel> {
+        return CTKit.shared.restManager.patch(endpoint: "bike/geofence/\(identifier)", parameters: [
+            "active_state": 0])
+    }
+    
+    /**
+     Deactivate the geofence, at this point the API will *stop* sending push notifications when the user
+     enters / leaves the geofence
+     
+     - Parameter identifier: The id of the geofence you want to deactivate
+     - Returns:  An observable with the updated geofence created from the API response
+     */
+    public func deactivate(withGeofenceId identifier: Int) -> Observable<CTGeofenceModel> {
+        return CTKit.shared.restManager.patch(endpoint: "bike/geofence/\(identifier)", parameters: [
+            "active_state": 1])
+    }
+    
+    /**
      Remove the geofence from the user and delete it on the API
      
      - Parameter identifier: The identifier of the geofence you want to delete

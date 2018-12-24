@@ -5,6 +5,7 @@
         "art_num": "9999999",
         "frame_number": "EN15194",
         "model_name": "",
-        "fabrication_date": ""
+        "fabrication_date": "",
+        "registration_flow":"booklet_flow"
     }
 }

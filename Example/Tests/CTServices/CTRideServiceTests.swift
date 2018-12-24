@@ -91,8 +91,8 @@ class CTRideServiceTests: QuickSpec {
                             expect(validationError.validationMessages).to(haveCount(6))
                             
                             let messageToTest = validationError.validationMessages[0]
-                            expect(messageToTest.type) == "validationError"
-                            expect(messageToTest.originalMessage) == "One or more fields have not been filled out correctly"
+                            expect(messageToTest.type) == "isEmpty"
+                            expect(messageToTest.originalMessage) == "Value is required and can't be empty"
                             
                         }
                     }
@@ -172,19 +172,13 @@ class CTRideServiceTests: QuickSpec {
                 }
             }
             
-            it("Succesfully archives the ride") {
-                //                    TODO: Find way to test completables
-                //                    let originalRideModel = try! JSONDecoder().decode(CTRideModel.self, from: Resolver().getDataForResource(name: "ride"))
-                //                    var updatedRideModel = Resolver().getJSONForResource(name: "ride")
-                //                    updatedRideModel["active_state"] = 2
-                //
-                //                    self.stub(http(.patch, uri: "/bike/ride/92"), json(updatedRideModel))
-                //
-                //                    let callToTest = try! CTRideService().delete(withRideId: 262).toBlocking().first()
-                //                    if let updatedRide = callToTest {
-                //
-                //                    }
-                //
+            fit("Succesfully archives the ride") {
+                var updatedRideModel = Resolver().getJSONForResource(name: "ride")
+                updatedRideModel["active_state"] = "2"
+                self.stub(http(.patch, uri: "/bike/ride/92"), json(updatedRideModel, status: 200))
+                
+                let callToTest = try! CTRideService().delete(withRideId: 92).toBlocking().first()
+                expect(callToTest).to(beNil())
             }
         }
         

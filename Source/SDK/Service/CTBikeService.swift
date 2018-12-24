@@ -8,6 +8,12 @@
 import Foundation
 import RxSwift
 
+public enum CTBikeRegistrationFlow: String, Codable {
+    case IMEI = "imei_flow"
+    case Booklet = "booklet_flow"
+    case CustomerService = "customer-service_flow"
+}
+
 /**
  The CTBikeService is the main entry point to manage and create bikes for an authenticated user. It allows for all basic management and some convenience methods to help ease the management of bikes.
  */
@@ -18,15 +24,30 @@ public class CTBikeService: NSObject {
      
      - Parameter name: The name of the bike
      - Parameter imei: The IMEI number of the bike
-     - Parameter frameNumber: The framenumber of the bike
+     - Parameter activationCode: The activationCode of the bike
      
      - Returns: An observable of the newly created bike.
      */
-    public func create(withName name: String, imei: String, frameNumber: String) -> Observable<CTBikeModel> {
+    public func create(withName name: String, imei: String, activationCode: String) -> Observable<CTBikeModel> {
         return CTKit.shared.restManager.post(endpoint: "bike", parameters: [
             "name":name,
             "imei":imei,
-            "frame_number":frameNumber]
+            "activation_code":activationCode]
+        )
+    }
+    
+    /**
+     Create a new bike with the minimal amount of data
+     
+     - Parameter name: The name of the bike
+     - Parameter activationCode: The activationCode of the bike
+     
+     - Returns: An observable of the newly created bike.
+     */
+    public func create(withName name: String, andActivationCode activationCode: String) -> Observable<CTBikeModel> {
+        return CTKit.shared.restManager.post(endpoint: "bike", parameters: [
+            "name":name,
+            "activation_code":activationCode]
         )
     }
     
@@ -111,3 +132,5 @@ public class CTBikeService: NSObject {
         return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["frame_number":identifier])
     }
 }
+
+

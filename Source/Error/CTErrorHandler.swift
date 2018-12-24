@@ -29,6 +29,10 @@ internal class CTErrorHandler: NSObject {
                 handledError = handleUnprocessableEntity(body: unwrappedResponse)
             case 404:
                 handledError = handleNotFound(body: unwrappedResponse)
+            case 406:
+                handledError = handleUserAlreadyTaken(body: unwrappedResponse)
+            case 500:
+                handledError = handleInternalServerError()
             default:
                 handledError = CTBasicError(translationKey: "DEFAULT ERROR HANDLE", description: "")
             }
@@ -44,7 +48,13 @@ internal class CTErrorHandler: NSObject {
     
     func handle(response: DataResponse<Any>) -> CTErrorProtocol {
         guard let jsonData = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:Any] else {
-            return CTBasicError(translationKey: "COULD NOT PARSE json", description: "")
+            var responseDict = [String:Any]()
+            if let response = response.response {
+                responseDict = [
+                    "status":response.statusCode
+                    ]
+            }
+            return self.handle(withJSONData: responseDict)
         }
         
         return self.handle(withJSONData: jsonData)
@@ -70,6 +80,10 @@ internal class CTErrorHandler: NSObject {
     
     func handleBadRequest(body: [String:Any]) -> CTBasicError? {
         return CTBasicError(translationKey: "api.error.400.bad-request", description: "The server encountered a bad request", errorBody: body)
+    }
+    
+    func handleUserAlreadyTaken(body: [String:Any]) -> CTBasicError? {
+        return CTBasicError(translationKey: "api.error.406.username-already-taken", description: "This username is already taken", errorBody: body)
     }
     
     func handleUnprocessableEntity(body: [String:Any]) -> CTErrorProtocol? {
@@ -101,5 +115,9 @@ internal class CTErrorHandler: NSObject {
         }
         
         return CTBasicError(translationKey: body["detail"] as! String, description: translatable, code: 422)
+    }
+    
+    func handleInternalServerError() -> CTBasicError? {
+        return CTBasicError(translationKey: "api.error.500.internal-server-error", description: "Internal server error", code: 500)
     }
 }
