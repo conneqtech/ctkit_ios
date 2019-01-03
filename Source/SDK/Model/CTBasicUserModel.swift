@@ -13,13 +13,13 @@ public struct CTBasicUserModel: CTBaseModel {
     public let email: String?
     
     public let displayName:String
-    public let avatarUrl: String
+    public let profileImage: String
     
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case email = "username"
         case displayName = "display_name"
-        case avatarUrl = "avatar_url"
+        case profileImage = "avatar_url"
     }
 }
