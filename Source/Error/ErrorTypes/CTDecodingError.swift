@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct CTDecodingError: CTErrorProtocol {
-    var type: CTErrorType
-    var code: Int
+public struct CTDecodingError: CTErrorProtocol {
+    public var type: CTErrorType
+    public var code: Int
     
-    var translationKey: String
-    var errorBody: [String: Any]
+    public var translationKey: String
+    public var errorBody: [String: Any]
     
-    var description: String
+    public var description: String
     
     init(translationKey: String, description: String, errorBody: [String:Any] = [:], code: Int = 0) {
         self.translationKey = translationKey
