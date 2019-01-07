@@ -41,6 +41,8 @@
 		85D33A4E2181DA120097D7A7 /* theftcaseList.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4D2181DA120097D7A7 /* theftcaseList.json */; };
 		85F58D8A21BC1A3100F723DD /* CTBikeModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F58D8921BC1A3100F723DD /* CTBikeModelTests.swift */; };
 		B57938623B24C4F138759C79 /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C79E5626B08B9E0268AB37E /* Pods_ctkit_Example.framework */; };
+		C001439F21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001439E21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift */; };
+		C00143A021E393B800636C6E /* CTTheftCasePartnerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001439E21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift */; };
 		C00A8A3121873348003F67CB /* validation-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A3021873348003F67CB /* validation-error.json */; };
 		C00A8A33218735A9003F67CB /* 400-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A32218735A9003F67CB /* 400-error.json */; };
 		C00A8A36218735DC003F67CB /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A8A35218735DC003F67CB /* Resolver.swift */; };
@@ -124,6 +126,7 @@
 		85F58D8921BC1A3100F723DD /* CTBikeModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeModelTests.swift; sourceTree = "<group>"; };
 		AA81EECC2BEA5016338F8ACC /* ctkit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ctkit.podspec; path = ../ctkit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ABE31016D690DA6F44A7AF83 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C001439E21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTTheftCasePartnerServiceTests.swift; sourceTree = "<group>"; };
 		C00A8A3021873348003F67CB /* validation-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "validation-error.json"; sourceTree = "<group>"; };
 		C00A8A32218735A9003F67CB /* 400-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "400-error.json"; sourceTree = "<group>"; };
 		C00A8A35218735DC003F67CB /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
@@ -466,6 +469,7 @@
 				85B5EAB8219D953A007ACF55 /* CTTheftCaseServiceTests.swift */,
 				85B2DE3E21A2E5D0004F524A /* CTStatisticsServiceTests.swift */,
 				C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */,
+				C001439E21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift */,
 			);
 			path = CTServices;
 			sourceTree = "<group>";
@@ -725,6 +729,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C02A3DA22163A1C40010617A /* BikeTableViewController.swift in Sources */,
+				C001439F21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift in Sources */,
 				C02A3D9C21635B250010617A /* CreateAccountViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				85B6E945218351DB00F44404 /* RideTableViewController.swift in Sources */,
@@ -752,6 +757,7 @@
 				85B2BDCE21BBCDA3009036E7 /* CTRideModelTests.swift in Sources */,
 				C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */,
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
+				C00143A021E393B800636C6E /* CTTheftCasePartnerServiceTests.swift in Sources */,
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 				852B85DB21943F9B00A373F1 /* CTGeofenceServiceTests.swift in Sources */,
 			);
