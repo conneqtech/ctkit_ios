@@ -10,10 +10,6 @@ import RxSwift
 import Alamofire
 
 public class CTAuthManager {
-    
-    private let ACCESS_TOKEN_KEY = "accessToken"
-    private let REFRESH_TOKEN_KEY = "refreshToken"
-    
     private let apiConfig:CTApiConfig
     
     public init(withConfig config:CTApiConfig) {
@@ -113,11 +109,11 @@ public class CTAuthManager {
     }
     
     func getAccesToken() -> String {
-        return retrieveDataFromStore(forKey: ACCESS_TOKEN_KEY)
+        return retrieveDataFromStore(forKey: CTKit.ACCESS_TOKEN_KEY)
     }
     
     func getRefreshToken() -> String {
-        return retrieveDataFromStore(forKey: REFRESH_TOKEN_KEY)
+        return retrieveDataFromStore(forKey: CTKit.REFRESH_TOKEN_KEY)
     }
     
     func saveTokenResponse(_ tokenResponse: CTOAuth2TokenResponse) {
@@ -126,17 +122,17 @@ public class CTAuthManager {
         switch CTKit.shared.credentialSaveLocation {
         case .keychain:
             let keychain = KeychainSwift()
-            keychain.set(tokenResponse.accessToken, forKey: ACCESS_TOKEN_KEY)
+            keychain.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
             
             if let refreshToken = tokenResponse.refreshToken {
-                keychain.set(refreshToken, forKey: REFRESH_TOKEN_KEY)
+                keychain.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY)
             }
             
         case .userDefaults:
-            UserDefaults.standard.set(tokenResponse.accessToken, forKey: ACCESS_TOKEN_KEY)
+            UserDefaults.standard.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
             
             if let refreshToken = tokenResponse.refreshToken {
-                UserDefaults.standard.set(refreshToken, forKey: REFRESH_TOKEN_KEY)
+                UserDefaults.standard.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY)
             }
         default:
             print("NOTH")

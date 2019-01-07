@@ -11,21 +11,29 @@ import RxSwift
 public class CTKit {
     
     public static var shared:CTKit!
-  
+    
+    internal static let ACTIVE_USER_ID_KEY = "activeUserId"
+    internal static let ACCESS_TOKEN_KEY = "accessToken"
+    internal static let REFRESH_TOKEN_KEY = "refreshToken"
     
     public var restManager: CTRestManager!
     public var authManager: CTAuthManager!
     public var subscriptionManager: CTSubscriptionManager!
     public var authToken = PublishSubject<CTOAuth2TokenResponse>()
     
-    private let ACTIVE_USER_ID_KEY = "activeUserId"
+    
     
     private var _currentActiveUser: CTUserModel?
     
     internal var currentActiveUser: CTUserModel? {
         set(newActiveUser) {
-            self.saveCurrentActiveUserId(user: newActiveUser)
-            self._currentActiveUser = newActiveUser
+            guard let newUser = newActiveUser else {
+                logout()
+                return
+            }
+            
+            self.saveCurrentActiveUserId(user: newUser)
+            self._currentActiveUser = newUser
         }
         
         get {
@@ -62,20 +70,20 @@ public class CTKit {
 
 private extension CTKit {
     
-    func saveCurrentActiveUserId(user: CTUserModel?) {
-        guard let activeUser = user else {
-            // Clear out storage
-            print("Logging out")
-            KeychainSwift().delete(ACTIVE_USER_ID_KEY)
-            UserDefaults.standard.removeObject(forKey: ACTIVE_USER_ID_KEY)
-            return
-        }
+    func logout() {
+        print("Logging out")
+        KeychainSwift().delete(ACTIVE_USER_ID_KEY)
         
+        UserDefaults.standard.removeObject(forKey: ACTIVE_USER_ID_KEY)
+        return
+    }
+    
+    func saveCurrentActiveUserId(user: CTUserModel) {
         switch CTKit.shared.credentialSaveLocation {
         case .keychain:
-            KeychainSwift().set("\(activeUser.id)", forKey: ACTIVE_USER_ID_KEY)
+            KeychainSwift().set("\(user.id)", forKey: ACTIVE_USER_ID_KEY)
         case .userDefaults:
-            UserDefaults.standard.set("\(activeUser.id)", forKey: ACTIVE_USER_ID_KEY)
+            UserDefaults.standard.set("\(user.id)", forKey: ACTIVE_USER_ID_KEY)
         case .none:
             print("User id not persisted")
         }
