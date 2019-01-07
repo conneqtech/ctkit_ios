@@ -16,6 +16,9 @@ public class CTKit {
     internal static let ACCESS_TOKEN_KEY = "accessToken"
     internal static let REFRESH_TOKEN_KEY = "refreshToken"
     
+    internal static let ACCESS_TOKEN_EXPIRE_TIME_KEY = "accessTokenExpireDataTime"
+    internal static let REFRESH_TOKEN_EXPIRE_TIME_KEY = "refreshTokenExpireDataTime"
+    
     public var restManager: CTRestManager!
     public var authManager: CTAuthManager!
     public var subscriptionManager: CTSubscriptionManager!
@@ -27,13 +30,13 @@ public class CTKit {
     
     internal var currentActiveUser: CTUserModel? {
         set(newActiveUser) {
+            self._currentActiveUser = newActiveUser
             guard let newUser = newActiveUser else {
-                logout()
                 return
             }
             
+            //Only save if we have an active user.
             self.saveCurrentActiveUserId(user: newUser)
-            self._currentActiveUser = newUser
         }
         
         get {
@@ -42,9 +45,7 @@ public class CTKit {
     }
     
     internal var currentActiveUserId: Int {
-        get {
-            return getCurrentActiveUserId()
-        }
+        return getCurrentActiveUserId()
     }
     
     
@@ -68,16 +69,26 @@ public class CTKit {
     }
 }
 
-private extension CTKit {
-    
+internal extension CTKit {
     func logout() {
-        print("Logging out")
+        currentActiveUser = nil
+        
         KeychainSwift().delete(CTKit.ACTIVE_USER_ID_KEY)
+        KeychainSwift().delete(CTKit.ACCESS_TOKEN_KEY)
+        KeychainSwift().delete(CTKit.REFRESH_TOKEN_KEY)
         
         UserDefaults.standard.removeObject(forKey: CTKit.ACTIVE_USER_ID_KEY)
-        return
+        UserDefaults.standard.removeObject(forKey: CTKit.ACCESS_TOKEN_KEY)
+        UserDefaults.standard.removeObject(forKey: CTKit.REFRESH_TOKEN_KEY)
     }
     
+    func hasActiveSession() -> Bool {
+        return currentActiveUser != nil
+    }
+}
+
+private extension CTKit {
+
     func saveCurrentActiveUserId(user: CTUserModel) {
         switch CTKit.shared.credentialSaveLocation {
         case .keychain:
