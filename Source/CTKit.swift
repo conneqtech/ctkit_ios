@@ -72,18 +72,18 @@ private extension CTKit {
     
     func logout() {
         print("Logging out")
-        KeychainSwift().delete(ACTIVE_USER_ID_KEY)
+        KeychainSwift().delete(CTKit.ACTIVE_USER_ID_KEY)
         
-        UserDefaults.standard.removeObject(forKey: ACTIVE_USER_ID_KEY)
+        UserDefaults.standard.removeObject(forKey: CTKit.ACTIVE_USER_ID_KEY)
         return
     }
     
     func saveCurrentActiveUserId(user: CTUserModel) {
         switch CTKit.shared.credentialSaveLocation {
         case .keychain:
-            KeychainSwift().set("\(user.id)", forKey: ACTIVE_USER_ID_KEY)
+            KeychainSwift().set("\(user.id)", forKey: CTKit.ACTIVE_USER_ID_KEY)
         case .userDefaults:
-            UserDefaults.standard.set("\(user.id)", forKey: ACTIVE_USER_ID_KEY)
+            UserDefaults.standard.set("\(user.id)", forKey: CTKit.ACTIVE_USER_ID_KEY)
         case .none:
             print("User id not persisted")
         }
@@ -92,13 +92,13 @@ private extension CTKit {
     func getCurrentActiveUserId() -> Int {
         switch CTKit.shared.credentialSaveLocation {
         case .keychain:
-            if let userId = KeychainSwift().get(ACTIVE_USER_ID_KEY) {
+            if let userId = KeychainSwift().get(CTKit.ACTIVE_USER_ID_KEY) {
                 return Int(userId)!
             } else {
                 return -1
             }
         case .userDefaults:
-            if let userId = UserDefaults.standard.string(forKey: ACTIVE_USER_ID_KEY) {
+            if let userId = UserDefaults.standard.string(forKey: CTKit.ACTIVE_USER_ID_KEY) {
                 return Int(userId)!
             } else {
                 return -1
