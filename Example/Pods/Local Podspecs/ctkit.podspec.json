@@ -1,6 +1,6 @@
 {
   "name": "ctkit",
-  "version": "0.1.0",
+  "version": "0.3.1",
   "summary": "SDK to communicate with the connected bike api",
   "swift_version": "4.2",
   "description": "The iOS implementation of our SDK, it allows developers to do cool things with our API.",
@@ -13,8 +13,8 @@
     "Conneqtech B.V.": "info@conneqtech.com"
   },
   "source": {
-    "git": "https://jookes@bitbucket.org/nfnty_admin/ctkit_ios.git",
-    "tag": "0.1.0"
+    "git": "https://bitbucket.org/nfnty_admin/ctkit_ios.git",
+    "tag": "0.3.1"
   },
   "platforms": {
     "ios": "8.0"

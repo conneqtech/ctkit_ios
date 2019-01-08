@@ -10,8 +10,8 @@ import RxSwift
 
 public class CTTheftCasePartnerService: NSObject {
     
-    public func fetchAll() -> Observable<[CTTheftCasePartnerModel]> {
-        return CTKit.shared.restManager.get(endpoint: "theft-case-partner")
+    public func fetchAll(forInsuredBike isInsured: Bool) -> Observable<[CTTheftCasePartnerModel]> {
+        return CTKit.shared.restManager.get(endpoint: "theft-case-partner", parameters: ["bike_is_insured":isInsured])
     }
     
 }
