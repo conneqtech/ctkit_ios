@@ -63,8 +63,6 @@ class CTBikeServiceTests: QuickSpec {
                     expect(unwrappedResponse.themeColor).to(beNil())
                     expect(unwrappedResponse.imageUrl) == "https://cb4e5bc7a3dc43969015c331117f69c1.objectstore.eu/cnt/static/sparta-bikeimage-default-m8i.png"
                     expect(unwrappedResponse.creationDate) == "2018-11-06T10:04:55+0000"
- 
-                    expect(unwrappedResponse.owner?.firstName) == "Paul"
                     expect(unwrappedResponse.owner?.displayName) == "Paul Jacobse"
                 }
             }
