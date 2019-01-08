@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CTTheftCasePartnerDescription: CTBaseModel {
+public struct CTTheftCasePartnerDescriptionModel: CTBaseModel {
     public let en: String
     public let de: String
     public let nl: String
@@ -24,7 +24,7 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
     public let city: String
     public let country: String
     public let logo: String
-    public let description: CTTheftCasePartnerDescription
+    public let description: CTTheftCasePartnerDescriptionModel
 
     
      enum CodingKeys: String, CodingKey {
