@@ -14,7 +14,7 @@ public struct CTBikeModel: CTBaseModel {
     public let batteryPercentage:Int
     public let lastLocation: CTBikeLocationModel?
     public let owner: CTBasicUserModel?
-    public let linkedUsers: [CTBasicUserModel]?
+    public var linkedUsers: [CTBasicUserModel]
     
     public var name: String
     public var keyIdentifier: String?
@@ -22,6 +22,7 @@ public struct CTBikeModel: CTBaseModel {
     public var imageUrl:String?
     public var creationDate:String?
     public var isStolen:Bool?
+    public var isRequestingUserOwner: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -37,6 +38,7 @@ public struct CTBikeModel: CTBaseModel {
         case imageUrl = "bike_image_url"
         case creationDate = "creation_date"
         case isStolen = "is_stolen"
+        case isRequestingUserOwner = "is_requesting_user_owner"
     }
     
     public func encode(to encoder: Encoder) throws {

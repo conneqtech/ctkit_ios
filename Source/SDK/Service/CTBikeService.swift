@@ -127,9 +127,22 @@ public class CTBikeService: NSObject {
      This call can return 0 or 1 results. When 0 results are returned the bike could already be registered or simply doesn't exist in our database.
      
      - Parameter identifier: The frame number of a bike you want to fetch some information about
+     - Returns: An array with information of an unregistered bike. When the array is empty the bike doesn't exist or is already registered.
      */
     public func searchUnregisteredBike(withFrameIdentifier identifier: String) -> Observable<[CTUnregisteredBikeInformationModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["frame_number":identifier])
+    }
+    
+    /**
+     Update the linked users array for a bike. The array that is patched will be the new list of linked users.
+     When you want to remove a linked user, remove it from the list in the model, then call this function
+     
+     - Parameter bike: The bike with updated linked users you want to persist on the API
+     - Returns: An observable with the updated bike model in sync with the API.
+     */
+    public func updateLinkedUsers(withBikeId identifier: Int, andLinkedUsers users: [CTBasicUserModel]) -> Observable<CTBikeModel> {
+        let userDict = users.map { user in try! user.asDictionary() }
+        return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: ["linked_users": userDict])
     }
 }
 

@@ -83,7 +83,7 @@ internal extension CTKit {
     }
     
     func hasActiveSession() -> Bool {
-        return currentActiveUser != nil
+        return currentActiveUserId != -1 && (hasActiveAccessToken() || hasActiveRefreshToken())
     }
 }
 
@@ -97,6 +97,28 @@ private extension CTKit {
             UserDefaults.standard.set("\(user.id)", forKey: CTKit.ACTIVE_USER_ID_KEY)
         case .none:
             print("User id not persisted")
+        }
+    }
+    
+    func hasActiveAccessToken() -> Bool {
+        switch CTKit.shared.credentialSaveLocation {
+        case .keychain:
+            return KeychainSwift().get(CTKit.ACCESS_TOKEN_KEY) != nil
+        case .userDefaults:
+            return UserDefaults.standard.string(forKey: CTKit.ACCESS_TOKEN_KEY) != nil
+        case .none:
+            return false
+        }
+    }
+    
+    func hasActiveRefreshToken() -> Bool {
+        switch CTKit.shared.credentialSaveLocation {
+        case .keychain:
+            return KeychainSwift().get(CTKit.REFRESH_TOKEN_KEY) != nil
+        case .userDefaults:
+            return UserDefaults.standard.string(forKey: CTKit.REFRESH_TOKEN_KEY) != nil
+        case .none:
+            return false
         }
     }
     
