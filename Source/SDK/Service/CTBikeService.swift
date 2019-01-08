@@ -140,13 +140,9 @@ public class CTBikeService: NSObject {
      - Parameter bike: The bike with updated linked users you want to persist on the API
      - Returns: An observable with the updated bike model in sync with the API.
      */
-    public func updateLinkedUsers(withBike bike: CTBikeModel) -> Observable<CTBikeModel> {
-        var usersToPatch: [CTBasicUserModel] = []
-        if let linkedUsers = bike.linkedUsers {
-            usersToPatch = linkedUsers
-        }
-    
-        return CTKit.shared.restManager.patch(endpoint: "bike/\(bike.id!)", parameters: ["linked_users": usersToPatch])
+    public func updateLinkedUsers(withBikeId identifier: Int, andLinkedUsers users: [CTBasicUserModel]) -> Observable<CTBikeModel> {
+        let userDict = users.map { user in try! user.asDictionary() }
+        return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: ["linked_users": userDict])
     }
 }
 

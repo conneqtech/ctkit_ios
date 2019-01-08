@@ -25,6 +25,35 @@ class CTBikeServiceTests: QuickSpec {
             expect(CTUserService().getActiveUserId()) == 47
         }
         
+        //TODO: Fix this test to use mocked responses
+        describe("Linked users") {
+            beforeEach {
+//                let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()
+            }
+            
+            it("updates the linked users for a bike") {
+//                var bike = try! CTBikeService().fetch(withId: 152).toBlocking().first()!
+//
+//                let linkedUsers = [
+//                    CTBasicUserModel(withUsername: "test@connectech.com"),
+//                    CTBasicUserModel(withUsername: "gert-jan@connectech.com"),
+//                    CTBasicUserModel(withUsername: "jens@connectech.com"),
+//                    CTBasicUserModel(withUsername: "nora@connectech.com")
+//                ]
+//
+//                var patchedBike = try! CTBikeService().updateLinkedUsers(withBikeId: bike.id!, andLinkedUsers: linkedUsers).toBlocking().first()!
+//
+//                expect(patchedBike.linkedUsers.count) == 4
+//
+//                var patchedBikeRematch = try! CTBikeService().updateLinkedUsers(withBikeId: bike.id!, andLinkedUsers: [linkedUsers.first!]).toBlocking().first()!
+//                expect(patchedBikeRematch.linkedUsers.count) == 1
+//
+//
+//                patchedBikeRematch = try! CTBikeService().updateLinkedUsers(withBikeId: bike.id!, andLinkedUsers: []).toBlocking().first()!
+//                expect(patchedBikeRematch.linkedUsers.count) == 0
+            }
+        }
+        
         describe("create") {
             it("Fails to create a bike when it's already registered / unknown") {
                 let subjectUnderTest = CTBikeService()
@@ -101,17 +130,17 @@ class CTBikeServiceTests: QuickSpec {
                 var bikeJSON = Resolver().getJSONForResource(name: "bike")
                 
                 self.stub(http(.get, uri: "/bike/312"), json(bikeJSON, status: 200))
-                var bike = try! CTBikeService().fetch(withId: 312).toBlocking().first()!
+                var subjectToTest = try! CTBikeService().fetch(withId: 312).toBlocking().first()!
+            
+                expect(subjectToTest.name) == "Test bike"
                 
-                expect(bike.name) == "Test bike"
-                
-                bike.name = "CHANGED NAME"
+                subjectToTest.name = "CHANGED NAME"
                 
                 //Set response proper.
                 bikeJSON["name"] = "CHANGED NAME"
                 self.stub(http(.patch, uri: "/bike/312"), json(bikeJSON, status: 200))
                 
-                let patchedBike = try! CTBikeService().patch(withBike: bike).toBlocking().first()!
+                let patchedBike = try! CTBikeService().patch(withBike: subjectToTest).toBlocking().first()!
                 expect(patchedBike.name) == "CHANGED NAME"
                 
             }
