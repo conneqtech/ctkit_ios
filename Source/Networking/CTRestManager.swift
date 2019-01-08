@@ -51,7 +51,7 @@ public class CTRestManager {
             }
             
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
-            let requestReference = Alamofire.upload(multipartFormData: { formData in
+            Alamofire.upload(multipartFormData: { formData in
                 if let fixedOrientation = image.fixedOrientation() {
                     if let imageData = fixedOrientation.pngData() {
                         formData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
@@ -87,7 +87,7 @@ public class CTRestManager {
             })
         
             return Disposables.create(with: {
-                requestReference
+                
             })
         }
     }

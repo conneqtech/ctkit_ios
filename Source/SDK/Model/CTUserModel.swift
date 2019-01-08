@@ -45,8 +45,8 @@ public struct CTUserModel: CTBaseModel {
     ///Gender, this can be 'm' for male, 'f' for female, or 'o' for not disclosed
     public var gender:String?
     
-    ///URL to the avatar
-    public var avatar:String?
+    ///URL to the profileImage
+    public var profileImage:String?
     
     ///Boolean that indicates if the user verified their email
     public let emailIsVerified:Bool?
@@ -80,7 +80,7 @@ public struct CTUserModel: CTBaseModel {
         
         case initials = "initials"
         case gender = "gender"
-        case avatar = "avatar_url"
+        case profileImage = "avatar_url"
         case emailIsVerified = "is_email_verified"
         
         case street = "address"
@@ -100,7 +100,7 @@ public struct CTUserModel: CTBaseModel {
         try container.encode(lastName, forKey: .lastName)
         try container.encode(initials, forKey: .initials)
         try container.encode(gender, forKey: .gender)
-        try container.encode(avatar, forKey: .avatar)
+        try container.encode(profileImage, forKey: .profileImage)
         try container.encode(name, forKey: .name)
         
         try container.encode(street, forKey: .street)

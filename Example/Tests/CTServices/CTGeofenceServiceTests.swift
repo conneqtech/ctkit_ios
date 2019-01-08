@@ -184,14 +184,7 @@ class CTGeofenceServiceTests: QuickSpec {
                     self.stub(http(.patch, uri: "/bike/geofence/262"), json(updatedGeofenceModel))
 
                     let callToTest = try! CTGeofenceService().delete(withGeofenceId: 262).toBlocking().first()
-                    if let result = callToTest {
-                        //TODO: Check whether this idea is correct?
-                        //Completable seems to returns a Never type with nothing in it
-                        expect(result).to(be(type(of: Never.self)))
-                    } else {
-                        expect("It can unwrap") == ("did not unwrap")
-                    }
-
+                    expect(callToTest).to(beNil())
                 }
             }
         }

@@ -85,5 +85,4 @@ public class CTTheftCaseService:NSObject {
         ]
         return CTKit.shared.restManager.get(endpoint: "theft-case", parameters: params)
     }
-    
 }

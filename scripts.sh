@@ -1,1 +1,1 @@
-jazzy --podspec ctkit.podspec --output ../../cnt_docs/public/ios
+jazzy --podspec ctkit.podspec --output ../cnt_docs/public/ios
