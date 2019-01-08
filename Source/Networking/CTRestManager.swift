@@ -52,7 +52,7 @@ public class CTRestManager {
             
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             Alamofire.upload(multipartFormData: { formData in
-                if let imageData = image.pngData() {
+                if let fixedOrientation = image.fixedOrientation(), let imageData = fixedOrientation.pngData() {
                     formData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
                 }
             }, to: url, encodingCompletion: { encodingResult in
