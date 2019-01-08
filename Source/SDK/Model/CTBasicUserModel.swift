@@ -22,4 +22,11 @@ public struct CTBasicUserModel: CTBaseModel {
         case displayName = "display_name"
         case profileImage = "avatar_url"
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(email, forKey: .email)
+    }
+    
 }
