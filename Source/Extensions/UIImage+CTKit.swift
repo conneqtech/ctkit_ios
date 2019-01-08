@@ -1,5 +1,5 @@
 // @see https://gist.github.com/schickling/b5d86cb070130f80bb40
-extension UIImage {
+internal extension UIImage {
     
     func fixedOrientation() -> UIImage? {
         
