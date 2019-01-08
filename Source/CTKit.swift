@@ -83,7 +83,7 @@ internal extension CTKit {
     }
     
     func hasActiveSession() -> Bool {
-        return currentActiveUser != nil
+        return currentActiveUserId != -1
     }
 }
 
