@@ -8,14 +8,14 @@
 import Foundation
 
 public struct CTBikeLocationModel: CTBaseModel {
-    
+
     public let longitude: Double
     public let latitude: Double
     public let date: String
     public let speed: Int
     public let batteryPercentage: Int
     public let isMoving: Bool
-    
+
     enum CodingKeys: String, CodingKey {
         case longitude = "lon"
         case latitude = "lat"

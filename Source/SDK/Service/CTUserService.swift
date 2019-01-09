@@ -14,7 +14,7 @@ import RxSwift
  This service is the main entry point for user based interactions, including checking for an active session, getting the active user identifier and logging out (and thus destroying the session).
  */
 public class CTUserService: NSObject {
-    
+
     /**
      Creates an authorised session for a username and password pair when the credentials are valid.
      
@@ -28,7 +28,7 @@ public class CTUserService: NSObject {
     public func login(email: String, password:String) -> Observable<CTUserModel> {
         return CTKit.shared.authManager.login(username: email, password: password).flatMap { _ in self.fetchCurrentUser() }
     }
-    
+
     /**
      Creates an authorised session for a social login swhen the credentials are valid.
      
@@ -42,7 +42,7 @@ public class CTUserService: NSObject {
     public func login(socialToken token: String, type: String) -> Observable<CTUserModel> {
         return CTKit.shared.authManager.login(token: token, type: type).flatMap { _ in self.fetchCurrentUser() }
     }
-    
+
     /**
      Create a new user for your app. This will try to register a user on the api with the given email and password. This call does not automatically create a session for your user.
      
@@ -66,7 +66,7 @@ public class CTUserService: NSObject {
                                                     ], useToken:token)
         }
     }
-    
+
     /**
      Create a new user for your app. This will try to register a user on the api with the given email and password. This call does not automatically create a session for your user.
      
@@ -92,7 +92,7 @@ public class CTUserService: NSObject {
                 ], useToken:token)
         }
     }
-    
+
     /**
      Create a new user for your app. This will try to register a user on the api with the given email and password.
      
@@ -107,9 +107,9 @@ public class CTUserService: NSObject {
      - Returns: An observable containing the created user
      */
     public func createAndLogin(withEmail email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
-        return self.create(withEmail: email, password: password, agreedToPrivacyStatement: agreedToPrivacyStatement).flatMap{ _ in self.login(email: email, password: password) }
+        return self.create(withEmail: email, password: password, agreedToPrivacyStatement: agreedToPrivacyStatement).flatMap { _ in self.login(email: email, password: password) }
     }
-    
+
     /**
      Create a new user for your app. This will try to register a user on the api with the given email and password.
      
@@ -125,7 +125,7 @@ public class CTUserService: NSObject {
      - Returns: An observable containing the created user
      */
     public func createAndLogin(withName name: String, email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
-        return self.create(withName: name, email: email, password: password, agreedToPrivacyStatement: agreedToPrivacyStatement).flatMap{ _ in self.login(email: email, password: password) }
+        return self.create(withName: name, email: email, password: password, agreedToPrivacyStatement: agreedToPrivacyStatement).flatMap { _ in self.login(email: email, password: password) }
     }
 
     /**
@@ -140,7 +140,7 @@ public class CTUserService: NSObject {
     public func patchCurrentUser(user: CTUserModel) -> Observable<CTUserModel> {
         return CTKit.shared.restManager.patch(endpoint: "user/me", parameters: try? user.asDictionary())
     }
-    
+
     /**
      Fetch the user that the SDK currently has an active session for. This also stores the user into the CTKit shared object.
      
@@ -154,7 +154,7 @@ public class CTUserService: NSObject {
     }
 }
 
-//MARK: - Session related functions
+// MARK: - Session related functions
 public extension CTUserService {
 
     /**
@@ -165,7 +165,7 @@ public extension CTUserService {
     public func hasActiveSession() -> Bool {
         return CTKit.shared.hasActiveSession()
     }
-    
+
     /**
     Utility function that returns the current active user id.
      
@@ -174,7 +174,7 @@ public extension CTUserService {
     public func getActiveUserId() -> Int {
         return CTKit.shared.currentActiveUserId
     }
-    
+
     /**
      Immediately end the active authorised session and reset all values in the SDK.
      */

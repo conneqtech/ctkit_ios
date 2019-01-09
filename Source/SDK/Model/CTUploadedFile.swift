@@ -7,14 +7,13 @@
 
 import Foundation
 
-
 public struct CTUploadedFile:CTBaseModel {
     public let isOriginal:Bool
     public let isDefault:Bool
     public let quality:Int
     public let downloadURL:String
     public let creationDate:String
-    
+
     enum CodingKeys: String, CodingKey {
         case isOriginal = "is_original"
         case isDefault = "is_default"

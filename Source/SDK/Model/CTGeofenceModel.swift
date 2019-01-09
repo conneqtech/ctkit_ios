@@ -8,13 +8,13 @@
 import Foundation
 
 public struct CTGeofenceModel: CTBaseModel {
-    
+
     public let id:Int
     public let name:String
     public let radius:Double
     public let center:CTLatLonModel
     public let bikeId:Int
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case name = "name"

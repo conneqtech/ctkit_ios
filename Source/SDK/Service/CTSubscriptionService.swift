@@ -22,8 +22,7 @@ public class CTSubscriptionService: NSObject {
     public func fetchAll(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
         return CTKit.shared.subscriptionManager.getSubscriptionForBike(endpoint: "subscription/bike/\(identifier)")
     }
-    
-    
+
     /**
      Fetches all known connectivity specific subscriptions for a bike.
      
@@ -34,7 +33,7 @@ public class CTSubscriptionService: NSObject {
     public func fetchConnectivitySubscriptions(withbikeId identifier:Int) -> Observable<[CTSubscriptionModel]> {
         return fetchSubscriptionByType(withBikeId: identifier, type: CTSubscriptionService.productTypeConnected)
     }
-    
+
     /**
      Fetches all known insurance type subscriptions for a bike.
      
@@ -45,8 +44,7 @@ public class CTSubscriptionService: NSObject {
     public func fetchInsuranceSubscriptions(withBikeId identifier:Int) -> Observable<[CTSubscriptionModel]> {
         return fetchSubscriptionByType(withBikeId: identifier, type: CTSubscriptionService.productTypeInsured)
     }
-    
-    
+
     /**
      Fetches all known subscriptions for a bike by type.
      
@@ -58,8 +56,7 @@ public class CTSubscriptionService: NSObject {
     public func fetchSubscriptionByType(withBikeId identifier:Int, type:Int) -> Observable<[CTSubscriptionModel]> {
         return fetchAll(withBikeId: identifier)
     }
-    
-    
+
     /**
      Starts a trial for a bike.
      
@@ -71,8 +68,7 @@ public class CTSubscriptionService: NSObject {
     public func startTrial(withBikeId identifier: String, type:Int) -> Observable<CTSubscriptionModel> {
         return CTKit.shared.subscriptionManager.startTrial(endpoint: "trial")
     }
-    
-    
+
     static let productTypeConnected = 1
     static let productTypeInsured = 2
     static let productTypeTrial = 1

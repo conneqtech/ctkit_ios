@@ -11,13 +11,13 @@ import Alamofire
 class CTRequestAdapter: RequestAdapter {
     func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
         var urlRequest = urlRequest
-    
+
         guard let _ = urlRequest.value(forHTTPHeaderField: "Authorization") else {
-            let accessToken = CTKit.shared.authManager.getAccesToken();
+            let accessToken = CTKit.shared.authManager.getAccesToken()
             urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             return urlRequest
         }
-       
+
         return urlRequest
     }
 }

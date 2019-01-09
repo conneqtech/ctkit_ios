@@ -14,7 +14,7 @@ public struct CTTheftCasePartnerDescriptionModel: CTBaseModel {
 }
 
 public struct CTTheftCasePartnerModel: CTBaseModel {
-    
+
     public let id: Int?
     public let name: String
     public let email: String

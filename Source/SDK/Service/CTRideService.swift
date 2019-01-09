@@ -33,7 +33,7 @@ public class CTRideService:NSObject {
             "name":name
             ])
     }
-    
+
     /**
      Update the ride with the ride model.
      
@@ -44,7 +44,7 @@ public class CTRideService:NSObject {
     public func patch(ride: CTRideModel) -> Observable<CTRideModel> {
         return CTKit.shared.restManager.patch(endpoint: "bike/ride/\(ride.id)", parameters: try? ride.asDictionary())
     }
-    
+
     /**
      Delete the ride with the ride identifier
      
@@ -55,7 +55,7 @@ public class CTRideService:NSObject {
     public func delete(withRideId identifier:Int) -> Completable {
         return CTKit.shared.restManager.archive(endpoint: "bike/ride/\(identifier)")
     }
-    
+
     /**
      Fetch a single ride with its identifier
      
@@ -66,7 +66,7 @@ public class CTRideService:NSObject {
     public func fetch(withRideId identifier: Int) -> Observable<CTRideModel> {
         return CTKit.shared.restManager.get(endpoint: "bike/ride/\(identifier)")
     }
-    
+
     /**
      Fetch a list of rides for a bike, using the identifier of the bike
      

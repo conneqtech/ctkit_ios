@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct CTStatisticsModel:CTBaseModel {
     public let from:Date
     public let till:Date
@@ -16,8 +15,7 @@ public struct CTStatisticsModel:CTBaseModel {
     public let calories:Int
     public let avg_speed:Int
     public let distance_traveled:Int
-    
-    
+
     enum CodingKeys: String, CodingKey {
         case from = "from"
         case till = "till"

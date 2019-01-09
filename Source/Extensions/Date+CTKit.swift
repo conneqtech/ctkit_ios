@@ -13,17 +13,17 @@ internal extension Date {
         let calendar = Calendar.current
         return calendar.startOfDay(for: date)
     }
-    
+
     func startOfDay() -> Date {
         let calendar = Calendar.current
         return calendar.startOfDay(for: self)
     }
-    
+
     func endOfDay() -> Date {
         let calendar = Calendar.current
         return calendar.date(bySettingHour: 23, minute: 59, second: 59, of: self)!
     }
-    
+
     func toAPIDate() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"

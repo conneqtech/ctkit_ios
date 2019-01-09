@@ -15,7 +15,7 @@ public class CTApiConfig {
             return url
         }
     }
-    
+
     public init (withBaseUrl baseUrl: String, clientId: String, clientSecret: String, grantType: CTOauth2Grant) {
         self.url = baseUrl
         self.clientId = clientId
@@ -27,13 +27,13 @@ public class CTApiConfig {
 public class CTVendorApiConfig: CTApiConfig {
     var version: String = ""
     var vendor: String = ""
-    
-    override var fullUrl: String  {
+
+    override var fullUrl: String {
         get {
             return "\(url)/\(vendor)/\(version)"
         }
     }
-    
+
     init (withBaseUrl baseUrl: String, clientId: String, clientSecret: String, grantType: CTOauth2Grant, version: String, vendor: String) {
         super.init(withBaseUrl: baseUrl, clientId: clientId, clientSecret: clientSecret, grantType: grantType)
         self.version = version

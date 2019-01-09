@@ -13,9 +13,7 @@ import RxSwift
  Theft-cases allow users to report their bikes as stolen and start the recovery process.
  */
 public class CTTheftCaseService:NSObject {
-    
-    
-    
+
     /**
      Create a theftcase or a certain bike.
      
@@ -26,8 +24,7 @@ public class CTTheftCaseService:NSObject {
     public func create(theftCase:CTTheftCaseModel) -> Observable<CTTheftCaseModel> {
         return CTKit.shared.restManager.post(endpoint: "theft-case", parameters: try? theftCase.asDictionary())
     }
-    
-    
+
     /**
      Patch a policeId for an existing theft-case.
      
@@ -39,8 +36,7 @@ public class CTTheftCaseService:NSObject {
         return CTKit.shared.restManager.patch(endpoint: "theft-case/\(identifier)", parameters: [
             "police_id":policeId])
     }
-    
-    
+
     /**
      Fetch an existing theft-case.
      
@@ -51,8 +47,7 @@ public class CTTheftCaseService:NSObject {
     public func fetch(withCaseId identifier:Int) -> Observable<CTTheftCaseModel> {
         return CTKit.shared.restManager.get(endpoint: "theft-case/\(identifier)")
     }
-    
-    
+
     /**
      Fetch the most recent theft-case for a bike.
      
@@ -65,8 +60,7 @@ public class CTTheftCaseService:NSObject {
                 return result.data[0]
         }
     }
-    
-    
+
     /**
      Fetch all theft-cases for a bike.
      

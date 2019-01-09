@@ -14,7 +14,7 @@ import RxSwift
  This service is the main entry point for all information about a bike's whereabouts.
  */
 public class CTBikeLocationService: NSObject {
-    
+
     /**
      Get all location data of the specified bike between a start and end date (inclusive)
      
@@ -32,7 +32,7 @@ public class CTBikeLocationService: NSObject {
             "till":until.toAPIDate()
         ])
     }
-    
+
     /**
      Retrieve the last known location of the specified bike.
      
