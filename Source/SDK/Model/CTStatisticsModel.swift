@@ -11,6 +11,7 @@ import Foundation
 public struct CTStatisticsModel:CTBaseModel {
     public let from:Date
     public let till:Date
+    // swiftlint:disable:next identifier_name
     public let co2:Int
     public let calories:Int
     public let avg_speed:Int
@@ -25,6 +26,4 @@ public struct CTStatisticsModel:CTBaseModel {
         case avg_speed = "avg_speed"
         case distance_traveled = "distance_traveled"
     }
-    
-    
 }

@@ -26,7 +26,6 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
     public let logo: String
     public let description: CTTheftCasePartnerDescriptionModel
 
-    
      enum CodingKeys: String, CodingKey {
         case id = "id"
         case name = "name"

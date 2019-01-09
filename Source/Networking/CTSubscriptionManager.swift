@@ -28,7 +28,6 @@ public class CTSubscriptionManager {
         return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken:useToken)
     }
     
-
     private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T:Codable {
         return Observable<T>.create { (observer) -> Disposable in
             
@@ -39,8 +38,8 @@ public class CTSubscriptionManager {
             }
             
             
-            let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
-            let requestReference = self.sessionManager.request(url,
+            let apiUrl = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+            let requestReference = self.sessionManager.request(apiUrl,
                                                                method: method,
                                                                parameters: parameters,
                                                                encoding: encoding,
@@ -50,15 +49,6 @@ public class CTSubscriptionManager {
                 .responseJSON { (response) in
                     switch response.result {
                     case .success:
-                        //FIXME: Remove debug code
-                        do {
-                            let _ = try JSONDecoder().decode(T.self, from: response.data!)
-                        } catch {
-                            print("DEBUG: Decoding gave us the following error")
-                            print(error)
-                        }
-                        //End of debug code
-                        
                         guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
                             observer.onError(CTErrorHandler().handle(withDecodingError:nil))
                             return
@@ -77,5 +67,3 @@ public class CTSubscriptionManager {
         }
     }
 }
-
-
