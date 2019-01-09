@@ -14,7 +14,7 @@ public struct CTBikeModel: CTBaseModel {
     public let batteryPercentage:Int
     public let lastLocation: CTBikeLocationModel?
     public let owner: CTBasicUserModel?
-    public var linkedUsers: [CTBasicUserModel]
+    public var linkedUsers: [CTBasicUserModel]?
     
     public var name: String
     public var keyIdentifier: String?

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ctkit'
-  s.version          = '0.3.2'
+  s.version          = '0.3.3'
   s.summary          = 'SDK to communicate with the connected bike api'
   s.swift_version    = '4.2'
 
