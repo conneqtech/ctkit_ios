@@ -47,6 +47,11 @@ identifier_name:
     - en
     - de
     - nl
-    - URL
-    - GlobalAPIKey
+    - key
+    - co2
+    - ACTIVE_USER_ID_KEY
+    - ACCESS_TOKEN_KEY
+    - REFRESH_TOKEN_KEY
+    - ACCESS_TOKEN_EXPIRE_TIME_KEY
+    - REFRESH_TOKEN_EXPIRE_TIME_KEY
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji, sonarqube, markdown)

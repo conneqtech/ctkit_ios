@@ -13,7 +13,7 @@ internal extension UIImage {
             return nil
         }
 
-        guard let colorSpace = cgImage.colorSpace, let ctx = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
+        guard let colorSpace = cgImage.colorSpace, let cgContext = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
             return nil //Not able to create CGContext
         }
 
@@ -49,17 +49,17 @@ internal extension UIImage {
             break
         }
 
-        ctx.concatenate(transform)
+        cgContext.concatenate(transform)
 
         switch imageOrientation {
         case .left, .leftMirrored, .right, .rightMirrored:
-            ctx.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: size.height, height: size.width))
+            cgContext.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: size.height, height: size.width))
         default:
-            ctx.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            cgContext.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
             break
         }
 
-        guard let newCGImage = ctx.makeImage() else { return nil }
+        guard let newCGImage = cgContext.makeImage() else { return nil }
         return UIImage.init(cgImage: newCGImage, scale: 1, orientation: .up)
     }
 }

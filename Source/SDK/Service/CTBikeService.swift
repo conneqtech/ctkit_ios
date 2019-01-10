@@ -9,9 +9,9 @@ import Foundation
 import RxSwift
 
 public enum CTBikeRegistrationFlow: String, Codable {
-    case IMEI = "imei_flow"
-    case Booklet = "booklet_flow"
-    case CustomerService = "customer-service_flow"
+    case imei = "imei_flow"
+    case booklet = "booklet_flow"
+    case customerService = "customer-service_flow"
 }
 
 /**
