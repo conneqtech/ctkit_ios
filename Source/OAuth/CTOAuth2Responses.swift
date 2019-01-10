@@ -12,7 +12,7 @@ public struct CTOAuth2TokenResponse: Codable {
     public var expiresIn: Int
     public var scope: String?
     public var tokenType: String
-    
+
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case refreshToken = "refresh_token"
@@ -27,7 +27,7 @@ public struct CTOAuth2ErrorResponse: Codable, Error {
     var title: String
     var status: Int
     var detail: String
-    
+
     enum CodingKeys: String, CodingKey {
         case type = "type"
         case title = "title"

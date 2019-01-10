@@ -9,16 +9,16 @@ import Foundation
 import RxSwift
 
 public enum CTBikeRegistrationFlow: String, Codable {
-    case IMEI = "imei_flow"
-    case Booklet = "booklet_flow"
-    case CustomerService = "customer-service_flow"
+    case imei = "imei_flow"
+    case booklet = "booklet_flow"
+    case customerService = "customer-service_flow"
 }
 
 /**
  The CTBikeService is the main entry point to manage and create bikes for an authenticated user. It allows for all basic management and some convenience methods to help ease the management of bikes.
  */
 public class CTBikeService: NSObject {
-    
+
     /**
      Create a new bike with the minimal amount of data
      
@@ -35,7 +35,7 @@ public class CTBikeService: NSObject {
             "activation_code":activationCode]
         )
     }
-    
+
     /**
      Create a new bike with the minimal amount of data
      
@@ -50,7 +50,7 @@ public class CTBikeService: NSObject {
             "activation_code":activationCode]
         )
     }
-    
+
     /**
      Update an existing bike from the full model.
      
@@ -63,7 +63,7 @@ public class CTBikeService: NSObject {
     public func patch(withBike bike: CTBikeModel) -> Observable<CTBikeModel> {
         return CTKit.shared.restManager.patch(endpoint: "bike/\(bike.id!)", parameters: try? bike.asDictionary())
     }
-    
+
     /**
      Delete the bike from the account, when a user is the owner the bike will be deregistered. Once deregistration took place a different user will be able to add the bike to their account. When the user is not the owner the link with the shared bike will be broken.
      
@@ -76,7 +76,7 @@ public class CTBikeService: NSObject {
     public func delete(withBikeId identifier: Int) -> Completable {
         return CTKit.shared.restManager.archive(endpoint: "bike/\(identifier)")
     }
-    
+
     /**
      Fetch a single bike the user has access to based on the bike identifier. When the user has no access to the bike a 422 error will be thrown to indicate the bike could not be found.
      
@@ -96,7 +96,7 @@ public class CTBikeService: NSObject {
     public func fetchAll() -> Observable<[CTBikeModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike")
     }
-    
+
     /**
      Fetch all bikes the user owns
      
@@ -105,10 +105,10 @@ public class CTBikeService: NSObject {
      */
     public func fetchOwned() -> Observable<[CTBikeModel]> {
         return self.fetchAll().map { result in
-            return result.filter{ $0.owner?.id == CTKit.shared.currentActiveUserId }
+            return result.filter { $0.owner?.id == CTKit.shared.currentActiveUserId }
         }
     }
-    
+
     /**
      Fetch all bikes the user has access to.
      
@@ -117,11 +117,10 @@ public class CTBikeService: NSObject {
      */
     public func fetchShared() -> Observable<[CTBikeModel]> {
         return self.fetchAll().map { result in
-            return result.filter{ $0.owner?.id != CTKit.shared.currentActiveUserId }
+            return result.filter { $0.owner?.id != CTKit.shared.currentActiveUserId }
         }
     }
-    
-    
+
     /**
      Search for a bike based on its framenumber. This call will return the first part of the IMEI so that a user has a hint of what number you need.
      This call can return 0 or 1 results. When 0 results are returned the bike could already be registered or simply doesn't exist in our database.
@@ -132,7 +131,7 @@ public class CTBikeService: NSObject {
     public func searchUnregisteredBike(withFrameIdentifier identifier: String) -> Observable<[CTUnregisteredBikeInformationModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["frame_number":identifier])
     }
-    
+
     /**
      Update the linked users array for a bike. The array that is patched will be the new list of linked users.
      When you want to remove a linked user, remove it from the list in the model, then call this function
@@ -145,5 +144,3 @@ public class CTBikeService: NSObject {
         return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: ["linked_users": userDict])
     }
 }
-
-

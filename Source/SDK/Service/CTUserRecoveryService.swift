@@ -12,8 +12,7 @@ import RxSwift
  The CTUserRecoveryService can be used to initiate a password recovery flow from within the app. This service is responsible for starting and ending the recovery process.
  */
 public class CTUserRecoveryService: NSObject {
-    
-    
+
     /**
      Start the recovery process for a given email address. This call always returns true on success.
      
@@ -22,10 +21,9 @@ public class CTUserRecoveryService: NSObject {
      - Returns: An observable containing the username, when recovery has been attempted.
      */
     public func recoverUser(email: String) -> Observable<String> {
-        return CTKit.shared.restManager.post(endpoint: "user/recover", parameters:["email":email]).map { (result:[String:Bool]) in email }
+        return CTKit.shared.restManager.post(endpoint: "user/recover", parameters:["email":email]).map { (_:[String:Bool]) in email }
     }
-    
-    
+
     /**
      Finish the password recovery process with the newly chosen password and the reset hash the user received in their emailbox
      

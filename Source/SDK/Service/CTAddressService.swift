@@ -12,7 +12,7 @@ import RxSwift
  The CTAddressService is used for geocoding of addresses in the Netherlands. Future versions might include geocoding in other countries.
  */
 public class CTAddressService: NSObject {
-    
+
     /**
       Fetches a list of Address objects that match the given parameters.
      

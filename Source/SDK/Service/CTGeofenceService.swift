@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 public class CTGeofenceService: NSObject {
-    
+
     /**
      Fetch a single Geofence from the API with the geofence identifier.
      
@@ -22,7 +22,7 @@ public class CTGeofenceService: NSObject {
     public func fetch(withGeofenceId identifier: Int) -> Observable<CTGeofenceModel> {
         return CTKit.shared.restManager.get(endpoint: "bike/geofence/\(identifier)")
     }
-    
+
     /**
      Fetch all the geofences that belong to a single bike
      
@@ -35,7 +35,7 @@ public class CTGeofenceService: NSObject {
     public func fetchAll(withBikeId identifier: Int) -> Observable<[CTGeofenceModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/geofence")
     }
-    
+
     /**
      Create a new circular geofence and add it to a bike.
      
@@ -61,7 +61,7 @@ public class CTGeofenceService: NSObject {
             "radius":radius
             ])
     }
-    
+
     /**
      Adjust an existing geofence
      
@@ -72,7 +72,7 @@ public class CTGeofenceService: NSObject {
     public func patch(geofence: CTGeofenceModel) -> Observable<CTGeofenceModel> {
         return CTKit.shared.restManager.patch(endpoint: "bike/geofence/\(geofence.id)", parameters: try? geofence.asDictionary())
     }
-    
+
     /**
      Activate the geofence, at this point the API will resume / start sending push notifications when the user
      enters / leaves the geofence
@@ -84,7 +84,7 @@ public class CTGeofenceService: NSObject {
         return CTKit.shared.restManager.patch(endpoint: "bike/geofence/\(identifier)", parameters: [
             "active_state": 0])
     }
-    
+
     /**
      Deactivate the geofence, at this point the API will *stop* sending push notifications when the user
      enters / leaves the geofence
@@ -96,7 +96,7 @@ public class CTGeofenceService: NSObject {
         return CTKit.shared.restManager.patch(endpoint: "bike/geofence/\(identifier)", parameters: [
             "active_state": 1])
     }
-    
+
     /**
      Remove the geofence from the user and delete it on the API
      

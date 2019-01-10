@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 public class CTCloudMessagingService: NSObject {
-    
+
     /**
      Register the device to receive cloud messages. The registration happens on our server and communicates with Firebase. When you want to receive message you need to contact Conneqtech to setup the Firebase connection
      
@@ -23,7 +23,7 @@ public class CTCloudMessagingService: NSObject {
             "device_type": "iOS"
             ])
     }
-    
+
     /**
      Parse an incoming push message into a model you can use to create a push notification.
      
@@ -33,21 +33,21 @@ public class CTCloudMessagingService: NSObject {
         if let bike = userInfo["bike_id"] as? Int {
             var notification = CTBikeNotificationModel()
             notification.bikeId = bike
-            
+
             if let alert:Dictionary<String, AnyObject> = userInfo["alert"] as? Dictionary<String, AnyObject> {
                 if let locKey:String = alert["loc-key"] as? String {
-                    
+
                     notification.translatableKey = locKey
-                    
+
                     if let args:[String] = (alert["loc-args"] as? [String]) , args.count > 1 {
                         notification.translationFieldValues = args
                     }
                 }
             }
-            
+
             return notification
         }
-        
+
         //If there is no bike id, there is no notification to parse for us.
         return nil
     }

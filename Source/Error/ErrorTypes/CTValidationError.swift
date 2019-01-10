@@ -10,22 +10,22 @@ import Foundation
 public class CTValidationError: CTErrorProtocol {
     public var type: CTErrorType
     public var code: Int
-    
+
     public var translationKey: String
-    
+
     public var errorBody: [String : Any]
-    
+
     public var description: String
-    
+
     public var validationMessages: [CTApiValidationMessage] = []
-    
+
     public init(translationKey: String, description: String, errorBody: [String:Any] = [:], code: Int = 0) {
         self.translationKey = translationKey
         self.description = description
         self.errorBody = errorBody
         self.code = code
         self.type = .validation
-        
+
         if let validationMessages = errorBody["validation_messages"] as? [String:Any] {
             for (field, value) in validationMessages {
                 if let value = value as? [String:Any] {

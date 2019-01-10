@@ -8,12 +8,11 @@
 import Foundation
 import RxSwift
 
-
 /**
  The CTTheftCasePartnerService is the main entry point to fetch the partner details for an insured or uninsired bike. The API will return the correct partner to display in the recovery process.
  */
 public class CTTheftCasePartnerService: NSObject {
-    
+
     /**
      Fetch the correct partner for a bike based on the insurance state
      

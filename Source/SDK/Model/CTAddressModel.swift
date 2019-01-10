@@ -8,7 +8,7 @@
 import Foundation
 
 public struct CTAddressModel: CTBaseModel {
-    
+
     public let postalCode: String
     public let houseNumber: String
     public let houseNumberAddition: String
@@ -16,7 +16,7 @@ public struct CTAddressModel: CTBaseModel {
     public let street: String
     public let city: String
     public let province: String
-    
+
     enum CodingKeys: String, CodingKey {
         case postalCode = "postcode"
         case houseNumber = "house_number"

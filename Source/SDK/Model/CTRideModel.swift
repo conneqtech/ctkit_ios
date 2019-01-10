@@ -8,7 +8,7 @@
 import Foundation
 
 public struct CTRideModel: CTBaseModel {
-    
+
     //Attributes
     public let id:Int
     public let userId:Int
@@ -18,18 +18,16 @@ public struct CTRideModel: CTBaseModel {
     public let creationDate:String
     public let startDate:String
     public let endDate:String
-    
-    
+
     //Calculated things
     public let calories:Double
     public let averageSpeed:Double
     public let distanceTraveled:Double
     public let co2:Double
     public let weatherIconURL:String
-    
+
     public var coordinateList:[CTLatLonModel]?
-    
-    
+
     enum CodingKeys: String, CodingKey {
         case weatherInfo = "weather_info"
         case id = "id"
@@ -40,20 +38,20 @@ public struct CTRideModel: CTBaseModel {
         case creationDate = "creation_date"
         case startDate = "start_date"
         case endDate = "end_date"
-        
+
         case calories = "calories"
         case averageSpeed = "avg_speed"
         case distanceTraveled = "distance_traveled"
         case co2 = "co2"
         case weatherIconURL = "icon_url"
     }
-    
+
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let weatherInfo = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .weatherInfo)
-        
+
         weatherIconURL = try! weatherInfo.decode(String.self, forKey: .weatherIconURL)
-        
+
         id = try! container.decode(Int.self, forKey: .id)
         userId = try! container.decode(Int.self, forKey: .userId)
         bikeId = try! container.decode(Int.self, forKey: .bikeId)
@@ -62,23 +60,22 @@ public struct CTRideModel: CTBaseModel {
         creationDate = try! container.decode(String.self, forKey: .creationDate)
         startDate = try! container.decode(String.self, forKey: .startDate)
         endDate = try! container.decode(String.self, forKey: .endDate)
-        
+
         calories = try! container.decode(Double.self, forKey: .calories)
         averageSpeed = try! container.decode(Double.self, forKey: .averageSpeed)
         distanceTraveled = try! container.decode(Double.self, forKey: .distanceTraveled)
         co2 = try! container.decode(Double.self, forKey: .co2)
-        
-        
+
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         try container.encode(name, forKey: .name)
         try container.encode(rideType, forKey: .rideType)
         try container.encode(startDate, forKey: .startDate)
         try container.encode(endDate, forKey: .endDate)
-        
+
     }
-    
+
 }

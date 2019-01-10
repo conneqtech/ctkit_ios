@@ -19,9 +19,9 @@ public struct CTProductModel:CTBaseModel {
     public let type:Int
     public let providerId:Int
     private let childProduct:Int
-    
+
     enum CodingKeys: String, CodingKey {
-        
+
         case id = "id"
         case title = "title"
         case subtitle = "subtitle"
@@ -34,5 +34,5 @@ public struct CTProductModel:CTBaseModel {
         case providerId = "provider_id"
         case childProduct = "child_product"
     }
-    
+
 }
