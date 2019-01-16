@@ -23,6 +23,13 @@ public struct CTBikeModel: CTBaseModel {
     public var creationDate:String?
     public var isStolen:Bool?
     public var isRequestingUserOwner: Bool?
+    
+    public init(withImei imei: String, frameIdentifier identifier: String, name: String) {
+        self.imei = imei
+        self.frameIdentifier = identifier
+        self.batteryPercentage = 0
+        self.name = name
+    }
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
