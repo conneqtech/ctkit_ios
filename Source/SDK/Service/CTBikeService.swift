@@ -73,8 +73,8 @@ public class CTBikeService: NSObject {
      
      - Returns: A completable call indicating the operation was successful.
      */
-    public func delete(withBikeId identifier: Int) -> Completable {
-        return CTKit.shared.restManager.archive(endpoint: "bike/\(identifier)")
+    public func delete(withBikeId identifier: Int) -> Observable<Int> {
+        return CTKit.shared.restManager.archive(endpoint: "bike/\(identifier)").map { (result:CTBikeModel) in identifier }
     }
 
     /**

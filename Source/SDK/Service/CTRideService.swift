@@ -52,8 +52,8 @@ public class CTRideService:NSObject {
      
      - Returns: A completable to indicate the deletion was successful.
     */
-    public func delete(withRideId identifier:Int) -> Completable {
-        return CTKit.shared.restManager.archive(endpoint: "bike/ride/\(identifier)")
+    public func delete(withRideId identifier:Int) -> Observable<Int> {
+        return CTKit.shared.restManager.archive(endpoint: "bike/ride/\(identifier)").map { (ride:CTRideModel) in identifier }
     }
 
     /**

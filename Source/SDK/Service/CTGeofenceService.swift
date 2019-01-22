@@ -104,7 +104,7 @@ public class CTGeofenceService: NSObject {
      
      - Returns: A completable that notifies you the action completed. There will be no result other than 'finished'
      */
-    public func delete(withGeofenceId identifier: Int) -> Completable {
-        return CTKit.shared.restManager.archive(endpoint: "bike/geofence/\(identifier)")
+    public func delete(withGeofenceId identifier: Int) -> Observable<Int> {
+        return CTKit.shared.restManager.archive(endpoint: "bike/geofence/\(identifier)").map { (geofence:CTGeofenceModel) in identifier }
     }
 }

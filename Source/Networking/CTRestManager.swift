@@ -36,8 +36,13 @@ public class CTRestManager {
         return genericCompletableCall(.delete, endpoint: endpoint, parameters: parameters, useToken:useToken)
     }
 
-    public func archive(endpoint:String, useToken:String? = nil) -> Completable {
-        return genericCompletableCall(.patch, endpoint: endpoint, parameters: ["active_state":2], useToken:useToken)
+    public func archive<T:Codable>(endpoint:String, useToken:String? = nil) -> Observable<T> {
+        return genericCall(
+            .patch,
+            endpoint: endpoint,
+            parameters: ["active_state":2],
+            useToken:useToken
+            )
     }
 
     public func upload<T:Codable>(endpoint: String, image:UIImage, useToken:String? = nil) -> Observable<T> {

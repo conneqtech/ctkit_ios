@@ -48,7 +48,7 @@ public struct CTUserModel: CTBaseModel {
     public var profileImage:String?
 
     ///Boolean that indicates if the user verified their email
-    public let emailIsVerified:Bool?
+    public var emailIsVerified:Bool?
 
     //Address attributes
 
@@ -88,6 +88,12 @@ public struct CTUserModel: CTBaseModel {
         case city = "city"
         case country = "country"
         case postalCode = "postal_code"
+    }
+    
+    public init(withEmail email: String, andName name: String) {
+        self.id = -1
+        self.name = name
+        self.email = email
     }
 
     /**

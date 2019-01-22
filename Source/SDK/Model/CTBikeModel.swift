@@ -11,9 +11,9 @@ public struct CTBikeModel: CTBaseModel {
     public let id: Int?
     public let imei: String
     public let frameIdentifier: String
-    public let batteryPercentage:Int
-    public let lastLocation: CTBikeLocationModel?
-    public let owner: CTBasicUserModel?
+    public var batteryPercentage:Int?
+    public var lastLocation: CTBikeLocationModel?
+    public var owner: CTBasicUserModel?
     public var linkedUsers: [CTBasicUserModel]?
 
     public var name: String
@@ -23,6 +23,13 @@ public struct CTBikeModel: CTBaseModel {
     public var creationDate:String?
     public var isStolen:Bool?
     public var isRequestingUserOwner: Bool?
+    
+    public init(withImei imei: String, frameIdentifier identifier: String, name: String) {
+        self.id = -1
+        self.imei = imei
+        self.frameIdentifier = identifier
+        self.name = name
+    }
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
