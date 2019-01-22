@@ -59,11 +59,9 @@ class GeofenceTableViewController: UITableViewController {
         let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
             let geofence = self.geofences[indexPath.row]
             
-            CTGeofenceService().delete(withGeofenceId: geofence.id).subscribe(onCompleted: {
+            CTGeofenceService().delete(withGeofenceId: geofence.id).subscribe(onNext: { identifier in
                 self.geofences.remove(at: indexPath.row)
                 self.tableView.reloadData()
-            }, onError: { error in
-                print("Completed with an error: \(error.localizedDescription)")
             }).disposed(by: self.disposeBag)
         }
         

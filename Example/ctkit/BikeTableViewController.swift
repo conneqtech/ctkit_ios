@@ -78,11 +78,9 @@ class BikeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let bike = self.bikes[indexPath.row]
         let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
-            CTBikeService().delete(withBikeId: bike.id!).subscribe(onCompleted: {
+            CTBikeService().delete(withBikeId: bike.id!).subscribe(onNext: { identifier in
                 self.bikes.remove(at: indexPath.row)
                 self.tableView.reloadData()
-            }, onError: { error in
-                print("Completed with an error: \(error.localizedDescription)")
             }).disposed(by: self.disposeBag)
         }
         
