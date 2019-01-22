@@ -10,10 +10,10 @@ import Foundation
 public struct CTGeofenceModel: CTBaseModel {
 
     public let id:Int
-    public let name:String
-    public let radius:Double
-    public let center:CTLatLonModel
-    public let bikeId:Int
+    public var name:String
+    public var radius:Double
+    public var center:CTLatLonModel
+    public var bikeId:Int
 
     public init(withBikeId bikeId: Int, name: String, radius: Double, center: CTLatLonModel) {
         self.id = -1
