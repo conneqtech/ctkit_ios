@@ -30,4 +30,13 @@ public struct CTGeofenceModel: CTBaseModel {
         case center = "center"
         case bikeId = "bike_id"
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(center, forKey: .center)
+        try container.encode(radius, forKey: .radius)
+    }
+    
+    
 }
