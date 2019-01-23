@@ -32,7 +32,7 @@ public struct CTTheftCaseModel:CTBaseModel {
     public let reportDate:String
     public let caseStatus:String
     public let bikeIsInsured:Bool
-    public let policeCaseNumber:String?
+    public let policeCaseNumber:String
     public let caseFinalized:Bool
 
     enum CodingKeys: String, CodingKey {
@@ -59,6 +59,32 @@ public struct CTTheftCaseModel:CTBaseModel {
         case bikeIsInsured = "bike_is_insured"
         case policeCaseNumber = "police_case_number"
         case caseFinalized = "finalized"
+    }
+    
+    public init(withPartnerCaseNumber partnerCaseNumber:String, partner:CTTheftCasePartnerModel) {
+        self.id = -1
+        self.caseNumber = ""
+        self.partnerCaseNumber = partnerCaseNumber
+        self.partner = partner
+        self.bikeFrameType = ""
+        self.bikeType = ""
+        self.bikeColor = ""
+        self.bikeAdditionalDetails = ""
+        self.bikeImages = []
+        
+        self.ownerName = ""
+        self.ownerEmail = ""
+        self.ownerPhone = ""
+        self.ownerAddress = ""
+        self.ownerPostalCode = ""
+        self.ownerCity = ""
+        self.ownerCountry = ""
+        self.caseStatus = ""
+        self.bikeIsInsured = false
+        self.caseFinalized = false
+        self.reportDate = Date().toAPIDate()
+        self.policeCaseNumber = ""
+    
     }
 
     public func encode(to encoder: Encoder) throws {

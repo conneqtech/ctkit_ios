@@ -11,4 +11,11 @@ public struct CTBikeNotificationModel {
     public var bikeId:Int?
     public var translatableKey: String?
     public var translationFieldValues: [String]?
+    
+    
+    public init(withBikeId identifier:Int) {
+        self.bikeId = identifier
+        self.translatableKey = ""
+        self.translationFieldValues = []
+    }
 }

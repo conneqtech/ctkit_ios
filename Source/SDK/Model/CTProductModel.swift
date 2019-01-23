@@ -34,5 +34,20 @@ public struct CTProductModel:CTBaseModel {
         case providerId = "provider_id"
         case childProduct = "child_product"
     }
+    
+    public init(withTitle title:String, description:String, type:Int, providerId:Int) {
+        self.id = -1
+        self.providerId = providerId
+        self.title = title
+        self.subtitle = ""
+        self.description = description
+        self.logoUrl = ""
+        self.currency = ""
+        self.price = -1
+        self.activationFee = -1
+        self.type = type
+        self.childProduct = -1
+        
+    }
 
 }

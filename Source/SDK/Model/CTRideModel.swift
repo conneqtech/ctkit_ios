@@ -45,6 +45,24 @@ public struct CTRideModel: CTBaseModel {
         case co2 = "co2"
         case weatherIconURL = "icon_url"
     }
+    
+    public init(withName name:String, rideType:String, userId:Int, bikeId:Int, startDate:Date, endDate:Date) {
+        self.id = -1
+        self.name = name
+        self.rideType = rideType
+        self.userId = userId
+        self.bikeId = bikeId
+        self.startDate = startDate.toAPIDate()
+        self.endDate = endDate.toAPIDate()
+        self.creationDate = Date().toAPIDate()
+        
+        self.calories = -1
+        self.averageSpeed = -1
+        self.distanceTraveled = -1
+        self.co2 = -1
+        self.weatherIconURL = ""
+        
+    }
 
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

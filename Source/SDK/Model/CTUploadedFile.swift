@@ -21,4 +21,12 @@ public struct CTUploadedFile:CTBaseModel {
         case downloadURL = "download_url"
         case creationDate = "creation_date"
     }
+    
+    public init(withDownloadURL downloadURL:String, creationDate:Date) {
+        self.isOriginal = false
+        self.isDefault = false
+        self.quality = -1
+        self.downloadURL = downloadURL
+        self.creationDate = creationDate.toAPIDate()
+    }
 }

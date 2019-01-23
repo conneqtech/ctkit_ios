@@ -39,6 +39,16 @@ public struct CTUnregisteredBikeInformationModel: CTBaseModel {
         case manufacturerProductionDate = "fabrication_date"
         case registrationFlow = "registration_flow"
     }
+    
+    public init(activationCode:String, registrationFlow:CTBikeRegistrationFlow) {
+        self.partialIMEI = ""
+        self.frameNumber = ""
+        self.manufacturerDescription = ""
+        self.manufacturerSKU = ""
+        self.manufacturerModelName = ""
+        self.manufacturerProductionDate = ""
+        self.registrationFlow = registrationFlow
+    }
 
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
