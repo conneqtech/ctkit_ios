@@ -23,4 +23,13 @@ public struct CTStatisticsModel:CTBaseModel {
         case averageSpeed = "avg_speed"
         case distanceTraveled = "distance_traveled"
     }
+    
+    public init(withFrom from:Date, till:Date) {
+        self.from = from
+        self.till = till
+        self.co2 = -1
+        self.calories = -1
+        self.averageSpeed = -1
+        self.distanceTraveled = -1
+    }
 }

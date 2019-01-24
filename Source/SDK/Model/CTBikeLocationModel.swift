@@ -24,4 +24,13 @@ public struct CTBikeLocationModel: CTBaseModel {
         case batteryPercentage = "battery_percentage"
         case isMoving = "is_moving"
     }
+    
+    public init(withLongitude longitude:Double, latitude:Double, date:Date) {
+        self.longitude = longitude
+        self.latitude = latitude
+        self.date = date.toAPIDate()
+        self.speed = 0
+        self.batteryPercentage = 0
+        self.isMoving = false
+    }
 }

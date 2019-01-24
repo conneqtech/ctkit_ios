@@ -14,8 +14,8 @@ public struct CTSubscriptionModel:CTBaseModel {
     public let isCancelled:Bool
     public let paymentStatus:Int
     public let paymentId:String
-    public let startDate:Date
-    public let endDate:Date
+    public let startDate:String
+    public let endDate:String
     public let productId:Int
 
     enum CodingKeys: String, CodingKey {
@@ -30,6 +30,18 @@ public struct CTSubscriptionModel:CTBaseModel {
         case endDate = "end_date"
         case productId = "product_id"
 
+    }
+    
+    public init(withUserId userId:Int, bikeId:Int, productId:Int) {
+        self.id = -1
+        self.userId = userId
+        self.bikeId = bikeId
+        self.productId = productId
+        self.isCancelled = false
+        self.paymentStatus = -1
+        self.paymentId = ""
+        self.startDate = Date().toAPIDate()
+        self.endDate = Date().toAPIDate()
     }
 
 }
