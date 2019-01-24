@@ -21,7 +21,7 @@ public class CTUserRecoveryService: NSObject {
      - Returns: An observable containing the username, when recovery has been attempted.
      */
     public func recoverUser(email: String) -> Observable<String> {
-        return CTKit.shared.restManager.post(endpoint: "user/recover", parameters:["email":email]).map { (_:[String:Bool]) in email }
+        return CTKit.shared.restManager.post(endpoint: "user/recover", parameters: ["email": email]).map { (_:[String: Bool]) in email }
     }
 
     /**
@@ -36,7 +36,7 @@ public class CTUserRecoveryService: NSObject {
      */
     public func finishPasswordRecovery(password: String, resetHash: String) -> Observable<String> {
         return CTKit.shared.restManager.post(endpoint: "user/recover", parameters: [
-            "hash":resetHash,
-            "password":password] ).map { (result:CTUserRecoveryResultModel) in result.username }
+            "hash": resetHash,
+            "password": password] ).map { (result: CTUserRecoveryResultModel) in result.username }
     }
 }

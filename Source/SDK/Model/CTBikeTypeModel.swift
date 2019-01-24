@@ -16,8 +16,7 @@ public struct CTBikeTypeModel: CTBaseModel {
     public let secondFactorTranslationKey: String
     public let secondFactorLocationImage: String?
     public let images: [String]
-    
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case type

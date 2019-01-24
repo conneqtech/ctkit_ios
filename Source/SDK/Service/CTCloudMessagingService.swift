@@ -34,12 +34,12 @@ public class CTCloudMessagingService: NSObject {
             var notification = CTBikeNotificationModel()
             notification.bikeId = bike
 
-            if let alert:Dictionary<String, AnyObject> = userInfo["alert"] as? Dictionary<String, AnyObject> {
-                if let locKey:String = alert["loc-key"] as? String {
+            if let alert: Dictionary<String, AnyObject> = userInfo["alert"] as? Dictionary<String, AnyObject> {
+                if let locKey: String = alert["loc-key"] as? String {
 
                     notification.translatableKey = locKey
 
-                    if let args:[String] = (alert["loc-args"] as? [String]) , args.count > 1 {
+                    if let args: [String] = (alert["loc-args"] as? [String]), args.count > 1 {
                         notification.translationFieldValues = args
                     }
                 }

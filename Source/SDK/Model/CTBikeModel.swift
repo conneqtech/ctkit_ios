@@ -11,7 +11,7 @@ public struct CTBikeModel: CTBaseModel {
     public let id: Int?
     public let imei: String
     public let frameIdentifier: String
-    public var batteryPercentage:Int?
+    public var batteryPercentage: Int?
     public var lastLocation: CTBikeLocationModel?
     public var owner: CTBasicUserModel?
     public var linkedUsers: [CTBasicUserModel]?
@@ -19,11 +19,11 @@ public struct CTBikeModel: CTBaseModel {
     public var name: String
     public var keyIdentifier: String?
     public var themeColor: String?
-    public var imageUrl:String?
-    public var creationDate:String?
-    public var isStolen:Bool?
+    public var imageUrl: String?
+    public var creationDate: String?
+    public var isStolen: Bool?
     public var isRequestingUserOwner: Bool?
-    
+
     public init(withImei imei: String, frameIdentifier identifier: String, name: String) {
         self.id = -1
         self.imei = imei

@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.7.3)
-  - ctkit (0.3.3):
+  - ctkit (0.4.0):
     - Alamofire (~> 4.7)
     - RxSwift (~> 4.0)
   - Mockingjay (2.0.1):
@@ -44,7 +44,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  ctkit: a27338be8f9d2758a19cb317574c14f8354e7ef1
+  ctkit: e8fbdee38435d09565b537c99137ec933c804894
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46

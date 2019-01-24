@@ -7,18 +7,18 @@
 
 import Foundation
 
-public struct CTProductModel:CTBaseModel {
-    public let id:Int
-    public let title:String?
-    public let subtitle:String?
-    public let description:String?
-    public let logoUrl:String?
-    public let price:Double
-    public let activationFee:Double
-    public let currency:String?
-    public let type:Int
-    public let providerId:Int
-    private let childProduct:Int
+public struct CTProductModel: CTBaseModel {
+    public let id: Int
+    public let title: String?
+    public let subtitle: String?
+    public let description: String?
+    public let logoUrl: String?
+    public let price: Double
+    public let activationFee: Double
+    public let currency: String?
+    public let type: Int
+    public let providerId: Int
+    private let childProduct: Int
 
     enum CodingKeys: String, CodingKey {
 
@@ -34,8 +34,8 @@ public struct CTProductModel:CTBaseModel {
         case providerId = "provider_id"
         case childProduct = "child_product"
     }
-    
-    public init(withTitle title:String, description:String, type:Int, providerId:Int) {
+
+    public init(withTitle title: String, description: String, type: Int, providerId: Int) {
         self.id = -1
         self.providerId = providerId
         self.title = title
@@ -47,7 +47,7 @@ public struct CTProductModel:CTBaseModel {
         self.activationFee = -1
         self.type = type
         self.childProduct = -1
-        
+
     }
 
 }

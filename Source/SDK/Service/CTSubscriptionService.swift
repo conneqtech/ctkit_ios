@@ -30,7 +30,7 @@ public class CTSubscriptionService: NSObject {
      
      - Returns: An observable containing a list of all subscriptions found.
      */
-    public func fetchConnectivitySubscriptions(withbikeId identifier:Int) -> Observable<[CTSubscriptionModel]> {
+    public func fetchConnectivitySubscriptions(withbikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
         return fetchSubscriptionByType(withBikeId: identifier, type: CTSubscriptionService.productTypeConnected)
     }
 
@@ -41,7 +41,7 @@ public class CTSubscriptionService: NSObject {
      
      - Returns: An observable containing a list of all subscriptions found.
      */
-    public func fetchInsuranceSubscriptions(withBikeId identifier:Int) -> Observable<[CTSubscriptionModel]> {
+    public func fetchInsuranceSubscriptions(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
         return fetchSubscriptionByType(withBikeId: identifier, type: CTSubscriptionService.productTypeInsured)
     }
 
@@ -53,7 +53,7 @@ public class CTSubscriptionService: NSObject {
      
      - Returns: An observable containing a list of all subscriptions found.
      */
-    public func fetchSubscriptionByType(withBikeId identifier:Int, type:Int) -> Observable<[CTSubscriptionModel]> {
+    public func fetchSubscriptionByType(withBikeId identifier: Int, type: Int) -> Observable<[CTSubscriptionModel]> {
         return fetchAll(withBikeId: identifier)
     }
 
@@ -65,7 +65,7 @@ public class CTSubscriptionService: NSObject {
      
      - Returns: An observable of the newly started trial.
      */
-    public func startTrial(withBikeId identifier: String, type:Int) -> Observable<CTSubscriptionModel> {
+    public func startTrial(withBikeId identifier: String, type: Int) -> Observable<CTSubscriptionModel> {
         return CTKit.shared.subscriptionManager.startTrial(endpoint: "trial")
     }
 

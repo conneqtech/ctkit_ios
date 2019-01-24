@@ -119,11 +119,11 @@ open class KeychainSwift {
 
         let prefixedKey = keyWithPrefix(key)
 
-        var query: [String : Any] = [
-            KeychainSwiftConstants.klass       : kSecClassGenericPassword,
-            KeychainSwiftConstants.attrAccount : prefixedKey,
-            KeychainSwiftConstants.valueData   : value,
-            KeychainSwiftConstants.accessible  : accessible
+        var query: [String: Any] = [
+            KeychainSwiftConstants.klass: kSecClassGenericPassword,
+            KeychainSwiftConstants.attrAccount: prefixedKey,
+            KeychainSwiftConstants.valueData: value,
+            KeychainSwiftConstants.accessible: accessible
         ]
 
         query = addAccessGroupWhenPresent(query)
@@ -190,10 +190,10 @@ open class KeychainSwift {
         let prefixedKey = keyWithPrefix(key)
 
         var query: [String: Any] = [
-            KeychainSwiftConstants.klass       : kSecClassGenericPassword,
-            KeychainSwiftConstants.attrAccount : prefixedKey,
-            KeychainSwiftConstants.returnData  : kCFBooleanTrue,
-            KeychainSwiftConstants.matchLimit  : kSecMatchLimitOne
+            KeychainSwiftConstants.klass: kSecClassGenericPassword,
+            KeychainSwiftConstants.attrAccount: prefixedKey,
+            KeychainSwiftConstants.returnData: kCFBooleanTrue,
+            KeychainSwiftConstants.matchLimit: kSecMatchLimitOne
         ]
 
         query = addAccessGroupWhenPresent(query)
@@ -234,8 +234,8 @@ open class KeychainSwift {
         let prefixedKey = keyWithPrefix(key)
 
         var query: [String: Any] = [
-            KeychainSwiftConstants.klass       : kSecClassGenericPassword,
-            KeychainSwiftConstants.attrAccount : prefixedKey
+            KeychainSwiftConstants.klass: kSecClassGenericPassword,
+            KeychainSwiftConstants.attrAccount: prefixedKey
         ]
 
         query = addAccessGroupWhenPresent(query)
@@ -256,7 +256,7 @@ open class KeychainSwift {
      */
     @discardableResult
     open func clear() -> Bool {
-        var query: [String: Any] = [ kSecClass as String : kSecClassGenericPassword ]
+        var query: [String: Any] = [ kSecClass as String: kSecClassGenericPassword ]
         query = addAccessGroupWhenPresent(query)
         query = addSynchronizableIfRequired(query, addingItems: false)
         lastQueryParameters = query

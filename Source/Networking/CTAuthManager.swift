@@ -10,9 +10,9 @@ import RxSwift
 import Alamofire
 
 public class CTAuthManager {
-    private let apiConfig:CTApiConfig
+    private let apiConfig: CTApiConfig
 
-    public init(withConfig config:CTApiConfig) {
+    public init(withConfig config: CTApiConfig) {
         self.apiConfig = config
     }
 
@@ -22,9 +22,9 @@ public class CTAuthManager {
             let requestReference = Alamofire.request(url,
                                                      method: .post,
                                                      parameters: [
-                                                        "client_id":self.apiConfig.clientId,
-                                                        "client_secret":self.apiConfig.clientSecret,
-                                                        "grant_type":"client_credentials"
+                                                        "client_id": self.apiConfig.clientId,
+                                                        "client_secret": self.apiConfig.clientSecret,
+                                                        "grant_type": "client_credentials"
 
                 ])
                 .validate()
@@ -50,10 +50,10 @@ public class CTAuthManager {
     }
 
     public func login(token: String, type: String) -> Observable<Any> {
-        var parameters: [String:String] = [
-            "client_id":self.apiConfig.clientId,
-            "client_secret":self.apiConfig.clientSecret,
-            "grant_type":type
+        var parameters: [String: String] = [
+            "client_id": self.apiConfig.clientId,
+            "client_secret": self.apiConfig.clientSecret,
+            "grant_type": type
         ]
 
         if (type == "facebook") {
@@ -68,18 +68,18 @@ public class CTAuthManager {
     }
 
     public func login(username: String, password: String) -> Observable<Any> {
-        let parameters: [String:String] = [
-            "username":username,
-            "password":password,
-            "client_id":self.apiConfig.clientId,
-            "client_secret":self.apiConfig.clientSecret,
-            "grant_type":"password"
+        let parameters: [String: String] = [
+            "username": username,
+            "password": password,
+            "client_id": self.apiConfig.clientId,
+            "client_secret": self.apiConfig.clientSecret,
+            "grant_type": "password"
         ]
 
         return self.login(parameters: parameters)
     }
 
-    private func login(parameters: [String:String]) -> Observable<Any> {
+    private func login(parameters: [String: String]) -> Observable<Any> {
         return Observable<Any>.create { (observer) -> Disposable in
             let url = URL(string: "\(self.apiConfig.fullUrl)/oauth")!
             let requestReference = Alamofire.request(url,
@@ -90,7 +90,7 @@ public class CTAuthManager {
                     switch response.result {
                     case .success:
                         guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
-                            observer.onError(CTErrorHandler().handle(withDecodingError:nil))
+                            observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                             return
                         }
 

@@ -11,27 +11,27 @@ import ctkit
 import RxSwift
 
 class ViewController: UIViewController {
-    
+
     let userService = CTUserService()
-    
+
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
-    
+
     var subscriptions = DisposeBag()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print(CTUserService().getActiveUserId())
         self.hideKeyboardWhenTappedAround()
     }
-    
+
     @IBAction func login(_ sender: Any) {
         let subscription = self.userService.login(
             email: self.emailTextField.text!,
             password: self.passwordTextfield.text!)
             .subscribe { event in
                 switch event {
-                case .next(_):
+                case .next:
                     let navViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "accountNavigationController")
                     self.present(navViewController, animated: true, completion: nil)
                 case .error(let error):
@@ -42,10 +42,10 @@ class ViewController: UIViewController {
                         let alert = UIAlertController(title: "Error", message: ctError.translationKey, preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
                         alert.addAction(okAction)
-                        
+
                         self.present(alert, animated: true)
                     }
-                    
+
                 case .completed:
                     print("Completed")
                 }
@@ -61,7 +61,7 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    
+
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

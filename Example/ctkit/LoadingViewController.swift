@@ -11,15 +11,15 @@ import UIKit
 import ctkit
 
 class LoadingViewController: UIViewController {
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    
+
         var navViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginNavigationController")
         if CTUserService().getActiveUserId() != -1 {
             navViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "accountNavigationController")
         }
-        
+
         self.present(navViewController, animated: false, completion: nil)
     }
 }

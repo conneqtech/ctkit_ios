@@ -21,6 +21,6 @@ public class CTTheftCasePartnerService: NSObject {
      - Returns: An observable containing an array of recovery partners that are available for use in recovering the bike.
      */
     public func fetchAll(forInsuredBike isInsured: Bool) -> Observable<[CTTheftCasePartnerModel]> {
-        return CTKit.shared.restManager.get(endpoint: "theft-case-partner", parameters: ["bike_is_insured":isInsured])
+        return CTKit.shared.restManager.get(endpoint: "theft-case-partner", parameters: ["bike_is_insured": isInsured])
     }
 }

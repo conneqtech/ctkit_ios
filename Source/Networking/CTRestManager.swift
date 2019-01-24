@@ -10,45 +10,45 @@ import RxSwift
 import Alamofire
 
 public class CTRestManager {
-    private let apiConfig:CTApiConfig
-    private let sessionManager:SessionManager
+    private let apiConfig: CTApiConfig
+    private let sessionManager: SessionManager
 
-    public init(withConfig config:CTApiConfig) {
+    public init(withConfig config: CTApiConfig) {
         self.apiConfig = config
         self.sessionManager = SessionManager()
         sessionManager.adapter = CTRequestAdapter()
         sessionManager.retrier = CTRequestRetrier(apiConfig: self.apiConfig)
     }
 
-    public func get<T:Codable>(endpoint:String, parameters:[String:Any]? = nil,  useToken:String? = nil) -> Observable<T> {
+    public func get<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
         return genericCall(.get, endpoint: endpoint, parameters: parameters, encoding: URLEncoding.default, useToken: useToken)
     }
 
-    public func post<T:Codable>(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Observable<T> {
-        return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken:useToken)
+    public func post<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
+        return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
 
-    public func patch<T:Codable>(endpoint:String, parameters: [String:Any]? = nil,  useToken:String? = nil) -> Observable<T> {
+    public func patch<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
         return genericCall(.patch, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
 
-    public func delete(endpoint:String, parameters: [String:Any]? = nil, useToken:String? = nil) -> Completable {
-        return genericCompletableCall(.delete, endpoint: endpoint, parameters: parameters, useToken:useToken)
+    public func delete(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Completable {
+        return genericCompletableCall(.delete, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
 
-    public func archive<T:Codable>(endpoint:String, useToken:String? = nil) -> Observable<T> {
+    public func archive<T: Codable>(endpoint: String, useToken: String? = nil) -> Observable<T> {
         return genericCall(
             .patch,
             endpoint: endpoint,
-            parameters: ["active_state":2],
-            useToken:useToken
+            parameters: ["active_state": 2],
+            useToken: useToken
             )
     }
 
-    public func upload<T:Codable>(endpoint: String, image:UIImage, useToken:String? = nil) -> Observable<T> {
+    public func upload<T: Codable>(endpoint: String, image: UIImage, useToken: String? = nil) -> Observable<T> {
         return Observable<T>.create { (observer) -> Disposable in
 
-            var headers: [String:String] = [:]
+            var headers: [String: String] = [:]
 
             if let bearer = useToken {
                 headers["Authorization"] = "Bearer \(bearer)"
@@ -70,7 +70,7 @@ public class CTRestManager {
                             switch response.result {
                             case .success:
                                 guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
-                                    observer.onError(CTErrorHandler().handle(withDecodingError:nil))
+                                    observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                                     return
                                 }
 
@@ -93,9 +93,9 @@ public class CTRestManager {
         }
     }
 
-    private func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Completable {
+    private func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Completable {
         return Completable.create { (completable) in
-            var headers: [String:String] = [:]
+            var headers: [String: String] = [:]
 
             if let bearer = useToken {
                 headers["Authorization"] = "Bearer \(bearer)"
@@ -124,10 +124,10 @@ public class CTRestManager {
         }
     }
 
-    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters:[String:Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T:Codable {
+    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
         return Observable<T>.create { (observer) -> Disposable in
 
-            var headers: [String:String] = [:]
+            var headers: [String: String] = [:]
 
             if let bearer = useToken {
                 headers["Authorization"] = "Bearer \(bearer)"
@@ -154,7 +154,7 @@ public class CTRestManager {
                         //End of debug code
 
                         guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
-                            observer.onError(CTErrorHandler().handle(withDecodingError:nil))
+                            observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                             return
                         }
 

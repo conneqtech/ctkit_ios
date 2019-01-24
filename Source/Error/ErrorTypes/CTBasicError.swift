@@ -16,7 +16,7 @@ public struct CTBasicError: CTErrorProtocol {
 
     public var description: String
 
-    public init(translationKey: String, description: String, errorBody: [String:Any] = [:], code: Int = 0) {
+    public init(translationKey: String, description: String, errorBody: [String: Any] = [:], code: Int = 0) {
         self.translationKey = translationKey
         self.description = description
         self.errorBody = errorBody

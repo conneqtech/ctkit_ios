@@ -11,7 +11,7 @@ import RxSwift
 /**
  The CTStatisticService is the main entry point for some basic statistics about the bike. This service will be expanded once their is more (fine grained) information to share
  */
-public class CTStatisticsService:NSObject {
+public class CTStatisticsService: NSObject {
 
     /**
      Fetch the last 7 days of statistics for a bike
@@ -20,7 +20,7 @@ public class CTStatisticsService:NSObject {
      
      - Returns: An observable containing an array of 7 items, one for each day.
      */
-    public func fetchAll(withBikeId identifier:Int) -> Observable<[CTStatisticsModel]> {
+    public func fetchAll(withBikeId identifier: Int) -> Observable<[CTStatisticsModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/stats")
     }
 
@@ -31,9 +31,9 @@ public class CTStatisticsService:NSObject {
      
      - Returns: And observable containing the hourly statistics for the bike.
     */
-    public func fetchAll(withBikeId identifier:Int, after:Date) -> Observable<[CTStatisticsModel]> {
+    public func fetchAll(withBikeId identifier: Int, after: Date) -> Observable<[CTStatisticsModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/stats", parameters: [
-            "type":"hourly",
-            "from":after.toAPIDate()])
+            "type": "hourly",
+            "from": after.toAPIDate()])
     }
 }

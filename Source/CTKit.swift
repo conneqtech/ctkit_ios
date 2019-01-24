@@ -10,7 +10,7 @@ import RxSwift
 
 public class CTKit {
 
-    public static var shared:CTKit!
+    public static var shared: CTKit!
 
     internal static let ACTIVE_USER_ID_KEY = "activeUserId"
     internal static let ACCESS_TOKEN_KEY = "accessToken"

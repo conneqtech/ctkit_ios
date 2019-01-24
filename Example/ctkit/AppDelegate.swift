@@ -14,11 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        CTKit.configure(withClientId: "dfbc635c-1aa5-4299-bb91-db54bd6b5026", clientSecret: "wia])N*vUc]FyTNeTdr4MkQVAq6cU4shy#27{oAjsJrD3%bP/i", baseURL: "https://sparta.api.bike.staging.conneq.tech")
+
+        CTKit.configure(withClientId: "58e5b0b5-4e5a-47d1-a775-c182fa6b64da", clientSecret: "F2h$7c>9zj;TnpTVG6rHxyJ7dCbC$H{{pxzH8bN6X=2=7HLJJ4", baseURL: "https://axa.api.bike.staging.conneq.tech")
         return true
     }
 
@@ -44,6 +43,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-

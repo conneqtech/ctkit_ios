@@ -7,9 +7,9 @@
 
 import Foundation
 
-public struct CTOrderClauseModel:Codable {
-    public let fieldname:String
-    public let order:String
+public struct CTOrderClauseModel: Codable {
+    public let fieldname: String
+    public let order: String
 
     enum CodingKeys: String, CodingKey {
         case fieldname = "fieldname"

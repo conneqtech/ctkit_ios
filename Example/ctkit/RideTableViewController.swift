@@ -15,18 +15,16 @@ class RideTableViewController: UITableViewController {
 
     var bikeId:Int?
     var rides:[CTRideModel] = []
-    
-    
+
     let disposeBag:DisposeBag = DisposeBag()
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         guard let bikeId = bikeId else {
             return
         }
@@ -34,7 +32,7 @@ class RideTableViewController: UITableViewController {
             self.rides = result
             self.tableView.reloadData()
         })
-    
+
         disposeBag.insert(sub)
     }
 
@@ -46,7 +44,6 @@ class RideTableViewController: UITableViewController {
         return self.rides.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rideTableViewCell", for: indexPath)
         let ride = self.rides[indexPath.row]
@@ -55,7 +52,6 @@ class RideTableViewController: UITableViewController {
 
         return cell
     }
- 
 
     /*
     // Override to support conditional editing of the table view.

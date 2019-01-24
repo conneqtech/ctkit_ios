@@ -39,36 +39,36 @@ public struct CTUserModel: CTBaseModel {
     public var name: String?
 
     ///Initials of the user, maximum length 255 is characters
-    public var initials:String?
+    public var initials: String?
 
     ///Gender, this can be 'm' for male, 'f' for female, or 'o' for not disclosed
-    public var gender:String?
+    public var gender: String?
 
     ///URL to the profileImage
-    public var profileImage:String?
+    public var profileImage: String?
 
     ///Boolean that indicates if the user verified their email
-    public var emailIsVerified:Bool?
+    public var emailIsVerified: Bool?
 
     //Address attributes
 
     ///Street without house number, maximum length 255 is characters
-    public var street:String?
+    public var street: String?
 
     ///Integer representation of the housenumber, any additions should be stored in the 'freeform' `houseNumberAddition` field
-    public var houseNumber:Int?
+    public var houseNumber: Int?
 
     ///Any additions to the housenumber like 'C5' or 'Apt. 1' should be added here
-    public var houseNumberAddition:String?
+    public var houseNumberAddition: String?
 
     ///City of the user, maximum length 255 is characters
-    public var city:String?
+    public var city: String?
 
     ///Two letter representation of the country
-    public var country:String?
+    public var country: String?
 
     ///Postalcode, maximum length is 10 characters
-    public var postalCode:String?
+    public var postalCode: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -89,7 +89,7 @@ public struct CTUserModel: CTBaseModel {
         case country = "country"
         case postalCode = "postal_code"
     }
-    
+
     public init(withEmail email: String, andName name: String) {
         self.id = -1
         self.name = name

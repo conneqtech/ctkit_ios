@@ -26,7 +26,6 @@ public struct CTAddressModel: CTBaseModel {
         case city = "city_name"
         case province = "province_name"
     }
-    
 
     public init () {
         self.postalCode = ""

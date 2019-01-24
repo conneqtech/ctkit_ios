@@ -30,9 +30,9 @@ public class CTBikeService: NSObject {
      */
     public func create(withName name: String, imei: String, activationCode: String) -> Observable<CTBikeModel> {
         return CTKit.shared.restManager.post(endpoint: "bike", parameters: [
-            "name":name,
-            "imei":imei,
-            "activation_code":activationCode]
+            "name": name,
+            "imei": imei,
+            "activation_code": activationCode]
         )
     }
 
@@ -46,8 +46,8 @@ public class CTBikeService: NSObject {
      */
     public func create(withName name: String, andActivationCode activationCode: String) -> Observable<CTBikeModel> {
         return CTKit.shared.restManager.post(endpoint: "bike", parameters: [
-            "name":name,
-            "activation_code":activationCode]
+            "name": name,
+            "activation_code": activationCode]
         )
     }
 
@@ -74,7 +74,7 @@ public class CTBikeService: NSObject {
      - Returns: A completable call indicating the operation was successful.
      */
     public func delete(withBikeId identifier: Int) -> Observable<Int> {
-        return CTKit.shared.restManager.archive(endpoint: "bike/\(identifier)").map { (result:CTBikeModel) in identifier }
+        return CTKit.shared.restManager.archive(endpoint: "bike/\(identifier)").map { (_: CTBikeModel) in identifier }
     }
 
     /**
@@ -129,7 +129,22 @@ public class CTBikeService: NSObject {
      - Returns: An array with information of an unregistered bike. When the array is empty the bike doesn't exist or is already registered.
      */
     public func searchUnregisteredBike(withFrameIdentifier identifier: String) -> Observable<[CTUnregisteredBikeInformationModel]> {
-        return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["frame_number":identifier])
+        return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["activation_code": identifier])
+            .flatMap { (unregisteredBike: [CTUnregisteredBikeModel]) -> Observable<[CTUnregisteredBikeInformationModel]> in
+                if unregisteredBike.isEmpty {
+                    let emptyResult: [CTUnregisteredBikeInformationModel] = []
+                    return Observable.of(emptyResult)
+                } else {
+                    return CTKit.shared.restManager.get(endpoint: "bike-type/\(unregisteredBike[0].bikeTypeId)").map { (bikeType: CTBikeTypeModel) -> [CTUnregisteredBikeInformationModel] in
+                        return [CTUnregisteredBikeInformationModel(
+                            partialIMEI: unregisteredBike[0].partialIMEI,
+                            frameNumber: unregisteredBike[0].frameNumber,
+                            manufacturerSKU: unregisteredBike[0].manufacturerSKU,
+                            modelName: unregisteredBike[0].manufacturerModelName,
+                            registrationFlow: CTBikeRegistrationFlow.init(rawValue: bikeType.registrationFlow)!)]
+                    }
+                }
+        }
     }
 
     /**

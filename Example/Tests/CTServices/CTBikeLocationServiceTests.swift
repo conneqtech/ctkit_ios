@@ -16,17 +16,17 @@ import RxSwift
 import RxBlocking
 
 class CTBikeLocationServiceTests: QuickSpec {
-    
+
     override func spec() {
         describe("CTBikeLocationServiceTests") {
             describe("Fetch history for a given timeframe") {
                 it("Fetches history successfully") {
                     self.stub(everything, json(Resolver().getJSONListForResource(name: "bike-history"), status: 200))
-                    
+
                     let response = try! CTBikeLocationService().fetchHistoryForBike(withId: 112, from: Date(), until: Date()).toBlocking().first()!
-                    
+
                     expect(response.count) == 26
-            
+
                     expect(response[0].latitude).to(beCloseTo(51.446975))
                     expect(response[0].longitude).to(beCloseTo(3.574013))
                     expect(response[0].speed) == 2
@@ -34,7 +34,7 @@ class CTBikeLocationServiceTests: QuickSpec {
                     expect(response[0].isMoving) == false
                 }
             }
-            
+
             describe("Fetch last location of bike") {
                 it("Fetches last location successfully") {
                     self.stub(http(.get, uri: "/bike/10"), json(Resolver().getJSONForResource(name: "bike"), status: 200))
@@ -49,18 +49,18 @@ class CTBikeLocationServiceTests: QuickSpec {
                         expect(r?.isMoving) == false
                     }
                 }
-                
+
                 it("Returns nil when the bike has no last location") {
                     var nilledJSON = Resolver().getJSONForResource(name: "bike")
                     nilledJSON["last_location"] = nil
-                    
+
                     self.stub(http(.get, uri: "/bike/10"), json(nilledJSON, status: 200))
-                    
+
                     let response = try! CTBikeLocationService().fetchLastLocationOfBike(withId: 10).toBlocking().first()!
                     expect(response).to(beNil())
                 }
             }
         }
     }
-    
+
 }

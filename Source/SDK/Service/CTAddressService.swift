@@ -24,7 +24,7 @@ public class CTAddressService: NSObject {
      */
     func fetch(withPostalcode postalCode: String, houseNumber: String, countryCode: String, addition: String = "") -> Observable<[CTAddressModel]> {
         return CTKit.shared.restManager.get(endpoint: "postcode", parameters: [
-            "postcode":postalCode,
+            "postcode": postalCode,
             "house_number": houseNumber,
             "country_code": countryCode,
             "addition": addition

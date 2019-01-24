@@ -15,61 +15,61 @@ class GeofenceTableViewController: UITableViewController {
 
     var bikeId:Int?
     var geofences: [CTGeofenceModel] = []
-    
+
     let disposeBag = DisposeBag()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         guard let bikeId = bikeId else {
             print("Bike id not set")
             return
         }
-        
+
         let sub = CTGeofenceService().fetchAll(withBikeId: bikeId).subscribe(onNext: { result in
             self.geofences = result
             self.tableView.reloadData()
         })
-        
+
         disposeBag.insert(sub)
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return geofences.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "geofenceCell", for: indexPath)
         let geofence = self.geofences[indexPath.row]
         cell.textLabel?.text = "\(geofence.name)"
         cell.detailTextLabel?.text = "\(geofence.center.latitude);\(geofence.center.longitude) \(geofence.radius)m"
-        
+
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
+        let delete = UITableViewRowAction(style: .destructive, title: "delete") { (_, indexPath) in
             let geofence = self.geofences[indexPath.row]
-            
-            CTGeofenceService().delete(withGeofenceId: geofence.id).subscribe(onNext: { identifier in
+
+            CTGeofenceService().delete(withGeofenceId: geofence.id).subscribe(onNext: { _ in
                 self.geofences.remove(at: indexPath.row)
                 self.tableView.reloadData()
             }).disposed(by: self.disposeBag)
         }
-        
-        let edit = UITableViewRowAction(style: .normal, title: "edit") { (action, indexPath) in
+
+        let edit = UITableViewRowAction(style: .normal, title: "edit") { (_, _) in
             // action2 item at indexPath
             print("Editing")
         }
-        
+
         return [delete, edit]
     }
 }

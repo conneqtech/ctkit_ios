@@ -7,33 +7,33 @@
 
 import Foundation
 
-public struct CTTheftCaseModel:CTBaseModel {
+public struct CTTheftCaseModel: CTBaseModel {
 
-    public let id:Int
-    public let caseNumber:String
+    public let id: Int
+    public let caseNumber: String
     public let partnerCaseNumber: String?
 
     public let partner: CTTheftCasePartnerModel
 
-    public let bikeFrameType:String
-    public let bikeType:String
-    public let bikeColor:String
-    public let bikeAdditionalDetails:String
-    public let bikeImages:[String]
+    public let bikeFrameType: String
+    public let bikeType: String
+    public let bikeColor: String
+    public let bikeAdditionalDetails: String
+    public let bikeImages: [String]
 
     //Owner details
-    public let ownerName:String
-    public let ownerEmail:String
-    public let ownerPhone:String
-    public let ownerAddress:String
-    public let ownerPostalCode:String
-    public let ownerCity:String
-    public let ownerCountry:String
-    public let reportDate:String
-    public let caseStatus:String
-    public let bikeIsInsured:Bool
-    public let policeCaseNumber:String
-    public let caseFinalized:Bool
+    public let ownerName: String
+    public let ownerEmail: String
+    public let ownerPhone: String
+    public let ownerAddress: String
+    public let ownerPostalCode: String
+    public let ownerCity: String
+    public let ownerCountry: String
+    public let reportDate: String
+    public let caseStatus: String
+    public let bikeIsInsured: Bool
+    public let policeCaseNumber: String
+    public let caseFinalized: Bool
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -60,8 +60,8 @@ public struct CTTheftCaseModel:CTBaseModel {
         case policeCaseNumber = "police_case_number"
         case caseFinalized = "finalized"
     }
-    
-    public init(withPartnerCaseNumber partnerCaseNumber:String, partner:CTTheftCasePartnerModel) {
+
+    public init(withPartnerCaseNumber partnerCaseNumber: String, partner: CTTheftCasePartnerModel) {
         self.id = -1
         self.caseNumber = ""
         self.partnerCaseNumber = partnerCaseNumber
@@ -71,7 +71,7 @@ public struct CTTheftCaseModel:CTBaseModel {
         self.bikeColor = ""
         self.bikeAdditionalDetails = ""
         self.bikeImages = []
-        
+
         self.ownerName = ""
         self.ownerEmail = ""
         self.ownerPhone = ""
@@ -84,7 +84,7 @@ public struct CTTheftCaseModel:CTBaseModel {
         self.caseFinalized = false
         self.reportDate = Date().toAPIDate()
         self.policeCaseNumber = ""
-    
+
     }
 
     public func encode(to encoder: Encoder) throws {

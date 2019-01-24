@@ -12,7 +12,7 @@ public struct CTBasicUserModel: CTBaseModel {
     public let id: Int?
     public let email: String?
 
-    public let displayName:String
+    public let displayName: String
     public let profileImage: String
 
     enum CodingKeys: String, CodingKey {

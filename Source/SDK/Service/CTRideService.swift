@@ -12,7 +12,7 @@ import RxSwift
  The CTRideService is the main entry point to create and fetch rides for a bike. Rides are created by users and are part of the bike location history.
  Bike rides allow the user to keep track of their movements without continuously searching through the history
  */
-public class CTRideService:NSObject {
+public class CTRideService: NSObject {
 
     /**
      Create a new ride for a bike.
@@ -25,12 +25,12 @@ public class CTRideService:NSObject {
      
      - Returns: An observable with the created ride.
      */
-    public func create(withBikeId identifier: Int, startDate:Date, endDate:Date, rideType:String, name:String) -> Observable<CTRideModel> {
+    public func create(withBikeId identifier: Int, startDate: Date, endDate: Date, rideType: String, name: String) -> Observable<CTRideModel> {
         return CTKit.shared.restManager.post(endpoint: "bike/\(identifier)/ride", parameters: [
-            "start_date":startDate.toAPIDate(),
-            "end_date":endDate.toAPIDate(),
-            "ride_type":rideType,
-            "name":name
+            "start_date": startDate.toAPIDate(),
+            "end_date": endDate.toAPIDate(),
+            "ride_type": rideType,
+            "name": name
             ])
     }
 
@@ -52,8 +52,8 @@ public class CTRideService:NSObject {
      
      - Returns: A completable to indicate the deletion was successful.
     */
-    public func delete(withRideId identifier:Int) -> Observable<Int> {
-        return CTKit.shared.restManager.archive(endpoint: "bike/ride/\(identifier)").map { (ride:CTRideModel) in identifier }
+    public func delete(withRideId identifier: Int) -> Observable<Int> {
+        return CTKit.shared.restManager.archive(endpoint: "bike/ride/\(identifier)").map { (_: CTRideModel) in identifier }
     }
 
     /**
@@ -74,7 +74,7 @@ public class CTRideService:NSObject {
      
      - Returns: An observable containing an array of rides
      */
-    public func fetchAll(withBikeId identifier:Int) -> Observable<[CTRideModel]> {
+    public func fetchAll(withBikeId identifier: Int) -> Observable<[CTRideModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/ride")
     }
 }

@@ -38,8 +38,8 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         case logo = "logo"
         case description = "descriptions"
     }
-    
-    public init(withName name:String, description:CTTheftCasePartnerDescriptionModel) {
+
+    public init(withName name: String, description: CTTheftCasePartnerDescriptionModel) {
         self.id = -1
         self.name = name
         self.email = ""

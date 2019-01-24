@@ -12,17 +12,17 @@ import ctkit
 import RxSwift
 
 class CreateAccountViewController: UIViewController {
-    
+
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
+
     let disposeBag = DisposeBag()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
     }
-    
+
     @IBAction func createAccount(_ sender: Any) {
         let subscription = CTUserService().createAndLogin(
             withEmail: self.emailTextField.text!,
@@ -30,7 +30,7 @@ class CreateAccountViewController: UIViewController {
             agreedToPrivacyStatement: true
             ).subscribe { event in
                 switch event {
-                case .next(let _):
+                case .next:
                     let navViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "accountNavigationController")
                     self.present(navViewController, animated: true, completion: nil)
                 case .error(let error):
@@ -39,7 +39,7 @@ class CreateAccountViewController: UIViewController {
                     print("Completed")
                 }
             }
-        
+
         disposeBag.insert(subscription)
     }
 }

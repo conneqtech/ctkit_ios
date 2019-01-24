@@ -10,23 +10,23 @@ import Foundation
 public struct CTRideModel: CTBaseModel {
 
     //Attributes
-    public let id:Int
-    public let userId:Int
-    public let bikeId:Int
-    public let name:String
-    public let rideType:String
-    public let creationDate:String
-    public let startDate:String
-    public let endDate:String
+    public let id: Int
+    public let userId: Int
+    public let bikeId: Int
+    public let name: String
+    public let rideType: String
+    public let creationDate: String
+    public let startDate: String
+    public let endDate: String
 
     //Calculated things
-    public let calories:Double
-    public let averageSpeed:Double
-    public let distanceTraveled:Double
-    public let co2:Double
-    public let weatherIconURL:String
+    public let calories: Double
+    public let averageSpeed: Double
+    public let distanceTraveled: Double
+    public let co2: Double
+    public let weatherIconURL: String
 
-    public var coordinateList:[CTLatLonModel]?
+    public var coordinateList: [CTLatLonModel]?
 
     enum CodingKeys: String, CodingKey {
         case weatherInfo = "weather_info"
@@ -45,8 +45,8 @@ public struct CTRideModel: CTBaseModel {
         case co2 = "co2"
         case weatherIconURL = "icon_url"
     }
-    
-    public init(withName name:String, rideType:String, userId:Int, bikeId:Int, startDate:Date, endDate:Date) {
+
+    public init(withName name: String, rideType: String, userId: Int, bikeId: Int, startDate: Date, endDate: Date) {
         self.id = -1
         self.name = name
         self.rideType = rideType
@@ -55,13 +55,13 @@ public struct CTRideModel: CTBaseModel {
         self.startDate = startDate.toAPIDate()
         self.endDate = endDate.toAPIDate()
         self.creationDate = Date().toAPIDate()
-        
+
         self.calories = -1
         self.averageSpeed = -1
         self.distanceTraveled = -1
         self.co2 = -1
         self.weatherIconURL = ""
-        
+
     }
 
     public init (from decoder: Decoder) throws {
