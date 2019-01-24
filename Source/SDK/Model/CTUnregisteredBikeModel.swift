@@ -19,7 +19,7 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
     public let manufacturerDescription: String
 
     /// The SKU of the bike. When one of the Conneqtech Services must identify the bike type for e.g turning functionality on/off, this parameter will most likely be used
-    public let manufacturerSKU: String
+    public let manufacturerSKU: String?
 
     /// Human readable name of the bike model. Acts as a meta field which can be shown in apps or administrative services.
     public let manufacturerModelName: String?
@@ -55,12 +55,12 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
 
         let params = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .params)
 
-        partialIMEI = try! container.decode(String.self, forKey: .partialIMEI)
-        bikeTypeId = try! container.decode(Int.self, forKey: .bikeTypeId)
+        partialIMEI = try container.decode(String.self, forKey: .partialIMEI)
+        bikeTypeId = try container.decode(Int.self, forKey: .bikeTypeId)
 
         frameNumber = try params.decode(String.self, forKey: .frameNumber)
         manufacturerDescription = try params.decode(String.self, forKey: .manufacturerDescription)
-        manufacturerSKU = try params.decode(String.self, forKey: .manufacturerSKU)
+        manufacturerSKU = try? params.decode(String.self, forKey: .manufacturerSKU)
         manufacturerModelName = try? params.decode(String.self, forKey: .manufacturerModelName)
         manufacturerProductionDate = try? params.decode(String.self, forKey: .manufacturerProductionDate)
     }
