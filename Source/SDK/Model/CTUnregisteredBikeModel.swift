@@ -40,11 +40,11 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
         case bikeTypeId = "bike_type_id"
     }
     
-    public init(partialIMEI: String, frameNumber: String, SKU: String, modelName: String, registrationFlow:CTBikeRegistrationFlow) {
+    public init(partialIMEI: String, frameNumber: String, manufacturerSKU: String, modelName: String, registrationFlow:CTBikeRegistrationFlow) {
         self.partialIMEI = partialIMEI
         self.frameNumber = frameNumber
         self.manufacturerDescription = ""
-        self.manufacturerSKU = SKU
+        self.manufacturerSKU = manufacturerSKU
         self.manufacturerModelName = modelName
         self.manufacturerProductionDate = ""
         self.bikeTypeId = -1
