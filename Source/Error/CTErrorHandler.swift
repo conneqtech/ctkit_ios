@@ -63,10 +63,14 @@ internal class CTErrorHandler: NSObject {
     func handleUnauthorized(body: [String: Any]) -> CTBasicError? {
         if let detail = body["detail"] as? String {
             if detail == "Invalid username and password combination" {
-                return CTBasicError(translationKey: "api.error.401.invalid-username-password-combination", description: "Invalid username and password combination", code: 401)
+                return CTBasicError(translationKey: "api.error.401.invalid-username-password-combination",
+                                    description: "Invalid username and password combination",
+                                    code: 401)
             }
             if detail == "User is not logged in" {
-                return CTBasicError(translationKey: "api.error.401.user-not-logged-in", description: "User is not logged in", code: 401)
+                return CTBasicError(translationKey: "api.error.401.user-not-logged-in",
+                                    description: "User is not logged in",
+                                    code: 401)
             }
         }
 
@@ -74,15 +78,21 @@ internal class CTErrorHandler: NSObject {
     }
 
     func handleNotFound(body: [String: Any]) -> CTBasicError? {
-        return CTBasicError(translationKey: "api.error.404.not-found", description: "Requested entity was not found", errorBody: body)
+        return CTBasicError(translationKey: "api.error.404.not-found",
+                            description: "Requested entity was not found",
+                            errorBody: body)
     }
 
     func handleBadRequest(body: [String: Any]) -> CTBasicError? {
-        return CTBasicError(translationKey: "api.error.400.bad-request", description: "The server encountered a bad request", errorBody: body)
+        return CTBasicError(translationKey: "api.error.400.bad-request",
+                            description: "The server encountered a bad request",
+                            errorBody: body)
     }
 
     func handleUserAlreadyTaken(body: [String: Any]) -> CTBasicError? {
-        return CTBasicError(translationKey: "api.error.406.username-already-taken", description: "This username is already taken", errorBody: body)
+        return CTBasicError(translationKey: "api.error.406.username-already-taken",
+                            description: "This username is already taken",
+                            errorBody: body)
     }
 
     func handleUnprocessableEntity(body: [String: Any]) -> CTErrorProtocol? {
@@ -101,7 +111,10 @@ internal class CTErrorHandler: NSObject {
     }
 
     func handleValidationError(body: [String: Any]) -> CTValidationError? {
-        return CTValidationError(translationKey: "api.error.validation-failed", description: "Failed Validation", errorBody: body, code: 422)
+        return CTValidationError(translationKey: "api.error.validation-failed",
+                                 description: "Failed Validation",
+                                 errorBody: body,
+                                 code: 422)
     }
 
     func handleInvalidFields(body: [String: Any]) -> CTBasicError? {
