@@ -16,7 +16,7 @@ public struct CTUnregisteredBikeInformationModel: CTBaseModel {
     public let frameNumber: String
 
     /// The SKU of the bike. When one of the Conneqtech Services must identify the bike type for e.g turning functionality on/off, this parameter will most likely be used
-    public let manufacturerSKU: String
+    public let manufacturerSKU: String?
 
     /// Human readable name of the bike model. Acts as a meta field which can be shown in apps or administrative services.
     public let manufacturerModelName: String?
@@ -31,7 +31,7 @@ public struct CTUnregisteredBikeInformationModel: CTBaseModel {
         case registrationFlow = "registration_flow"
     }
 
-    public init(partialIMEI: String, frameNumber: String, manufacturerSKU: String, modelName: String?, registrationFlow: CTBikeRegistrationFlow) {
+    public init(partialIMEI: String, frameNumber: String, manufacturerSKU: String?, modelName: String?, registrationFlow: CTBikeRegistrationFlow) {
         self.partialIMEI = partialIMEI
         self.frameNumber = frameNumber
         self.manufacturerSKU = manufacturerSKU
