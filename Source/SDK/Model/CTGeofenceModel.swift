@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 
 public struct CTGeofenceModel: CTBaseModel {
 
@@ -46,5 +47,7 @@ public struct CTGeofenceModel: CTBaseModel {
         try container.encode(radius, forKey: .radius)
     }
     
-    
+    public func asCoordinate() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(self.center.latitude, self.center.longitude)
+    }
 }
