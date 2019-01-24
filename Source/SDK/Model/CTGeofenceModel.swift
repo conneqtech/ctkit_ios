@@ -23,6 +23,14 @@ public struct CTGeofenceModel: CTBaseModel {
         self.center = center
     }
     
+    public init(withIdentifier identifier: Int, andBikeId bikeId: Int, name: String, radius: Double, center: CTLatLonModel) {
+        self.id = identifier
+        self.bikeId = bikeId
+        self.name = name
+        self.radius = radius
+        self.center = center
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case name = "name"
