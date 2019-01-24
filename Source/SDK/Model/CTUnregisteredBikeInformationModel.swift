@@ -19,7 +19,7 @@ public struct CTUnregisteredBikeInformationModel: CTBaseModel {
     public let manufacturerSKU: String
 
     /// Human readable name of the bike model. Acts as a meta field which can be shown in apps or administrative services.
-    public let manufacturerModelName: String
+    public let manufacturerModelName: String?
 
     public let registrationFlow: CTBikeRegistrationFlow
 
@@ -31,7 +31,7 @@ public struct CTUnregisteredBikeInformationModel: CTBaseModel {
         case registrationFlow = "registration_flow"
     }
 
-    public init(partialIMEI: String, frameNumber: String, manufacturerSKU: String, modelName: String, registrationFlow: CTBikeRegistrationFlow) {
+    public init(partialIMEI: String, frameNumber: String, manufacturerSKU: String, modelName: String?, registrationFlow: CTBikeRegistrationFlow) {
         self.partialIMEI = partialIMEI
         self.frameNumber = frameNumber
         self.manufacturerSKU = manufacturerSKU

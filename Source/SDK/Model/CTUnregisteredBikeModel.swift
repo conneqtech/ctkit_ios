@@ -22,10 +22,10 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
     public let manufacturerSKU: String
 
     /// Human readable name of the bike model. Acts as a meta field which can be shown in apps or administrative services.
-    public let manufacturerModelName: String
+    public let manufacturerModelName: String?
 
     /// String representation of the fabrication date in yyy-mm-dd format. also acts as a meta field.
-    public let manufacturerProductionDate: String
+    public let manufacturerProductionDate: String?
 
     public let bikeTypeId: Int
 
@@ -40,7 +40,7 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
         case bikeTypeId = "bike_type_id"
     }
 
-    public init(partialIMEI: String, frameNumber: String, manufacturerSKU: String, modelName: String, registrationFlow: CTBikeRegistrationFlow) {
+    public init(partialIMEI: String, frameNumber: String, manufacturerSKU: String, modelName: String?, registrationFlow: CTBikeRegistrationFlow) {
         self.partialIMEI = partialIMEI
         self.frameNumber = frameNumber
         self.manufacturerDescription = ""
@@ -61,8 +61,8 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
         frameNumber = try params.decode(String.self, forKey: .frameNumber)
         manufacturerDescription = try params.decode(String.self, forKey: .manufacturerDescription)
         manufacturerSKU = try params.decode(String.self, forKey: .manufacturerSKU)
-        manufacturerModelName = try params.decode(String.self, forKey: .manufacturerModelName)
-        manufacturerProductionDate = try params.decode(String.self, forKey: .manufacturerProductionDate)
+        manufacturerModelName = try? params.decode(String.self, forKey: .manufacturerModelName)
+        manufacturerProductionDate = try? params.decode(String.self, forKey: .manufacturerProductionDate)
     }
 
     public func encode(to encoder: Encoder) throws {

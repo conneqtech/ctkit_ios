@@ -12,7 +12,7 @@ public struct CTBikeTypeModel: CTBaseModel {
     public let type: String
     public let name: String
     public let registrationFlow: String
-    public let catalogPrice: String
+    public let catalogPrice: Int
     public let secondFactorTranslationKey: String
     public let secondFactorLocationImage: String?
     public let images: [String]

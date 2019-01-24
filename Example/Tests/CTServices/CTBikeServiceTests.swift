@@ -145,7 +145,7 @@ class CTBikeServiceTests: QuickSpec {
         }
 
         describe("Bike information") {
-            fit("searches for a bike with a frame number") {
+            it("searches for a bike with a frame number") {
 //                self.stub(http(.get, uri: "/bike/search"), json([Resolver().getJSONForResource(name: "bike-information")], status: 200))
                 let subjectUnderTest = CTBikeService()
 
@@ -154,12 +154,20 @@ class CTBikeServiceTests: QuickSpec {
                     expect(response.count) > 0
                     let bike = response[0]
 
-                    expect(bike.partialIMEI) == "3515640561"
-                    expect(bike.frameNumber) == "EN15194"
+                    expect(bike.partialIMEI) == "8888562846"
+                    expect(bike.frameNumber) == "EMU9260"
 
-                    expect(bike.manufacturerModelName) == ""
                     expect(bike.manufacturerSKU) == "9999999"
-                    expect(bike.registrationFlow) == .booklet
+                    expect(bike.registrationFlow) == .imei
+                }
+            }
+            
+            fit("searches for a bike with a frame number but gets 0 results") {
+                //                self.stub(http(.get, uri: "/bike/search"), json([Resolver().getJSONForResource(name: "bike-information")], status: 200))
+                let subjectUnderTest = CTBikeService()
+                let response = try! subjectUnderTest.searchUnregisteredBike(withFrameIdentifier: "BOGUS").toBlocking().first()
+                if let response = response {
+                    expect(response.count) == 0
                 }
             }
         }
