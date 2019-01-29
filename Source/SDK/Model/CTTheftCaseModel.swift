@@ -29,7 +29,7 @@ public struct CTTheftCaseModel: CTBaseModel {
     public let ownerPostalCode: String
     public let ownerCity: String
     public let ownerCountry: String
-    public let reportDate: String
+    public let reportDate: Date
     public let caseStatus: String
     public let bikeIsInsured: Bool
     public let policeCaseNumber: String
@@ -82,7 +82,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.caseStatus = ""
         self.bikeIsInsured = false
         self.caseFinalized = false
-        self.reportDate = Date().toAPIDate()
+        self.reportDate = Date()
         self.policeCaseNumber = ""
 
     }

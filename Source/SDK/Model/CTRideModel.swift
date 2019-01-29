@@ -15,9 +15,9 @@ public struct CTRideModel: CTBaseModel {
     public let bikeId: Int
     public let name: String
     public let rideType: String
-    public let creationDate: String
-    public let startDate: String
-    public let endDate: String
+    public let creationDate: Date
+    public let startDate: Date
+    public let endDate: Date
 
     //Calculated things
     public let calories: Double
@@ -52,9 +52,9 @@ public struct CTRideModel: CTBaseModel {
         self.rideType = rideType
         self.userId = userId
         self.bikeId = bikeId
-        self.startDate = startDate.toAPIDate()
-        self.endDate = endDate.toAPIDate()
-        self.creationDate = Date().toAPIDate()
+        self.startDate = startDate
+        self.endDate = endDate
+        self.creationDate = Date()
 
         self.calories = -1
         self.averageSpeed = -1
@@ -75,9 +75,9 @@ public struct CTRideModel: CTBaseModel {
         bikeId = try! container.decode(Int.self, forKey: .bikeId)
         name = try! container.decode(String.self, forKey: .name)
         rideType = try! container.decode(String.self, forKey: .rideType)
-        creationDate = try! container.decode(String.self, forKey: .creationDate)
-        startDate = try! container.decode(String.self, forKey: .startDate)
-        endDate = try! container.decode(String.self, forKey: .endDate)
+        creationDate = try! container.decode(Date.self, forKey: .creationDate)
+        startDate = try! container.decode(Date.self, forKey: .startDate)
+        endDate = try! container.decode(Date.self, forKey: .endDate)
 
         calories = try! container.decode(Double.self, forKey: .calories)
         averageSpeed = try! container.decode(Double.self, forKey: .averageSpeed)

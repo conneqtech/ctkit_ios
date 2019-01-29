@@ -12,7 +12,7 @@ public struct CTUploadedFile: CTBaseModel {
     public let isDefault: Bool
     public let quality: Int
     public let downloadURL: String
-    public let creationDate: String
+    public let creationDate: Date
 
     enum CodingKeys: String, CodingKey {
         case isOriginal = "is_original"
@@ -27,6 +27,6 @@ public struct CTUploadedFile: CTBaseModel {
         self.isDefault = false
         self.quality = -1
         self.downloadURL = downloadURL
-        self.creationDate = creationDate.toAPIDate()
+        self.creationDate = creationDate
     }
 }

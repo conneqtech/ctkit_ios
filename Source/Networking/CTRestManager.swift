@@ -145,15 +145,18 @@ public class CTRestManager {
                     switch response.result {
                     case .success:
                         //FIXME: Remove debug code
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .formatted(.iso8601CT)
+                        
                         do {
-                            _ = try JSONDecoder().decode(T.self, from: response.data!)
+                            _ = try decoder.decode(T.self, from: response.data!)
                         } catch {
                             print("DEBUG: Decoding gave us the following error")
                             print(error)
                         }
                         //End of debug code
 
-                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                        guard let data = response.data, let getResponse = try? decoder.decode(T.self, from: data) else {
                             observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                             return
                         }

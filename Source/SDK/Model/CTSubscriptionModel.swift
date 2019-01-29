@@ -14,8 +14,8 @@ public struct CTSubscriptionModel: CTBaseModel {
     public let isCancelled: Bool
     public let paymentStatus: Int
     public let paymentId: String
-    public let startDate: String
-    public let endDate: String
+    public let startDate: Date
+    public let endDate: Date
     public let productId: Int
 
     enum CodingKeys: String, CodingKey {
@@ -40,8 +40,8 @@ public struct CTSubscriptionModel: CTBaseModel {
         self.isCancelled = false
         self.paymentStatus = -1
         self.paymentId = ""
-        self.startDate = Date().toAPIDate()
-        self.endDate = Date().toAPIDate()
+        self.startDate = Date()
+        self.endDate = Date()
     }
 
 }

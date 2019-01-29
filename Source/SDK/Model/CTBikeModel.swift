@@ -20,7 +20,7 @@ public struct CTBikeModel: CTBaseModel {
     public var keyIdentifier: String?
     public var themeColor: String?
     public var imageUrl: String?
-    public var creationDate: String?
+    public var creationDate: Date?
     public var isStolen: Bool?
     public var isRequestingUserOwner: Bool?
 

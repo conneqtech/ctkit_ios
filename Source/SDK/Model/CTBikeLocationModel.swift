@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import MapKit
 
 public struct CTBikeLocationModel: CTBaseModel {
 
     public let longitude: Double
     public let latitude: Double
-    public let date: String
+    public let date: Date
     public let speed: Int
     public let batteryPercentage: Int
     public let isMoving: Bool
@@ -28,7 +29,7 @@ public struct CTBikeLocationModel: CTBaseModel {
     public init(withLongitude longitude: Double, latitude: Double, date: Date) {
         self.longitude = longitude
         self.latitude = latitude
-        self.date = date.toAPIDate()
+        self.date = date
         self.speed = 0
         self.batteryPercentage = 0
         self.isMoving = false
