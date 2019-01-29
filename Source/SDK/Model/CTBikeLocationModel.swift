@@ -34,4 +34,8 @@ public struct CTBikeLocationModel: CTBaseModel {
         self.batteryPercentage = 0
         self.isMoving = false
     }
+    
+    public func asCoordinate() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(self.latitude, self.longitude)
+    }
 }
