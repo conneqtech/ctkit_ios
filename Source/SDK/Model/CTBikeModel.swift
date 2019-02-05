@@ -23,6 +23,13 @@ public struct CTBikeModel: CTBaseModel {
     public var creationDate: Date?
     public var isStolen: Bool?
     public var isRequestingUserOwner: Bool?
+    
+    public init(withId id:Int, imei: String, frameIdentifier identifier: String, name: String) {
+        self.id = id
+        self.imei = imei
+        self.frameIdentifier = identifier
+        self.name = name
+    }
 
     public init(withImei imei: String, frameIdentifier identifier: String, name: String) {
         self.id = -1
