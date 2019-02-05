@@ -66,10 +66,11 @@ public class CTRestManager {
                         .validate(statusCode: 200..<300)
                         .validate(contentType: ["application/json"])
                         .responseJSON { response in
-
+                            let decoder = JSONDecoder()
+                            decoder.dateDecodingStrategy = .formatted(.iso8601CT)
                             switch response.result {
                             case .success:
-                                guard let data = response.data, let getResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                                guard let data = response.data, let getResponse = try? decoder.decode(T.self, from: data) else {
                                     observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                                     return
                                 }
