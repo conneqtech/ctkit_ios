@@ -40,6 +40,9 @@ public struct CTUserModel: CTBaseModel {
 
     ///Initials of the user, maximum length 255 is characters
     public var initials: String?
+    
+    ///Phone number of the user
+    public var phoneNumber:String?
 
     ///Gender, this can be 'm' for male, 'f' for female, or 'o' for not disclosed
     public var gender: String?
@@ -78,6 +81,7 @@ public struct CTUserModel: CTBaseModel {
         case name = "name"
 
         case initials = "initials"
+        case phoneNumber = "phone_number"
         case gender = "gender"
         case profileImage = "avatar_url"
         case emailIsVerified = "is_email_verified"
@@ -104,6 +108,7 @@ public struct CTUserModel: CTBaseModel {
         try container.encode(firstName, forKey: .firstName)
         try container.encode(lastName, forKey: .lastName)
         try container.encode(initials, forKey: .initials)
+        try container.encode(phoneNumber, forKey: .phoneNumber)
         try container.encode(gender, forKey: .gender)
         try container.encode(profileImage, forKey: .profileImage)
         try container.encode(name, forKey: .name)
@@ -114,5 +119,22 @@ public struct CTUserModel: CTBaseModel {
         try container.encode(city, forKey: .city)
         try container.encode(country, forKey: .country)
         try container.encode(postalCode, forKey: .postalCode)
+    }
+    
+    
+    public static func splitPhone(number: String) -> (countryCode:UInt64?, number:String) {
+        let splitNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted)
+        var phoneNumber = number
+        var countryCodeValue:UInt64? = nil
+        
+        if splitNumber.count == 2 {
+            countryCodeValue = UInt64(splitNumber[0])
+            phoneNumber = splitNumber[1]
+        }
+        if splitNumber.count == 3 {
+            countryCodeValue = UInt64(splitNumber[1])
+            phoneNumber = splitNumber[2]
+        }
+        return (countryCodeValue, phoneNumber)
     }
 }
