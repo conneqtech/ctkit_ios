@@ -14,7 +14,7 @@ public struct CTBikeLocationModel: CTBaseModel {
     public let latitude: Double
     public let date: Date
     public let speed: Int
-    public let batteryPercentage: Int
+    public let batteryPercentage: Double
     public let isMoving: Bool
 
     enum CodingKeys: String, CodingKey {
