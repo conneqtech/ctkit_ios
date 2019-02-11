@@ -15,6 +15,7 @@ public struct CTTheftCaseModel: CTBaseModel {
 
     public let partner: CTTheftCasePartnerModel
 
+    public var bikeId: Int
     public var bikeFrameType: String
     public var bikeType: String
     public var bikeColor: String
@@ -41,6 +42,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         case partnerCaseNumber = "partner_case_number"
         case partner = "partner"
 
+        case bikeId = "bike_id"
         case bikeFrameType = "bike_frame_type"
         case bikeType = "bike_type"
         case bikeColor = "bike_color"
@@ -66,6 +68,8 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.caseNumber = nil
         self.partnerCaseNumber = nil
         self.partner = partner
+        
+        self.bikeId = -1
         self.bikeFrameType = ""
         self.bikeType = ""
         self.bikeColor = ""
@@ -91,6 +95,8 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.caseNumber = nil
         self.partnerCaseNumber = partnerCaseNumber
         self.partner = partner
+        
+        self.bikeId = -1
         self.bikeFrameType = ""
         self.bikeType = ""
         self.bikeColor = ""
@@ -114,6 +120,7 @@ public struct CTTheftCaseModel: CTBaseModel {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        try container.encode(bikeId, forKey: .bikeId)
         try container.encode(bikeFrameType, forKey: .bikeFrameType)
         try container.encode(bikeType, forKey: .bikeType)
         try container.encode(bikeColor, forKey: .bikeColor)
