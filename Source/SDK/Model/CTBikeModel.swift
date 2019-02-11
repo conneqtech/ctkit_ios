@@ -23,6 +23,7 @@ public struct CTBikeModel: CTBaseModel {
     public var creationDate: Date?
     public var isStolen: Bool?
     public var isRequestingUserOwner: Bool?
+    public var type: String?
     
     public init(withId id:Int, imei: String, frameIdentifier identifier: String, name: String) {
         self.id = id
@@ -53,6 +54,7 @@ public struct CTBikeModel: CTBaseModel {
         case creationDate = "creation_date"
         case isStolen = "is_stolen"
         case isRequestingUserOwner = "is_requesting_user_owner"
+        case type = "type"
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -64,6 +66,7 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(imageUrl, forKey: .imageUrl)
         try container.encode(frameIdentifier, forKey: .frameIdentifier)
         try container.encode(isStolen, forKey: .isStolen)
+        try container.encode(type, forKey: .type)
 
     }
 
