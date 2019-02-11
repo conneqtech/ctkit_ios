@@ -34,7 +34,7 @@ public class CTTheftCaseService: NSObject {
      */
     public func patchPoliceId(withCaseId identifier: Int, policeId: String) -> Observable<CTTheftCaseModel> {
         return CTKit.shared.restManager.patch(endpoint: "theft-case/\(identifier)", parameters: [
-            "police_id": policeId])
+            "police_case_number": policeId])
     }
 
     /**
