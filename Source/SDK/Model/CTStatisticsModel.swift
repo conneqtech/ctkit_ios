@@ -18,7 +18,7 @@ public struct CTStatisticsModel: CTBaseModel {
     enum CodingKeys: String, CodingKey {
         case from
         case till
-        case co2
+        case co2 = "c02"
         case calories
         case averageSpeed = "avg_speed"
         case distanceTraveled = "distance_traveled"
