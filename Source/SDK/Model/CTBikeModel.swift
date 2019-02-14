@@ -11,7 +11,7 @@ public struct CTBikeModel: CTBaseModel {
     public let id: Int?
     public let imei: String
     public let frameIdentifier: String
-    public var batteryPercentage:Int?
+    public var batteryPercentage: Double?
     public var lastLocation: CTBikeLocationModel?
     public var owner: CTBasicUserModel?
     public var linkedUsers: [CTBasicUserModel]?
@@ -19,11 +19,19 @@ public struct CTBikeModel: CTBaseModel {
     public var name: String
     public var keyIdentifier: String?
     public var themeColor: String?
-    public var imageUrl:String?
-    public var creationDate:String?
-    public var isStolen:Bool?
+    public var imageUrl: String?
+    public var creationDate: Date?
+    public var isStolen: Bool?
     public var isRequestingUserOwner: Bool?
+    public var type: String?
     
+    public init(withId id:Int, imei: String, frameIdentifier identifier: String, name: String) {
+        self.id = id
+        self.imei = imei
+        self.frameIdentifier = identifier
+        self.name = name
+    }
+
     public init(withImei imei: String, frameIdentifier identifier: String, name: String) {
         self.id = -1
         self.imei = imei
@@ -46,6 +54,7 @@ public struct CTBikeModel: CTBaseModel {
         case creationDate = "creation_date"
         case isStolen = "is_stolen"
         case isRequestingUserOwner = "is_requesting_user_owner"
+        case type = "type"
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -57,7 +66,5 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(imageUrl, forKey: .imageUrl)
         try container.encode(frameIdentifier, forKey: .frameIdentifier)
         try container.encode(isStolen, forKey: .isStolen)
-
     }
-
 }

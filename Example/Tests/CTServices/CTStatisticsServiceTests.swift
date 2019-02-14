@@ -19,10 +19,10 @@ class CTStatisticServiceTests:QuickSpec {
     override func spec() {
         beforeEach {
             self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "user"), status: 200))
-            let _ = try! CTUserService().fetchCurrentUser().toBlocking().first()
+            _ = try! CTUserService().fetchCurrentUser().toBlocking().first()
             expect(CTUserService().getActiveUserId()) == 47
         }
-        
+
         describe("fetchAll") {
             it("Succesfully fetches all stats for the bike") {
                 self.stub(http(.get, uri: "/bike/152/stats/"), json( Resolver().getJSONListForResource(name: "statisticsResponse"), status: 200))
@@ -33,7 +33,7 @@ class CTStatisticServiceTests:QuickSpec {
                     expect("it can unwrap") == "did not unwrap"
                 }
             }
-            
+
             it("Succesfully fetches hourly stats for the bike") {
                 self.stub(http(.get, uri: "/bike/152/stats/"), json(Resolver().getJSONListForResource(name: "statisticsResponse"), status: 200))
                 let callToTest = try! CTStatisticsService().fetchAll(withBikeId: 152, after: Date()).toBlocking().first()
@@ -43,13 +43,13 @@ class CTStatisticServiceTests:QuickSpec {
                     expect("it can unwrap") == "did not unwrap"
                 }
             }
-            
+
             it("Handles the error when the timespan is invalid") {
-                
+
             }
-            
+
             it("Handles the error when there's no access for the bike") {
-                
+
             }
         }
     }

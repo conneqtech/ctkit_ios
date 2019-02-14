@@ -39,36 +39,39 @@ public struct CTUserModel: CTBaseModel {
     public var name: String?
 
     ///Initials of the user, maximum length 255 is characters
-    public var initials:String?
+    public var initials: String?
+    
+    ///Phone number of the user
+    public var phoneNumber:String?
 
     ///Gender, this can be 'm' for male, 'f' for female, or 'o' for not disclosed
-    public var gender:String?
+    public var gender: String?
 
     ///URL to the profileImage
-    public var profileImage:String?
+    public var profileImage: String?
 
     ///Boolean that indicates if the user verified their email
-    public var emailIsVerified:Bool?
+    public var emailIsVerified: Bool?
 
     //Address attributes
 
     ///Street without house number, maximum length 255 is characters
-    public var street:String?
+    public var street: String?
 
     ///Integer representation of the housenumber, any additions should be stored in the 'freeform' `houseNumberAddition` field
-    public var houseNumber:Int?
+    public var houseNumber: Int?
 
     ///Any additions to the housenumber like 'C5' or 'Apt. 1' should be added here
-    public var houseNumberAddition:String?
+    public var houseNumberAddition: String?
 
     ///City of the user, maximum length 255 is characters
-    public var city:String?
+    public var city: String?
 
     ///Two letter representation of the country
-    public var country:String?
+    public var country: String?
 
     ///Postalcode, maximum length is 10 characters
-    public var postalCode:String?
+    public var postalCode: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -78,6 +81,7 @@ public struct CTUserModel: CTBaseModel {
         case name = "name"
 
         case initials = "initials"
+        case phoneNumber = "phone_number"
         case gender = "gender"
         case profileImage = "avatar_url"
         case emailIsVerified = "is_email_verified"
@@ -89,7 +93,7 @@ public struct CTUserModel: CTBaseModel {
         case country = "country"
         case postalCode = "postal_code"
     }
-    
+
     public init(withEmail email: String, andName name: String) {
         self.id = -1
         self.name = name
@@ -104,6 +108,7 @@ public struct CTUserModel: CTBaseModel {
         try container.encode(firstName, forKey: .firstName)
         try container.encode(lastName, forKey: .lastName)
         try container.encode(initials, forKey: .initials)
+        try container.encode(phoneNumber, forKey: .phoneNumber)
         try container.encode(gender, forKey: .gender)
         try container.encode(profileImage, forKey: .profileImage)
         try container.encode(name, forKey: .name)
@@ -114,5 +119,22 @@ public struct CTUserModel: CTBaseModel {
         try container.encode(city, forKey: .city)
         try container.encode(country, forKey: .country)
         try container.encode(postalCode, forKey: .postalCode)
+    }
+    
+    
+    public static func splitPhone(number: String) -> (countryCode:UInt64?, number:String) {
+        let splitNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted)
+        var phoneNumber = number
+        var countryCodeValue:UInt64? = nil
+        
+        if splitNumber.count == 2 {
+            countryCodeValue = UInt64(splitNumber[0])
+            phoneNumber = splitNumber[1]
+        }
+        if splitNumber.count == 3 {
+            countryCodeValue = UInt64(splitNumber[1])
+            phoneNumber = splitNumber[2]
+        }
+        return (countryCodeValue, phoneNumber)
     }
 }

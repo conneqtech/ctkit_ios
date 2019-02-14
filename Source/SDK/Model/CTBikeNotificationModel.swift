@@ -8,7 +8,7 @@
 import Foundation
 
 public struct CTBikeNotificationModel {
-    public var bikeId:Int?
+    public var bikeId: Int?
     public var translatableKey: String?
     public var translationFieldValues: [String]?
 }

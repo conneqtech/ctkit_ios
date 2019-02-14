@@ -12,7 +12,7 @@ class CTRequestRetrier: RequestRetrier {
     private typealias RefreshCompletion = (_ succeeded: Bool, _ tokenResponse: CTOAuth2TokenResponse?) -> Void
 
     private let lock = NSLock()
-    private let apiConfig:CTApiConfig
+    private let apiConfig: CTApiConfig
 
     private var isRefreshing = false
     private var requestsToRetry: [RequestRetryCompletion] = []
@@ -52,11 +52,11 @@ class CTRequestRetrier: RequestRetrier {
 
         let urlString = "\(apiConfig.fullUrl)/oauth"
 
-        let params: [String:Any] = [
+        let params: [String: Any] = [
             "refresh_token": CTKit.shared.authManager.getRefreshToken(),
-            "client_id":apiConfig.clientId,
-            "client_secret":apiConfig.clientSecret,
-            "grant_type":"refresh_token"
+            "client_id": apiConfig.clientId,
+            "client_secret": apiConfig.clientSecret,
+            "grant_type": "refresh_token"
         ]
 
         _ = Alamofire.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default)

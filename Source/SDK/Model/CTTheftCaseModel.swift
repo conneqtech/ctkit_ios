@@ -7,33 +7,34 @@
 
 import Foundation
 
-public struct CTTheftCaseModel:CTBaseModel {
+public struct CTTheftCaseModel: CTBaseModel {
 
-    public let id:Int
-    public let caseNumber:String
+    public let id: Int
+    public var caseNumber: String?
     public let partnerCaseNumber: String?
 
     public let partner: CTTheftCasePartnerModel
 
-    public let bikeFrameType:String
-    public let bikeType:String
-    public let bikeColor:String
-    public let bikeAdditionalDetails:String
-    public let bikeImages:[String]
+    public var bikeId: Int
+    public var bikeFrameType: String
+    public var bikeType: String
+    public var bikeColor: String
+    public var bikeAdditionalDetails: String
+    public var bikeImages: [String]
 
     //Owner details
-    public let ownerName:String
-    public let ownerEmail:String
-    public let ownerPhone:String
-    public let ownerAddress:String
-    public let ownerPostalCode:String
-    public let ownerCity:String
-    public let ownerCountry:String
-    public let reportDate:String
-    public let caseStatus:String
-    public let bikeIsInsured:Bool
-    public let policeCaseNumber:String?
-    public let caseFinalized:Bool
+    public var ownerName: String
+    public var ownerEmail: String
+    public var ownerPhone: String
+    public var ownerAddress: String
+    public var ownerPostalCode: String
+    public var ownerCity: String
+    public var ownerCountry: String
+    public var reportDate: Date
+    public var caseStatus: String
+    public var bikeIsInsured: Bool
+    public var policeCaseNumber: String
+    public let caseFinalized: Bool
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -41,6 +42,7 @@ public struct CTTheftCaseModel:CTBaseModel {
         case partnerCaseNumber = "partner_case_number"
         case partner = "partner"
 
+        case bikeId = "bike_id"
         case bikeFrameType = "bike_frame_type"
         case bikeType = "bike_type"
         case bikeColor = "bike_color"
@@ -60,10 +62,65 @@ public struct CTTheftCaseModel:CTBaseModel {
         case policeCaseNumber = "police_case_number"
         case caseFinalized = "finalized"
     }
+    
+    public init(withPartner partner: CTTheftCasePartnerModel) {
+        self.id = -1
+        self.caseNumber = nil
+        self.partnerCaseNumber = nil
+        self.partner = partner
+        
+        self.bikeId = -1
+        self.bikeFrameType = ""
+        self.bikeType = ""
+        self.bikeColor = ""
+        self.bikeAdditionalDetails = ""
+        self.bikeImages = []
+        
+        self.ownerName = ""
+        self.ownerEmail = ""
+        self.ownerPhone = ""
+        self.ownerAddress = ""
+        self.ownerPostalCode = ""
+        self.ownerCity = ""
+        self.ownerCountry = ""
+        self.caseStatus = ""
+        self.bikeIsInsured = false
+        self.caseFinalized = false
+        self.reportDate = Date()
+        self.policeCaseNumber = ""
+    }
+
+    public init(withPartnerCaseNumber partnerCaseNumber: String, partner: CTTheftCasePartnerModel) {
+        self.id = -1
+        self.caseNumber = nil
+        self.partnerCaseNumber = partnerCaseNumber
+        self.partner = partner
+        
+        self.bikeId = -1
+        self.bikeFrameType = ""
+        self.bikeType = ""
+        self.bikeColor = ""
+        self.bikeAdditionalDetails = ""
+        self.bikeImages = []
+
+        self.ownerName = ""
+        self.ownerEmail = ""
+        self.ownerPhone = ""
+        self.ownerAddress = ""
+        self.ownerPostalCode = ""
+        self.ownerCity = ""
+        self.ownerCountry = ""
+        self.caseStatus = ""
+        self.bikeIsInsured = false
+        self.caseFinalized = false
+        self.reportDate = Date()
+        self.policeCaseNumber = ""
+    }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        try container.encode(bikeId, forKey: .bikeId)
         try container.encode(bikeFrameType, forKey: .bikeFrameType)
         try container.encode(bikeType, forKey: .bikeType)
         try container.encode(bikeColor, forKey: .bikeColor)
@@ -80,5 +137,4 @@ public struct CTTheftCaseModel:CTBaseModel {
         try container.encode(policeCaseNumber, forKey: .policeCaseNumber)
 
     }
-
 }

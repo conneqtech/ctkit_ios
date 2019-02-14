@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CTPaginatableResponse<T>: Codable where T:Codable {
+public struct CTPaginatableResponse<T>: Codable where T: Codable {
     public let filters: [CTFilterModel]
     public let orderClauses: [CTOrderClauseModel]
     public let data: [T]

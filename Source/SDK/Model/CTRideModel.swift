@@ -10,23 +10,23 @@ import Foundation
 public struct CTRideModel: CTBaseModel {
 
     //Attributes
-    public let id:Int
-    public let userId:Int
-    public let bikeId:Int
-    public let name:String
-    public let rideType:String
-    public let creationDate:String
-    public let startDate:String
-    public let endDate:String
+    public let id: Int
+    public let userId: Int
+    public let bikeId: Int
+    public let name: String
+    public let rideType: String
+    public let creationDate: Date
+    public let startDate: Date
+    public let endDate: Date
 
     //Calculated things
-    public let calories:Double
-    public let averageSpeed:Double
-    public let distanceTraveled:Double
-    public let co2:Double
-    public let weatherIconURL:String
+    public let calories: Double
+    public let averageSpeed: Double
+    public let distanceTraveled: Double
+    public let co2: Double
+    public let weatherIconURL: String
 
-    public var coordinateList:[CTLatLonModel]?
+    public var coordinateList: [CTLatLonModel]?
 
     enum CodingKeys: String, CodingKey {
         case weatherInfo = "weather_info"
@@ -46,6 +46,24 @@ public struct CTRideModel: CTBaseModel {
         case weatherIconURL = "icon_url"
     }
 
+    public init(withName name: String, rideType: String, userId: Int, bikeId: Int, startDate: Date, endDate: Date) {
+        self.id = -1
+        self.name = name
+        self.rideType = rideType
+        self.userId = userId
+        self.bikeId = bikeId
+        self.startDate = startDate
+        self.endDate = endDate
+        self.creationDate = Date()
+
+        self.calories = -1
+        self.averageSpeed = -1
+        self.distanceTraveled = -1
+        self.co2 = -1
+        self.weatherIconURL = ""
+
+    }
+
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let weatherInfo = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .weatherInfo)
@@ -57,9 +75,9 @@ public struct CTRideModel: CTBaseModel {
         bikeId = try! container.decode(Int.self, forKey: .bikeId)
         name = try! container.decode(String.self, forKey: .name)
         rideType = try! container.decode(String.self, forKey: .rideType)
-        creationDate = try! container.decode(String.self, forKey: .creationDate)
-        startDate = try! container.decode(String.self, forKey: .startDate)
-        endDate = try! container.decode(String.self, forKey: .endDate)
+        creationDate = try! container.decode(Date.self, forKey: .creationDate)
+        startDate = try! container.decode(Date.self, forKey: .startDate)
+        endDate = try! container.decode(Date.self, forKey: .endDate)
 
         calories = try! container.decode(Double.self, forKey: .calories)
         averageSpeed = try! container.decode(Double.self, forKey: .averageSpeed)

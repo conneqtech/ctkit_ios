@@ -28,8 +28,8 @@ public class CTBikeLocationService: NSObject {
      */
     public func fetchHistoryForBike(withId identifier: Int, from: Date, until: Date) -> Observable<[CTBikeLocationModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/location", parameters: [
-            "from":from.toAPIDate(),
-            "till":until.toAPIDate()
+            "from": from.toAPIDate(),
+            "till": until.toAPIDate()
         ])
     }
 
@@ -43,6 +43,6 @@ public class CTBikeLocationService: NSObject {
      - Returns: An observable that can contain the last known location of the bike or nil.
      */
     public func fetchLastLocationOfBike(withId identifier: Int) -> Observable<CTBikeLocationModel?> {
-        return CTBikeService().fetch(withId: identifier).map { (bike:CTBikeModel) in return bike.lastLocation}
+        return CTBikeService().fetch(withId: identifier).map { (bike: CTBikeModel) in return bike.lastLocation}
     }
 }

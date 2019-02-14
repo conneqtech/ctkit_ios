@@ -29,23 +29,22 @@ class CTTheftCaseModelTests:QuickSpec {
                 } else {
                     expect("There's data available") == "no data available"
                 }
-                
+
             }
-            
-            
+
             it("Encodes into something the API accepts") {
                 let decodeResult = try! JSONDecoder().decode(CTPaginatableResponse<CTTheftCaseModel>.self, from: Resolver().getDataForResource(name: "theftcase"))
                 if let theftCaseModel = decodeResult.data.first {
                     let jsonBytes = try! JSONEncoder().encode(theftCaseModel)
-                
+
                     // Convert it back to 'dumb' JSON so we can inspect some values
                     let jsonData = try! JSONSerialization.jsonObject(with: jsonBytes, options: []) as? [String:Any]
-                
+
                     // Check for non encodings
                     if let _ = jsonData?["id"] {
                         expect("We don't want this") == "encoded"
                     }
-                
+
                     // Check *all* fields!
                     expect(jsonData!["bike_additional_details"] as? String) == ""
                     expect(jsonData!["bike_color"] as? String) == "Zwart"
@@ -56,7 +55,7 @@ class CTTheftCaseModelTests:QuickSpec {
                     ]
                     expect(jsonData!["police_case_number"]).to(beNil())
                     expect(jsonData!["bike_is_insured"] as? Bool) == true
-                    
+
                     expect(jsonData!["owner_address"] as? String) == "Edisonweg 41"
                     expect(jsonData!["owner_city"] as? String) == "Vlissingen"
                     expect(jsonData!["owner_country"] as? String) == "NL"
@@ -64,10 +63,9 @@ class CTTheftCaseModelTests:QuickSpec {
                     expect(jsonData!["owner_phone_number"] as? String) == "31612345678"
                     expect(jsonData!["owner_postal_code"] as? String) == "4382NW"
                     expect(jsonData!["owner_name"] as? String) == "Kees Teft"
-                  
-                    
+
                     expect(jsonData?.count) == 14
-                
+
                 } else {
                     expect("There's data available") == "no data available"
                 }

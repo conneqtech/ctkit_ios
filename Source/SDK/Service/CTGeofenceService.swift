@@ -53,12 +53,12 @@ public class CTGeofenceService: NSObject {
      */
     public func create(withBikeId identifier: Int, name: String, latitude: Double, longitude: Double, radius: Double) -> Observable<CTGeofenceModel> {
         return CTKit.shared.restManager.post(endpoint: "bike/\(identifier)/geofence", parameters: [
-            "name":name,
+            "name": name,
             "center": [
-                "lat":latitude,
-                "lon":longitude
+                "lat": latitude,
+                "lon": longitude
             ],
-            "radius":radius
+            "radius": radius
             ])
     }
 
@@ -105,6 +105,6 @@ public class CTGeofenceService: NSObject {
      - Returns: A completable that notifies you the action completed. There will be no result other than 'finished'
      */
     public func delete(withGeofenceId identifier: Int) -> Observable<Int> {
-        return CTKit.shared.restManager.archive(endpoint: "bike/geofence/\(identifier)").map { (geofence:CTGeofenceModel) in identifier }
+        return CTKit.shared.restManager.archive(endpoint: "bike/geofence/\(identifier)").map { (_: CTGeofenceModel) in identifier }
     }
 }

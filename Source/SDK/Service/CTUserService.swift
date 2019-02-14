@@ -25,7 +25,7 @@ public class CTUserService: NSObject {
      
      - Returns: An observable containing the logged in user. The returned CTUserModel contains all information we have on the user and can later also be retrieved by calling @see fetchCurrentUser
      */
-    public func login(email: String, password:String) -> Observable<CTUserModel> {
+    public func login(email: String, password: String) -> Observable<CTUserModel> {
         return CTKit.shared.authManager.login(username: email, password: password).flatMap { _ in self.fetchCurrentUser() }
     }
 
@@ -59,11 +59,11 @@ public class CTUserService: NSObject {
     public func create(withEmail email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
         return CTKit.shared.authManager.getClientToken().flatMap {
             token in CTKit.shared.restManager.post(endpoint: "user",
-                                                    parameters:[
-                                                        "username":email,
-                                                        "password":password,
+                                                    parameters: [
+                                                        "username": email,
+                                                        "password": password,
                                                         "privacy_statement_accepted": agreedToPrivacyStatement
-                                                    ], useToken:token)
+                                                    ], useToken: token)
         }
     }
 
@@ -84,12 +84,12 @@ public class CTUserService: NSObject {
     public func create(withName name: String, email: String, password: String, agreedToPrivacyStatement: Bool = false) -> Observable<CTUserModel> {
         return CTKit.shared.authManager.getClientToken().flatMap {
             token in CTKit.shared.restManager.post(endpoint: "user",
-                                                   parameters:[
+                                                   parameters: [
                                                     "name": name,
-                                                    "username":email,
-                                                    "password":password,
+                                                    "username": email,
+                                                    "password": password,
                                                     "privacy_statement_accepted": agreedToPrivacyStatement
-                ], useToken:token)
+                ], useToken: token)
         }
     }
 
@@ -147,7 +147,7 @@ public class CTUserService: NSObject {
      - Returns: An observable containing the current logged in user.
      */
     public func fetchCurrentUser() -> Observable<CTUserModel> {
-        return CTKit.shared.restManager.get(endpoint: "user/me").map { (user:CTUserModel) in
+        return CTKit.shared.restManager.get(endpoint: "user/me").map { (user: CTUserModel) in
             CTKit.shared.currentActiveUser = user
             return user
         }

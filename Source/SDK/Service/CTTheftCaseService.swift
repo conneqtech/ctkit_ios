@@ -12,7 +12,7 @@ import RxSwift
  The CTTheftCaseService is the main entry point to create, fetch and patch policeIds for theft-cases. Theft-cases are created for stolen bikes and are used as help for recovery.
  Theft-cases allow users to report their bikes as stolen and start the recovery process.
  */
-public class CTTheftCaseService:NSObject {
+public class CTTheftCaseService: NSObject {
 
     /**
      Create a theftcase or a certain bike.
@@ -21,7 +21,7 @@ public class CTTheftCaseService:NSObject {
      
      - Returns: An observable containing the created theft-case.
      */
-    public func create(theftCase:CTTheftCaseModel) -> Observable<CTTheftCaseModel> {
+    public func create(theftCase: CTTheftCaseModel) -> Observable<CTTheftCaseModel> {
         return CTKit.shared.restManager.post(endpoint: "theft-case", parameters: try? theftCase.asDictionary())
     }
 
@@ -32,9 +32,9 @@ public class CTTheftCaseService:NSObject {
      
      - Returns: An observable containing theft-case with the patched policeId.
      */
-    public func patchPoliceId(withCaseId identifier:Int, policeId:String) -> Observable<CTTheftCaseModel> {
+    public func patchPoliceId(withCaseId identifier: Int, policeId: String) -> Observable<CTTheftCaseModel> {
         return CTKit.shared.restManager.patch(endpoint: "theft-case/\(identifier)", parameters: [
-            "police_id":policeId])
+            "police_case_number": policeId])
     }
 
     /**
@@ -44,7 +44,7 @@ public class CTTheftCaseService:NSObject {
      
      - Returns: An observable containing the fetched theft-case.
      */
-    public func fetch(withCaseId identifier:Int) -> Observable<CTTheftCaseModel> {
+    public func fetch(withCaseId identifier: Int) -> Observable<CTTheftCaseModel> {
         return CTKit.shared.restManager.get(endpoint: "theft-case/\(identifier)")
     }
 
@@ -55,7 +55,7 @@ public class CTTheftCaseService:NSObject {
      
      - Returns: An observable containing the most recent theft-case.
      */
-    public func fetchMostRecent(withBikeId identifier:Int) -> Observable<CTTheftCaseModel> {
+    public func fetchMostRecent(withBikeId identifier: Int) -> Observable<CTTheftCaseModel> {
         return self.fetchAll(withBikeId: identifier).map { result in
                 return result.data[0]
         }
@@ -68,7 +68,7 @@ public class CTTheftCaseService:NSObject {
      
      - Returns: An observable array containing all theft-cases for a bike.
      */
-    public func fetchAll(withBikeId identifier:Int) -> Observable<CTPaginatableResponse<CTTheftCaseModel>> {
+    public func fetchAll(withBikeId identifier: Int) -> Observable<CTPaginatableResponse<CTTheftCaseModel>> {
         let params = [
             "filter": [
                 "and;bike_id;eq;\(identifier)"

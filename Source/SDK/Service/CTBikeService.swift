@@ -15,7 +15,8 @@ public enum CTBikeRegistrationFlow: String, Codable {
 }
 
 /**
- The CTBikeService is the main entry point to manage and create bikes for an authenticated user. It allows for all basic management and some convenience methods to help ease the management of bikes.
+ The CTBikeService is the main entry point to manage and create bikes for an authenticated user.
+ It allows for all basic management and some convenience methods to help ease the management of bikes.
  */
 public class CTBikeService: NSObject {
 
@@ -30,9 +31,9 @@ public class CTBikeService: NSObject {
      */
     public func create(withName name: String, imei: String, activationCode: String) -> Observable<CTBikeModel> {
         return CTKit.shared.restManager.post(endpoint: "bike", parameters: [
-            "name":name,
-            "imei":imei,
-            "activation_code":activationCode]
+            "name": name,
+            "imei": imei,
+            "activation_code": activationCode]
         )
     }
 
@@ -46,8 +47,8 @@ public class CTBikeService: NSObject {
      */
     public func create(withName name: String, andActivationCode activationCode: String) -> Observable<CTBikeModel> {
         return CTKit.shared.restManager.post(endpoint: "bike", parameters: [
-            "name":name,
-            "activation_code":activationCode]
+            "name": name,
+            "activation_code": activationCode]
         )
     }
 
@@ -65,7 +66,9 @@ public class CTBikeService: NSObject {
     }
 
     /**
-     Delete the bike from the account, when a user is the owner the bike will be deregistered. Once deregistration took place a different user will be able to add the bike to their account. When the user is not the owner the link with the shared bike will be broken.
+     Delete the bike from the account, when a user is the owner the bike will be deregistered.
+     Once deregistration took place a different user will be able to add the bike to their account.
+     When the user is not the owner the link with the shared bike will be broken.
      
      The outcome of this call is that a user will no longer have access to the bike, no matter if the user was the owner or not.
      
@@ -74,11 +77,12 @@ public class CTBikeService: NSObject {
      - Returns: A completable call indicating the operation was successful.
      */
     public func delete(withBikeId identifier: Int) -> Observable<Int> {
-        return CTKit.shared.restManager.archive(endpoint: "bike/\(identifier)").map { (result:CTBikeModel) in identifier }
+        return CTKit.shared.restManager.archive(endpoint: "bike/\(identifier)").map { (_: CTBikeModel) in identifier }
     }
 
     /**
-     Fetch a single bike the user has access to based on the bike identifier. When the user has no access to the bike a 422 error will be thrown to indicate the bike could not be found.
+     Fetch a single bike the user has access to based on the bike identifier.
+     When the user has no access to the bike a 422 error will be thrown to indicate the bike could not be found.
      
      - Parameter identifier: The bike identifier you want to retrieve the data for
      
@@ -112,7 +116,8 @@ public class CTBikeService: NSObject {
     /**
      Fetch all bikes the user has access to.
      
-     - Note: Deleting any of these bikes results in breaking the shared bike connection. Another user will _not_ be able to register the bike.
+     - Note: Deleting any of these bikes results in breaking the shared bike connection.
+             Another user will _not_ be able to register the bike.
      - Returns:  An observable with the list of bikes the user is the owner of.
      */
     public func fetchShared() -> Observable<[CTBikeModel]> {
@@ -122,14 +127,33 @@ public class CTBikeService: NSObject {
     }
 
     /**
-     Search for a bike based on its framenumber. This call will return the first part of the IMEI so that a user has a hint of what number you need.
-     This call can return 0 or 1 results. When 0 results are returned the bike could already be registered or simply doesn't exist in our database.
+     Search for a bike based on its framenumber. This call will return the first part of the IMEI
+     so that a user has a hint of what number you need.
+     This call can return 0 or 1 results.
+     When 0 results are returned the bike could already be registered or simply doesn't exist in our database.
      
      - Parameter identifier: The frame number of a bike you want to fetch some information about
      - Returns: An array with information of an unregistered bike. When the array is empty the bike doesn't exist or is already registered.
      */
     public func searchUnregisteredBike(withFrameIdentifier identifier: String) -> Observable<[CTUnregisteredBikeInformationModel]> {
-        return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["frame_number":identifier])
+        return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["activation_code": identifier])
+            .flatMap { (unregisteredBike: [CTUnregisteredBikeModel]) -> Observable<[CTUnregisteredBikeInformationModel]> in
+                if unregisteredBike.isEmpty {
+                    let emptyResult: [CTUnregisteredBikeInformationModel] = []
+                    return Observable.of(emptyResult)
+                } else {
+                    return CTKit.shared.restManager.get(
+                        endpoint: "bike-type/\(unregisteredBike[0].bikeTypeId)"
+                    ).map { (bikeType: CTBikeTypeModel) -> [CTUnregisteredBikeInformationModel] in
+                        return [CTUnregisteredBikeInformationModel(
+                            partialIMEI: unregisteredBike[0].partialIMEI,
+                            frameNumber: unregisteredBike[0].frameNumber,
+                            manufacturerSKU: unregisteredBike[0].manufacturerSKU,
+                            modelName: unregisteredBike[0].manufacturerModelName,
+                            registrationFlow: CTBikeRegistrationFlow.init(rawValue: bikeType.registrationFlow)!)]
+                    }
+                }
+        }
     }
 
     /**

@@ -8,6 +8,6 @@
 import Foundation
 
 class CTUserRecoveryResultModel: CTBaseModel {
-    let success:Bool
-    let username:String
+    let success: Bool
+    let username: String
 }

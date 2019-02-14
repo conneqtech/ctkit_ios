@@ -19,16 +19,16 @@ class CTTheftCaseServiceTests:QuickSpec {
     override func spec() {
         beforeEach {
             self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "user"), status: 200))
-            let _ = try! CTUserService().fetchCurrentUser().toBlocking().first()
+            _ = try! CTUserService().fetchCurrentUser().toBlocking().first()
             expect(CTUserService().getActiveUserId()) == 47
         }
-        
+
         describe("fetch") {
             it("Handles the error when the theftcase does not exist") {
                 self.stub(http(.get, uri: "/theft-case/2"), json(Resolver().getJSONForResource(name: "theftCaseIdNotFound"),status: 404))
-                
+
                 do {
-                    let _ = try CTTheftCaseService().fetch(withCaseId: 2).toBlocking().first()
+                    _ = try CTTheftCaseService().fetch(withCaseId: 2).toBlocking().first()
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .basic
@@ -38,11 +38,11 @@ class CTTheftCaseServiceTests:QuickSpec {
                     }
                 }
             }
-            
+
             it("Handles the error when the bikeId doesn't exist") {
                 self.stub(http(.get, uri: "/theft-case"), json(Resolver().getJSONForResource(name: "bikeIdNotFound"), status: 404))
                 do {
-                    let _ = try CTTheftCaseService().fetchAll(withBikeId: 0).toBlocking().first()
+                    _ = try CTTheftCaseService().fetchAll(withBikeId: 0).toBlocking().first()
                 } catch {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .basic
@@ -52,18 +52,17 @@ class CTTheftCaseServiceTests:QuickSpec {
                     }
                 }
             }
-            
-            
+
             it("Succesfully fetches the theftcase") {
                 self.stub(http(.get, uri: "/theft-case/0"), json(Resolver().getJSONForResource(name: "theftcase"), status: 200))
                 let callToTest = try! CTTheftCaseService().fetch(withCaseId: 0).toBlocking().first()
                 if let theftCase = callToTest {
                     expect(theftCase.id).to(equal(0))
-                }  else {
+                } else {
                     expect("can unwrap") == "did not unwrap"
                 }
             }
-            
+
             it("Succesfully fetches the most recent theft-case") {
                 self.stub(http(.get, uri: "/theft-case"), json(Resolver().getJSONForResource(name: "theftcase"), status: 200))
                 let callToTest = try! CTTheftCaseService().fetchMostRecent(withBikeId: 0).toBlocking().first()
@@ -73,8 +72,7 @@ class CTTheftCaseServiceTests:QuickSpec {
                     expect("can unwrap") == "did not unwrap"
                 }
             }
-            
-            
+
             it("Handles an empty array") {
                 let emptyArray:[CTTheftCaseModel] = []
                 self.stub(http(.get, uri: "/theft-case"), json(emptyArray))
@@ -85,7 +83,7 @@ class CTTheftCaseServiceTests:QuickSpec {
                     expect("can unwrap") == "did not unwrap"
                 }
             }
-            
+
             it("Succesfully fetches all theft-cases for a bike") {
                 self.stub(http(.get, uri: "/theft-case"), json(Resolver().getJSONForResource(name: "theftcaseList"), status: 200))
                 let callToTest = try! CTTheftCaseService().fetchAll(withBikeId: 0).toBlocking().first()
@@ -96,7 +94,7 @@ class CTTheftCaseServiceTests:QuickSpec {
                 }
             }
         }
-        
+
         describe("create") {
             it("Handles the error when the create fails") {
                 let theftCaseData = try! JSONDecoder().decode(CTTheftCaseModel.self, from: Resolver().getDataForResource(name: "theftcase"))
@@ -119,7 +117,7 @@ class CTTheftCaseServiceTests:QuickSpec {
                     }
                 }
             }
-            
+
             it("Succesfully creates a theftcase") {
                 self.stub(http(.post, uri: "/theft-case"), json(Resolver().getJSONForResource(name: "theftcase"), status: 201))
                 let theftCaseData = Resolver().getDataForResource(name: "theftcase")
@@ -131,7 +129,7 @@ class CTTheftCaseServiceTests:QuickSpec {
                 }
             }
         }
-        
+
         describe("patch") {
             it("Handles the error when the caseId doesn't exist") {
                 self.stub(http(.patch, uri: "/theft-case/2"), json(Resolver().getJSONForResource(name: "theftCaseIdNotFound"), status: 404))
@@ -146,7 +144,7 @@ class CTTheftCaseServiceTests:QuickSpec {
                     }
                 }
             }
-            
+
             it("Handles the error when the policeId is empty") {
                 self.stub(http(.patch, uri: "/theft-case/0"), json(Resolver().getJSONForResource(name: "patchPoliceIdValidationError"), status: 422))
                 do {
@@ -155,10 +153,10 @@ class CTTheftCaseServiceTests:QuickSpec {
                     if let ctError = error as? CTErrorProtocol {
                         expect(ctError.type) == .validation
                         expect(ctError.translationKey) == "api.error.validation-failed"
-                        
+
                         if let validationError = ctError as? CTValidationError {
                             expect(validationError.validationMessages).to(haveCount(1))
-                            
+
                             let messageToTest = validationError.validationMessages[0]
                             expect(messageToTest.type) == "isEmpty"
                             expect(messageToTest.originalMessage) == "Value is required and can't be empty"
@@ -166,7 +164,7 @@ class CTTheftCaseServiceTests:QuickSpec {
                     }
                 }
             }
-            
+
             it("Succesfully patches the policeid for a case") {
                 self.stub(http(.patch, uri: "/theft-case/0"), json(Resolver().getJSONForResource(name: "theftcase"), status: 200))
                 let callToTest = try! CTTheftCaseService().patchPoliceId(withCaseId: 0, policeId: "SOMEVALIDPOLICEID").toBlocking().first()
@@ -178,5 +176,5 @@ class CTTheftCaseServiceTests:QuickSpec {
             }
         }
     }
-    
+
 }

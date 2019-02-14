@@ -15,23 +15,23 @@ class AccountViewController: UIViewController {
 
     let disposeBag = DisposeBag()
     let userService = CTUserService()
-    
+
     override func viewDidLoad() {
         if self.userService.hasActiveSession() {
-            self.userService.fetchCurrentUser().subscribe (onNext: { result in
+            self.userService.fetchCurrentUser().subscribe (onNext: { _ in
 //                print(result.email)
 //                print(result.firstName)
             }).disposed(by: disposeBag)
         }
     }
-    
+
     func getBikes() {
-        
+
     }
-    
+
     @IBAction func signOut(_ sender: Any) {
         self.userService.logout()
-        
+
         let loadingViewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loadingViewController")
         self.present(loadingViewController, animated: true, completion: nil)
     }

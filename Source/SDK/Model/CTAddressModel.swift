@@ -26,4 +26,14 @@ public struct CTAddressModel: CTBaseModel {
         case city = "city_name"
         case province = "province_name"
     }
+
+    public init () {
+        self.postalCode = ""
+        self.houseNumber = ""
+        self.houseNumberAddition = ""
+        self.countryCode = ""
+        self.street = ""
+        self.city = ""
+        self.province = ""
+    }
 }

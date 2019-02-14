@@ -7,11 +7,11 @@
 
 import Foundation
 
-public struct CTFilterModel:Codable {
-    public let type:String
-    public let fieldname:String
-    public let operatorName:String
-    public let filterValue:String
+public struct CTFilterModel: Codable {
+    public let type: String
+    public let fieldname: String
+    public let operatorName: String
+    public let filterValue: String
 
     enum CodingKeys: String, CodingKey {
         case filters = "filters"

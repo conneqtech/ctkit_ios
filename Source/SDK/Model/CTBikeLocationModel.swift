@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import MapKit
 
 public struct CTBikeLocationModel: CTBaseModel {
 
     public let longitude: Double
     public let latitude: Double
-    public let date: String
+    public let date: Date
     public let speed: Int
-    public let batteryPercentage: Int
+    public let batteryPercentage: Double
     public let isMoving: Bool
 
     enum CodingKeys: String, CodingKey {
@@ -23,5 +24,18 @@ public struct CTBikeLocationModel: CTBaseModel {
         case speed = "speed"
         case batteryPercentage = "battery_percentage"
         case isMoving = "is_moving"
+    }
+
+    public init(withLongitude longitude: Double, latitude: Double, date: Date) {
+        self.longitude = longitude
+        self.latitude = latitude
+        self.date = date
+        self.speed = 0
+        self.batteryPercentage = 0
+        self.isMoving = false
+    }
+    
+    public func asCoordinate() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(self.latitude, self.longitude)
     }
 }

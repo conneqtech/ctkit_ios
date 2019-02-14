@@ -38,4 +38,17 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         case logo = "logo"
         case description = "descriptions"
     }
+
+    public init(withName name: String, description: CTTheftCasePartnerDescriptionModel) {
+        self.id = -1
+        self.name = name
+        self.email = ""
+        self.phoneNumber = ""
+        self.address = ""
+        self.postalCode = ""
+        self.city = ""
+        self.country = ""
+        self.logo = ""
+        self.description = description
+    }
 }
