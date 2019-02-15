@@ -49,7 +49,7 @@ jobs:
       - *restore_repo
       - run:
           name: pod repo add
-          command: pod repo add conneqtech git@bitbucket.org:nfnty_admin/conneqtech-specs.git
+          command: pod repo add conneqtech https://cntci@bitbucket.org/nfnty_admin/conneqtech-specs.git
       - run:
           working_directory: /Users/distiller/project
           name: pod repo push
