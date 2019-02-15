@@ -4,7 +4,7 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: "9.0"
+      xcode: "10.3.0"
     working_directory: /Users/distiller/project/Example
     environment:
       FL_OUTPUT_DIR: output
@@ -12,16 +12,6 @@ jobs:
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
-      - restore_cache:
-          key: 1-gems-{{ checksum "Example/Gemfile.lock" }}
-      - run: 
-          name: bundle check
-          working_directory: Example
-          command: bundle check || bundle install --path vendor/bundle
-      - save_cache:
-          key: 1-gems-{{ checksum "Example/Gemfile.lock" }}
-          paths:
-            - vendor/bundle
       - run:
           name: cocoapods specs
           working_directory: Example
@@ -34,7 +24,7 @@ jobs:
       - run:
           name: fastlane
           working_directory: Example
-          command: bundle exec fastlane $FASTLANE_LANE
+          command: fastkabe tests
       - store_artifacts:
           path: output
       - store_test_results:
