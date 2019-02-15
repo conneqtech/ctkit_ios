@@ -50,4 +50,4 @@ workflows:
       - build
       - test:
           requires:
-            - checkout_code
+            - build
