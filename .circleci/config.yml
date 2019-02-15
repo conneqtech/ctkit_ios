@@ -41,7 +41,7 @@ jobs:
             - ../
 
       - persist_to_workspace:
-          root: /Users/distiller/project/.cocoapods
+          root: /Users/distiller/.cocoapods
           paths:
             - repos
 
@@ -60,7 +60,7 @@ jobs:
     steps:
       - *restore_repo
       - attach_workspace:
-          at: /Users/distiller/project/.cocoapods
+          at: /Users/distiller/.cocoapods
       - add_ssh_keys
       - run:
           name: keyscan bitbucket
