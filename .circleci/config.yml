@@ -40,11 +40,6 @@ jobs:
           paths:
             - ../
 
-      - persist_to_workspace:
-          root: /Users/distiller/.cocoapods
-          paths:
-            - repos
-
   test:
     <<: *container_config
     steps:
