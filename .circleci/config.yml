@@ -13,13 +13,6 @@ references:
         - checkout-repo-{{ .Branch }}-{{ .Revision }}
         - checkout-repo-{{ .Branch }}-
         - checkout-repo-
-  
-  restore_specs: &restore_specs        
-    restore_cache:
-      keys:
-        - checkout-cocoapods-{{ .Branch }}-{{ .Revision }}
-        - checkout-cocoapods-{{ .Branch }}-
-        - checkout-cocoapods-
 
 jobs:
   provision:
@@ -84,3 +77,4 @@ workflows:
       - deploy:
           requires:
             - provision
+            - test
