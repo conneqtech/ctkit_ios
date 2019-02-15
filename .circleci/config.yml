@@ -20,6 +20,14 @@ jobs:
           paths:
             - vendor/bundle
       - run:
+          name: Fetch CocoaPods Specs
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run:
+          name: Install CocoaPods
+          working_directory: cnt_ios
+          command: pod install --verbose
+      - run:
           name: fastlane
           command: bundle exec fastlane $FASTLANE_LANE
       - store_artifacts:
