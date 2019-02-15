@@ -49,6 +49,9 @@ jobs:
       - *restore_repo
       - add_ssh_keys
       - run:
+          name: keyscan bitbucket
+          command: ssh-keyscan -H bitbucket.org >> ~/.ssh/known_hosts
+      - run:
           name: pod repo add
           command: pod repo add conneqtech git@bitbucket.org:nfnty_admin/conneqtech-specs.git
       - run:
