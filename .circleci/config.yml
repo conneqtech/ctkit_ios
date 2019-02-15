@@ -59,12 +59,17 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - attach_workspace:
-          at: /Users/distiller/.cocoapods
       - add_ssh_keys
       - run:
+          name: cocoapods specs
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run:
           name: keyscan bitbucket
-          command: ssh-keyscan -H bitbucket.org >> ~/.ssh/known_hosts && ssh-add -L
+          command: ssh-keyscan -H bitbucket.org >> ~/.ssh/known_hosts
+      - run:
+          name: append git config
+          command: echo -e "[url \"git@bitbucket.org:\"]\n\tinsteadOf = https://bitbucket.org/" >> ~/.gitconfig
       - run:
           name: pod repo add
           command: pod repo add conneqtech git@bitbucket.org:nfnty_admin/conneqtech-specs.git
