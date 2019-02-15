@@ -32,9 +32,11 @@ jobs:
           key: checkout-repo-{{ .Branch }}-{{ .Revision }}
           paths:
             - .
+
   test:
     <<: *container_config
     steps:
+      - *restore_repo
       - run:
           name: fastlane
           command: fastlane tests
@@ -45,7 +47,7 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - checkout_code
+      - checkout_code:
       - test:
         requires:
           - checkout_code
