@@ -62,7 +62,7 @@ workflows:
       - provision
       - test:
           requires:
-            - build
+            - provision
       - deploy:
           requires:
-            - build
+            - provision
