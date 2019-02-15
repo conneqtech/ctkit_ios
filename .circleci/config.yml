@@ -8,12 +8,14 @@ references:
     working_directory: /Users/distiller/project/Example
 
   restore_repo: &restore_repo
-    - restore_cache:
+    restore_cache:
       keys:
         - checkout-repo-{{ .Branch }}-{{ .Revision }}
         - checkout-repo-{{ .Branch }}-
         - checkout-repo-
-    - restore_cache:
+  
+  restore_specs: &restore_specs        
+    restore_cache:
       keys:
         - checkout-cocoapods-{{ .Branch }}-{{ .Revision }}
         - checkout-cocoapods-{{ .Branch }}-
@@ -57,6 +59,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *restore_specs
       - add_ssh_keys
       - run:
           name: keyscan bitbucket
