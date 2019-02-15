@@ -40,10 +40,10 @@ jobs:
           paths:
             - ../
 
-      - save_cache:
-          key: checkout-cocoapods-{{ .Branch }}-{{ .Revision }}
+      - persist_to_workspace:
+          root: /Users/distiller/project/.cocoapods
           paths:
-            - ~/.cocoapods/repos/master
+            - repos
 
   test:
     <<: *container_config
@@ -59,7 +59,8 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_specs
+      - attach_workspace:
+          at: /Users/distiller/project/.cocoapods
       - add_ssh_keys
       - run:
           name: keyscan bitbucket
