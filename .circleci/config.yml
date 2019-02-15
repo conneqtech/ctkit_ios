@@ -47,6 +47,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - add_ssh_keys
       - run:
           name: pod repo add
           command: pod repo add conneqtech https://cntci@bitbucket.org/nfnty_admin/conneqtech-specs.git
