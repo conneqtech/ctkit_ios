@@ -7,25 +7,22 @@ jobs:
       xcode: "10.1.0"
     working_directory: /Users/distiller/project/Example
     environment:
-      FL_OUTPUT_DIR: output
       FASTLANE_LANE: tests
     shell: /bin/bash --login -o pipefail
     steps:
-      - checkout
+      - checkout:
+          path: /Users/distiller/project
       - run:
           name: cocoapods specs
-          working_directory: Example
           command: |
             curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run:
           name: install cocoapods
-          working_directory: Example
           command: pod install --verbose
       - run:
           name: fastlane
-          working_directory: Example
           command: fastlane $FASTLANE_LANE
       - store_artifacts:
           path: output
       - store_test_results:
-          path: output/scan
+          path: fastlane/test_output
