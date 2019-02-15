@@ -24,7 +24,7 @@ jobs:
       - run:
           name: fastlane
           working_directory: Example
-          command: fastkabe tests
+          command: fastlane $FASTLANE_LANE
       - store_artifacts:
           path: output
       - store_test_results:
