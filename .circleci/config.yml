@@ -43,7 +43,7 @@ jobs:
       - store_test_results:
           path: fastlane/test_output
 
-    deploy:
+  deploy:
     <<: *container_config
     steps:
       - *restore_repo
