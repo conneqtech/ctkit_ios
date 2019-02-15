@@ -1,14 +1,22 @@
 # .circleci/config.yml
-
 version: 2
-jobs:
-  build:
+references:
+  container_config: &container_config
     macos:
       xcode: "10.1.0"
-    working_directory: /Users/distiller/project/Example
-    environment:
-      FASTLANE_LANE: tests
     shell: /bin/bash --login -o pipefail
+    working_directory: /Users/distiller/project/Example
+
+  restore_repo: &restore_repo
+    restore_cache:
+      keys:
+        - checkout-repo-{{ .Branch }}-{{ .Revision }}
+        - checkout-repo-{{ .Branch }}-
+        - checkout-repo-
+
+jobs:
+  checkout_code:
+    <<: *container_config
     steps:
       - checkout:
           path: /Users/distiller/project
@@ -19,10 +27,25 @@ jobs:
       - run:
           name: install cocoapods
           command: pod install --verbose
+
+      - save_cache:
+          key: checkout-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - .
+  test:
+    <<: *container_config
+    steps:
       - run:
           name: fastlane
-          command: fastlane $FASTLANE_LANE
-      - store_artifacts:
-          path: output
+          command: fastlane tests
       - store_test_results:
           path: fastlane/test_output
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - checkout_code
+      - test:
+        requires:
+          - checkout_code
