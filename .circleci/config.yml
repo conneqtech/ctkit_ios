@@ -15,7 +15,7 @@ references:
         - checkout-repo-
 
 jobs:
-  build:
+  provision:
     <<: *container_config
     steps:
       - checkout:
@@ -43,11 +43,26 @@ jobs:
       - store_test_results:
           path: fastlane/test_output
 
+    deploy:
+    <<: *container_config
+    steps:
+      - *restore_repo
+      - run:
+          name: pod repo add
+          command: pod repo add conneqtech https://bitbucket.org/nfnty_admin/conneqtech-specs.git
+      - run:
+          working_directory: /Users/distiller/project
+          name: pod repo push
+          command: pod repo push conneqtech ctkit.podspec
+
 workflows:
   version: 2
-  build_and_test:
+  build_test_and_deploy:
     jobs:
-      - build
+      - provision
       - test:
+          requires:
+            - build
+      - deploy:
           requires:
             - build
