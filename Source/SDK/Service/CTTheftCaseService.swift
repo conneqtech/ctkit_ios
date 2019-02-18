@@ -68,10 +68,11 @@ public class CTTheftCaseService: NSObject {
      
      - Returns: An observable array containing all theft-cases for a bike.
      */
-    public func fetchAll(withBikeId identifier: Int) -> Observable<CTPaginatableResponse<CTTheftCaseModel>> {
+    public func fetchAll(withBikeId identifier: Int, finalized: Bool = false) -> Observable<CTPaginatableResponse<CTTheftCaseModel>> {
         let params = [
             "filter": [
-                "and;bike_id;eq;\(identifier)"
+                "and;bike_id;eq;\(identifier)",
+                "and;finalized;eq;\(finalized)"
             ],
             "order": [
                 "report_date;desc"
