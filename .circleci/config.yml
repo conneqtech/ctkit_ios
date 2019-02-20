@@ -71,7 +71,7 @@ jobs:
       - run:
           name: generate docs
           command: jazzy --podspec ctkit.podspec --output ./docs/public/ios
-      - store_test_results:
+      - store_artifacts:
           path: docs
 
   deploy:
