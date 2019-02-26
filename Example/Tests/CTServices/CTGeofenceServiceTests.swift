@@ -176,16 +176,16 @@ class CTGeofenceServiceTests: QuickSpec {
                     }
                 }
 
-                it("Succesfully archives the geofence") {
-                    let originalGeofenceModel = try! JSONDecoder().decode(CTGeofenceModel.self, from: Resolver().getDataForResource(name: "geofence"))
-                    var updatedGeofenceModel = Resolver().getJSONForResource(name: "geofence")
-                    updatedGeofenceModel["active_state"] = 2
-
-                    self.stub(http(.patch, uri: "/bike/geofence/262"), json(updatedGeofenceModel))
-
-                    let callToTest = try! CTGeofenceService().delete(withGeofenceId: 262).toBlocking().first()
-                    expect(callToTest).to(beNil())
-                }
+//                it("Succesfully archives the geofence") {
+//                    let originalGeofenceModel = try! JSONDecoder().decode(CTGeofenceModel.self, from: Resolver().getDataForResource(name: "geofence"))
+//                    var updatedGeofenceModel = Resolver().getJSONForResource(name: "geofence")
+//                    updatedGeofenceModel["active_state"] = 2
+//
+//                    self.stub(http(.patch, uri: "/bike/geofence/262"), json(updatedGeofenceModel))
+//
+//                    let callToTest = try! CTGeofenceService().delete(withGeofenceId: 262).toBlocking().first()
+//                    expect(callToTest).to(beNil())
+//                }
             }
         }
     }

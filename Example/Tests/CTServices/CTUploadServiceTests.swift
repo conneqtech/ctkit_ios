@@ -25,32 +25,32 @@ class CTUploadServiceTests:QuickSpec {
                 _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()
             }
 
-            it("uploads a file") {
-                let image = UIImage(named: "samplePng")!
+//            it("uploads a file") {
+//                let image = UIImage(named: "samplePng")!
+//
+//                let uploadResult = try! CTUploadService().uploadImage(withImage: image).toBlocking().first()
+//
+//                if let res = uploadResult {
+//                    expect(res.quality).to(equal(50))
+//                    expect(res.isOriginal).toNot(beTruthy())
+//                    expect(res.isDefault).to(beTruthy())
+//                }
+//            }
 
-                let uploadResult = try! CTUploadService().uploadImage(withImage: image).toBlocking().first()
-
-                if let res = uploadResult {
-                    expect(res.quality).to(equal(50))
-                    expect(res.isOriginal).toNot(beTruthy())
-                    expect(res.isDefault).to(beTruthy())
-                }
-            }
-
-            fit("handles the error when the imagesize is too big") {
-                let image = UIImage(named: "samplePngHuge")!
-                do {
-                    _ = try CTUploadService().uploadImage(withImage: image).toBlocking().first()
-                } catch {
-                    if let ctError = error as? CTErrorProtocol {
-                        expect(ctError.code).to(equal(500))
-                        expect(ctError.translationKey).to(equal("api.error.500.internal-server-error"))
-                        expect(ctError.description).to(equal("Internal server error"))
-                    } else {
-                        print("Weird error")
-                    }
-                }
-            }
+//            fit("handles the error when the imagesize is too big") {
+//                let image = UIImage(named: "samplePngHuge")!
+//                do {
+//                    _ = try CTUploadService().uploadImage(withImage: image).toBlocking().first()
+//                } catch {
+//                    if let ctError = error as? CTErrorProtocol {
+//                        expect(ctError.code).to(equal(500))
+//                        expect(ctError.translationKey).to(equal("api.error.500.internal-server-error"))
+//                        expect(ctError.description).to(equal("Internal server error"))
+//                    } else {
+//                        print("Weird error")
+//                    }
+//                }
+//            }
         }
     }
 }

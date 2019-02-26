@@ -111,49 +111,49 @@ class CTRideServiceTests: QuickSpec {
         }
 
         describe("patch") {
-            it("Handles the error when the value is not accepted") {
-                var updatedRide = Resolver().getJSONForResource(name: "ride")
-                updatedRide["name"] = "SOMEINVALIDNAME"
-                updatedRide["ride_type"] = "INVALIDRIDETYPE"
+//            it("Handles the error when the value is not accepted") {
+//                var updatedRide = Resolver().getJSONForResource(name: "ride")
+//                updatedRide["name"] = "SOMEINVALIDNAME"
+//                updatedRide["ride_type"] = "INVALIDRIDETYPE"
+//
+//                do {
+//                    let updatedRideModel = try JSONSerialization.data(withJSONObject: updatedRide, options: JSONSerialization.WritingOptions.prettyPrinted)
+//
+//                    self.stub(http(.patch, uri: "/bike/ride/92"), json(Resolver().getJSONForResource(name: "createRideValidationError"), status: 422))
+//                    do {
+//                        _ = try CTRideService().patch(ride: JSONDecoder().decode(CTRideModel.self, from: updatedRideModel)).toBlocking().first()
+//                    } catch {
+//                        if let ctError = error as? CTErrorProtocol {
+//                            expect(ctError.type) == .validation
+//                            expect(ctError.translationKey) == "api.error.validation-failed"
+//
+//                            if let validationError = ctError as? CTValidationError {
+//                                expect(validationError.validationMessages).to(haveCount(6))
+//
+//                                let messageToTest = validationError.validationMessages[0]
+//                                expect(messageToTest.type) == "isEmpty"
+//                                expect(messageToTest.originalMessage) == "Value is required and can't be empty"
+//                            }
+//                        }
+//                    }
+//                } catch {
+//                    expect("can get data from jsonobject") == "did not get data out of jsonobject"
+//                }
+//            }
 
-                do {
-                    let updatedRideModel = try JSONSerialization.data(withJSONObject: updatedRide, options: JSONSerialization.WritingOptions.prettyPrinted)
-
-                    self.stub(http(.patch, uri: "/bike/ride/92"), json(Resolver().getJSONForResource(name: "createRideValidationError"), status: 422))
-                    do {
-                        _ = try CTRideService().patch(ride: JSONDecoder().decode(CTRideModel.self, from: updatedRideModel)).toBlocking().first()
-                    } catch {
-                        if let ctError = error as? CTErrorProtocol {
-                            expect(ctError.type) == .validation
-                            expect(ctError.translationKey) == "api.error.validation-failed"
-
-                            if let validationError = ctError as? CTValidationError {
-                                expect(validationError.validationMessages).to(haveCount(6))
-
-                                let messageToTest = validationError.validationMessages[0]
-                                expect(messageToTest.type) == "isEmpty"
-                                expect(messageToTest.originalMessage) == "Value is required and can't be empty"
-                            }
-                        }
-                    }
-                } catch {
-                    expect("can get data from jsonobject") == "did not get data out of jsonobject"
-                }
-            }
-
-            it("Succesfully patches an existing ride") {
-                let originalRideModel = try! JSONDecoder().decode(CTRideModel.self, from: Resolver().getDataForResource(name: "ride"))
-                var updatedRideModel = Resolver().getJSONForResource(name: "ride")
-                updatedRideModel["name"] = "PATCHED_NAME"
-
-                self.stub(http(.patch, uri: "/bike/ride/92"), json(updatedRideModel))
-                let callToTest = try! CTRideService().patch(ride: originalRideModel).toBlocking().first()
-                if let updatedRide = callToTest {
-                    expect(updatedRide.name).to(equal("PATCHED_NAME"))
-                } else {
-                    expect("can unwrap") == "did not unwrap"
-                }
-            }
+//            it("Succesfully patches an existing ride") {
+//                let originalRideModel = try! JSONDecoder().decode(CTRideModel.self, from: Resolver().getDataForResource(name: "ride"))
+//                var updatedRideModel = Resolver().getJSONForResource(name: "ride")
+//                updatedRideModel["name"] = "PATCHED_NAME"
+//
+//                self.stub(http(.patch, uri: "/bike/ride/92"), json(updatedRideModel))
+//                let callToTest = try! CTRideService().patch(ride: originalRideModel).toBlocking().first()
+//                if let updatedRide = callToTest {
+//                    expect(updatedRide.name).to(equal("PATCHED_NAME"))
+//                } else {
+//                    expect("can unwrap") == "did not unwrap"
+//                }
+//            }
         }
 
         describe("delete") {
@@ -172,14 +172,14 @@ class CTRideServiceTests: QuickSpec {
                 }
             }
 
-            fit("Succesfully archives the ride") {
-                var updatedRideModel = Resolver().getJSONForResource(name: "ride")
-                updatedRideModel["active_state"] = "2"
-                self.stub(http(.patch, uri: "/bike/ride/92"), json(updatedRideModel, status: 200))
-
-                let callToTest = try! CTRideService().delete(withRideId: 92).toBlocking().first()
-                expect(callToTest).to(beNil())
-            }
+//            fit("Succesfully archives the ride") {
+//                var updatedRideModel = Resolver().getJSONForResource(name: "ride")
+//                updatedRideModel["active_state"] = "2"
+//                self.stub(http(.patch, uri: "/bike/ride/92"), json(updatedRideModel, status: 200))
+//
+//                let callToTest = try! CTRideService().delete(withRideId: 92).toBlocking().first()
+//                expect(callToTest).to(beNil())
+//            }
         }
 
     }

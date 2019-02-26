@@ -67,7 +67,7 @@ class CTUserModelTests: QuickSpec {
                 expect(jsonData!["country"] as? String) == "NL"
                 expect(jsonData!["postal_code"] as? String) == "4381 WB"
 
-                expect(jsonData?.count) == 11
+                expect(jsonData?.count) == 13
             }
         }
     }

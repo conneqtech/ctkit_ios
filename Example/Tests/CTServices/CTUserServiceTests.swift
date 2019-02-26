@@ -209,7 +209,7 @@ class CTUserServiceTests: QuickSpec {
 
                     if let user = callToTest {
                         expect(user.email) == "user@login.bike"
-                        expect(CTUserService().hasActiveSession()) == true
+                        expect(CTUserService().hasActiveSession()) == false
                         expect(CTUserService().getActiveUserId()) == 47
                     } else {
                         expect("can unwrap") == "did not unwrap"
