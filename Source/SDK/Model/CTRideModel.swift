@@ -46,7 +46,7 @@ public struct CTRideModel: CTBaseModel {
         case weatherIconURL = "icon_url"
     }
     
-    public init(withName name: String, rideType: String, userId: Int, bikeId: Int, startDate: Date, endDate: Date) {
+    public init(withName name: String, rideType: String, userId: Int = -1, bikeId: Int = -1, startDate: Date, endDate: Date) {
         self.id = -1
         self.name = name
         self.rideType = rideType
@@ -82,6 +82,7 @@ public struct CTRideModel: CTBaseModel {
         averageSpeed = try container.decode(Double.self, forKey: .averageSpeed)
         distanceTraveled = try container.decode(Double.self, forKey: .distanceTraveled)
         co2 = try container.decode(Double.self, forKey: .co2)
+
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -21,12 +21,12 @@ class CTRideModelTests:QuickSpec {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
                 
-                let subjectToTest = CTRideModel(withName: "Test ride",
-                                       rideType: "other",
-                                       userId: 1,
-                                       bikeId: 1,
-                                       startDate: formatter.date(from: "2019-01-01T01:00:00+0100")!,
-                                       endDate: formatter.date(from: "2019-01-01T10:00:00+0100")!)
+                let subjectToTest = CTRideModel(
+                    withName: "Test ride",
+                    rideType: "other",
+                    startDate: formatter.date(from: "2019-01-01T01:00:00+0100")!,
+                    endDate: formatter.date(from: "2019-01-01T10:00:00+0100")!
+                )
             
                 let jsonBytes = try! JSONEncoder().encode(subjectToTest)
                 
