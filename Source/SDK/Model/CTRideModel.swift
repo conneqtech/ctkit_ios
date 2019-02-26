@@ -90,8 +90,8 @@ public struct CTRideModel: CTBaseModel {
 
         try container.encode(name, forKey: .name)
         try container.encode(rideType, forKey: .rideType)
-        try container.encode(startDate, forKey: .startDate)
-        try container.encode(endDate, forKey: .endDate)
+        try container.encode(startDate.toAPIDate(), forKey: .startDate)
+        try container.encode(endDate.toAPIDate(), forKey: .endDate)
 
     }
 
