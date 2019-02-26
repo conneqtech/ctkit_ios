@@ -16,6 +16,42 @@ import RxBlocking
 
 class CTRideModelTests:QuickSpec {
     override func spec() {
+        describe("Basics") {
+            fit("can create a model from constructor") {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                
+                let subjectToTest = CTRideModel(withName: "Test ride",
+                                       rideType: "other",
+                                       userId: 1,
+                                       bikeId: 1,
+                                       startDate: formatter.date(from: "2019-01-01T01:00:00+0100")!,
+                                       endDate: formatter.date(from: "2019-01-01T10:00:00+0100")!)
+            
+                let jsonBytes = try! JSONEncoder().encode(subjectToTest)
+                
+                // Convert it back to 'dumb' JSON so we can inspect some values
+                let jsonData = try! JSONSerialization.jsonObject(with: jsonBytes, options: []) as? [String:Any]
+                
+                guard
+                    let startDate = jsonData!["start_date"] as? String,
+                    let endDate = jsonData!["end_date"] as? String
+                else {
+                   return expect(true) == false
+                }
+                
+                expect(jsonData!["name"] as! String) == "Test ride"
+                expect(jsonData!["ride_type"] as! String) == "other"
+        
+                expect(startDate) == "2019-01-01T01:00:00+0100"
+                expect(endDate) == "2019-01-01T10:00:00+0100"
+            }
+        }
+        
+        
+        
+        
+        
         describe("Decoding & Encoding") {
 //            it("Decodes the API response into the Model") {
 //                let subjectToTest = try! JSONDecoder().decode(CTRideModel.self, from: Resolver().getDataForResource(name: "ride"))

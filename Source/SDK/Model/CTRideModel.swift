@@ -45,7 +45,7 @@ public struct CTRideModel: CTBaseModel {
         case co2 = "co2"
         case weatherIconURL = "icon_url"
     }
-
+    
     public init(withName name: String, rideType: String, userId: Int, bikeId: Int, startDate: Date, endDate: Date) {
         self.id = -1
         self.name = name
@@ -69,20 +69,19 @@ public struct CTRideModel: CTBaseModel {
 
         weatherIconURL = try! weatherInfo.decode(String.self, forKey: .weatherIconURL)
 
-        id = try! container.decode(Int.self, forKey: .id)
-        userId = try! container.decode(Int.self, forKey: .userId)
-        bikeId = try! container.decode(Int.self, forKey: .bikeId)
-        name = try! container.decode(String.self, forKey: .name)
-        rideType = try! container.decode(String.self, forKey: .rideType)
-        creationDate = try! container.decode(Date.self, forKey: .creationDate)
-        startDate = try! container.decode(Date.self, forKey: .startDate)
-        endDate = try! container.decode(Date.self, forKey: .endDate)
+        id = try container.decode(Int.self, forKey: .id)
+        userId = try container.decode(Int.self, forKey: .userId)
+        bikeId = try container.decode(Int.self, forKey: .bikeId)
+        name = try container.decode(String.self, forKey: .name)
+        rideType = try container.decode(String.self, forKey: .rideType)
+        creationDate = try container.decode(Date.self, forKey: .creationDate)
+        startDate = try container.decode(Date.self, forKey: .startDate)
+        endDate = try container.decode(Date.self, forKey: .endDate)
 
-        calories = try! container.decode(Double.self, forKey: .calories)
-        averageSpeed = try! container.decode(Double.self, forKey: .averageSpeed)
-        distanceTraveled = try! container.decode(Double.self, forKey: .distanceTraveled)
-        co2 = try! container.decode(Double.self, forKey: .co2)
-
+        calories = try container.decode(Double.self, forKey: .calories)
+        averageSpeed = try container.decode(Double.self, forKey: .averageSpeed)
+        distanceTraveled = try container.decode(Double.self, forKey: .distanceTraveled)
+        co2 = try container.decode(Double.self, forKey: .co2)
     }
 
     public func encode(to encoder: Encoder) throws {
