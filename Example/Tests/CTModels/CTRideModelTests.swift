@@ -35,13 +35,15 @@ class CTRideModelTests:QuickSpec {
                 
                 guard
                     let startDate = jsonData!["start_date"] as? String,
-                    let endDate = jsonData!["end_date"] as? String
+                    let endDate = jsonData!["end_date"] as? String,
+                    let name = jsonData!["name"] as? String,
+                    let rideType = jsonData!["ride_type"] as? String
                 else {
                    return expect(true) == false
                 }
                 
-                expect(jsonData!["name"] as! String) == "Test ride"
-                expect(jsonData!["ride_type"] as! String) == "other"
+                expect(name) == "Test ride"
+                expect(rideType) == "other"
         
                 expect(startDate) == "2019-01-01T01:00:00+0100"
                 expect(endDate) == "2019-01-01T10:00:00+0100"
