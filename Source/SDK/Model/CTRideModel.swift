@@ -11,13 +11,13 @@ public struct CTRideModel: CTBaseModel {
 
     //Attributes
     public let id: Int
-    public let userId: Int
-    public let bikeId: Int
-    public let name: String
-    public let rideType: String
-    public let creationDate: Date
-    public let startDate: Date
-    public let endDate: Date
+    public var userId: Int
+    public var bikeId: Int
+    public var name: String
+    public var rideType: String
+    public var creationDate: Date
+    public var startDate: Date
+    public var endDate: Date
 
     //Calculated things
     public let calories: Double
@@ -61,7 +61,6 @@ public struct CTRideModel: CTBaseModel {
         self.distanceTraveled = -1
         self.co2 = -1
         self.weatherIconURL = ""
-
     }
 
     public init (from decoder: Decoder) throws {
