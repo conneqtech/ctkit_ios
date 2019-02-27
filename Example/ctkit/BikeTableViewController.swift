@@ -30,7 +30,7 @@ class BikeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "bikeCell", for: indexPath)
         let bike = self.bikes[indexPath.row]
-        cell.textLabel?.text = "\(bike.id!) \(bike.name)"
+        cell.textLabel?.text = "\(bike.id) \(bike.name)"
         cell.detailTextLabel?.text = "\(bike.owner!.displayName)"
 
         return cell
@@ -77,7 +77,7 @@ class BikeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let bike = self.bikes[indexPath.row]
         let delete = UITableViewRowAction(style: .destructive, title: "delete") { (_, indexPath) in
-            CTBikeService().delete(withBikeId: bike.id!).subscribe(onNext: { _ in
+            CTBikeService().delete(withBikeId: bike.id).subscribe(onNext: { _ in
                 self.bikes.remove(at: indexPath.row)
                 self.tableView.reloadData()
             }).disposed(by: self.disposeBag)

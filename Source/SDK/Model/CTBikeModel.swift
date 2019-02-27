@@ -8,7 +8,7 @@
 import Foundation
 
 public struct CTBikeModel: CTBaseModel {
-    public let id: Int?
+    public let id: Int
     public let imei: String
     public let frameIdentifier: String
     public var batteryPercentage: Double?

@@ -62,7 +62,7 @@ public class CTBikeService: NSObject {
      - Returns: An observable containing the update bike.
      */
     public func patch(withBike bike: CTBikeModel) -> Observable<CTBikeModel> {
-        return CTKit.shared.restManager.patch(endpoint: "bike/\(bike.id!)", parameters: try? bike.asDictionary())
+        return CTKit.shared.restManager.patch(endpoint: "bike/\(bike.id)", parameters: try? bike.asDictionary())
     }
 
     /**

@@ -9,8 +9,8 @@ import Foundation
 
 public struct CTBasicUserModel: CTBaseModel {
 
-    public let id: Int?
-    public let email: String?
+    public let id: Int
+    public let email: String
 
     public let displayName: String
     public let profileImage: String
@@ -23,7 +23,7 @@ public struct CTBasicUserModel: CTBaseModel {
     }
 
     public init (withUsername username: String) {
-        self.id = 0
+        self.id = -1
         self.email = username
         self.profileImage = ""
         self.displayName = ""
