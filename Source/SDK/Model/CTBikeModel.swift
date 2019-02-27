@@ -66,5 +66,6 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(imageUrl, forKey: .imageUrl)
         try container.encode(frameIdentifier, forKey: .frameIdentifier)
         try container.encode(isStolen, forKey: .isStolen)
+        try container.encode(linkedUsers, forKey: .linkedUsers)
     }
 }
