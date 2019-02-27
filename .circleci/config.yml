@@ -1,5 +1,5 @@
 # .circleci/config.yml
-version: 2
+version: 2.1
 references:
   container_config: &container_config
     macos:
@@ -13,6 +13,18 @@ references:
         - checkout-repo-{{ .Branch }}-{{ .Revision }}
         - checkout-repo-{{ .Branch }}-
         - checkout-repo-
+
+commands:
+  configure_ssh:
+    description: "Configure SSH keys for Continuous Deployment"
+    steps:
+      - add_ssh_keys
+      - run:
+          name: keyscan bitbucket
+          command: ssh-keyscan -H bitbucket.org >> ~/.ssh/known_hosts
+      - run:
+          name: append git config
+          command: echo -e "[url \"git@bitbucket.org:\"]\n\tinsteadOf = https://bitbucket.org/" >> ~/.gitconfig
 
 jobs:
   provision:
@@ -43,21 +55,34 @@ jobs:
       - store_test_results:
           path: fastlane/test_output
 
-  deploy:
+  docs:
     <<: *container_config
+    working_directory: /Users/distiller/project
     steps:
       - *restore_repo
-      - add_ssh_keys
+      - configure_ssh
+      - run:
+          name: install jazzy
+          command: sudo gem install jazzy -- --with-sqlite3-lib=/usr/lib
       - run:
           name: cocoapods specs
           command: |
             curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run:
-          name: keyscan bitbucket
-          command: ssh-keyscan -H bitbucket.org >> ~/.ssh/known_hosts
+          name: generate docs
+          command: jazzy --podspec ctkit.podspec --output ./docs/public/ios
+      - store_artifacts:
+          path: docs
+
+  deploy:
+    <<: *container_config
+    steps:
+      - *restore_repo
       - run:
-          name: append git config
-          command: echo -e "[url \"git@bitbucket.org:\"]\n\tinsteadOf = https://bitbucket.org/" >> ~/.gitconfig
+          name: cocoapods specs
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - configure_ssh
       - run:
           name: pod repo add
           command: pod repo add conneqtech git@bitbucket.org:nfnty_admin/conneqtech-specs.git
@@ -74,7 +99,23 @@ workflows:
       - test:
           requires:
             - provision
+      - docs:
+          requires:
+            - provision
+            - test
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only:
+                - master
       - deploy:
           requires:
             - provision
             - test
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only:
+                - master
