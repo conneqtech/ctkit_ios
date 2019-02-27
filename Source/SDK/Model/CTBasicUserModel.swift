@@ -10,7 +10,7 @@ import Foundation
 public struct CTBasicUserModel: CTBaseModel {
 
     public let id: Int
-    public let email: String
+    public let email: String?
 
     public let displayName: String
     public let profileImage: String
