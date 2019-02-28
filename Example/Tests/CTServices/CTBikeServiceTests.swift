@@ -23,7 +23,7 @@ class CTBikeServiceTests: QuickSpec {
             _ = try! CTUserService().fetchCurrentUser().toBlocking().first()
             expect(CTUserService().getActiveUserId()) == 47
         }
-
+        
         //TODO: Fix this test to use mocked responses
         describe("Linked users") {
             beforeEach {
