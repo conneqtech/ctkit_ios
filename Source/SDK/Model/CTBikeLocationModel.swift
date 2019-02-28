@@ -38,4 +38,8 @@ public struct CTBikeLocationModel: CTBaseModel {
     public func asCoordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(self.latitude, self.longitude)
     }
+    
+    public func asLocation() -> CLLocation {
+        return CLLocation(latitude: self.latitude, longitude: self.longitude)
+    }
 }

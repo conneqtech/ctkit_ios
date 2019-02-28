@@ -8,7 +8,7 @@
 import Foundation
 
 public struct CTBikeModel: CTBaseModel {
-    public let id: Int?
+    public let id: Int
     public let imei: String
     public let frameIdentifier: String
     public var batteryPercentage: Double?
@@ -66,5 +66,6 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(imageUrl, forKey: .imageUrl)
         try container.encode(frameIdentifier, forKey: .frameIdentifier)
         try container.encode(isStolen, forKey: .isStolen)
+        try container.encode(linkedUsers, forKey: .linkedUsers)
     }
 }

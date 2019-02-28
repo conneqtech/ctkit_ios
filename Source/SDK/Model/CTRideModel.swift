@@ -11,13 +11,13 @@ public struct CTRideModel: CTBaseModel {
 
     //Attributes
     public let id: Int
-    public let userId: Int
-    public let bikeId: Int
-    public let name: String
-    public let rideType: String
-    public let creationDate: Date
-    public let startDate: Date
-    public let endDate: Date
+    public var userId: Int
+    public var bikeId: Int
+    public var name: String
+    public var rideType: String
+    public var creationDate: Date
+    public var startDate: Date
+    public var endDate: Date
 
     //Calculated things
     public let calories: Double
@@ -45,8 +45,8 @@ public struct CTRideModel: CTBaseModel {
         case co2 = "co2"
         case weatherIconURL = "icon_url"
     }
-
-    public init(withName name: String, rideType: String, userId: Int, bikeId: Int, startDate: Date, endDate: Date) {
+    
+    public init(withName name: String, rideType: String, userId: Int = -1, bikeId: Int = -1, startDate: Date, endDate: Date) {
         self.id = -1
         self.name = name
         self.rideType = rideType
@@ -61,7 +61,6 @@ public struct CTRideModel: CTBaseModel {
         self.distanceTraveled = -1
         self.co2 = -1
         self.weatherIconURL = ""
-
     }
 
     public init (from decoder: Decoder) throws {
@@ -70,19 +69,19 @@ public struct CTRideModel: CTBaseModel {
 
         weatherIconURL = try! weatherInfo.decode(String.self, forKey: .weatherIconURL)
 
-        id = try! container.decode(Int.self, forKey: .id)
-        userId = try! container.decode(Int.self, forKey: .userId)
-        bikeId = try! container.decode(Int.self, forKey: .bikeId)
-        name = try! container.decode(String.self, forKey: .name)
-        rideType = try! container.decode(String.self, forKey: .rideType)
-        creationDate = try! container.decode(Date.self, forKey: .creationDate)
-        startDate = try! container.decode(Date.self, forKey: .startDate)
-        endDate = try! container.decode(Date.self, forKey: .endDate)
+        id = try container.decode(Int.self, forKey: .id)
+        userId = try container.decode(Int.self, forKey: .userId)
+        bikeId = try container.decode(Int.self, forKey: .bikeId)
+        name = try container.decode(String.self, forKey: .name)
+        rideType = try container.decode(String.self, forKey: .rideType)
+        creationDate = try container.decode(Date.self, forKey: .creationDate)
+        startDate = try container.decode(Date.self, forKey: .startDate)
+        endDate = try container.decode(Date.self, forKey: .endDate)
 
-        calories = try! container.decode(Double.self, forKey: .calories)
-        averageSpeed = try! container.decode(Double.self, forKey: .averageSpeed)
-        distanceTraveled = try! container.decode(Double.self, forKey: .distanceTraveled)
-        co2 = try! container.decode(Double.self, forKey: .co2)
+        calories = try container.decode(Double.self, forKey: .calories)
+        averageSpeed = try container.decode(Double.self, forKey: .averageSpeed)
+        distanceTraveled = try container.decode(Double.self, forKey: .distanceTraveled)
+        co2 = try container.decode(Double.self, forKey: .co2)
 
     }
 
@@ -91,8 +90,8 @@ public struct CTRideModel: CTBaseModel {
 
         try container.encode(name, forKey: .name)
         try container.encode(rideType, forKey: .rideType)
-        try container.encode(startDate, forKey: .startDate)
-        try container.encode(endDate, forKey: .endDate)
+        try container.encode(startDate.toAPIDate(), forKey: .startDate)
+        try container.encode(endDate.toAPIDate(), forKey: .endDate)
 
     }
 
