@@ -25,7 +25,7 @@ public struct CTBikeModel: CTBaseModel {
     public var isRequestingUserOwner: Bool
     public var type: String?
     
-    public init(withId id:Int, imei: String, frameIdentifier identifier: String, name: String, isOWner: Bool = true) {
+    public init(withId id:Int, imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
         self.id = id
         self.imei = imei
         self.frameIdentifier = identifier
@@ -33,7 +33,7 @@ public struct CTBikeModel: CTBaseModel {
         self.isRequestingUserOwner = isOwner
     }
 
-    public init(withImei imei: String, frameIdentifier identifier: String, name: String, isOWner: Bool = true) {
+    public init(withImei imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
         self.id = -1
         self.imei = imei
         self.frameIdentifier = identifier
