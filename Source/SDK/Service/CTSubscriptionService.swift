@@ -20,43 +20,9 @@ public class CTSubscriptionService: NSObject {
      - Returns: An observable containing a list of all subscriptions found.
      */
     public func fetchAll(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
-        return CTKit.shared.subscriptionManager.getSubscriptionForBike(endpoint: "subscription/bike/\(identifier)")
+        return CTKit.shared.subscriptionManager.get(endpoint: "subscription/bike/\(identifier)")
     }
-
-    /**
-     Fetches all known connectivity specific subscriptions for a bike.
-     
-     - Parameter identifier: The bike identifier you want to retrieve the data for
-     
-     - Returns: An observable containing a list of all subscriptions found.
-     */
-    public func fetchConnectivitySubscriptions(withbikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
-        return fetchSubscriptionByType(withBikeId: identifier, type: CTSubscriptionService.productTypeConnected)
-    }
-
-    /**
-     Fetches all known insurance type subscriptions for a bike.
-     
-     - Parameter identifier: The bike identifier you want to retrieve the data for
-     
-     - Returns: An observable containing a list of all subscriptions found.
-     */
-    public func fetchInsuranceSubscriptions(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
-        return fetchSubscriptionByType(withBikeId: identifier, type: CTSubscriptionService.productTypeInsured)
-    }
-
-    /**
-     Fetches all known subscriptions for a bike by type.
-     
-     - Parameter identifier: The bike identifier you want to retrieve the data for
-     - Parameter type: The type of subcriptions you want to retrieve
-     
-     - Returns: An observable containing a list of all subscriptions found.
-     */
-    public func fetchSubscriptionByType(withBikeId identifier: Int, type: Int) -> Observable<[CTSubscriptionModel]> {
-        return fetchAll(withBikeId: identifier)
-    }
-
+    
     /**
      Starts a trial for a bike.
      
@@ -65,8 +31,12 @@ public class CTSubscriptionService: NSObject {
      
      - Returns: An observable of the newly started trial.
      */
-    public func startTrial(withBikeId identifier: String, type: Int) -> Observable<CTSubscriptionModel> {
-        return CTKit.shared.subscriptionManager.startTrial(endpoint: "trial")
+    public func startTrial(withBikeId identifier: String, imei: String) -> Observable<CTSubscriptionModel> {
+        return CTKit.shared.subscriptionManager.post(endpoint: "trial", parameters: [
+            "bike_id": identifier,
+            "imei": imei,
+            "product_id":0]
+        )
     }
 
     static let productTypeConnected = 1

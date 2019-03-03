@@ -263,7 +263,6 @@
 		9C22921616DC80691662977DDEA6B2C4 /* BeEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2C256E7E7DAFAC3ECE068C5935222B /* BeEmpty.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		9C84075ED8C49CDD452D80C9EA0180C7 /* LockOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC7C42B9BA1D6AF0A0E580783B1F0C /* LockOwnerType.swift */; };
 		9D1528B2F9533AB21AF2194117A11EDE /* Producer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CACA42FD781E18B130E73393F9EEB18 /* Producer.swift */; };
-		9E0F1B95E75DA48BF48D943E05AA0DF9 /* CTSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64384142A42C53DA7CF4105518C8FC6 /* CTSubscriptionManager.swift */; };
 		9F5A891826247ACBA9576C4A927390FF /* DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1005073A210477C211FA862D9704E60D /* DisposeBag.swift */; };
 		A092AAE4B9902A3A1EC7234E0BB3620A /* DispatchQueueConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836901ABF6D22E1A12E87D5FD8CC4AB5 /* DispatchQueueConfiguration.swift */; };
 		A0DCFA339B0117870B5E6D939AA1C85D /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A9B669F86490B308806253173ECDFB /* Timer.swift */; };
@@ -982,7 +981,6 @@
 		F2D2B4876FF868BAA8C9ED07376254F5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F323FAE95E23B9FF1C4EA1D056EC1511 /* CTUnregisteredBikeInformationModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTUnregisteredBikeInformationModel.swift; sourceTree = "<group>"; };
 		F5072778C6DDBA3C83613B184AA7C24D /* URITemplate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = URITemplate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F64384142A42C53DA7CF4105518C8FC6 /* CTSubscriptionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTSubscriptionManager.swift; sourceTree = "<group>"; };
 		F6467393F298EE770547D6D6BF457BE3 /* RefCountDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RefCountDisposable.swift; path = RxSwift/Disposables/RefCountDisposable.swift; sourceTree = "<group>"; };
 		F679D7F59BFBEE0C64B22F8902445EC2 /* RecursiveLock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecursiveLock.swift; path = Platform/RecursiveLock.swift; sourceTree = "<group>"; };
 		F7B3936A98F6AB06182B41A9AE1D184A /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
@@ -1634,7 +1632,6 @@
 				E73C60CAFC2FD11153933CA9F06DBA13 /* CTRequestAdapter.swift */,
 				821936F5BF7C9F610A925C21BFFC2F45 /* CTRequestRetrier.swift */,
 				4126C93AE912B7EDA967BB1D1842978A /* CTRestManager.swift */,
-				F64384142A42C53DA7CF4105518C8FC6 /* CTSubscriptionManager.swift */,
 			);
 			name = Networking;
 			path = Source/Networking;
@@ -2770,7 +2767,6 @@
 				8C683CD8C32A1ABEFBA39975A5BB889E /* CTRideService.swift in Sources */,
 				D72AC383CD7D8B1D47CA6C63C62A285C /* CTStatisticsModel.swift in Sources */,
 				741998E60816F7DE7A5FC1D1001AE4BF /* CTStatisticsService.swift in Sources */,
-				9E0F1B95E75DA48BF48D943E05AA0DF9 /* CTSubscriptionManager.swift in Sources */,
 				7FA58699C09FF34D991CC0550ADB8696 /* CTSubscriptionModel.swift in Sources */,
 				8274EE4C17F1BCDDFCEB2509462410D2 /* CTSubscriptionService.swift in Sources */,
 				EECA1FBC0907CC245DD1F08BC9A74D26 /* CTTheftCaseModel.swift in Sources */,

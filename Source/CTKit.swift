@@ -21,7 +21,7 @@ public class CTKit {
 
     public var restManager: CTRestManager!
     public var authManager: CTAuthManager!
-    public var subscriptionManager: CTSubscriptionManager!
+    public var subscriptionManager: CTRestManager!
     public var authToken = PublishSubject<CTOAuth2TokenResponse>()
 
     private var _currentActiveUser: CTUserModel?
@@ -56,11 +56,23 @@ public class CTKit {
 
         self.restManager = CTRestManager(withConfig: APIConfig)
         self.authManager = CTAuthManager(withConfig: APIConfig)
-//        self.subscriptionManager = CTSubscriptionManager(withConfig: APIConfig)
     }
 
     public static func configure(withClientId clientId: String, clientSecret: String, baseURL: String) {
         CTKit.shared = CTKit.init(clientId: clientId, clientSecret: clientSecret, baseURL: baseURL)
+    }
+    
+    public func addSubscriptions(withClientId clientId: String, clientSecret: String, baseURL: String, vendor: String) {
+        let APIConfig = CTVendorApiConfig(
+            withBaseUrl: baseURL,
+            clientId: clientId,
+            clientSecret: clientSecret,
+            grantType: .clientCredentials,
+            version: "v1",
+            vendor: vendor
+        )
+        
+        CTKit.shared.subscriptionManager = CTRestManager(withConfig: APIConfig)
     }
 }
 
