@@ -174,11 +174,21 @@ public class CTBikeService: NSObject {
      
      
      - Parameter identifier: The bike id to patch notifications on
-     - Parameters settings: Notification settings object with the state of toggles (on/off)
-      - Returns: An observable with the updated settings model in sync with the API.
+     - Parameter settings: Notification settings object with the state of toggles (on/off)
+     - Returns: An observable with the updated settings model in sync with the API.
      */
     public func updateNotificationSettings(withBikeId identifier: Int,
                                            andSettings settings: CTBikeNotificationSettingsModel) -> Observable<CTBikeNotificationSettingsModel> {
         return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: try? settings.asDictionary())
+    }
+    
+    /**
+     Fetch notification settngs for a bike
+     
+     - Parameter identifier: The bike id to get notification settings for
+     - Returns: An observable containing the notification settings for a bike
+     */
+    public func fetchNotificationSettings(withBikeId identifier: Int) -> Observable<CTBikeNotificationSettingsModel> {
+        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)")
     }
 }
