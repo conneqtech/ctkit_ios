@@ -56,6 +56,7 @@
 		C069CA60219B08E7003BE8C3 /* bike-history.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA5F219B08E7003BE8C3 /* bike-history.json */; };
 		C069CA63219B17D5003BE8C3 /* bike.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA62219B17D5003BE8C3 /* bike.json */; };
 		C069CA66219B1A1D003BE8C3 /* address-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA65219B1A1D003BE8C3 /* address-list.json */; };
+		C06D7064222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D7063222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift */; };
 		C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */ = {isa = PBXBuildFile; fileRef = C07FEDB721899BDC005577C1 /* oauth-success.json */; };
 		C08B174B2190831F00A662E2 /* bike-registration-failed.json in Resources */ = {isa = PBXBuildFile; fileRef = C08B174A2190831F00A662E2 /* bike-registration-failed.json */; };
 		C098CA20219C60A3004174D5 /* bike-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C098CA1F219C60A3004174D5 /* bike-list.json */; };
@@ -138,6 +139,7 @@
 		C069CA5F219B08E7003BE8C3 /* bike-history.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-history.json"; sourceTree = "<group>"; };
 		C069CA62219B17D5003BE8C3 /* bike.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bike.json; sourceTree = "<group>"; };
 		C069CA65219B1A1D003BE8C3 /* address-list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "address-list.json"; sourceTree = "<group>"; };
+		C06D7063222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeNotificationSettingsTests.swift; sourceTree = "<group>"; };
 		C07FEDB721899BDC005577C1 /* oauth-success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "oauth-success.json"; sourceTree = "<group>"; };
 		C08B174A2190831F00A662E2 /* bike-registration-failed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-registration-failed.json"; sourceTree = "<group>"; };
 		C098CA1F219C60A3004174D5 /* bike-list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-list.json"; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 				85B2DE3E21A2E5D0004F524A /* CTStatisticsServiceTests.swift */,
 				C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */,
 				C001439E21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift */,
+				C06D7063222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift */,
 			);
 			path = CTServices;
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
 				C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */,
 				853B34B62197042000FA50FB /* CTRideServiceTests.swift in Sources */,
+				C06D7064222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift in Sources */,
 				85B2DE3F21A2E5D0004F524A /* CTStatisticsServiceTests.swift in Sources */,
 				C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */,
 				85B2BDCE21BBCDA3009036E7 /* CTRideModelTests.swift in Sources */,
