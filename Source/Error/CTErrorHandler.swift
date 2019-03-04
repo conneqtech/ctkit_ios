@@ -22,7 +22,7 @@ internal class CTErrorHandler: NSObject {
             case 400:
                 handledError = handleBadRequest(body: unwrappedResponse)
             case 401:
-                handledError = handleUnauthorized(body: unwrappedResponse)
+                handledError = handleUnauthorized(body: unwrappedResponse) 
             case 404:
                 handledError = handleNotFound(body: unwrappedResponse)
             case 406:
