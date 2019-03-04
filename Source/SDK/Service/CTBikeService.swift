@@ -160,11 +160,25 @@ public class CTBikeService: NSObject {
      Update the linked users array for a bike. The array that is patched will be the new list of linked users.
      When you want to remove a linked user, remove it from the list in the model, then call this function
      
-     - Parameter bike: The bike with updated linked users you want to persist on the API
+     - Parameter identifier: The bike with updated linked users you want to persist on the API
+     - Parameter users: The users to patch, this will overwrite any other linked users.
      - Returns: An observable with the updated bike model in sync with the API.
      */
     public func updateLinkedUsers(withBikeId identifier: Int, andLinkedUsers users: [CTBasicUserModel]) -> Observable<CTBikeModel> {
         let userDict = users.map { user in try! user.asDictionary() }
         return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: ["linked_users": userDict])
+    }
+    
+    /**
+     Update the settings for notification for a bike.
+     
+     
+     - Parameter identifier: The bike id to patch notifications on
+     - Parameters settings: Notification settings object with the state of toggles (on/off)
+      - Returns: An observable with the updated settings model in sync with the API.
+     */
+    public func updateNotificationSettings(withBikeId identifier: Int,
+                                           andSettings settings: CTBikeNotificationSettingsModel) -> Observable<CTBikeNotificationSettingsModel> {
+        return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: try? settings.asDictionary())
     }
 }
