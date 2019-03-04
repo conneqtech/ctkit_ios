@@ -61,7 +61,7 @@ public class CTKit {
     public static func configure(withClientId clientId: String, clientSecret: String, baseURL: String) {
         CTKit.shared = CTKit.init(clientId: clientId, clientSecret: clientSecret, baseURL: baseURL)
     }
-    
+
     public func addSubscriptions(withClientId clientId: String, clientSecret: String, baseURL: String, vendor: String) {
         let APIConfig = CTVendorApiConfig(
             withBaseUrl: baseURL,
@@ -71,7 +71,7 @@ public class CTKit {
             version: "v1",
             vendor: vendor
         )
-        
+
         CTKit.shared.subscriptionManager = CTRestManager(withConfig: APIConfig)
     }
 }

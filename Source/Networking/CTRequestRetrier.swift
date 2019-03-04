@@ -32,11 +32,11 @@ class CTRequestRetrier: RequestRetrier {
                     guard let strongSelf = self else { return }
 
                     strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
-                    
+
                     if succeeded, let tokenResponse = tokenResponse {
                         CTKit.shared.authManager.saveTokenResponse(tokenResponse)
                     }
-                    
+
                     strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
                     strongSelf.requestsToRetry.removeAll()
                 }

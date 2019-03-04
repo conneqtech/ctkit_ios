@@ -54,6 +54,8 @@ public class CTRestManager {
                 headers["Authorization"] = "Bearer \(bearer)"
             }
 
+            print("🌍 Calling: \(self.apiConfig.fullUrl)/\(endpoint)")
+
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             Alamofire.upload(multipartFormData: { formData in
                 if let fixedOrientation = image.fixedOrientation(), let imageData = fixedOrientation.pngData() {
@@ -148,7 +150,7 @@ public class CTRestManager {
                         //FIXME: Remove debug code
                         let decoder = JSONDecoder()
                         decoder.dateDecodingStrategy = .formatted(.iso8601CT)
-                        
+
                         do {
                             _ = try decoder.decode(T.self, from: response.data!)
                         } catch {

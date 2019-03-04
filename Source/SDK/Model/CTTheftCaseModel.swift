@@ -62,20 +62,20 @@ public struct CTTheftCaseModel: CTBaseModel {
         case policeCaseNumber = "police_case_number"
         case caseFinalized = "finalized"
     }
-    
+
     public init(withPartner partner: CTTheftCasePartnerModel) {
         self.id = -1
         self.caseNumber = nil
         self.partnerCaseNumber = nil
         self.partner = partner
-        
+
         self.bikeId = -1
         self.bikeFrameType = ""
         self.bikeType = ""
         self.bikeColor = ""
         self.bikeAdditionalDetails = ""
         self.bikeImages = []
-        
+
         self.ownerName = ""
         self.ownerEmail = ""
         self.ownerPhone = ""
@@ -95,7 +95,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.caseNumber = nil
         self.partnerCaseNumber = partnerCaseNumber
         self.partner = partner
-        
+
         self.bikeId = -1
         self.bikeFrameType = ""
         self.bikeType = ""

@@ -8,14 +8,14 @@
 import Foundation
 
 public struct CTBikeNotificationSettingsModel: CTBaseModel {
-    
+
     public let bikeId: Int
-    
+
     public var batteryNotify: Bool
     public var speedNotify: Bool
     public var movingNotify: Bool
     public var motionNotify: Bool
-    
+
     public init (withBikeId identifier: Int, batteryOn: Bool, speedOn: Bool, movingOn: Bool, motionOn: Bool) {
         self.bikeId = identifier
         self.batteryNotify = batteryOn
@@ -23,8 +23,8 @@ public struct CTBikeNotificationSettingsModel: CTBaseModel {
         self.movingNotify = movingOn
         self.motionNotify = motionOn
     }
-    
-    enum CodingKeys: String,CodingKey {
+
+    enum CodingKeys: String, CodingKey {
         case bikeId = "id"
         case batteryNotify = "lowbattery"
         case speedNotify = "highspeed"

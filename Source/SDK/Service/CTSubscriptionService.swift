@@ -22,7 +22,7 @@ public class CTSubscriptionService: NSObject {
     public func fetchAll(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
         return CTKit.shared.subscriptionManager.get(endpoint: "subscription/bike/\(identifier)")
     }
-    
+
     /**
      Starts a trial for a bike.
      
@@ -35,7 +35,7 @@ public class CTSubscriptionService: NSObject {
         return CTKit.shared.subscriptionManager.post(endpoint: "trial", parameters: [
             "bike_id": identifier,
             "imei": imei,
-            "product_id":0]
+            "product_id": 0]
         )
     }
 

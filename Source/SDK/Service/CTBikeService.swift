@@ -168,7 +168,7 @@ public class CTBikeService: NSObject {
         let userDict = users.map { user in try! user.asDictionary() }
         return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: ["linked_users": userDict])
     }
-    
+
     /**
      Update the settings for notification for a bike.
      
@@ -181,7 +181,7 @@ public class CTBikeService: NSObject {
                                            andSettings settings: CTBikeNotificationSettingsModel) -> Observable<CTBikeNotificationSettingsModel> {
         return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: try? settings.asDictionary())
     }
-    
+
     /**
      Fetch notification settngs for a bike
      
