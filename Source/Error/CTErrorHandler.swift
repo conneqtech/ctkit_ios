@@ -16,13 +16,19 @@ internal class CTErrorHandler: NSObject {
 
     func handle(withJSONData data: [String: Any]?) -> CTErrorProtocol {
         var handledError: CTErrorProtocol?
+        print("⚠️ CTKit encountered an API error. The following was sent to the `CTErrorHandler`")
+        print(data)
+        print("🚫 End of encountered API error. Please post this message to slack if the erorr you receive is: ")
+        print("`api.error.unhandled.unparseable-responsebody` or `api.error.unhandled.unknown-responsecode`")
 
         if let unwrappedResponse = data, let httpCode = unwrappedResponse["status"] as? Int {
             switch httpCode {
             case 400:
                 handledError = handleBadRequest(body: unwrappedResponse)
             case 401:
-                handledError = handleUnauthorized(body: unwrappedResponse) 
+                handledError = handleUnauthorized(body: unwrappedResponse)
+            case 403:
+                handledError = handleForbidden(body: unwrappedResponse)
             case 404:
                 handledError = handleNotFound(body: unwrappedResponse)
             case 406:
@@ -73,6 +79,12 @@ internal class CTErrorHandler: NSObject {
         return CTBasicError(translationKey: "api.error.401.user-not-logged-in",
                                description: "User is not logged in",
                                code: 401)
+    }
+    
+    func handleForbidden(body: [String: Any]) -> CTBasicError? {
+        return CTBasicError(translationKey: "api.error.403.forbidden",
+                            description: "You are not using the right credentials to make this call",
+                            code: 403)
     }
 
     func handleNotFound(body: [String: Any]) -> CTBasicError? {
