@@ -17,7 +17,7 @@ import RxBlocking
 class CTRideModelTests:QuickSpec {
     override func spec() {
         describe("Basics") {
-            fit("Can create and encode from model") {
+            it("Can create and encode from model") {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
                 
