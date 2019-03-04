@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CTKit.shared.addSubscriptions(
             withClientId: "58e5b0b5-4e5a-47d1-a775-c182fa6b64da",
             clientSecret: "F2h$7c>9zj;TnpTVG6rHxyJ7dCbC$H{{pxzH8bN6X=2=7HLJJ4",
-            baseURL: "",
-            vendor: "sparta")
+            baseURL: "http://api.cb.staging.conneq.tech",
+            vendor: "axa")
         return true
     }
 
