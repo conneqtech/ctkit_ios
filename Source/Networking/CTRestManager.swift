@@ -143,30 +143,29 @@ public class CTRestManager {
                 .validate(statusCode: 200..<300)
                 .validate(contentType: ["application/json"])
                 .responseJSON { (response) in
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(.iso8601CT)
                     
                     if CTKit.shared.debugMode {
                         print("=========================================")
-                        print("🌍 \(self.apiConfig.fullUrl)/\(endpoint)")
+                        print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
                         if let rData = response.data {
                             print("♻️ Response with \(rData.count) bytes")
+                            
+                            if response.result.isSuccess {
+                                do {
+                                    let jsonBytes = try decoder.decode(T.self, from: rData)
+                                } catch {
+                                    print("DEBUG: Decoding gave us the following error")
+                                    print(error)
+                                }
+                            }
                         }
                         print("=========================================")
                     }
 
                     switch response.result {
                     case .success:
-                        //FIXME: Remove debug code
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = .formatted(.iso8601CT)
-
-                        do {
-                            _ = try decoder.decode(T.self, from: response.data!)
-                        } catch {
-                            print("DEBUG: Decoding gave us the following error")
-                            print(error)
-                        }
-                        //End of debug code
-
                         guard let data = response.data, let getResponse = try? decoder.decode(T.self, from: data) else {
                             observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                             return
