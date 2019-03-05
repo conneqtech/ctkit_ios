@@ -152,13 +152,17 @@ public class CTRestManager {
                         if let rData = response.data {
                             print("♻️ Response with \(rData.count) bytes")
                             
-                            if response.result.isSuccess {
-                                do{
-                                    let jsonResponse = try JSONSerialization.jsonObject(with: rData, options: [])
-                                    print(jsonResponse) //Response result
-                                } catch let parsingError {
-                                    print("Error", parsingError)
-                                }
+                            if response.result.isFailure {
+                                print("⚠️ The call failed with the following error")
+                            } else {
+                                print("✅ The call succeeded with the following data")
+                            }
+                            
+                            do {
+                                let jsonResponse = try JSONSerialization.jsonObject(with: rData, options: [])
+                                print(jsonResponse) //Response result
+                            } catch let parsingError {
+                                print("Error", parsingError)
                             }
                         }
                         print("=========================================")
@@ -174,8 +178,6 @@ public class CTRestManager {
                         observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure:
-                        print("FAILURE")
-                        print(response)
                         observer.onError(CTErrorHandler().handle(response: response))
                     }
             }

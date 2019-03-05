@@ -16,10 +16,6 @@ internal class CTErrorHandler: NSObject {
 
     func handle(withJSONData data: [String: Any]?) -> CTErrorProtocol {
         var handledError: CTErrorProtocol?
-        print("⚠️ CTKit encountered an API error. The following was sent to the `CTErrorHandler`")
-        print(data)
-        print("🚫 End of encountered API error. Please post this message to slack if the erorr you receive is: ")
-        print("`api.error.unhandled.unparseable-responsebody` or `api.error.unhandled.unknown-responsecode`")
 
         if let unwrappedResponse = data, let httpCode = unwrappedResponse["status"] as? Int {
             switch httpCode {
