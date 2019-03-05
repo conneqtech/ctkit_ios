@@ -23,6 +23,7 @@ public class CTKit {
     public var authManager: CTAuthManager!
     public var subscriptionManager: CTRestManager!
     public var authToken = PublishSubject<CTOAuth2TokenResponse>()
+    public var debugMode: Bool = false
 
     private var _currentActiveUser: CTUserModel?
 

@@ -54,7 +54,6 @@ public class CTRestManager {
                 headers["Authorization"] = "Bearer \(bearer)"
             }
 
-            print("🌍 Calling: \(self.apiConfig.fullUrl)/\(endpoint)")
 
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             Alamofire.upload(multipartFormData: { formData in
@@ -135,7 +134,6 @@ public class CTRestManager {
             if let bearer = useToken {
                 headers["Authorization"] = "Bearer \(bearer)"
             }
-
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             let requestReference = self.sessionManager.request(url,
                                                                method: method,
@@ -145,6 +143,16 @@ public class CTRestManager {
                 .validate(statusCode: 200..<300)
                 .validate(contentType: ["application/json"])
                 .responseJSON { (response) in
+                    
+                    if CTKit.shared.debugMode {
+                        print("=========================================")
+                        print("🌍 \(self.apiConfig.fullUrl)/\(endpoint)")
+                        if let rData = response.data {
+                            print("♻️ Response with \(rData.count) bytes")
+                        }
+                        print("=========================================")
+                    }
+
                     switch response.result {
                     case .success:
                         //FIXME: Remove debug code

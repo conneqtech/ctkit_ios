@@ -31,15 +31,11 @@ public class CTSubscriptionService: NSObject {
      
      - Returns: An observable of the newly started trial.
      */
-    public func startTrial(withBikeId identifier: String, imei: String) -> Observable<CTSubscriptionModel> {
+    public func startTrial(withBikeId identifier: Int, imei: String) -> Observable<CTSubscriptionModel> {
         return CTKit.shared.subscriptionManager.post(endpoint: "trial", parameters: [
             "bike_id": identifier,
-            "imei": imei,
-            "product_id": 0]
+            "hash": imei
+            ]
         )
     }
-
-    static let productTypeConnected = 1
-    static let productTypeInsured = 2
-    static let productTypeTrial = 1
 }
