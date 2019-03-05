@@ -17,7 +17,7 @@ import RxBlocking
 class CTSubscriptionsTest: XCTestCase {
     
     override func setUp() {
-//        let _ = try! CTUserService().login(email: "tech+proxible@conneq.tech", password: "Testpass").toBlocking().first()!
+        let _ = try! CTUserService().login(email: "tech+proxible@conneq.tech", password: "Testpass").toBlocking().first()!
     }
     
     func testCreateTrial() {

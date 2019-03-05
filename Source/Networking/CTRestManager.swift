@@ -153,11 +153,11 @@ public class CTRestManager {
                             print("♻️ Response with \(rData.count) bytes")
                             
                             if response.result.isSuccess {
-                                do {
-                                    let jsonBytes = try decoder.decode(T.self, from: rData)
-                                } catch {
-                                    print("DEBUG: Decoding gave us the following error")
-                                    print(error)
+                                do{
+                                    let jsonResponse = try JSONSerialization.jsonObject(with: rData, options: [])
+                                    print(jsonResponse) //Response result
+                                } catch let parsingError {
+                                    print("Error", parsingError)
                                 }
                             }
                         }

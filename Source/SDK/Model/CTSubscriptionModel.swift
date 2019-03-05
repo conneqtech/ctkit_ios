@@ -13,7 +13,7 @@ public struct CTSubscriptionModel: CTBaseModel {
     public let bikeId: Int
     public let isCancelled: Bool
     public let startDate: Date
-    public let endDate: Date
+    public let endDate: Date?
     public let productId: Int
 
     enum CodingKeys: String, CodingKey {
@@ -35,5 +35,4 @@ public struct CTSubscriptionModel: CTBaseModel {
         self.startDate = Date()
         self.endDate = Date()
     }
-
 }
