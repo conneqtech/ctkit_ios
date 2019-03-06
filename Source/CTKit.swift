@@ -22,7 +22,7 @@ public class CTKit {
     public var restManager: CTRestManager!
     public var authManager: CTAuthManager!
     public var subscriptionManager: CTRestManager!
-    public var authToken = PublishSubject<CTOAuth2TokenResponse>()
+    public var authToken = ReplaySubject<CTOAuth2TokenResponse>.create(bufferSize: 1)
     public var debugMode: Bool = false
 
     private var _currentActiveUser: CTUserModel?

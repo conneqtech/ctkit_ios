@@ -139,9 +139,11 @@ public class CTBikeService: NSObject {
         return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["activation_code": identifier])
             .flatMap { (unregisteredBike: [CTUnregisteredBikeModel]) -> Observable<[CTUnregisteredBikeInformationModel]> in
                 if unregisteredBike.isEmpty {
+                    print("NOOPEEE")
                     let emptyResult: [CTUnregisteredBikeInformationModel] = []
                     return Observable.of(emptyResult)
                 } else {
+                    print("FETCH MORE!")
                     return CTKit.shared.restManager.get(
                         endpoint: "bike-type/\(unregisteredBike[0].bikeTypeId)"
                     ).map { (bikeType: CTBikeTypeModel) -> [CTUnregisteredBikeInformationModel] in
