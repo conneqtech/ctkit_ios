@@ -22,21 +22,23 @@ public struct CTBikeModel: CTBaseModel {
     public var imageUrl: String?
     public var creationDate: Date?
     public var isStolen: Bool?
-    public var isRequestingUserOwner: Bool?
+    public var isRequestingUserOwner: Bool
     public var type: String?
-    
-    public init(withId id:Int, imei: String, frameIdentifier identifier: String, name: String) {
+
+    public init(withId id: Int, imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
         self.id = id
         self.imei = imei
         self.frameIdentifier = identifier
         self.name = name
+        self.isRequestingUserOwner = isOwner
     }
 
-    public init(withImei imei: String, frameIdentifier identifier: String, name: String) {
+    public init(withImei imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
         self.id = -1
         self.imei = imei
         self.frameIdentifier = identifier
         self.name = name
+        self.isRequestingUserOwner = isOwner
     }
 
     enum CodingKeys: String, CodingKey {

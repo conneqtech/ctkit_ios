@@ -122,6 +122,8 @@
     "service": true,
     "vibration": true,
     "freefall": true,
+    "moving": false,
+    "motion": false,
     "sos": true,
     "is_stolen": false
 }

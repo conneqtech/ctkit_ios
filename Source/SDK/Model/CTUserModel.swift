@@ -40,9 +40,9 @@ public struct CTUserModel: CTBaseModel {
 
     ///Initials of the user, maximum length 255 is characters
     public var initials: String?
-    
+
     ///Phone number of the user
-    public var phoneNumber:String?
+    public var phoneNumber: String?
 
     ///Gender, this can be 'm' for male, 'f' for female, or 'o' for not disclosed
     public var gender: String?
@@ -120,13 +120,12 @@ public struct CTUserModel: CTBaseModel {
         try container.encode(country, forKey: .country)
         try container.encode(postalCode, forKey: .postalCode)
     }
-    
-    
-    public static func splitPhone(number: String) -> (countryCode:UInt64?, number:String) {
+
+    public static func splitPhone(number: String) -> (countryCode: UInt64?, number: String) {
         let splitNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted)
         var phoneNumber = number
-        var countryCodeValue:UInt64? = nil
-        
+        var countryCodeValue: UInt64?
+
         if splitNumber.count == 2 {
             countryCodeValue = UInt64(splitNumber[0])
             phoneNumber = splitNumber[1]

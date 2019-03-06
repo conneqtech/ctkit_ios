@@ -23,6 +23,8 @@ internal class CTErrorHandler: NSObject {
                 handledError = handleBadRequest(body: unwrappedResponse)
             case 401:
                 handledError = handleUnauthorized(body: unwrappedResponse)
+            case 403:
+                handledError = handleForbidden(body: unwrappedResponse)
             case 404:
                 handledError = handleNotFound(body: unwrappedResponse)
             case 406:
@@ -68,11 +70,17 @@ internal class CTErrorHandler: NSObject {
                                     code: 401)
             }
         }
-        
+
         // Handle all 401 the same. It means the user is not logged in
         return CTBasicError(translationKey: "api.error.401.user-not-logged-in",
                                description: "User is not logged in",
                                code: 401)
+    }
+
+    func handleForbidden(body: [String: Any]) -> CTBasicError? {
+        return CTBasicError(translationKey: "api.error.403.forbidden",
+                            description: "You are not using the right credentials to make this call",
+                            code: 403)
     }
 
     func handleNotFound(body: [String: Any]) -> CTBasicError? {

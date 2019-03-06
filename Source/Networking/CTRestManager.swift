@@ -54,6 +54,7 @@ public class CTRestManager {
                 headers["Authorization"] = "Bearer \(bearer)"
             }
 
+
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             Alamofire.upload(multipartFormData: { formData in
                 if let fixedOrientation = image.fixedOrientation(), let imageData = fixedOrientation.pngData() {
@@ -133,7 +134,6 @@ public class CTRestManager {
             if let bearer = useToken {
                 headers["Authorization"] = "Bearer \(bearer)"
             }
-
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             let requestReference = self.sessionManager.request(url,
                                                                method: method,
@@ -143,20 +143,33 @@ public class CTRestManager {
                 .validate(statusCode: 200..<300)
                 .validate(contentType: ["application/json"])
                 .responseJSON { (response) in
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(.iso8601CT)
+                    
+                    if CTKit.shared.debugMode {
+                        print("=========================================")
+                        print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
+                        if let rData = response.data {
+                            print("♻️ Response with \(rData.count) bytes")
+                            
+                            if response.result.isFailure {
+                                print("⚠️ The call failed with the following error")
+                            } else {
+                                print("✅ The call succeeded with the following data")
+                            }
+                            
+                            do {
+                                let jsonResponse = try JSONSerialization.jsonObject(with: rData, options: [])
+                                print(jsonResponse) //Response result
+                            } catch let parsingError {
+                                print("Error", parsingError)
+                            }
+                        }
+                        print("=========================================")
+                    }
+
                     switch response.result {
                     case .success:
-                        //FIXME: Remove debug code
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = .formatted(.iso8601CT)
-                        
-                        do {
-                            _ = try decoder.decode(T.self, from: response.data!)
-                        } catch {
-                            print("DEBUG: Decoding gave us the following error")
-                            print(error)
-                        }
-                        //End of debug code
-
                         guard let data = response.data, let getResponse = try? decoder.decode(T.self, from: data) else {
                             observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                             return
@@ -165,8 +178,6 @@ public class CTRestManager {
                         observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure:
-                        print("FAILURE")
-                        print(response)
                         observer.onError(CTErrorHandler().handle(response: response))
                     }
             }

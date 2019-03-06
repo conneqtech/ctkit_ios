@@ -9,52 +9,42 @@ import Foundation
 import RxSwift
 
 /**
- The CTSubscriptionService is the main entry point to fetch subscriptions and start trials for a bike. It allows for convenience methods that get the information required about subscriptions.
+ The CTSubscriptionService is the main entry point to fetch subscriptions and start trials for a bike.
+ It allows for convenience methods that get the information required about subscriptions.
  */
 public class CTSubscriptionService: NSObject {
     /**
-     Fetches all known subscriptions for a bike.
+     Fetches all known active subscriptions for a bike.
      
      - Parameter identifier: The bike identifier you want to retrieve the data for
 
      - Returns: An observable containing a list of all subscriptions found.
      */
     public func fetchAll(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
-        return CTKit.shared.subscriptionManager.getSubscriptionForBike(endpoint: "subscription/bike/\(identifier)")
+        return CTKit.shared.subscriptionManager.get(endpoint: "subscription/bike/\(identifier)")
     }
-
+    
+    
     /**
-     Fetches all known connectivity specific subscriptions for a bike.
+     Fetches all known subscriptions for a bike with the connectivity type.
      
      - Parameter identifier: The bike identifier you want to retrieve the data for
      
      - Returns: An observable containing a list of all subscriptions found.
      */
-    public func fetchConnectivitySubscriptions(withbikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
-        return fetchSubscriptionByType(withBikeId: identifier, type: CTSubscriptionService.productTypeConnected)
+    public func fetchConnectivitySubscriptions(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
+        return fetchByType(withBikeId: identifier, type: .connectivity)
     }
-
+    
     /**
-     Fetches all known insurance type subscriptions for a bike.
+     Fetches all known subscriptions for a bike with the insurance type.
      
      - Parameter identifier: The bike identifier you want to retrieve the data for
      
      - Returns: An observable containing a list of all subscriptions found.
      */
     public func fetchInsuranceSubscriptions(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
-        return fetchSubscriptionByType(withBikeId: identifier, type: CTSubscriptionService.productTypeInsured)
-    }
-
-    /**
-     Fetches all known subscriptions for a bike by type.
-     
-     - Parameter identifier: The bike identifier you want to retrieve the data for
-     - Parameter type: The type of subcriptions you want to retrieve
-     
-     - Returns: An observable containing a list of all subscriptions found.
-     */
-    public func fetchSubscriptionByType(withBikeId identifier: Int, type: Int) -> Observable<[CTSubscriptionModel]> {
-        return fetchAll(withBikeId: identifier)
+        return fetchByType(withBikeId: identifier, type: .insurance)
     }
 
     /**
@@ -65,11 +55,18 @@ public class CTSubscriptionService: NSObject {
      
      - Returns: An observable of the newly started trial.
      */
-    public func startTrial(withBikeId identifier: String, type: Int) -> Observable<CTSubscriptionModel> {
-        return CTKit.shared.subscriptionManager.startTrial(endpoint: "trial")
+    public func startTrial(withBikeId identifier: Int, imei: String) -> Observable<CTSubscriptionModel> {
+        return CTKit.shared.subscriptionManager.post(endpoint: "trial", parameters: [
+            "bike_id": identifier,
+            "hash": imei
+            ]
+        )
     }
-
-    static let productTypeConnected = 1
-    static let productTypeInsured = 2
-    static let productTypeTrial = 1
+    
+    // Private API.
+    private func fetchByType(withBikeId identifier: Int, type: CTSubscriptionProductType) -> Observable<[CTSubscriptionModel]> {
+        return fetchAll(withBikeId: identifier).map { subscription in
+            subscription.filter { $0.type == type }
+        }
+    }
 }

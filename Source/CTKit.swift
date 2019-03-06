@@ -21,8 +21,23 @@ public class CTKit {
 
     public var restManager: CTRestManager!
     public var authManager: CTAuthManager!
-    public var subscriptionManager: CTSubscriptionManager!
+    public var subscriptionManager: CTRestManager!
     public var authToken = PublishSubject<CTOAuth2TokenResponse>()
+    
+    public var accessToken: String? {
+        get {
+            switch CTKit.shared.credentialSaveLocation {
+            case .keychain:
+                return KeychainSwift().get(CTKit.ACCESS_TOKEN_KEY)
+            case .userDefaults:
+                return UserDefaults.standard.string(forKey: CTKit.ACCESS_TOKEN_KEY)
+            case .none:
+                return nil
+            }
+        }
+    }
+    
+    public var debugMode: Bool = false
 
     private var _currentActiveUser: CTUserModel?
 
@@ -56,11 +71,23 @@ public class CTKit {
 
         self.restManager = CTRestManager(withConfig: APIConfig)
         self.authManager = CTAuthManager(withConfig: APIConfig)
-//        self.subscriptionManager = CTSubscriptionManager(withConfig: APIConfig)
     }
 
     public static func configure(withClientId clientId: String, clientSecret: String, baseURL: String) {
         CTKit.shared = CTKit.init(clientId: clientId, clientSecret: clientSecret, baseURL: baseURL)
+    }
+
+    public func addSubscriptions(withClientId clientId: String, clientSecret: String, baseURL: String) {
+        let APIConfig = CTVendorApiConfig(
+            withBaseUrl: baseURL,
+            clientId: clientId,
+            clientSecret: clientSecret,
+            grantType: .clientCredentials,
+            version: "v1",
+            vendor: ""
+        )
+
+        CTKit.shared.subscriptionManager = CTRestManager(withConfig: APIConfig)
     }
 }
 

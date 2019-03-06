@@ -56,9 +56,12 @@
 		C069CA60219B08E7003BE8C3 /* bike-history.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA5F219B08E7003BE8C3 /* bike-history.json */; };
 		C069CA63219B17D5003BE8C3 /* bike.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA62219B17D5003BE8C3 /* bike.json */; };
 		C069CA66219B1A1D003BE8C3 /* address-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA65219B1A1D003BE8C3 /* address-list.json */; };
+		C06D7064222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D7063222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift */; };
+		C06D7066222D365F00750CB3 /* CTSubscriptionProductTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D7065222D365F00750CB3 /* CTSubscriptionProductTests.swift */; };
 		C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */ = {isa = PBXBuildFile; fileRef = C07FEDB721899BDC005577C1 /* oauth-success.json */; };
 		C08B174B2190831F00A662E2 /* bike-registration-failed.json in Resources */ = {isa = PBXBuildFile; fileRef = C08B174A2190831F00A662E2 /* bike-registration-failed.json */; };
 		C098CA20219C60A3004174D5 /* bike-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C098CA1F219C60A3004174D5 /* bike-list.json */; };
+		C0B357F5222D66E100A7BCCB /* CTSubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D7069222D641700750CB3 /* CTSubscriptionsTest.swift */; };
 		C0DF759021674E0900260751 /* GeofenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF758F21674E0900260751 /* GeofenceTableViewController.swift */; };
 		C0DFD37A21919EF000AB4194 /* bike-registration-successful.json in Resources */ = {isa = PBXBuildFile; fileRef = C0DFD37921919EF000AB4194 /* bike-registration-successful.json */; };
 		C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */; };
@@ -138,6 +141,9 @@
 		C069CA5F219B08E7003BE8C3 /* bike-history.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-history.json"; sourceTree = "<group>"; };
 		C069CA62219B17D5003BE8C3 /* bike.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bike.json; sourceTree = "<group>"; };
 		C069CA65219B1A1D003BE8C3 /* address-list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "address-list.json"; sourceTree = "<group>"; };
+		C06D7063222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeNotificationSettingsTests.swift; sourceTree = "<group>"; };
+		C06D7065222D365F00750CB3 /* CTSubscriptionProductTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTSubscriptionProductTests.swift; sourceTree = "<group>"; };
+		C06D7069222D641700750CB3 /* CTSubscriptionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTSubscriptionsTest.swift; sourceTree = "<group>"; };
 		C07FEDB721899BDC005577C1 /* oauth-success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "oauth-success.json"; sourceTree = "<group>"; };
 		C08B174A2190831F00A662E2 /* bike-registration-failed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-registration-failed.json"; sourceTree = "<group>"; };
 		C098CA1F219C60A3004174D5 /* bike-list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-list.json"; sourceTree = "<group>"; };
@@ -480,6 +486,9 @@
 				85B2DE3E21A2E5D0004F524A /* CTStatisticsServiceTests.swift */,
 				C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */,
 				C001439E21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift */,
+				C06D7063222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift */,
+				C06D7065222D365F00750CB3 /* CTSubscriptionProductTests.swift */,
+				C06D7069222D641700750CB3 /* CTSubscriptionsTest.swift */,
 			);
 			path = CTServices;
 			sourceTree = "<group>";
@@ -785,14 +794,17 @@
 				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
 				C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */,
 				853B34B62197042000FA50FB /* CTRideServiceTests.swift in Sources */,
+				C06D7064222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift in Sources */,
 				85B2DE3F21A2E5D0004F524A /* CTStatisticsServiceTests.swift in Sources */,
 				C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */,
+				C0B357F5222D66E100A7BCCB /* CTSubscriptionsTest.swift in Sources */,
 				85B2BDCE21BBCDA3009036E7 /* CTRideModelTests.swift in Sources */,
 				C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */,
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
 				C00143A021E393B800636C6E /* CTTheftCasePartnerServiceTests.swift in Sources */,
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 				852B85DB21943F9B00A373F1 /* CTGeofenceServiceTests.swift in Sources */,
+				C06D7066222D365F00750CB3 /* CTSubscriptionProductTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

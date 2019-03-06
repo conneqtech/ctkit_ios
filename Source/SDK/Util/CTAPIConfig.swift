@@ -30,7 +30,7 @@ public class CTVendorApiConfig: CTApiConfig {
 
     override var fullUrl: String {
         get {
-            return "\(url)/\(vendor)/\(version)"
+            return "\(url)/\(version)"
         }
     }
 
