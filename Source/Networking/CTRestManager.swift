@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import Alamofire
+import UIKit
 
 public class CTRestManager {
     private let apiConfig: CTApiConfig
@@ -129,11 +130,14 @@ public class CTRestManager {
     private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
         return Observable<T>.create { (observer) -> Disposable in
 
-            var headers: [String: String] = [:]
+            var headers: [String: String] = self.computeHeaders()!
 
             if let bearer = useToken {
                 headers["Authorization"] = "Bearer \(bearer)"
             }
+            
+            
+            
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             let requestReference = self.sessionManager.request(url,
                                                                method: method,
@@ -186,5 +190,26 @@ public class CTRestManager {
                 requestReference.cancel()
             })
         }
+    }
+    
+    func computeHeaders() -> [String:String]? {
+        var headers:[String:String] = Alamofire.SessionManager.defaultHTTPHeaders
+        
+        var language = "en"
+        if let currentLanguage = UserDefaults.standard.object(forKey: "LCLCurrentLanguageKey") as? String {
+            language = currentLanguage
+        }
+        
+        headers["X-Device-Platform"]            = "ios"
+        headers["X-Device-Platform-Version"]    = UIDevice.systemVersion()
+        headers["X-Device-Name"]                = UIDevice.deviceName()
+        headers["X-Device-Model"]               = UIDevice.deviceModelReadable()
+        headers["X-Device-App-Identifier"]      = Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String
+        headers["X-Device-App-Build"]           = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+        headers["X-Device-App-Version"]         = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        headers["X-Device-App-Language"]        = language
+        headers["X-Device-Language"]            = UIDevice.deviceLanguage()
+        
+        return headers
     }
 }
