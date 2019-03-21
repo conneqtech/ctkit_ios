@@ -12,45 +12,62 @@ import Nimble
 import ctkit
 import Mockingjay
 import RxSwift
+import XCTest
 
 import RxBlocking
 
-class CTStatisticServiceTests:QuickSpec {
-    override func spec() {
-        beforeEach {
-            self.stub(http(.get, uri: "/user/me"), json(Resolver().getJSONForResource(name: "user"), status: 200))
-            _ = try! CTUserService().fetchCurrentUser().toBlocking().first()
-            expect(CTUserService().getActiveUserId()) == 47
-        }
-
-        describe("fetchAll") {
-//            it("Succesfully fetches all stats for the bike") {
-//                self.stub(http(.get, uri: "/bike/152/stats/"), json( Resolver().getJSONListForResource(name: "statisticsResponse"), status: 200))
-//                let callToTest = try! CTStatisticsService().fetchAll(withBikeId: 152).toBlocking().first()
-//                if let statisticsResponse = callToTest {
-//                    expect(statisticsResponse.count).to(beGreaterThan(0))
-//                } else {
-//                    expect("it can unwrap") == "did not unwrap"
-//                }
-//            }
-
-//            it("Succesfully fetches hourly stats for the bike") {
-//                self.stub(http(.get, uri: "/bike/152/stats/"), json(Resolver().getJSONListForResource(name: "statisticsResponse"), status: 200))
-//                let callToTest = try! CTStatisticsService().fetchAll(withBikeId: 152, after: Date()).toBlocking().first()
-//                if let statisticsResponse = callToTest {
-//                    expect(statisticsResponse.count).to(beGreaterThan(0))
-//                } else {
-//                    expect("it can unwrap") == "did not unwrap"
-//                }
-//            }
-
-            it("Handles the error when the timespan is invalid") {
-
-            }
-
-            it("Handles the error when there's no access for the bike") {
-
-            }
-        }
+class CTStatisticsServiceTests: XCTestCase {
+    
+    override func setUp() {
+        let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()!
     }
+    
+    func testFetchHourlyStats() {
+        let startDateString = "2019-03-21T00:00:00"
+        let endDateString = "2019-03-21T23:59:59"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+
+        
+        let subjectUnderTest = try! CTStatisticsService().fetchAll(withBikeId: 743,
+                                                              type: "hourly",
+                                                              from: dateFormatter.date(from:startDateString)!,
+                                                              till: dateFormatter.date(from:endDateString)!).toBlocking().first()!
+        
+        XCTAssertEqual(subjectUnderTest.count, 24)
+    }
+    
+    func testDailyStats() {
+        let startDateString = "2019-03-20T00:00:00"
+        let endDateString = "2019-03-21T23:59:59"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        
+        let subjectUnderTest = try! CTStatisticsService().fetchAll(withBikeId: 743,
+                                                                   type: "daily",
+                                                                   from: dateFormatter.date(from:startDateString)!,
+                                                                   till: dateFormatter.date(from:endDateString)!).toBlocking().first()!
+        
+        XCTAssertEqual(subjectUnderTest.count, 2)
+    }
+    
+    func testMonthlyStats() {
+        let startDateString = "2019-01-01T00:00:00"
+        let endDateString = "2019-03-31T23:59:59"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        
+        let subjectUnderTest = try! CTStatisticsService().fetchAll(withBikeId: 743,
+                                                                   type: "monthly",
+                                                                   from: dateFormatter.date(from:startDateString)!,
+                                                                   till: dateFormatter.date(from:endDateString)!).toBlocking().first()!
+        
+        XCTAssertEqual(subjectUnderTest.count, 3)
+    }
+    
 }
