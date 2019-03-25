@@ -83,7 +83,9 @@ public class CTRideService: NSObject {
         let parameters = [
             "order": [
                 "start_date;desc"
-            ]
+            ],
+            "limit": limit,
+            "offset": (page - 1) * limit
         ]
 
         return CTKit.shared.restManager.get(endpoint: "v2/bike/\(identifier)/ride", parameters: parameters)
@@ -130,14 +132,14 @@ internal extension CTRideService {
         let nightBeginDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 0), to: startOfToday)!
         let nightEndDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 6), to: startOfToday)!
 
-        // 06:01 -> 12:00 = morning
+        // 06:01 -> 11:59:59 = morning
         let morningBeginDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 6, minute: 0, second: 1), to: startOfToday)!
         let morningEndDate = calendar.date(byAdding: DateComponents(calendar: calendar,
                                                                     hour: 11,
                                                                     minute: 59,
                                                                     second: 59), to: startOfToday)!
 
-        // 12:01 -> 18:00 = afternoon
+        // 12:01 -> 17:59:59 = afternoon
         let afternoonBeginDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 12, minute: 0, second: 0), to: startOfToday)!
         let afternoonEndDate = calendar.date(byAdding: DateComponents(calendar: calendar,
                                                                       hour: 17,
