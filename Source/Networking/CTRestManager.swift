@@ -55,7 +55,6 @@ public class CTRestManager {
                 headers["Authorization"] = "Bearer \(bearer)"
             }
 
-
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             Alamofire.upload(multipartFormData: { formData in
                 if let fixedOrientation = image.fixedOrientation(), let imageData = fixedOrientation.pngData() {
@@ -135,9 +134,7 @@ public class CTRestManager {
             if let bearer = useToken {
                 headers["Authorization"] = "Bearer \(bearer)"
             }
-            
-            
-            
+
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             let requestReference = self.sessionManager.request(url,
                                                                method: method,
@@ -149,19 +146,19 @@ public class CTRestManager {
                 .responseJSON { (response) in
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .formatted(.iso8601CT)
-                    
+
                     if CTKit.shared.debugMode {
                         print("=========================================")
                         print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
                         if let rData = response.data {
                             print("♻️ Response with \(rData.count) bytes")
-                            
+
                             if response.result.isFailure {
                                 print("⚠️ The call failed with the following error")
                             } else {
                                 print("✅ The call succeeded with the following data")
                             }
-                            
+
                             do {
                                 let jsonResponse = try JSONSerialization.jsonObject(with: rData, options: [])
                                 print(jsonResponse) //Response result
@@ -191,15 +188,15 @@ public class CTRestManager {
             })
         }
     }
-    
+
     func computeHeaders() -> [String:String]? {
         var headers:[String:String] = Alamofire.SessionManager.defaultHTTPHeaders
-        
+
         var language = "en"
         if let currentLanguage = UserDefaults.standard.object(forKey: "LCLCurrentLanguageKey") as? String {
             language = currentLanguage
         }
-        
+
         headers["X-Device-Platform"]            = "ios"
         headers["X-Device-Platform-Version"]    = UIDevice.systemVersion()
         headers["X-Device-Name"]                = UIDevice.deviceName()
@@ -209,7 +206,7 @@ public class CTRestManager {
         headers["X-Device-App-Version"]         = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
         headers["X-Device-App-Language"]        = language
         headers["X-Device-Language"]            = UIDevice.deviceLanguage()
-        
+
         return headers
     }
 }

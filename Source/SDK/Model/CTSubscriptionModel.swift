@@ -39,7 +39,7 @@ public struct CTSubscriptionModel: CTBaseModel {
         self.endDate = Date()
         self.type = type
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -50,11 +50,11 @@ public struct CTSubscriptionModel: CTBaseModel {
         startDate = try container.decode(Date.self, forKey: .startDate)
         endDate = try? container.decode(Date.self, forKey: .endDate)
         productId = try container.decode(Int.self, forKey: .productId)
-        
+
         let product  = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .product)
         type = try product.decode(CTSubscriptionProductType.self, forKey: .type)
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         // Nothing to encode, we will never create subscriptions from CTKit.

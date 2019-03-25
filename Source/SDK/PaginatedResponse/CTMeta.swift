@@ -11,10 +11,10 @@ public struct CTMeta: CTBaseModel {
     public let limit: Int
     public let offset: Int
     public let totalRecords: Int
-    
+
     public let availableFilterFieldNames: [String]
     public let availableOrderFieldNames: [String]
-    
+
     enum CodingKeys: String, CodingKey {
         case limit
         case offset

@@ -36,7 +36,7 @@ public class CTStatisticsService: NSObject {
             "type": "hourly",
             "from": after.toAPIDate()])
     }
-    
+
     /**
      Fetch statistics for a bike with a type, start and end date. The timezone of the device will be used
      
@@ -64,7 +64,7 @@ public class CTStatisticsService: NSObject {
             "till": till.toAPIDate(),
             "tz": NSTimeZone.system.identifier
         ]
-        
+
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/stats", parameters: parameters)
     }
 }

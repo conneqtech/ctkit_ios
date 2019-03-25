@@ -82,9 +82,9 @@ public class CTRideService: NSObject {
         let parameters = [
             "order": [
                 "start_date;desc"
-            ],
+            ]
         ]
-        
+
         return CTKit.shared.restManager.get(endpoint: "v2/bike/\(identifier)/ride", parameters: parameters)
     }
 
@@ -94,7 +94,7 @@ public class CTRideService: NSObject {
 }
 
 internal extension CTRideService {
-    
+
     func getDayName(forDate date: Date) -> String {
         let dayOfWeek = Calendar.current.component(.weekday, from: date)
         let weekDayNames = [
@@ -106,10 +106,10 @@ internal extension CTRideService {
             "friday",
             "saturday"
         ]
-        
+
         return weekDayNames[dayOfWeek - 1]
     }
-    
+
     func getDayPartName(forDate date: Date) -> String {
         let calendar = Calendar.current
         let startOfToday = calendar.startOfDay(for: Date())
@@ -127,7 +127,7 @@ internal extension CTRideService {
         // 00:00 -> 06:00 = night
         let nightBeginDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 0), to: startOfToday)!
         let nightEndDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 6), to: startOfToday)!
-        
+
         // 06:01 -> 12:00 = morning
         let morningBeginDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 6, minute: 0, second: 1), to: startOfToday)!
         let morningEndDate = calendar.date(byAdding: DateComponents(calendar: calendar,
@@ -149,7 +149,6 @@ internal extension CTRideService {
                                                                     minute: 59,
                                                                     second: 59), to: startOfToday)!
 
-
         if normalizedDate >= nightBeginDate, normalizedDate <= nightEndDate {
             return "night"
         }
@@ -168,5 +167,5 @@ internal extension CTRideService {
 
         return "day"
     }
-    
+
 }

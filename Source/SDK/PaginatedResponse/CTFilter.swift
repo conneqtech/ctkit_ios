@@ -12,7 +12,7 @@ public struct CTFilter: CTBaseModel {
     public let fieldName: String
     public let filterOperator: String
     public let filterValue: String
-    
+
     enum CodingKeys: String, CodingKey {
         case type
         case fieldName = "fieldname"
