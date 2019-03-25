@@ -12,7 +12,7 @@ class CTRequestAdapter: RequestAdapter {
     func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
         var urlRequest = urlRequest
 
-        guard let _ = urlRequest.value(forHTTPHeaderField: "Authorization") else {
+        if urlRequest.value(forHTTPHeaderField: "Authorization") == nil {
             let accessToken = CTKit.shared.authManager.getAccesToken()
             urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             return urlRequest

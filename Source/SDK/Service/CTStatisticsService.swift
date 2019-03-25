@@ -38,7 +38,7 @@ public class CTStatisticsService: NSObject {
     }
     
     /**
-     Fetch statistics for a bike with a type, start and end date. When you don't specify a timezone the current timezone of the device will be used.
+     Fetch statistics for a bike with a type, start and end date. The timezone of the device will be used
      
      type can be one of : 'hourly', 'daily' or 'monthly'
      tz should be a valid zoneinfo location e.g. 'Europe/Amsterdam', 'America/New_York'
@@ -65,8 +65,6 @@ public class CTStatisticsService: NSObject {
             "tz": NSTimeZone.system.identifier
         ]
         
-        print(parameters)
-    
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/stats", parameters: parameters)
     }
 }
