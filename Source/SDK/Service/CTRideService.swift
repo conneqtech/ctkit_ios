@@ -9,7 +9,8 @@ import Foundation
 import RxSwift
 
 /**
- The CTRideService is the main entry point to create and fetch rides for a bike. Rides are created by users and are part of the bike location history.
+ The CTRideService is the main entry point to create and fetch rides for a bike.
+ Rides are created by users and are part of the bike location history.
  Bike rides allow the user to keep track of their movements without continuously searching through the history
  */
 public class CTRideService: NSObject {
@@ -93,6 +94,7 @@ public class CTRideService: NSObject {
     }
 }
 
+//MARK: Internal functions for ride names
 internal extension CTRideService {
 
     func getDayName(forDate date: Date) -> String {
