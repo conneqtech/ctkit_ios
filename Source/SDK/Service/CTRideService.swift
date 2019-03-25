@@ -80,7 +80,7 @@ public class CTRideService: NSObject {
     }
 
     public func fetchAllPaginated(withBikeId identifier: Int, page: Int = 1, limit: Int = 50) -> Observable<CTPaginatedResponseModel<CTRideModel>> {
-        let parameters = [
+        let parameters: [String:Any] = [
             "order": [
                 "start_date;desc"
             ],
