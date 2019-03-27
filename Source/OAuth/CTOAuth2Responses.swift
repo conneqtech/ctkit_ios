@@ -29,9 +29,9 @@ public struct CTOAuth2ErrorResponse: Codable, Error {
     var detail: String
 
     enum CodingKeys: String, CodingKey {
-        case type = "type"
-        case title = "title"
-        case status = "status"
-        case detail = "detail"
+        case type
+        case title
+        case status
+        case detail
     }
 }

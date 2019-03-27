@@ -68,7 +68,7 @@ public class CTTheftCaseService: NSObject {
      
      - Returns: An observable array containing all theft-cases for a bike.
      */
-    public func fetchAll(withBikeId identifier: Int, finalized: Bool = false) -> Observable<CTPaginatableResponse<CTTheftCaseModel>> {
+    public func fetchAll(withBikeId identifier: Int, finalized: Bool = false) -> Observable<CTPaginatedResponseModel<CTTheftCaseModel>> {
         let params = [
             "filter": [
                 "and;bike_id;eq;\(identifier)",

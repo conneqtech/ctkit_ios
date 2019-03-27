@@ -23,8 +23,7 @@ public class CTSubscriptionService: NSObject {
     public func fetchAll(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
         return CTKit.shared.subscriptionManager.get(endpoint: "subscription/bike/\(identifier)")
     }
-    
-    
+
     /**
      Fetches all known subscriptions for a bike with the connectivity type.
      
@@ -35,7 +34,7 @@ public class CTSubscriptionService: NSObject {
     public func fetchConnectivitySubscriptions(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
         return fetchByType(withBikeId: identifier, type: .connectivity)
     }
-    
+
     /**
      Fetches all known subscriptions for a bike with the insurance type.
      
@@ -62,7 +61,7 @@ public class CTSubscriptionService: NSObject {
             ]
         )
     }
-    
+
     // Private API.
     private func fetchByType(withBikeId identifier: Int, type: CTSubscriptionProductType) -> Observable<[CTSubscriptionModel]> {
         return fetchAll(withBikeId: identifier).map { subscription in

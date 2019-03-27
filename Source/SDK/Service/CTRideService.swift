@@ -9,7 +9,8 @@ import Foundation
 import RxSwift
 
 /**
- The CTRideService is the main entry point to create and fetch rides for a bike. Rides are created by users and are part of the bike location history.
+ The CTRideService is the main entry point to create and fetch rides for a bike.
+ Rides are created by users and are part of the bike location history.
  Bike rides allow the user to keep track of their movements without continuously searching through the history
  */
 public class CTRideService: NSObject {
@@ -76,5 +77,98 @@ public class CTRideService: NSObject {
      */
     public func fetchAll(withBikeId identifier: Int) -> Observable<[CTRideModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/ride")
+    }
+
+    public func fetchAllPaginated(withBikeId identifier: Int, page: Int = 1, limit: Int = 50) -> Observable<CTPaginatedResponseModel<CTRideModel>> {
+        let parameters: [String:Any] = [
+            "order": [
+                "start_date;desc"
+            ],
+            "limit": limit,
+            "offset": (page - 1) * limit
+        ]
+
+        return CTKit.shared.restManager.get(endpoint: "v2/bike/\(identifier)/ride", parameters: parameters)
+    }
+
+    public func getTranslationKey(forRide ride: CTRideModel) -> String {
+        return "ride.name.\(getDayName(forDate: ride.startDate)).\(getDayPartName(forDate: ride.startDate))"
+    }
+}
+
+//MARK: Internal functions for ride names
+internal extension CTRideService {
+
+    func getDayName(forDate date: Date) -> String {
+        let dayOfWeek = Calendar.current.component(.weekday, from: date)
+        let weekDayNames = [
+            "sunday",
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday"
+        ]
+
+        return weekDayNames[dayOfWeek - 1]
+    }
+
+    func getDayPartName(forDate date: Date) -> String {
+        let calendar = Calendar.current
+        let startOfToday = calendar.startOfDay(for: Date())
+
+        let rideHour = calendar.component(.hour, from: date)
+        let rideMinutes = calendar.component(.minute, from: date)
+        let rideSeconds = calendar.component(.second, from: date)
+
+        let normalizedDate = calendar.date(byAdding: DateComponents(calendar: calendar,
+                                                                    hour: rideHour,
+                                                                    minute: rideMinutes,
+                                                                    second: rideSeconds),
+                                           to: startOfToday)!
+
+        // 00:00 -> 06:00 = night
+        let nightBeginDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 0), to: startOfToday)!
+        let nightEndDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 6), to: startOfToday)!
+
+        // 06:01 -> 11:59:59 = morning
+        let morningBeginDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 6, minute: 0, second: 1), to: startOfToday)!
+        let morningEndDate = calendar.date(byAdding: DateComponents(calendar: calendar,
+                                                                    hour: 11,
+                                                                    minute: 59,
+                                                                    second: 59), to: startOfToday)!
+
+        // 12:01 -> 17:59:59 = afternoon
+        let afternoonBeginDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 12, minute: 0, second: 0), to: startOfToday)!
+        let afternoonEndDate = calendar.date(byAdding: DateComponents(calendar: calendar,
+                                                                      hour: 17,
+                                                                      minute: 59,
+                                                                      second: 59), to: startOfToday)!
+
+        // 18:01 -> 23:59 = evening
+        let eveningBeginDate = calendar.date(byAdding: DateComponents(calendar: calendar, hour: 18), to: startOfToday)!
+        let eveningEndDate = calendar.date(byAdding: DateComponents(calendar: calendar,
+                                                                    hour: 23,
+                                                                    minute: 59,
+                                                                    second: 59), to: startOfToday)!
+
+        if normalizedDate >= nightBeginDate, normalizedDate <= nightEndDate {
+            return "night"
+        }
+
+        if normalizedDate >= morningBeginDate, normalizedDate <= morningEndDate {
+            return "morning"
+        }
+
+        if normalizedDate >= afternoonBeginDate, normalizedDate <= afternoonEndDate {
+            return "afternoon"
+        }
+
+        if normalizedDate >= eveningBeginDate, normalizedDate <= eveningEndDate {
+            return "evening"
+        }
+
+        return "day"
     }
 }
