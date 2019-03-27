@@ -171,5 +171,4 @@ internal extension CTRideService {
 
         return "day"
     }
-
 }
