@@ -105,7 +105,7 @@ internal extension CTKit {
     }
 
     func hasActiveSession() -> Bool {
-        return currentActiveUserId != -1 && (hasActiveAccessToken() || hasActiveRefreshToken())
+        return hasActiveAccessToken() || hasActiveRefreshToken()
     }
 }
 

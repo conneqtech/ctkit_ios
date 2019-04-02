@@ -26,7 +26,11 @@ public class CTRideService: NSObject {
      
      - Returns: An observable with the created ride.
      */
-    public func create(withBikeId identifier: Int, startDate: Date, endDate: Date, rideType: String, name: String) -> Observable<CTRideModel> {
+    public func create(withBikeId identifier: Int,
+                       startDate: Date,
+                       endDate: Date,
+                       rideType: String,
+                       name: String) -> Observable<CTRideModel> {
         return CTKit.shared.restManager.post(endpoint: "bike/\(identifier)/ride", parameters: [
             "start_date": startDate.toAPIDate(),
             "end_date": endDate.toAPIDate(),
