@@ -18,21 +18,22 @@ public struct CTProductModel: CTBaseModel {
     public let currency: String?
     public let type: Int
     public let providerId: Int
+    public let insuranceType: CTInsuranceType?
     private let childProduct: Int
 
     enum CodingKeys: String, CodingKey {
-
-        case id = "id"
-        case title = "title"
-        case subtitle = "subtitle"
-        case description = "description"
+        case id
+        case title
+        case subtitle
+        case description
         case logoUrl = "logo_url"
-        case price = "price"
+        case price
         case activationFee = "activation_fee"
-        case currency = "currency"
-        case type = "type"
+        case currency
+        case type
         case providerId = "provider_id"
         case childProduct = "child_product"
+        case insuranceType = "insurance_id"
     }
 
     public init(withTitle title: String, description: String, type: Int, providerId: Int) {
@@ -47,7 +48,7 @@ public struct CTProductModel: CTBaseModel {
         self.activationFee = -1
         self.type = type
         self.childProduct = -1
-
+        self.insuranceType = nil
     }
 
 }
