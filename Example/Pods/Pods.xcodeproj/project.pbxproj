@@ -320,6 +320,7 @@
 		BFC35675E261617D0B82FB9245B9955C /* CTBasicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8696D4A7FDF42F2EBF31B50BD0B318 /* CTBasicError.swift */; };
 		BFEA0A2705C8E7B6F002E333F6833B68 /* ElementAt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEC91E38FCE3EB3E91296906BFFE09 /* ElementAt.swift */; };
 		C00CB34A68CF69B5084E1F48168BD8B1 /* GroupedObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A1F66B3E3FA14D36BDDDCD3B1BF466 /* GroupedObservable.swift */; };
+		C04E1D6422574A5600868E1A /* CTInsuranceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04E1D6322574A5600868E1A /* CTInsuranceModel.swift */; };
 		C09782A92248BA2E000627D6 /* CTPaginatedResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09782A82248BA2E000627D6 /* CTPaginatedResponseModel.swift */; };
 		C09782AC2248BAC0000627D6 /* CTFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09782AB2248BAC0000627D6 /* CTFilter.swift */; };
 		C09782AE2248BBFD000627D6 /* CTOrderClause.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09782AD2248BBFD000627D6 /* CTOrderClause.swift */; };
@@ -868,6 +869,7 @@
 		BF6530C7AC6CB967BBB23EDF835D42A7 /* ctkit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ctkit-umbrella.h"; sourceTree = "<group>"; };
 		BF8486682216C82B4BC608EE85638CE1 /* CwlBadInstructionException.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CwlBadInstructionException.swift; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlPreconditionTesting/CwlBadInstructionException.swift; sourceTree = "<group>"; };
 		C0007D6FD47475A7DA05B0D1F87C32A8 /* CTBikeNotificationSettingsModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTBikeNotificationSettingsModel.swift; sourceTree = "<group>"; };
+		C04E1D6322574A5600868E1A /* CTInsuranceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTInsuranceModel.swift; sourceTree = "<group>"; };
 		C055F48E18110B713E92F95C6DD2D030 /* Mockingjay-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Mockingjay-dummy.m"; sourceTree = "<group>"; };
 		C09782A82248BA2E000627D6 /* CTPaginatedResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTPaginatedResponseModel.swift; sourceTree = "<group>"; };
 		C09782AB2248BAC0000627D6 /* CTFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTFilter.swift; sourceTree = "<group>"; };
@@ -1367,6 +1369,7 @@
 				7D9BD7C2E5C850B331124FE844126504 /* CTUploadedFile.swift */,
 				59983A418A13A8AED31CAD51292F3907 /* CTUserModel.swift */,
 				D3444168D6BF17E52C98AF178FE0D639 /* CTUserRecoveryResultModel.swift */,
+				C04E1D6322574A5600868E1A /* CTInsuranceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2747,6 +2750,7 @@
 				63AEAB08DC0E8245AA56C5AD8BD1C206 /* CTValidationError.swift in Sources */,
 				22CAE79F80876EC2F378734B9D32DC73 /* Date+CTKit.swift in Sources */,
 				64B509DBCB0318453259EE3365B9609A /* DateFormatter+CTKit.swift in Sources */,
+				C04E1D6422574A5600868E1A /* CTInsuranceModel.swift in Sources */,
 				2ACA93318E97F681626EDF78991ADA7B /* Encodable+CTKit.swift in Sources */,
 				4C554B56D67E10740061EF6B9CEC665F /* KeychainSwift.swift in Sources */,
 				EBEC0B087A07CBFCC57F0EEA0A1CE01B /* UIImage+CTKit.swift in Sources */,

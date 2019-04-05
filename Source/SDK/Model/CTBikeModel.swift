@@ -34,6 +34,8 @@ public struct CTBikeModel: CTBaseModel {
         self.frameIdentifier = identifier
         self.name = name
         self.isRequestingUserOwner = isOwner
+        self.bluetoothPassword = ""
+        self.bluetoothName = ""
     }
 
     public init(withImei imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
@@ -42,6 +44,8 @@ public struct CTBikeModel: CTBaseModel {
         self.frameIdentifier = identifier
         self.name = name
         self.isRequestingUserOwner = isOwner
+        self.bluetoothPassword = ""
+        self.bluetoothName = ""
     }
 
     enum CodingKeys: String, CodingKey {
