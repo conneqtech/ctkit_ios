@@ -25,6 +25,9 @@ public struct CTBikeModel: CTBaseModel {
     public var isRequestingUserOwner: Bool
     public var type: String?
 
+    public let bluetoothPassword: String
+    public let bluetoothName: String
+
     public init(withId id: Int, imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
         self.id = id
         self.imei = imei
@@ -57,6 +60,9 @@ public struct CTBikeModel: CTBaseModel {
         case isStolen = "is_stolen"
         case isRequestingUserOwner = "is_requesting_user_owner"
         case type = "type"
+
+        case bluetoothPassword = "blepass"
+        case bluetoothName = "blename"
     }
 
     public func encode(to encoder: Encoder) throws {

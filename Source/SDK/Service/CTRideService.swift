@@ -100,7 +100,7 @@ public class CTRideService: NSObject {
     }
 }
 
-//MARK: Internal functions for ride names
+// MARK: Internal functions for ride names
 internal extension CTRideService {
 
     func getDayName(forDate date: Date) -> String {
