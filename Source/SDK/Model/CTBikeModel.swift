@@ -25,8 +25,8 @@ public struct CTBikeModel: CTBaseModel {
     public var isRequestingUserOwner: Bool
     public var type: String?
 
-    public let bluetoothPassword: String
-    public let bluetoothName: String
+    public let bluetoothPassword: String?
+    public let bluetoothName: String?
 
     public init(withId id: Int, imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
         self.id = id
