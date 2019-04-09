@@ -26,8 +26,6 @@ public struct CTRideModel: CTBaseModel {
     public let co2: Double
     public let weatherIconURL: String
 
-    public var coordinateList: [CTLatLonModel]?
-
     enum CodingKeys: String, CodingKey {
         case weatherInfo = "weather_info"
         case id = "id"

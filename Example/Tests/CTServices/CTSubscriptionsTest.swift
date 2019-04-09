@@ -38,4 +38,9 @@ class CTSubscriptionsTest: XCTestCase {
         let subscriptions = try! CTSubscriptionService().fetchAll(withBikeId: 850).toBlocking().first()!
         print(subscriptions)
     }
+
+    func testFetchBikes() {
+        let bikes = try! CTBikeService().fetchAll().toBlocking().first()!
+        print(bikes)
+    }
 }
