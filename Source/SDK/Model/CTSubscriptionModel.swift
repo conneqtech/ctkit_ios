@@ -16,17 +16,21 @@ public struct CTSubscriptionModel: CTBaseModel {
     public let endDate: Date?
     public let productId: Int
     public let type: CTSubscriptionProductType
+    public let insurance: CTInsuranceModel?
+    public let insuranceType: CTInsuranceType?
 
     enum CodingKeys: String, CodingKey {
-        case id = "id"
+        case id
         case userId = "user_id"
         case bikeId = "bike_id"
         case isCancelled = "cancelled"
         case startDate = "start_date"
         case endDate = "end_date"
         case productId = "product_id"
-        case type = "type"
-        case product = "product"
+        case type
+        case product
+        case insurance
+        case insuranceType = "insurance_id"
     }
 
     public init(withUserId userId: Int, bikeId: Int, productId: Int, type: CTSubscriptionProductType) {
@@ -38,6 +42,8 @@ public struct CTSubscriptionModel: CTBaseModel {
         self.startDate = Date()
         self.endDate = Date()
         self.type = type
+        self.insuranceType = nil
+        self.insurance = nil
     }
 
     public init(from decoder: Decoder) throws {
@@ -50,9 +56,11 @@ public struct CTSubscriptionModel: CTBaseModel {
         startDate = try container.decode(Date.self, forKey: .startDate)
         endDate = try? container.decode(Date.self, forKey: .endDate)
         productId = try container.decode(Int.self, forKey: .productId)
+        insurance = try? container.decode(CTInsuranceModel.self, forKey: .insurance)
 
         let product  = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .product)
         type = try product.decode(CTSubscriptionProductType.self, forKey: .type)
+        insuranceType = try? product.decode(CTInsuranceType.self, forKey: .insuranceType)
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -12,6 +12,11 @@ public enum CTSubscriptionProductType: Int, Codable {
     case insurance = 2
 }
 
+public enum CTInsuranceType: String, Codable {
+    case casco = "EBD_OC"
+    case theft = "EBD_OD"
+}
+
 public struct CTSubscriptionProductModel: CTBaseModel {
 
     public let id: Int

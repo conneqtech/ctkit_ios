@@ -25,12 +25,17 @@ public struct CTBikeModel: CTBaseModel {
     public var isRequestingUserOwner: Bool
     public var type: String?
 
+    public let bluetoothPassword: String?
+    public let bluetoothName: String?
+
     public init(withId id: Int, imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
         self.id = id
         self.imei = imei
         self.frameIdentifier = identifier
         self.name = name
         self.isRequestingUserOwner = isOwner
+        self.bluetoothPassword = ""
+        self.bluetoothName = ""
     }
 
     public init(withImei imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
@@ -39,6 +44,8 @@ public struct CTBikeModel: CTBaseModel {
         self.frameIdentifier = identifier
         self.name = name
         self.isRequestingUserOwner = isOwner
+        self.bluetoothPassword = ""
+        self.bluetoothName = ""
     }
 
     enum CodingKeys: String, CodingKey {
@@ -57,6 +64,9 @@ public struct CTBikeModel: CTBaseModel {
         case isStolen = "is_stolen"
         case isRequestingUserOwner = "is_requesting_user_owner"
         case type = "type"
+
+        case bluetoothPassword = "blepass"
+        case bluetoothName = "blename"
     }
 
     public func encode(to encoder: Encoder) throws {
