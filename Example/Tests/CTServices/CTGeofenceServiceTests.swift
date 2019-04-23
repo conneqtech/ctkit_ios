@@ -187,6 +187,20 @@ class CTGeofenceServiceTests: QuickSpec {
 //                    expect(callToTest).to(beNil())
 //                }
             }
+
+            describe("stats") {
+                fit("Fetches stats for a given timespan") {
+                    self.stub(http(.get, uri: "/bike/geofence/280/stats"), json([
+                        "entries_all_time":15,
+                        "entries_in_timespan":10
+                    ], status: 200))
+
+                    let result = try! CTGeofenceService().getStatsInTimespan(withGeofenceId: 280, from: Date(), till: Date()).toBlocking().first()!
+
+                    expect(result.entriesAllTime) == 15
+                    expect(result.entriesInTimespan) == 10
+                }
+            }
         }
     }
 }
