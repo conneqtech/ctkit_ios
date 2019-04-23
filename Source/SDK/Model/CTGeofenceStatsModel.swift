@@ -8,8 +8,13 @@
 import Foundation
 
 public class CTGeofenceStatsModel: CTBaseModel {
-    let entriesAllTime: Int
-    let entriesInTimespan: Int
+    public let entriesAllTime: Int
+    public let entriesInTimespan: Int
+
+    public init() {
+        entriesAllTime = 0
+        entriesInTimespan = 0
+    }
 
     enum CodingKeys: String, CodingKey {
         case entriesAllTime = "entries_all_time"
