@@ -162,7 +162,7 @@ public extension CTUserService {
      
      - Returns: True if we have an active (and authorised) session
      */
-    public func hasActiveSession() -> Bool {
+    func hasActiveSession() -> Bool {
         return CTKit.shared.hasActiveSession()
     }
 
@@ -171,14 +171,14 @@ public extension CTUserService {
      
      - Returns: The current active user id, -1 if there is no active session.
      */
-    public func getActiveUserId() -> Int {
+    func getActiveUserId() -> Int {
         return CTKit.shared.currentActiveUserId
     }
 
     /**
      Immediately end the active authorised session and reset all values in the SDK.
      */
-    public func logout() {
+    func logout() {
         CTKit.shared.logout()
     }
 }
