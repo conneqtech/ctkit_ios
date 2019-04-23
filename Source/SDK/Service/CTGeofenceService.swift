@@ -107,4 +107,19 @@ public class CTGeofenceService: NSObject {
     public func delete(withGeofenceId identifier: Int) -> Observable<Int> {
         return CTKit.shared.restManager.archive(endpoint: "bike/geofence/\(identifier)").map { (_: CTGeofenceModel) in identifier }
     }
+
+    /**
+     Get entry statistics for a single geofence.
+
+     - Parameter identifier: The identifier of the geofence you want stats for
+     - Parameter from: DateTime from which you want the timespan to start from
+     - Parameter till: DateTime from which you want the timespan to end
+     - Returns: An observable with stats for the given timespan
+    */
+    public func getStatsInTimespan(withGeofenceId identifier: Int, from: Date, till: Date) -> Observable<CTGeofenceStatsModel> {
+        return CTKit.shared.restManager.get(endpoint: "bike/geofence/\(identifier)/stats", parameters: [
+            "from": from.toAPIDate(),
+            "till": till.toAPIDate()
+        ])
+    }
 }
