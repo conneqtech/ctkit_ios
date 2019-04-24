@@ -26,7 +26,8 @@ public class CTGeofenceService: NSObject {
     /**
      Fetch all the geofences that belong to a single bike
      
-     - Note: You are only able to create a geofence for a bike that is linked to the current active user. Adding a geofence to a random bike will result in a 403 error
+     - Note: You are only able to create a geofence for a bike that is linked to the current active user.
+     Adding a geofence to a random bike will result in a 403 error
      
      - Parameter identifier: The identifier of the bike you want the geofences for
      
@@ -39,7 +40,8 @@ public class CTGeofenceService: NSObject {
     /**
      Create a new circular geofence and add it to a bike.
      
-      - Note: You are only able to create a geofence for a bike that is linked to the current active user. Adding a geofence to a random bike will result in a 403 error
+      - Note: You are only able to create a geofence for a bike that is linked to the current active user.
+     Adding a geofence to a random bike will result in a 403 error
      
      - Precondition: Radius can't be larger than 10km (10.000m)
      
