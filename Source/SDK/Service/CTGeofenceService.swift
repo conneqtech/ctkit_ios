@@ -122,6 +122,10 @@ public class CTGeofenceService: NSObject {
         return CTKit.shared.restManager.get(endpoint: "bike/geofence/\(identifier)/stats", parameters: [
             "from": from.toAPIDate(),
             "till": till.toAPIDate()
-        ])
+            ]).map { (stats : CTGeofenceStatsModel) in
+                var newStats = stats
+                newStats.geofenceId = identifier
+                return newStats
+        }
     }
 }

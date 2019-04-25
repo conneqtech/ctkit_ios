@@ -199,6 +199,7 @@ class CTGeofenceServiceTests: QuickSpec {
 
                     expect(result.entriesAllTime) == 15
                     expect(result.entriesInTimespan) == 10
+                    expect(result.geofenceId) == 280
                 }
             }
         }
