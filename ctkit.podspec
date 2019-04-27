@@ -1,6 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = 'ctkit'
-  s.version          = '0.11.1'
+  s.version          = '0.12.0'
   s.summary          = 'SDK to communicate with the connected bike api'
   s.swift_version    = '4.2'
 
@@ -19,4 +18,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'Alamofire', '~> 4.7'
   s.dependency 'RxSwift', '~> 4.0'
+
+  s.name = 'ctkit'
 end

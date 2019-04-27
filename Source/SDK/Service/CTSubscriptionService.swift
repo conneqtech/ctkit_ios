@@ -54,8 +54,22 @@ public class CTSubscriptionService: NSObject {
      
      - Returns: An observable of the newly started trial.
      */
+    @available(*, deprecated, message: "Please use claim(_, _) instead")
     public func startTrial(withBikeId identifier: Int, imei: String) -> Observable<CTSubscriptionModel> {
-        return CTKit.shared.subscriptionManager.post(endpoint: "trial", parameters: [
+        return claim(withBikeId: identifier, imei: imei)
+    }
+
+
+    /**
+     Claim the bike in the billing api
+
+     - Parameter identifier: The bike identifier you want to start the trial for
+
+
+     - Returns: An observable of the newly started subscription (claim)
+     */
+    public func claim(withBikeId identifier: Int, imei: String) -> Observable<CTSubscriptionModel> {
+        return CTKit.shared.subscriptionManager.post(endpoint: "claim", parameters: [
             "bike_id": identifier,
             "hash": imei
             ]
