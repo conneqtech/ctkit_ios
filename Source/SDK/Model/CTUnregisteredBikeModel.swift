@@ -12,8 +12,11 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
     /// Partial IMEI number the use as a textual hint for the user to input the full IMEI.
     public let partialIMEI: String
 
-    /// The frame number of a bike. The combination of frame_number and imei is needed to register a bike in the bike api. It acts as a second factor authentication during the bike registration process. Without this parameter, bikes cannot be registered by end-users.
+    /// The frame number of a bike.
     public let frameNumber: String
+
+    // The activation code of a bike. The combination of activationCode and imei is needed to register a bike in the bike api. It acts as a second factor authentication during the bike registration process. Without this parameter, bikes cannot be registered by end-users.
+    public let activationCode: String
 
     /// The article description of a bike. Similar to the model name, could supply more detailed information about a bike, like its color and minor specifications. though is encourage to be kept short. e.g: bike model name matte grey autom. light
     public let manufacturerDescription: String
@@ -33,6 +36,7 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
         case partialIMEI = "imei_first_digits"
         case params = "params"
         case frameNumber = "frame_number"
+        case activationCode = "activation_code"
         case manufacturerDescription = "art_descr"
         case manufacturerSKU = "art_num"
         case manufacturerModelName = "model_name"
@@ -43,6 +47,7 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
     public init(partialIMEI: String, frameNumber: String, manufacturerSKU: String, modelName: String?, registrationFlow: CTBikeRegistrationFlow) {
         self.partialIMEI = partialIMEI
         self.frameNumber = frameNumber
+        self.activationCode = ""
         self.manufacturerDescription = ""
         self.manufacturerSKU = manufacturerSKU
         self.manufacturerModelName = modelName
@@ -59,6 +64,7 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
         bikeTypeId = try container.decode(Int.self, forKey: .bikeTypeId)
 
         frameNumber = try params.decode(String.self, forKey: .frameNumber)
+        activationCode = try params.decode(String.self, forKey: .activationCode)
         manufacturerDescription = try params.decode(String.self, forKey: .manufacturerDescription)
         manufacturerSKU = try? params.decode(String.self, forKey: .manufacturerSKU)
         manufacturerModelName = try? params.decode(String.self, forKey: .manufacturerModelName)
@@ -72,6 +78,7 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
         try container.encode(partialIMEI, forKey: .partialIMEI)
 
         try params.encode(frameNumber, forKey: .frameNumber)
+        try params.encode(activationCode, forKey: .activationCode)
         try params.encode(manufacturerDescription, forKey: .manufacturerDescription)
         try params.encode(manufacturerSKU, forKey: .manufacturerSKU)
         try params.encode(manufacturerModelName, forKey: .manufacturerModelName)
