@@ -135,23 +135,25 @@ public class CTBikeService: NSObject {
      - Parameter identifier: The frame number of a bike you want to fetch some information about
      - Returns: An array with information of an unregistered bike. When the array is empty the bike doesn't exist or is already registered.
      */
-    @available(*, deprecated, message: "Please use searchBike(_) and getBikeTypeInformation(_) instead.")
-    public func searchUnregisteredBike(withFrameIdentifier identifier: String) -> Observable<[CTUnregisteredBikeInformationModel]> {
-        return searchBike(withFrameIdentifier: identifier).flatMap {
+    public func searchUnregisteredBike(withActivationCode identifier: String) -> Observable<[CTUnregisteredBikeInformationModel]> {
+        return searchBike(withActivationCode: identifier).flatMap {
             (unregisteredBike: [CTUnregisteredBikeModel]) -> Observable<[CTUnregisteredBikeInformationModel]> in
 
             if unregisteredBike.isEmpty {
                 let emptyResult: [CTUnregisteredBikeInformationModel] = []
+                print("🔥 EMPTYYY")
                 return Observable.of(emptyResult)
             } else {
+                print("🔥 NOT EMPTY")
                 return self.getBikeTypeInformation(withIdentifier: unregisteredBike[0].bikeTypeId).map {
                     (bikeType: CTBikeTypeModel) -> [CTUnregisteredBikeInformationModel] in
                     return [CTUnregisteredBikeInformationModel(
                         partialIMEI: unregisteredBike[0].partialIMEI,
                         frameNumber: unregisteredBike[0].frameNumber,
+                        activationCode: unregisteredBike[0].activationCode,
                         manufacturerSKU: unregisteredBike[0].manufacturerSKU,
                         modelName: unregisteredBike[0].manufacturerModelName,
-                        registrationFlow: CTBikeRegistrationFlow.init(rawValue: bikeType.registrationFlow)!)]
+                        registrationFlow: bikeType.registrationFlow)]
                 }
             }
         }
@@ -161,10 +163,10 @@ public class CTBikeService: NSObject {
      Search for an unregistered bike. When the array is empty the bike is registered or does not exist.
      This search can return 0 or 1 results.
 
-     - Parameter identifier: The frame number of a bike you want to fetch some information about
+     - Parameter identifier: The activation code of a bike you want to fetch some information about
      - Returns: 0 or 1 results, based on a found bike the api.
      */
-    public func searchBike(withFrameIdentifier identifier: String) -> Observable<[CTUnregisteredBikeModel]> {
+    public func searchBike(withActivationCode identifier: String) -> Observable<[CTUnregisteredBikeModel]> {
         return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["activation_code": identifier])
     }
 

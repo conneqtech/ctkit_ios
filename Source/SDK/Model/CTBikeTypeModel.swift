@@ -11,7 +11,7 @@ public struct CTBikeTypeModel: CTBaseModel {
     public let id: Int
     public let type: String
     public let name: String
-    public let registrationFlow: String
+    public let registrationFlow: CTBikeRegistrationFlow
     public let catalogPrice: Int
     public let secondFactorTranslationKey: String
     public let secondFactorLocationImage: String?
