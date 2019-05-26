@@ -47,6 +47,7 @@
 		C01C070C21AFDE46001DA570 /* CTUploadServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */; };
 		C01C070E21AFDEE2001DA570 /* uploadImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */; };
 		C01C070F21AFE05E001DA570 /* uploadImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */; };
+		C0206D3B22996E72000C34A1 /* CTLinkedUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0206D3922996E2F000C34A1 /* CTLinkedUserServiceTests.swift */; };
 		C04F41B22199C502004FF81A /* CTBikeLocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */; };
 		C069CA60219B08E7003BE8C3 /* bike-history.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA5F219B08E7003BE8C3 /* bike-history.json */; };
 		C069CA63219B17D5003BE8C3 /* bike.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA62219B17D5003BE8C3 /* bike.json */; };
@@ -125,6 +126,7 @@
 		C00A8A35218735DC003F67CB /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUploadServiceTests.swift; sourceTree = "<group>"; };
 		C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = uploadImages.xcassets; sourceTree = "<group>"; };
+		C0206D3922996E2F000C34A1 /* CTLinkedUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTLinkedUserServiceTests.swift; sourceTree = "<group>"; };
 		C04C0AAE21746E9B00F9ADE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeLocationServiceTests.swift; sourceTree = "<group>"; };
 		C069CA5F219B08E7003BE8C3 /* bike-history.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-history.json"; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				C06D7063222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift */,
 				C06D7065222D365F00750CB3 /* CTSubscriptionProductTests.swift */,
 				C06D7069222D641700750CB3 /* CTSubscriptionsTest.swift */,
+				C0206D3922996E2F000C34A1 /* CTLinkedUserServiceTests.swift */,
 			);
 			path = CTServices;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				C00143A021E393B800636C6E /* CTTheftCasePartnerServiceTests.swift in Sources */,
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 				852B85DB21943F9B00A373F1 /* CTGeofenceServiceTests.swift in Sources */,
+				C0206D3B22996E72000C34A1 /* CTLinkedUserServiceTests.swift in Sources */,
 				C06D7066222D365F00750CB3 /* CTSubscriptionProductTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
