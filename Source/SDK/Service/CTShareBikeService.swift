@@ -8,7 +8,6 @@
 import Foundation
 import RxSwift
 
-@available(iOS, introduced: 0.13.1)
 public class CTShareBikeService: NSObject {
 
     public func fetchInviteCode(withBikeId identifier: Int) -> Observable<String?> {
