@@ -19,9 +19,9 @@ class CTLinkedUserServiceTests: XCTestCase {
 
     func testFetchLinkedUsers() {
         let dummyUser = try! CTUserService().login(email: "gert-jan@conneqtech.com", password: "testpass").toBlocking().first()!
-        let subject = try! CTShareBikeService().fetchLinkedUsers(forBike: 14).toBlocking().first()!
+        let subject = try! CTShareBikeService().fetchAcceptedLinkedUsers(withBikeId: 14).toBlocking().first()!
 
-        print(subject.count)
+        print(subject.data.count)
     }
 
 }
