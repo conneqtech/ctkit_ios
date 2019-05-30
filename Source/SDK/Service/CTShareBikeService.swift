@@ -57,7 +57,7 @@ public class CTShareBikeService: NSObject {
 
 fileprivate extension CTShareBikeService {
     func fetchLinkedUsersWithStatus(withBikeId identifier: Int, status: String) -> Observable<CTPaginatedResponseModel<CTLinkedUserModel>> {
-        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/friend?invite_status=\(status)")
+        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/friend?filter=or;invite_status;eq;\(status)")
     }
 
     func patchLinkedUserStatus(_ bikeId: Int, _ linkedUserId: Int, status: String) -> Observable<CTLinkedUserModel> {
