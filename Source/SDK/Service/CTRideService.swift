@@ -31,7 +31,7 @@ public class CTRideService: NSObject {
                        endDate: Date,
                        rideType: String,
                        name: String) -> Observable<CTRideModel> {
-        return CTKit.shared.restManager.post(endpoint: "bike/\(identifier)/ride", parameters: [
+        return CTKit.shared.restManager.post(endpoint: "v2/bike/\(identifier)/ride", parameters: [
             "start_date": startDate.toAPIDate(),
             "end_date": endDate.toAPIDate(),
             "ride_type": rideType,
@@ -47,7 +47,7 @@ public class CTRideService: NSObject {
      - Returns: An observable with the updated ride.
      */
     public func patch(ride: CTRideModel) -> Observable<CTRideModel> {
-        return CTKit.shared.restManager.patch(endpoint: "bike/ride/\(ride.id)", parameters: try? ride.asDictionary())
+        return CTKit.shared.restManager.patch(endpoint: "v2/bike/ride/\(ride.id)", parameters: try? ride.asDictionary())
     }
 
     /**
@@ -58,7 +58,7 @@ public class CTRideService: NSObject {
      - Returns: A completable to indicate the deletion was successful.
     */
     public func delete(withRideId identifier: Int) -> Observable<Int> {
-        return CTKit.shared.restManager.archive(endpoint: "bike/ride/\(identifier)").map { (_: CTRideModel) in identifier }
+        return CTKit.shared.restManager.archive(endpoint: "v2/bike/ride/\(identifier)").map { (_: CTRideModel) in identifier }
     }
 
     /**
@@ -69,7 +69,7 @@ public class CTRideService: NSObject {
      - Returns: An observable containing a single ride
      */
     public func fetch(withRideId identifier: Int) -> Observable<CTRideModel> {
-        return CTKit.shared.restManager.get(endpoint: "bike/ride/\(identifier)")
+        return CTKit.shared.restManager.get(endpoint: "v2/bike/ride/\(identifier)")
     }
 
     /**
@@ -80,7 +80,7 @@ public class CTRideService: NSObject {
      - Returns: An observable containing an array of rides
      */
     public func fetchAll(withBikeId identifier: Int) -> Observable<[CTRideModel]> {
-        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/ride")
+        return CTKit.shared.restManager.get(endpoint: "v2/bike/\(identifier)/ride")
     }
 
     public func fetchAllPaginated(withBikeId identifier: Int, page: Int = 1, limit: Int = 50) -> Observable<CTPaginatedResponseModel<CTRideModel>> {
