@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CTUserRecoveryResultModel: CTBaseModel {
+struct CTUserRecoveryResultModel: CTBaseModel {
     let success: Bool
     let username: String
 }
