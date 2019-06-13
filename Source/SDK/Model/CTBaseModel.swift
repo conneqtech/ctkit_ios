@@ -7,5 +7,5 @@
 
 import Foundation
 
-public protocol CTBaseModel: Codable {
+public protocol CTBaseModel: Codable, Equatable {
 }
