@@ -28,7 +28,7 @@ public struct CTBikeModel: CTBaseModel {
     public let bluetoothPassword: String?
     public let bluetoothName: String?
 
-    public let inviteUrl: String?
+    public let inviteUri: String?
 
     public init(withId id: Int, imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
         self.id = id
@@ -38,7 +38,7 @@ public struct CTBikeModel: CTBaseModel {
         self.isRequestingUserOwner = isOwner
         self.bluetoothPassword = ""
         self.bluetoothName = ""
-        self.inviteUrl = ""
+        self.inviteUri = ""
 
     }
 
@@ -50,7 +50,7 @@ public struct CTBikeModel: CTBaseModel {
         self.isRequestingUserOwner = isOwner
         self.bluetoothPassword = ""
         self.bluetoothName = ""
-        self.inviteUrl = ""
+        self.inviteUri = ""
     }
 
     enum CodingKeys: String, CodingKey {
@@ -73,7 +73,7 @@ public struct CTBikeModel: CTBaseModel {
         case bluetoothPassword = "blepass"
         case bluetoothName = "blename"
 
-        case inviteUrl = "invite_code_url"
+        case inviteUri = "invite_code_uri"
     }
 
     public func encode(to encoder: Encoder) throws {

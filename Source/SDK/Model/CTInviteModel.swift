@@ -14,10 +14,10 @@ public enum CTInviteStatus: String, Codable {
     case revoked
 }
 
-public struct CTLinkedUserModel: CTBaseModel {
+public struct CTInviteModel: CTBaseModel {
 
-    public let id: Int
-    public let inviteStatus: CTInviteStatus
+    public let id: String
+    public let status: CTInviteStatus
 
     public let linkedUserId: Int
     public let displayName: String
@@ -27,7 +27,7 @@ public struct CTLinkedUserModel: CTBaseModel {
 
      enum CodingKeys: String, CodingKey {
         case id
-        case inviteStatus = "invite_status"
+        case status = "invite_status"
         
         case linkedUserId = "user_id"
         case displayName = "display_name"
