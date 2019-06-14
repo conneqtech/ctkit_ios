@@ -12,13 +12,13 @@ public class CTShareBikeService: NSObject {
 
     public func fetchInviteCode(withBikeId identifier: Int) -> Observable<String?> {
         return CTBikeService().fetch(withId: identifier).map { (bike: CTBikeModel) in
-            return bike.inviteUrl
+            return bike.inviteUri
         }
     }
 
     public func createInviteCode(withBikeId identifier: Int) -> Observable<String?> {
         return CTKit.shared.restManager.post(endpoint: "bike/\(identifier)/invite-code").map { (bike: CTBikeModel) in
-            return bike.inviteUrl
+            return bike.inviteUri
         }
     }
 
@@ -26,41 +26,42 @@ public class CTShareBikeService: NSObject {
         return CTKit.shared.restManager.delete(endpoint: "bike/\(identifier)/invite-code")
     }
 
-    public func fetchOpenLinkedUserRequests(withBikeId identifier: Int) -> Observable<CTPaginatedResponseModel<CTLinkedUserModel>> {
-        return fetchLinkedUsersWithStatus(withBikeId: identifier, status: "open")
+    public func fetchOpenInvites(withBikeId identifier: Int) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        return fetchInvites(withBikeId: identifier, status: "open")
     }
 
-    public func fetchDeniedLinkedUserRequests(withBikedId identifier: Int) -> Observable<CTPaginatedResponseModel<CTLinkedUserModel>> {
-        return fetchLinkedUsersWithStatus(withBikeId: identifier, status: "denied")
+    public func fetchDeniedInvites(withBikedId identifier: Int) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        return fetchInvites(withBikeId: identifier, status: "denied")
     }
 
-    public func fetchAcceptedLinkedUsers(withBikeId identifier: Int) -> Observable<CTPaginatedResponseModel<CTLinkedUserModel>> {
-        return fetchLinkedUsersWithStatus(withBikeId: identifier, status: "accepted")
+    public func fetchAcceptedInvites(withBikeId identifier: Int) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        return fetchInvites(withBikeId: identifier, status: "accepted")
     }
 
-    public func fetchRevokedLinkedUsers(withBikedId identifier: Int) -> Observable<CTPaginatedResponseModel<CTLinkedUserModel>> {
-        return fetchLinkedUsersWithStatus(withBikeId: identifier, status: "revoked")
+    public func fetchRevokedInvites(withBikedId identifier: Int) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        return fetchInvites(withBikeId: identifier, status: "revoked")
     }
 
-    public func acceptOpenLinkedUserRequest(withBikeId bikeId: Int, linkedUserId: Int) -> Observable<CTLinkedUserModel> {
-        return patchLinkedUserStatus(bikeId, linkedUserId, status: "accepted")
+
+    public func acceptOpenInvite(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
+        return patchLinkedUserStatus(bikeId, inviteId, status: "accepted")
     }
 
-    public func declineOpenLinkedUserRequest(withBikeId bikeId: Int, linkedUserId: Int) -> Observable<CTLinkedUserModel> {
-        return patchLinkedUserStatus(bikeId, linkedUserId, status: "denied")
+    public func declineOpenInvite(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
+        return patchLinkedUserStatus(bikeId, inviteId, status: "denied")
     }
 
-    public func revokeAcceptedLinkedUser(withBikeId bikeId: Int, linkedUserId: Int) -> Observable<CTLinkedUserModel> {
-        return patchLinkedUserStatus(bikeId, linkedUserId, status: "revoked")
+    public func revokeAcceptedInvite(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
+        return patchLinkedUserStatus(bikeId, inviteId, status: "revoked")
     }
 }
 
 fileprivate extension CTShareBikeService {
-    func fetchLinkedUsersWithStatus(withBikeId identifier: Int, status: String) -> Observable<CTPaginatedResponseModel<CTLinkedUserModel>> {
-        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/friend?filter=or;invite_status;eq;\(status)")
+    func fetchInvites(withBikeId identifier: Int, status: String) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/invite?filter=or;invite_status;eq;\(status)")
     }
 
-    func patchLinkedUserStatus(_ bikeId: Int, _ linkedUserId: Int, status: String) -> Observable<CTLinkedUserModel> {
-        return CTKit.shared.restManager.patch(endpoint: "bike/\(bikeId)/friend/\(linkedUserId)", parameters: ["invite_status": status])
+    func patchLinkedUserStatus(_ bikeId: Int, _ inviteId: String, status: String) -> Observable<CTInviteModel> {
+        return CTKit.shared.restManager.patch(endpoint: "bike/\(bikeId)/invite/\(inviteId)", parameters: ["invite_status": status])
     }
 }
