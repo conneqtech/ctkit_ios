@@ -14,24 +14,18 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		6B55537761E20E636197F3FB /* Pods_ctkit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BF23091F48FF9B1F1DFA35 /* Pods_ctkit_Example.framework */; };
-		850D66CE21BE6641002FED0D /* CTTheftCaseModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D66CD21BE6641002FED0D /* CTTheftCaseModelTests.swift */; };
-		852B85DB21943F9B00A373F1 /* CTGeofenceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */; };
 		852B85DD219449FF00A373F1 /* userNotLoggedIn.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85DC219449FE00A373F1 /* userNotLoggedIn.json */; };
 		852B85DF21945FE100A373F1 /* geofenceIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */; };
 		852B85E12194614900A373F1 /* bikeIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85E02194614900A373F1 /* bikeIdNotFound.json */; };
-		853B34B62197042000FA50FB /* CTRideServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B34B52197042000FA50FB /* CTRideServiceTests.swift */; };
 		8565CCBF21819ECD00D01486 /* geofence.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCBD21819ECD00D01486 /* geofence.json */; };
 		8565CCC021819ECD00D01486 /* geofenceList.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCBE21819ECD00D01486 /* geofenceList.json */; };
 		8565CCC52181A47100D01486 /* createGeofenceValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC42181A47100D01486 /* createGeofenceValidationError.json */; };
 		8565CCC72181A7D200D01486 /* userAlreadyExists.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC62181A7D200D01486 /* userAlreadyExists.json */; };
 		8565CCCA2181ACB300D01486 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 8565CCC92181ACB300D01486 /* user.json */; };
-		85B2BDCE21BBCDA3009036E7 /* CTRideModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B2BDCD21BBCDA3009036E7 /* CTRideModelTests.swift */; };
 		85B2DE3321A015D9004F524A /* createTheftCaseValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B2DE3221A015D8004F524A /* createTheftCaseValidationError.json */; };
 		85B2DE3721A05193004F524A /* patchPoliceIdValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B2DE3621A05193004F524A /* patchPoliceIdValidationError.json */; };
-		85B2DE3F21A2E5D0004F524A /* CTStatisticsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B2DE3E21A2E5D0004F524A /* CTStatisticsServiceTests.swift */; };
 		85B5EAB5219D614E007ACF55 /* rideIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B5EAB4219D614E007ACF55 /* rideIdNotFound.json */; };
 		85B5EAB7219D6198007ACF55 /* createRideValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B5EAB6219D6197007ACF55 /* createRideValidationError.json */; };
-		85B5EAB9219D953A007ACF55 /* CTTheftCaseServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5EAB8219D953A007ACF55 /* CTTheftCaseServiceTests.swift */; };
 		85B5EABC219DA963007ACF55 /* theftCaseIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B5EABB219DA963007ACF55 /* theftCaseIdNotFound.json */; };
 		85B5EAC0219DB971007ACF55 /* recoveryPartnerResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B5EABF219DB971007ACF55 /* recoveryPartnerResponse.json */; };
 		85B5EAC3219DB9E2007ACF55 /* statisticsResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B5EAC2219DB9E2007ACF55 /* statisticsResponse.json */; };
@@ -39,35 +33,23 @@
 		85B6E93F218302EE00F44404 /* ride.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B6E93D218302EE00F44404 /* ride.json */; };
 		85D33A4C2181D9AE0097D7A7 /* theftcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4B2181D9AE0097D7A7 /* theftcase.json */; };
 		85D33A4E2181DA120097D7A7 /* theftcaseList.json in Resources */ = {isa = PBXBuildFile; fileRef = 85D33A4D2181DA120097D7A7 /* theftcaseList.json */; };
-		85F58D8A21BC1A3100F723DD /* CTBikeModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F58D8921BC1A3100F723DD /* CTBikeModelTests.swift */; };
-		C00143A021E393B800636C6E /* CTTheftCasePartnerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001439E21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift */; };
 		C00A8A3121873348003F67CB /* validation-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A3021873348003F67CB /* validation-error.json */; };
 		C00A8A33218735A9003F67CB /* 400-error.json in Resources */ = {isa = PBXBuildFile; fileRef = C00A8A32218735A9003F67CB /* 400-error.json */; };
 		C00A8A36218735DC003F67CB /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A8A35218735DC003F67CB /* Resolver.swift */; };
-		C01C070C21AFDE46001DA570 /* CTUploadServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */; };
 		C01C070E21AFDEE2001DA570 /* uploadImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */; };
 		C01C070F21AFE05E001DA570 /* uploadImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */; };
-		C0206D3B22996E72000C34A1 /* CTLinkedUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0206D3922996E2F000C34A1 /* CTLinkedUserServiceTests.swift */; };
-		C04F41B22199C502004FF81A /* CTBikeLocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */; };
 		C069CA60219B08E7003BE8C3 /* bike-history.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA5F219B08E7003BE8C3 /* bike-history.json */; };
 		C069CA63219B17D5003BE8C3 /* bike.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA62219B17D5003BE8C3 /* bike.json */; };
 		C069CA66219B1A1D003BE8C3 /* address-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA65219B1A1D003BE8C3 /* address-list.json */; };
-		C06D7064222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D7063222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift */; };
-		C06D7066222D365F00750CB3 /* CTSubscriptionProductTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D7065222D365F00750CB3 /* CTSubscriptionProductTests.swift */; };
 		C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */ = {isa = PBXBuildFile; fileRef = C07FEDB721899BDC005577C1 /* oauth-success.json */; };
 		C08B174B2190831F00A662E2 /* bike-registration-failed.json in Resources */ = {isa = PBXBuildFile; fileRef = C08B174A2190831F00A662E2 /* bike-registration-failed.json */; };
 		C098CA20219C60A3004174D5 /* bike-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C098CA1F219C60A3004174D5 /* bike-list.json */; };
-		C0B357F5222D66E100A7BCCB /* CTSubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D7069222D641700750CB3 /* CTSubscriptionsTest.swift */; };
-		C0BBDCAE229C209E00F0FF1B /* CTShareBikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BBDCAD229C209E00F0FF1B /* CTShareBikeService.swift */; };
 		C0DFD37A21919EF000AB4194 /* bike-registration-successful.json in Resources */ = {isa = PBXBuildFile; fileRef = C0DFD37921919EF000AB4194 /* bike-registration-successful.json */; };
-		C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */; };
 		C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37F52180792300E7EAC4 /* createValidationError.json */; };
 		C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */; };
 		C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */; };
-		C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */; };
-		C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */; };
 		C0F40CDA218B3C3900F92CC9 /* bike-information.json in Resources */ = {isa = PBXBuildFile; fileRef = C0F40CD9218B3C3900F92CC9 /* bike-information.json */; };
-		C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */; };
+		C0FBCDA122B4CF5200E368C3 /* CTBikeTypeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FBCDA022B4CF5200E368C3 /* CTBikeTypeServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,24 +73,18 @@
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* ctkit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ctkit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		850D66CD21BE6641002FED0D /* CTTheftCaseModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTTheftCaseModelTests.swift; sourceTree = "<group>"; };
-		852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTGeofenceServiceTests.swift; sourceTree = "<group>"; };
 		852B85DC219449FE00A373F1 /* userNotLoggedIn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userNotLoggedIn.json; sourceTree = "<group>"; };
 		852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofenceIdNotFound.json; sourceTree = "<group>"; };
 		852B85E02194614900A373F1 /* bikeIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bikeIdNotFound.json; sourceTree = "<group>"; };
-		853B34B52197042000FA50FB /* CTRideServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTRideServiceTests.swift; sourceTree = "<group>"; };
 		8565CCBD21819ECD00D01486 /* geofence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofence.json; sourceTree = "<group>"; };
 		8565CCBE21819ECD00D01486 /* geofenceList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = geofenceList.json; sourceTree = "<group>"; };
 		8565CCC42181A47100D01486 /* createGeofenceValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createGeofenceValidationError.json; sourceTree = "<group>"; };
 		8565CCC62181A7D200D01486 /* userAlreadyExists.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userAlreadyExists.json; sourceTree = "<group>"; };
 		8565CCC92181ACB300D01486 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
-		85B2BDCD21BBCDA3009036E7 /* CTRideModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTRideModelTests.swift; sourceTree = "<group>"; };
 		85B2DE3221A015D8004F524A /* createTheftCaseValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createTheftCaseValidationError.json; sourceTree = "<group>"; };
 		85B2DE3621A05193004F524A /* patchPoliceIdValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = patchPoliceIdValidationError.json; sourceTree = "<group>"; };
-		85B2DE3E21A2E5D0004F524A /* CTStatisticsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTStatisticsServiceTests.swift; sourceTree = "<group>"; };
 		85B5EAB4219D614E007ACF55 /* rideIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rideIdNotFound.json; sourceTree = "<group>"; };
 		85B5EAB6219D6197007ACF55 /* createRideValidationError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = createRideValidationError.json; sourceTree = "<group>"; };
-		85B5EAB8219D953A007ACF55 /* CTTheftCaseServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTTheftCaseServiceTests.swift; sourceTree = "<group>"; };
 		85B5EABB219DA963007ACF55 /* theftCaseIdNotFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftCaseIdNotFound.json; sourceTree = "<group>"; };
 		85B5EABF219DB971007ACF55 /* recoveryPartnerResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recoveryPartnerResponse.json; sourceTree = "<group>"; };
 		85B5EAC2219DB9E2007ACF55 /* statisticsResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = statisticsResponse.json; sourceTree = "<group>"; };
@@ -116,39 +92,27 @@
 		85B6E93D218302EE00F44404 /* ride.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ride.json; sourceTree = "<group>"; };
 		85D33A4B2181D9AE0097D7A7 /* theftcase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftcase.json; sourceTree = "<group>"; };
 		85D33A4D2181DA120097D7A7 /* theftcaseList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theftcaseList.json; sourceTree = "<group>"; };
-		85F58D8921BC1A3100F723DD /* CTBikeModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeModelTests.swift; sourceTree = "<group>"; };
 		9DFCEC1C1DB851D7A67944D0 /* Pods-ctkit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AA81EECC2BEA5016338F8ACC /* ctkit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ctkit.podspec; path = ../ctkit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ABE31016D690DA6F44A7AF83 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		BE7F39F7D8F7388EDCD0CCD5 /* Pods-ctkit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		C001439E21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTTheftCasePartnerServiceTests.swift; sourceTree = "<group>"; };
 		C00A8A3021873348003F67CB /* validation-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "validation-error.json"; sourceTree = "<group>"; };
 		C00A8A32218735A9003F67CB /* 400-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "400-error.json"; sourceTree = "<group>"; };
 		C00A8A35218735DC003F67CB /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
-		C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUploadServiceTests.swift; sourceTree = "<group>"; };
 		C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = uploadImages.xcassets; sourceTree = "<group>"; };
-		C0206D3922996E2F000C34A1 /* CTLinkedUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTLinkedUserServiceTests.swift; sourceTree = "<group>"; };
 		C04C0AAE21746E9B00F9ADE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeLocationServiceTests.swift; sourceTree = "<group>"; };
 		C069CA5F219B08E7003BE8C3 /* bike-history.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-history.json"; sourceTree = "<group>"; };
 		C069CA62219B17D5003BE8C3 /* bike.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bike.json; sourceTree = "<group>"; };
 		C069CA65219B1A1D003BE8C3 /* address-list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "address-list.json"; sourceTree = "<group>"; };
-		C06D7063222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeNotificationSettingsTests.swift; sourceTree = "<group>"; };
-		C06D7065222D365F00750CB3 /* CTSubscriptionProductTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTSubscriptionProductTests.swift; sourceTree = "<group>"; };
-		C06D7069222D641700750CB3 /* CTSubscriptionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTSubscriptionsTest.swift; sourceTree = "<group>"; };
 		C07FEDB721899BDC005577C1 /* oauth-success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "oauth-success.json"; sourceTree = "<group>"; };
 		C08B174A2190831F00A662E2 /* bike-registration-failed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-registration-failed.json"; sourceTree = "<group>"; };
 		C098CA1F219C60A3004174D5 /* bike-list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-list.json"; sourceTree = "<group>"; };
-		C0BBDCAD229C209E00F0FF1B /* CTShareBikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTShareBikeService.swift; sourceTree = "<group>"; };
 		C0DFD37921919EF000AB4194 /* bike-registration-successful.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-registration-successful.json"; sourceTree = "<group>"; };
-		C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUserServiceTests.swift; sourceTree = "<group>"; };
 		C0EC37F52180792300E7EAC4 /* createValidationError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = createValidationError.json; sourceTree = "<group>"; };
 		C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalidEmailAndPassword.json; sourceTree = "<group>"; };
 		C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTErrorHandlerTests.swift; sourceTree = "<group>"; };
-		C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTRecoveryServiceTests.swift; sourceTree = "<group>"; };
-		C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeServiceTests.swift; sourceTree = "<group>"; };
 		C0F40CD9218B3C3900F92CC9 /* bike-information.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-information.json"; sourceTree = "<group>"; };
-		C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTUserModelTests.swift; sourceTree = "<group>"; };
+		C0FBCDA022B4CF5200E368C3 /* CTBikeTypeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeTypeServiceTests.swift; sourceTree = "<group>"; };
 		C2BF23091F48FF9B1F1DFA35 /* Pods_ctkit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D914C19C4EDC1A92BB2B33D8 /* Pods-ctkit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		DDB82B8312400CF126607E3E /* Pods_ctkit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -462,21 +426,7 @@
 		C0F40CDB218C4F3400F92CC9 /* CTServices */ = {
 			isa = PBXGroup;
 			children = (
-				C0E873662158DF5E001BAFFB /* CTUserServiceTests.swift */,
-				C0F40CD2218AEF5500F92CC9 /* CTRecoveryServiceTests.swift */,
-				C0F40CD6218B2BD000F92CC9 /* CTBikeServiceTests.swift */,
-				852B85DA21943F9B00A373F1 /* CTGeofenceServiceTests.swift */,
-				853B34B52197042000FA50FB /* CTRideServiceTests.swift */,
-				C04F41B12199C502004FF81A /* CTBikeLocationServiceTests.swift */,
-				85B5EAB8219D953A007ACF55 /* CTTheftCaseServiceTests.swift */,
-				85B2DE3E21A2E5D0004F524A /* CTStatisticsServiceTests.swift */,
-				C01C070B21AFDE46001DA570 /* CTUploadServiceTests.swift */,
-				C001439E21E393B800636C6E /* CTTheftCasePartnerServiceTests.swift */,
-				C06D7063222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift */,
-				C06D7065222D365F00750CB3 /* CTSubscriptionProductTests.swift */,
-				C06D7069222D641700750CB3 /* CTSubscriptionsTest.swift */,
-				C0206D3922996E2F000C34A1 /* CTLinkedUserServiceTests.swift */,
-				C0BBDCAD229C209E00F0FF1B /* CTShareBikeService.swift */,
+				C0FBCDA022B4CF5200E368C3 /* CTBikeTypeServiceTests.swift */,
 			);
 			path = CTServices;
 			sourceTree = "<group>";
@@ -484,10 +434,6 @@
 		C0F40CDC218C4F5800F92CC9 /* CTModels */ = {
 			isa = PBXGroup;
 			children = (
-				C0F40CDD218C518000F92CC9 /* CTUserModelTests.swift */,
-				85B2BDCD21BBCDA3009036E7 /* CTRideModelTests.swift */,
-				85F58D8921BC1A3100F723DD /* CTBikeModelTests.swift */,
-				850D66CD21BE6641002FED0D /* CTTheftCaseModelTests.swift */,
 			);
 			path = CTModels;
 			sourceTree = "<group>";
@@ -761,27 +707,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85B5EAB9219D953A007ACF55 /* CTTheftCaseServiceTests.swift in Sources */,
-				85F58D8A21BC1A3100F723DD /* CTBikeModelTests.swift in Sources */,
-				850D66CE21BE6641002FED0D /* CTTheftCaseModelTests.swift in Sources */,
-				C01C070C21AFDE46001DA570 /* CTUploadServiceTests.swift in Sources */,
-				C04F41B22199C502004FF81A /* CTBikeLocationServiceTests.swift in Sources */,
-				C0E873682158DF5E001BAFFB /* CTUserServiceTests.swift in Sources */,
-				C0F40CD7218B2BD000F92CC9 /* CTBikeServiceTests.swift in Sources */,
-				853B34B62197042000FA50FB /* CTRideServiceTests.swift in Sources */,
-				C06D7064222D2D0400750CB3 /* CTBikeNotificationSettingsTests.swift in Sources */,
-				85B2DE3F21A2E5D0004F524A /* CTStatisticsServiceTests.swift in Sources */,
-				C0F40CD3218AEF5500F92CC9 /* CTRecoveryServiceTests.swift in Sources */,
-				C0B357F5222D66E100A7BCCB /* CTSubscriptionsTest.swift in Sources */,
-				85B2BDCE21BBCDA3009036E7 /* CTRideModelTests.swift in Sources */,
-				C0F40CDF218C542C00F92CC9 /* CTUserModelTests.swift in Sources */,
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
-				C00143A021E393B800636C6E /* CTTheftCasePartnerServiceTests.swift in Sources */,
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
-				C0BBDCAE229C209E00F0FF1B /* CTShareBikeService.swift in Sources */,
-				852B85DB21943F9B00A373F1 /* CTGeofenceServiceTests.swift in Sources */,
-				C0206D3B22996E72000C34A1 /* CTLinkedUserServiceTests.swift in Sources */,
-				C06D7066222D365F00750CB3 /* CTSubscriptionProductTests.swift in Sources */,
+				C0FBCDA122B4CF5200E368C3 /* CTBikeTypeServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

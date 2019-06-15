@@ -332,6 +332,9 @@
 		BF7657A01FE65150D85F18DBDC7128F0 /* ObserveOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0604EA61F86E9CCA58235C14C7607842 /* ObserveOn.swift */; };
 		BF9235130FD15BA4CAB3E828ADFACD97 /* ElementsEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12E23AB0A1632D00463D5A2469ECF2 /* ElementsEqual.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		C068C5C935E4B412988C97F2F2C0F6D0 /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2063A2E06B0E7E732B0943297A0148A /* KeychainSwift.swift */; };
+		C082771422B4CFCF005D41F8 /* CTBikeTypeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082771322B4CFCF005D41F8 /* CTBikeTypeService.swift */; };
+		C082771622B4D845005D41F8 /* String+CTKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082771522B4D845005D41F8 /* String+CTKit.swift */; };
+		C082771922B4DD32005D41F8 /* CTBikeFeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082771822B4DD32005D41F8 /* CTBikeFeatureModel.swift */; };
 		C25B89C9110213E0CC34D761FA3EC6FB /* ShareReplayScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9998486FC1812B2AA657196726F850F /* ShareReplayScope.swift */; };
 		C2F8081F68E9437F8CCB18D99B3C0E9A /* CTProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E8EFF5C4B6815011ABD61A087841B /* CTProductModel.swift */; };
 		C33A88161C72662CA9F0F9A115199200 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6C6CF3DB131A90CE38002F5683F001 /* Timer.swift */; };
@@ -904,6 +907,9 @@
 		BF6C6CF3DB131A90CE38002F5683F001 /* Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = RxSwift/Observables/Timer.swift; sourceTree = "<group>"; };
 		BFEF081F50300B721FA35AD33F84C93E /* SynchronizedUnsubscribeType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedUnsubscribeType.swift; path = RxSwift/Concurrency/SynchronizedUnsubscribeType.swift; sourceTree = "<group>"; };
 		C054B97947D2A1F41EA9F2579272CC25 /* Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Sources/Nimble/Utils/Errors.swift; sourceTree = "<group>"; };
+		C082771322B4CFCF005D41F8 /* CTBikeTypeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeTypeService.swift; sourceTree = "<group>"; };
+		C082771522B4D845005D41F8 /* String+CTKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CTKit.swift"; sourceTree = "<group>"; };
+		C082771822B4DD32005D41F8 /* CTBikeFeatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeFeatureModel.swift; sourceTree = "<group>"; };
 		C0ABA1BA0915AC288579F68AAEAC5ACE /* Example.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Example.swift; path = Sources/Quick/Example.swift; sourceTree = "<group>"; };
 		C12A7E7D6A9D8637BBDF385D316CE74A /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		C173C704D26105877625E5401D11A699 /* URITemplate-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "URITemplate-prefix.pch"; sourceTree = "<group>"; };
@@ -1140,6 +1146,7 @@
 				3021AFCC82252F157B2543751E537664 /* CTUploadService.swift */,
 				396D1522896562A5CBA5A3494AA65116 /* CTUserRecoveryService.swift */,
 				F052974DAF97BA0018716363F60EB8D3 /* CTUserService.swift */,
+				C082771322B4CFCF005D41F8 /* CTBikeTypeService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1276,6 +1283,7 @@
 				6A98F3F5F2FEC858110D598758EFBB12 /* Encodable+CTKit.swift */,
 				8AFD8D5351488F4FA53A3E968AB5AA15 /* UIDevice+CTKit.swift */,
 				632983058D0900D70C3BE780B399EBCF /* UIImage+CTKit.swift */,
+				C082771522B4D845005D41F8 /* String+CTKit.swift */,
 			);
 			name = Extensions;
 			path = Source/Extensions;
@@ -1911,6 +1919,7 @@
 				34646522E826130056E74A1018C83E1F /* CTUploadedFile.swift */,
 				305C1DCEBD285EF6CAEC775494314128 /* CTUserModel.swift */,
 				A8A9F11B82FD56B7721E6E1D983841B2 /* CTUserRecoveryResultModel.swift */,
+				C082771822B4DD32005D41F8 /* CTBikeFeatureModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2653,6 +2662,7 @@
 				A0B98322D19256E3891A187349D08B8B /* CTAPIConfig.swift in Sources */,
 				BDC0B1BE5077E0AE5B5C2FB9151AC5F4 /* CTApiValidationMessage.swift in Sources */,
 				80EF1C798D7A78316445623B1CF0F18F /* CTAuthManager.swift in Sources */,
+				C082771922B4DD32005D41F8 /* CTBikeFeatureModel.swift in Sources */,
 				FBE2C128E09094C16466BE74DA576A59 /* CTBaseModel.swift in Sources */,
 				8A837096F072F686164065471E745E79 /* CTBasicError.swift in Sources */,
 				22423D4F0A51C842F1C99558E11F02AF /* CTBasicUserModel.swift in Sources */,
@@ -2694,8 +2704,10 @@
 				1208291A00B390DDC6CF523053E3B331 /* CTRideService.swift in Sources */,
 				9C4573B4C4A30F0DBD969A1AD03AEF7E /* CTShareBikeService.swift in Sources */,
 				045D3106E5957AC29C7B09559A62CF09 /* CTStatisticsModel.swift in Sources */,
+				C082771622B4D845005D41F8 /* String+CTKit.swift in Sources */,
 				0C38BF41F984C83DFB04D92700FD7039 /* CTStatisticsService.swift in Sources */,
 				5CC10648A707267CB2D6474584BC7E3C /* CTSubscriptionModel.swift in Sources */,
+				C082771422B4CFCF005D41F8 /* CTBikeTypeService.swift in Sources */,
 				D7C79B87EC154508CD5D1DBDDA02462D /* CTSubscriptionProductModel.swift in Sources */,
 				7D7427A5BAEFEC242E4F95F36B6A5908 /* CTSubscriptionProductService.swift in Sources */,
 				22C21886757A5C418AB83D94F7B742B6 /* CTSubscriptionService.swift in Sources */,

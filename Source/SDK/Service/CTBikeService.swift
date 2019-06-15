@@ -215,4 +215,14 @@ public class CTBikeService: NSObject {
     public func fetchNotificationSettings(withBikeId identifier: Int) -> Observable<CTBikeNotificationSettingsModel> {
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)")
     }
+
+    /**
+     Fetch the features for a bike with the articleNumber on the bike object.
+
+     - Parameter articleNumber: The articlenumber of the bike you want the features of
+     - Returns: Features of the bike
+     */
+    public func fetchFeatures(withArticleNumber articleNumber: String) -> Observable<CTBikeFeatureModel> {
+        return CTBikeTypeService().fetchBikeType(withArticleNumber: articleNumber).map { $0.features }
+    }
 }
