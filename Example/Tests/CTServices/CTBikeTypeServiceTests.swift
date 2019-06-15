@@ -69,4 +69,34 @@ class CTBikeTypeServiceTests: XCTestCase {
         let subjectUnderTest = CTBikeTypeService()
         XCTAssertEqual(try subjectUnderTest.fetchBikeType(withArticleNumber: "9999999").toBlocking().first()?.type, "ctkitBikeType")
     }
+
+    func test_fetchBikeType_fromBikeArticleNumber() {
+        let subjectUnderTest = CTBikeService()
+        let intermediateSubject = CTBikeTypeService()
+
+        let stubbedBike: [String: Any] = [
+            "id":1,
+            "imei": "124",
+            "frame_number": "test",
+            "name": "Test bike",
+            "is_requesting_user_owner": true,
+            "article_number": "9999999"
+        ]
+
+        self.stub(http(.get, uri: "/bike/1"), json(stubbedBike, status: 200))
+
+        let bikeResult = try! subjectUnderTest.fetch(withId: 1).toBlocking().first()!
+
+        let bikeTypeResult = try! intermediateSubject.fetchBikeType(withArticleNumber: bikeResult.articleNumber!).toBlocking().first()!
+
+        XCTAssertEqual(bikeTypeResult.type, "ctkitBikeType")
+
+        XCTAssertEqual(bikeTypeResult.features.bluetooth, true)
+        XCTAssertEqual(bikeTypeResult.features.physicalLock, true)
+        XCTAssertEqual(bikeTypeResult.features.digitalLock, true)
+        XCTAssertEqual(bikeTypeResult.features.powerToggle, true)
+        XCTAssertEqual(bikeTypeResult.features.lightToggle, false)
+        XCTAssertEqual(bikeTypeResult.features.chargeIndication, true)
+        XCTAssertEqual(bikeTypeResult.features.lastFullChargeDate, false)
+    }
 }
