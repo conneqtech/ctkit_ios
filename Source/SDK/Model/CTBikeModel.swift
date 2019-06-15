@@ -29,8 +29,9 @@ public struct CTBikeModel: CTBaseModel {
     public let bluetoothName: String?
 
     public let inviteUri: String?
+    public let articleNumber: String?
 
-    public init(withId id: Int, imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
+    public init(withId id: Int, imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true, articleNumber: String? = nil) {
         self.id = id
         self.imei = imei
         self.frameIdentifier = identifier
@@ -39,7 +40,7 @@ public struct CTBikeModel: CTBaseModel {
         self.bluetoothPassword = ""
         self.bluetoothName = ""
         self.inviteUri = ""
-
+        self.articleNumber = articleNumber
     }
 
     public init(withImei imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
@@ -51,6 +52,7 @@ public struct CTBikeModel: CTBaseModel {
         self.bluetoothPassword = ""
         self.bluetoothName = ""
         self.inviteUri = ""
+        self.articleNumber = ""
     }
 
     enum CodingKeys: String, CodingKey {
@@ -74,6 +76,7 @@ public struct CTBikeModel: CTBaseModel {
         case bluetoothName = "blename"
 
         case inviteUri = "invite_code_uri"
+        case articleNumber = "article_number"
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -86,5 +89,6 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(frameIdentifier, forKey: .frameIdentifier)
         try container.encode(isStolen, forKey: .isStolen)
         try container.encode(linkedUsers, forKey: .linkedUsers)
+        try container.encode(articleNumber, forKey: .articleNumber)
     }
 }
