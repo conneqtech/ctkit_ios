@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-private struct ArticleNumberBikeTypeModel: CTBaseModel {
+private struct CTArticleNumberBikeTypeModel: CTBaseModel {
     var bikeTypeId: Int
 
     enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public class CTBikeTypeService: NSObject {
     public func getBikeType(withArticleNumber articleNumber: String) -> Observable<CTBikeTypeModel> {
         return CTKit.shared.restManager.get(
                 endpoint: "bike-type/article-number/\(articleNumber.toBase64())"
-            ).flatMap { (model:ArticleNumberBikeTypeModel) in
+            ).flatMap { (model:CTArticleNumberBikeTypeModel) in
             return self.getBikeType(withId: model.bikeTypeId)
         }
     }

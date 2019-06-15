@@ -66,6 +66,8 @@ class CTBikeTypeServiceTests: XCTestCase {
 
     func test_fetchBikeType_withArticleNumber() {
         let subjectUnderTest = CTBikeTypeService()
+
+        self.stub(http(.get, uri: "/bike-type/article-number/OTk5OTk5OQ=="), json(["bike_type_id":1], status: 200))
         XCTAssertEqual(try subjectUnderTest.getBikeType(withArticleNumber: "9999999").toBlocking().first()?.type, "ctkitBikeType")
     }
 }
