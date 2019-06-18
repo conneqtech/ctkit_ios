@@ -49,6 +49,7 @@
 		C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */; };
 		C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */; };
 		C0F40CDA218B3C3900F92CC9 /* bike-information.json in Resources */ = {isa = PBXBuildFile; fileRef = C0F40CD9218B3C3900F92CC9 /* bike-information.json */; };
+		C0F4A71C22B912D40077397B /* connectivity_subscription.json in Resources */ = {isa = PBXBuildFile; fileRef = C0F4A71B22B912D40077397B /* connectivity_subscription.json */; };
 		C0FBCDA122B4CF5200E368C3 /* CTBikeTypeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FBCDA022B4CF5200E368C3 /* CTBikeTypeServiceTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalidEmailAndPassword.json; sourceTree = "<group>"; };
 		C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTErrorHandlerTests.swift; sourceTree = "<group>"; };
 		C0F40CD9218B3C3900F92CC9 /* bike-information.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-information.json"; sourceTree = "<group>"; };
+		C0F4A71B22B912D40077397B /* connectivity_subscription.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = connectivity_subscription.json; sourceTree = "<group>"; };
 		C0FBCDA022B4CF5200E368C3 /* CTBikeTypeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeTypeServiceTests.swift; sourceTree = "<group>"; };
 		C2BF23091F48FF9B1F1DFA35 /* Pods_ctkit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D914C19C4EDC1A92BB2B33D8 /* Pods-ctkit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 		85B5EAC4219DB9F2007ACF55 /* subscription */ = {
 			isa = PBXGroup;
 			children = (
+				C0F4A71B22B912D40077397B /* connectivity_subscription.json */,
 			);
 			path = subscription;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C01C070F21AFE05E001DA570 /* uploadImages.xcassets in Resources */,
+				C0F4A71C22B912D40077397B /* connectivity_subscription.json in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,

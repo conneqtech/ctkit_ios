@@ -15,6 +15,7 @@ public struct CTSubscriptionModel: CTBaseModel {
     public let startDate: Date
     public let endDate: Date?
     public let productId: Int
+    public let product: CTProductModel
     public let type: CTSubscriptionProductType
     public let insurance: CTInsuranceModel?
     public let insuranceType: CTInsuranceType?
@@ -33,7 +34,7 @@ public struct CTSubscriptionModel: CTBaseModel {
         case insuranceType = "insurance_id"
     }
 
-    public init(withUserId userId: Int, bikeId: Int, productId: Int, type: CTSubscriptionProductType) {
+    public init(withUserId userId: Int, bikeId: Int, productId: Int, type: CTSubscriptionProductType, product: CTProductModel) {
         self.id = -1
         self.userId = userId
         self.bikeId = bikeId
@@ -44,6 +45,7 @@ public struct CTSubscriptionModel: CTBaseModel {
         self.type = type
         self.insuranceType = nil
         self.insurance = nil
+        self.product = product
     }
 
     public init(from decoder: Decoder) throws {
@@ -58,9 +60,10 @@ public struct CTSubscriptionModel: CTBaseModel {
         productId = try container.decode(Int.self, forKey: .productId)
         insurance = try? container.decode(CTInsuranceModel.self, forKey: .insurance)
 
-        let product  = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .product)
-        type = try product.decode(CTSubscriptionProductType.self, forKey: .type)
-        insuranceType = try? product.decode(CTInsuranceType.self, forKey: .insuranceType)
+        let productContainer  = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .product)
+        product = try container.decode(CTProductModel.self, forKey: .product)
+        type = try productContainer.decode(CTSubscriptionProductType.self, forKey: .type)
+        insuranceType = try? productContainer.decode(CTInsuranceType.self, forKey: .insuranceType)
     }
 
     public func encode(to encoder: Encoder) throws {

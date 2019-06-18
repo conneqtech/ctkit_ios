@@ -86,7 +86,6 @@ class CTBikeTypeServiceTests: XCTestCase {
         self.stub(http(.get, uri: "/bike/1"), json(stubbedBike, status: 200))
 
         let bikeResult = try! subjectUnderTest.fetch(withId: 1).toBlocking().first()!
-
         let bikeTypeResult = try! intermediateSubject.fetchBikeType(withArticleNumber: bikeResult.articleNumber!).toBlocking().first()!
 
         XCTAssertEqual(bikeTypeResult.type, "ctkitBikeType")
