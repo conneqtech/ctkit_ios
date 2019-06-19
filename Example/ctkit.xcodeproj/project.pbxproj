@@ -48,6 +48,7 @@
 		C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37F52180792300E7EAC4 /* createValidationError.json */; };
 		C0EC37FB2180AF0700E7EAC4 /* invalidEmailAndPassword.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */; };
 		C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */; };
+		C0F1996122BA1B7700BE0FFD /* CTBikeStateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1996022BA1B7700BE0FFD /* CTBikeStateServiceTests.swift */; };
 		C0F40CDA218B3C3900F92CC9 /* bike-information.json in Resources */ = {isa = PBXBuildFile; fileRef = C0F40CD9218B3C3900F92CC9 /* bike-information.json */; };
 		C0F4A71C22B912D40077397B /* connectivity_subscription.json in Resources */ = {isa = PBXBuildFile; fileRef = C0F4A71B22B912D40077397B /* connectivity_subscription.json */; };
 		C0FBCDA122B4CF5200E368C3 /* CTBikeTypeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FBCDA022B4CF5200E368C3 /* CTBikeTypeServiceTests.swift */; };
@@ -112,6 +113,7 @@
 		C0EC37F52180792300E7EAC4 /* createValidationError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = createValidationError.json; sourceTree = "<group>"; };
 		C0EC37FA2180AF0700E7EAC4 /* invalidEmailAndPassword.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalidEmailAndPassword.json; sourceTree = "<group>"; };
 		C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTErrorHandlerTests.swift; sourceTree = "<group>"; };
+		C0F1996022BA1B7700BE0FFD /* CTBikeStateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeStateServiceTests.swift; sourceTree = "<group>"; };
 		C0F40CD9218B3C3900F92CC9 /* bike-information.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-information.json"; sourceTree = "<group>"; };
 		C0F4A71B22B912D40077397B /* connectivity_subscription.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = connectivity_subscription.json; sourceTree = "<group>"; };
 		C0FBCDA022B4CF5200E368C3 /* CTBikeTypeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBikeTypeServiceTests.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				C0FBCDA022B4CF5200E368C3 /* CTBikeTypeServiceTests.swift */,
+				C0F1996022BA1B7700BE0FFD /* CTBikeStateServiceTests.swift */,
 			);
 			path = CTServices;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 				C0FBCDA122B4CF5200E368C3 /* CTBikeTypeServiceTests.swift in Sources */,
+				C0F1996122BA1B7700BE0FFD /* CTBikeStateServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
