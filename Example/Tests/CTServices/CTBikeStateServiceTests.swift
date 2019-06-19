@@ -25,7 +25,7 @@ class CTBikeStateServiceTests: XCTestCase {
             "last_full_charge":nil
         ]
 
-        self.stub(http(.get, uri: "/bike/1/state"), json(stubResponse, status: 200))
+        self.stub(http(.get, uri: "/bike/1/state"), json([stubResponse], status: 200))
         let result = try! CTBikeStateService().fetchState(withBikeId: 1).toBlocking().first()!
 
         XCTAssertNil(result.isPoweredOn)
@@ -47,7 +47,7 @@ class CTBikeStateServiceTests: XCTestCase {
             "last_full_charge": Date().toAPIDate()
         ]
 
-        self.stub(http(.get, uri: "/bike/1/state"), json(stubResponse, status: 200))
+        self.stub(http(.get, uri: "/bike/1/state"), json([stubResponse], status: 200))
         let result = try! CTBikeStateService().fetchState(withBikeId: 1).toBlocking().first()!
 
         XCTAssertTrue(result.isPoweredOn!)
