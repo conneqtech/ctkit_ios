@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'Alamofire', '~> 4.7'
   s.dependency 'RxSwift', '~> 4.0'
+  s.dependency 'SwiftDate', '~> 6.0.3'
 
   s.name = 'ctkit'
 end
