@@ -24,7 +24,7 @@ public class CTBikeStateService: NSObject {
     }
 
     public func setPowerState(withBikeId identifier: Int, newPowerState powerState: Bool) -> Observable<[String:Bool]> {
-        return CTKit.shared.restManager.post(endpoint: "bike/\(identiifer)/state", parameters: [
+        return CTKit.shared.restManager.post(endpoint: "bike/\(identifier)/state", parameters: [
             "powered_on": powerState
         ])
     }
