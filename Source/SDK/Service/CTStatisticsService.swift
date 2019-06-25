@@ -125,36 +125,36 @@ public class CTStatisticsService: NSObject {
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/stats", parameters: parameters)
     }
 
-    public func fetchWeek(withBikeId identifier: Int, andDayInWeek statsDay: Date) -> Observable<[CTStatisticsModel]> {
+//    public func fetchWeek(withBikeId identifier: Int, andDayInWeek statsDay: Date) -> Observable<[CTStatisticsModel]> {
+//
+//        return fetchAll(withBikeId: identifier, type: "daily", from: statsDay.dateAtStartOf(.weekOfYear), till: statsDay.dateAtEndOf(.weekOfYear))
+//    }
+//
+//    public func fetchDay(withBikeId identifier: Int, andDay statsDay: Date) -> Observable<[CTStatisticsModel]> {
+//        return fetchAll(withBikeId: identifier, type: .hourly, from: statsDay.startOfDay(), till: statsDay.endOfDay())
+//    }
 
-        return fetchAll(withBikeId: identifier, type: "daily", from: statsDay.dateAtStartOf(.weekOfYear), till: statsDay.dateAtEndOf(.weekOfYear))
-    }
-
-    public func fetchDay(withBikeId identifier: Int, andDay statsDay: Date) -> Observable<[CTStatisticsModel]> {
-        return fetchAll(withBikeId: identifier, type: .hourly, from: statsDay.startOfDay(), till: statsDay.endOfDay())
-    }
-
-    public func determinAverageAndTop(forStatistics stats: [CTStatisticsModel]) -> CTCalculatedStatisticsModel {
-        var caloriesTotal: Int = 0
-        var co2Total: Int = 0
-        var speedTotal:Int = 0
-        var distanceTotal:Int = 0
-
-        stats.forEach {
-            caloriesTotal += $0.calories
-            co2Total += $0.co2
-            speedTotal += $0.averageSpeed
-            distanceTotal += $0.distanceTraveled
-        }
-
-        return CTCalculatedStatisticsModel(caloriesAverage: Int(caloriesTotal / stats.count),
-                                           caloriesTop: 0,
-                                           co2Average: Int(co2Total / stats.count),
-                                           co2Top: 0,
-                                           speedAverage: Int(speedTotal / stats.count),
-                                           speedTop: 0,
-                                           distanceAverage: Int(distanceTotal / stats.count),
-                                           distanceTop: 0
-        )
-    }
+//    public func determinAverageAndTop(forStatistics stats: [CTStatisticsModel]) -> CTCalculatedStatisticsModel {
+//        var caloriesTotal: Int = 0
+//        var co2Total: Int = 0
+//        var speedTotal:Int = 0
+//        var distanceTotal:Int = 0
+//
+//        stats.forEach {
+//            caloriesTotal += $0.calories
+//            co2Total += $0.co2
+//            speedTotal += $0.averageSpeed
+//            distanceTotal += $0.distanceTraveled
+//        }
+//
+//        return CTCalculatedStatisticsModel(caloriesAverage: Int(caloriesTotal / stats.count),
+//                                           caloriesTop: 0,
+//                                           co2Average: Int(co2Total / stats.count),
+//                                           co2Top: 0,
+//                                           speedAverage: Int(speedTotal / stats.count),
+//                                           speedTop: 0,
+//                                           distanceAverage: Int(distanceTotal / stats.count),
+//                                           distanceTop: 0
+//        )
+//    }
 }
