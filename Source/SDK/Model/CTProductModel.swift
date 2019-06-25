@@ -19,7 +19,7 @@ public struct CTProductModel: CTBaseModel {
     public let type: Int
     public let providerId: Int
     public let insuranceType: CTInsuranceType?
-    private let childProduct: Int
+    private let childProduct: Int?
 
     enum CodingKeys: String, CodingKey {
         case id

@@ -20,8 +20,12 @@ public class CTBikeStateService: NSObject {
      - Returns: CTBikeStateModel
      */
     public func fetchState(withBikeId identifier: Int) -> Observable<CTBikeStateModel> {
-        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/state")
+        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/state").map { (states:[CTBikeStateModel]) in states[0] }
     }
 
-
+    public func setPowerState(withBikeId identifier: Int, newPowerState powerState: Bool) -> Observable<[String:Bool]> {
+        return CTKit.shared.restManager.post(endpoint: "bike/\(identifier)/state", parameters: [
+            "powered_on": powerState
+        ])
+    }
 }

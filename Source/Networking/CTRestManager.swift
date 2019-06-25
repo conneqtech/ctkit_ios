@@ -150,6 +150,11 @@ public class CTRestManager {
                     if CTKit.shared.debugMode {
                         print("=========================================")
                         print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
+                        if let parameters = parameters {
+                            print("📄 Parameters:")
+                            print(parameters)
+                        }
+
                         if let rData = response.data {
                             print("♻️ Response with \(rData.count) bytes")
 
