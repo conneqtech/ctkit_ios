@@ -32,12 +32,6 @@ public struct CTCalculatedStatisticsModel {
  The CTStatisticService is the main entry point for some basic statistics about the bike. This service will be expanded once their is more (fine grained) information to share
  */
 public class CTStatisticsService: NSObject {
-
-    public override init() {
-        super.init()
-        SwiftDate.defaultRegion = Region(calendar: Calendar(identifier: .iso8601) , zone: NSTimeZone.system, locale: Locale.current)
-    }
-
     /**
      Fetch the last 7 days of statistics for a bike
      
