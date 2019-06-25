@@ -7,7 +7,6 @@
 
 import Foundation
 import RxSwift
-import SwiftDate
 
 public enum CTStatisticsInterval: String {
     case hourly
