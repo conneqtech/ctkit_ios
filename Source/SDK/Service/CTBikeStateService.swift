@@ -28,4 +28,10 @@ public class CTBikeStateService: NSObject {
             "powered_on": powerState
         ])
     }
+
+    public func setDigitalLockState(withBikeId identifier: Int, newDigitalLockstate lockState: Bool) -> Observable<[String:Bool]> {
+        return CTKit.shared.restManager.post(endpoint: "bike/\(identifier)/state", parameters: [
+            "ecu_locked": lockState
+            ])
+    }
 }
