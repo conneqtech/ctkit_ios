@@ -170,6 +170,16 @@ public class CTRestManager {
                             } catch let parsingError {
                                 print("Error", parsingError)
                             }
+
+                            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+                            do {
+                                let model = try decoder.decode(T.self, from: rData)
+                                print("✅ Parsing success")
+                            } catch let modelParsingError {
+                                print("🚒 Parsing failed")
+                                print(modelParsingError)
+                            }
+                            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
                         }
                         print("=========================================")
                     }
