@@ -29,15 +29,11 @@ class CTBikeTypeServiceTests: XCTestCase {
         )
 
         stubbedBikeType = CTBikeTypeModel(id: 1,
-                                          type: "ctkitBikeType",
                                           name: "CK300",
                                           registrationFlow: .imei,
-                                          catalogPrice: 1800,
                                           secondFactorTranslationKey: "sticker.under.battery",
                                           secondFactorLocationImage: "https://example.com",
-                                          defaultSecondFactorLocationImage: "https://example.com",
                                           images: [],
-                                          voucherTypeId: 45,
                                           features: features
         )
 
@@ -54,8 +50,6 @@ class CTBikeTypeServiceTests: XCTestCase {
         let subjectUnderTest = CTBikeTypeService()
         let result = try! subjectUnderTest.fetchBikeType(withId: 1).toBlocking().first()!
 
-        XCTAssertEqual(result.type, "ctkitBikeType")
-
         XCTAssertEqual(result.features.bluetooth, true)
         XCTAssertEqual(result.features.physicalLock, true)
         XCTAssertEqual(result.features.digitalLock, true)
@@ -67,7 +61,7 @@ class CTBikeTypeServiceTests: XCTestCase {
 
     func test_fetchBikeType_withArticleNumber() {
         let subjectUnderTest = CTBikeTypeService()
-        XCTAssertEqual(try subjectUnderTest.fetchBikeType(withArticleNumber: "9999999").toBlocking().first()?.type, "ctkitBikeType")
+        XCTAssertEqual(try subjectUnderTest.fetchBikeType(withArticleNumber: "9999999").toBlocking().first()?.name, "CK300")
     }
 
     func test_fetchBikeType_fromBikeArticleNumber() {
@@ -87,8 +81,6 @@ class CTBikeTypeServiceTests: XCTestCase {
 
         let bikeResult = try! subjectUnderTest.fetch(withId: 1).toBlocking().first()!
         let bikeTypeResult = try! intermediateSubject.fetchBikeType(withArticleNumber: bikeResult.articleNumber!).toBlocking().first()!
-
-        XCTAssertEqual(bikeTypeResult.type, "ctkitBikeType")
 
         XCTAssertEqual(bikeTypeResult.features.bluetooth, true)
         XCTAssertEqual(bikeTypeResult.features.physicalLock, true)
