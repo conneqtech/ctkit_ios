@@ -9,9 +9,9 @@ import Foundation
 import RxSwift
 
 public enum CTStatisticsInterval: String {
-    case hourly
-    case daily
-    case monthly
+    case hourly = "hourly"
+    case daily = "daily"
+    case monthly = "monthly"
 }
 
 public struct CTCalculatedStatisticsModel {

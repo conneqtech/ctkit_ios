@@ -19,7 +19,7 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
     public let activationCode: String
 
     /// The article description of a bike. Similar to the model name, could supply more detailed information about a bike, like its color and minor specifications. though is encourage to be kept short. e.g: bike model name matte grey autom. light
-    public let manufacturerDescription: String
+    public let manufacturerDescription: String?
 
     /// The SKU of the bike. When one of the Conneqtech Services must identify the bike type for e.g turning functionality on/off, this parameter will most likely be used
     public let manufacturerSKU: String?
