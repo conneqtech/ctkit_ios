@@ -65,7 +65,7 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
 
         frameNumber = try params.decode(String.self, forKey: .frameNumber)
         activationCode = try params.decode(String.self, forKey: .activationCode)
-        manufacturerDescription = try params.decode(String.self, forKey: .manufacturerDescription)
+        manufacturerDescription = try? params.decode(String.self, forKey: .manufacturerDescription)
         manufacturerSKU = try? params.decode(String.self, forKey: .manufacturerSKU)
         manufacturerModelName = try? params.decode(String.self, forKey: .manufacturerModelName)
         manufacturerProductionDate = try? params.decode(String.self, forKey: .manufacturerProductionDate)
