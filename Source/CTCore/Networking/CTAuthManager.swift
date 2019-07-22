@@ -31,7 +31,8 @@ public class CTAuthManager {
                 .responseJSON { (response) in
                     switch response.result {
                     case .success:
-                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
+                        guard let data = response.data,
+                            let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
                             observer.onError(NSError(domain: "tbi", code: 500, userInfo: nil))
                             return
                         }

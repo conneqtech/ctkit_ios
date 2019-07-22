@@ -49,6 +49,7 @@ identifier_name:
     - nl
     - key
     - co2
+    - jwt
     - ACTIVE_USER_ID_KEY
     - ACCESS_TOKEN_KEY
     - REFRESH_TOKEN_KEY
