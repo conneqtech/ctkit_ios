@@ -14,12 +14,16 @@ Pod::Spec.new do |spec|
 
   spec.ios.deployment_target = '10.0'
 
-  spec.source_files = 'Source/{Core}/**/*.swift'
+  spec.source_files = 'Source/{CTKit}/**/*.swift'
 
   spec.dependency 'Alamofire', '~> 4.7'
   spec.dependency 'RxSwift', '~> 4.0'
 
   spec.name = 'ctkit'
+
+  spec.subspec 'Core' do |core|
+    core.source_files = 'Source/CTCore/**/*.swift'
+  end
 
   spec.subspec 'Bike' do |bike|
     bike.source_files = 'Source/CTBike/**/*.swift'
