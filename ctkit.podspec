@@ -33,7 +33,7 @@ Pod::Spec.new do |spec|
     billing.source_files = 'Source/CTBilling/**/*.swift'
   end
 
-  spec.subspec 'NotificationCenter' do |notification_center|
-    notification_center.source_files = 'Source/CTNotificationCenter/**/*.swift'
+  spec.subspec 'ActivityCenter' do |activity_center|
+    notification_center.source_files = 'Source/CTActivityCenter/**/*.swift'
   end
 end
