@@ -1,6 +1,6 @@
 {
   "name": "ctkit",
-  "version": "0.18.5",
+  "version": "0.20.0",
   "summary": "SDK to communicate with the connected bike api",
   "swift_versions": "4.2",
   "description": "The iOS implementation of our SDK, it allows developers to do cool things with our API.",
@@ -14,12 +14,12 @@
   },
   "source": {
     "git": "https://bitbucket.org/nfnty_admin/ctkit_ios.git",
-    "tag": "0.18.5"
+    "tag": "0.20.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "10.0"
   },
-  "source_files": "Source/**/*.swift",
+  "source_files": "Source/{Core}/**/*.swift",
   "dependencies": {
     "Alamofire": [
       "~> 4.7"
@@ -28,5 +28,19 @@
       "~> 4.0"
     ]
   },
+  "subspecs": [
+    {
+      "name": "Bike",
+      "source_files": "Source/CTBike/**/*.swift"
+    },
+    {
+      "name": "Billing",
+      "source_files": "Source/CTBilling/**/*.swift"
+    },
+    {
+      "name": "NotificationCenter",
+      "source_files": "Source/CTNotificationCenter/**/*.swift"
+    }
+  ],
   "swift_version": "4.2"
 }

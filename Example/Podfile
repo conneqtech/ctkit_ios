@@ -1,4 +1,6 @@
 use_frameworks!
+platform :ios, '10.0'
+
 
 target 'ctkit_Example' do
   pod 'ctkit', :path => '../'
