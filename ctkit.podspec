@@ -20,6 +20,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'RxSwift', '~> 4.0'
 
   spec.name = 'ctkit'
+  spec.default_subspec = "Core"
 
   spec.subspec 'Core' do |core|
     core.source_files = 'Source/CTCore/**/*.swift'
@@ -34,6 +35,6 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'ActivityCenter' do |activity_center|
-    notification_center.source_files = 'Source/CTActivityCenter/**/*.swift'
+    activity_center.source_files = 'Source/CTActivityCenter/**/*.swift'
   end
 end

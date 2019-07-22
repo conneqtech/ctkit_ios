@@ -19,7 +19,7 @@
   "platforms": {
     "ios": "10.0"
   },
-  "source_files": "Source/{Core}/**/*.swift",
+  "source_files": "Source/{CTKit}/**/*.swift",
   "dependencies": {
     "Alamofire": [
       "~> 4.7"
@@ -30,6 +30,10 @@
   },
   "subspecs": [
     {
+      "name": "Core",
+      "source_files": "Source/CTCore/**/*.swift"
+    },
+    {
       "name": "Bike",
       "source_files": "Source/CTBike/**/*.swift"
     },
@@ -38,8 +42,8 @@
       "source_files": "Source/CTBilling/**/*.swift"
     },
     {
-      "name": "NotificationCenter",
-      "source_files": "Source/CTNotificationCenter/**/*.swift"
+      "name": "ActivityCenter",
+      "source_files": "Source/CTActivityCenter/**/*.swift"
     }
   ],
   "swift_version": "4.2"
