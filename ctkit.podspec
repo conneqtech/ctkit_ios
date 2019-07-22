@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.version          = '0.20.0'
   spec.summary          = 'SDK to communicate with the connected bike api'
-  spec.swift_version    = '4.2'
+  spec.swift_versions   = ['4.0', '4.2', '5.0']
 
   spec.description      = <<-DESC
     The iOS implementation of our SDK, it allows developers to do cool things with our API.
@@ -20,7 +20,6 @@ Pod::Spec.new do |spec|
   spec.dependency 'RxSwift', '~> 4.0'
 
   spec.name = 'ctkit'
-  spec.default_subspec = "Core"
 
   spec.subspec 'Core' do |core|
     core.source_files = 'Source/CTCore/**/*.swift'
