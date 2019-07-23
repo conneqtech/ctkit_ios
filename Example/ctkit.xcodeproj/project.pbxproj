@@ -11,7 +11,6 @@
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
-		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		852B85DD219449FF00A373F1 /* userNotLoggedIn.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85DC219449FE00A373F1 /* userNotLoggedIn.json */; };
 		852B85DF21945FE100A373F1 /* geofenceIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85DE21945FE100A373F1 /* geofenceIdNotFound.json */; };
 		852B85E12194614900A373F1 /* bikeIdNotFound.json in Resources */ = {isa = PBXBuildFile; fileRef = 852B85E02194614900A373F1 /* bikeIdNotFound.json */; };
@@ -38,6 +37,7 @@
 		C00A8A36218735DC003F67CB /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A8A35218735DC003F67CB /* Resolver.swift */; };
 		C01C070E21AFDEE2001DA570 /* uploadImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */; };
 		C01C070F21AFE05E001DA570 /* uploadImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */; };
+		C04390A922E6D4130000DDBB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04390A822E6D4130000DDBB /* Launch Screen.storyboard */; };
 		C069CA60219B08E7003BE8C3 /* bike-history.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA5F219B08E7003BE8C3 /* bike-history.json */; };
 		C069CA63219B17D5003BE8C3 /* bike.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA62219B17D5003BE8C3 /* bike.json */; };
 		C069CA66219B1A1D003BE8C3 /* address-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C069CA65219B1A1D003BE8C3 /* address-list.json */; };
@@ -77,7 +77,6 @@
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* ctkit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ctkit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C30AD57ED38575E9280460D /* Pods-ctkit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Example.debug.xcconfig"; path = "Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		852B85DC219449FE00A373F1 /* userNotLoggedIn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userNotLoggedIn.json; sourceTree = "<group>"; };
@@ -106,6 +105,7 @@
 		C00A8A32218735A9003F67CB /* 400-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "400-error.json"; sourceTree = "<group>"; };
 		C00A8A35218735DC003F67CB /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = uploadImages.xcassets; sourceTree = "<group>"; };
+		C04390A822E6D4130000DDBB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C04C0AAE21746E9B00F9ADE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C069CA5F219B08E7003BE8C3 /* bike-history.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-history.json"; sourceTree = "<group>"; };
 		C069CA62219B17D5003BE8C3 /* bike.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bike.json; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				C04390A822E6D4130000DDBB /* Launch Screen.storyboard */,
 			);
 			name = "Example for ctkit";
 			path = ctkit;
@@ -340,7 +340,6 @@
 				40A29E48D88AE252052555D9 /* Pods-ctkit_Tests.debug.xcconfig */,
 				09A022129160031D4DFE4941 /* Pods-ctkit_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -540,7 +539,7 @@
 				C01C070F21AFE05E001DA570 /* uploadImages.xcassets in Resources */,
 				C0F4A71C22B912D40077397B /* connectivity_subscription.json in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
-				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				C04390A922E6D4130000DDBB /* Launch Screen.storyboard in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -742,14 +741,6 @@
 				607FACDA1AFB9204008FA782 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				607FACDF1AFB9204008FA782 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
