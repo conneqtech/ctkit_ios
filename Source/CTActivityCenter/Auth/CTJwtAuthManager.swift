@@ -8,6 +8,8 @@
 import Foundation
 
 public class CTJwtAuthManager: CTAuthManagerBase {
+
+    var activeToken: String = ""
     public func hasActiveSession() -> Bool {
         return true
     }
@@ -17,7 +19,7 @@ public class CTJwtAuthManager: CTAuthManagerBase {
     }
 
     public func getActiveSessionToken() -> String {
-        return "Fake"
+        return activeToken
     }
 
     public func terminateActiveSession() {
@@ -25,6 +27,6 @@ public class CTJwtAuthManager: CTAuthManagerBase {
     }
 
     public func saveTokenResponse(_ tokenResponse: CTOAuth2TokenResponse) {
-
+        activeToken = tokenResponse.accessToken
     }
 }

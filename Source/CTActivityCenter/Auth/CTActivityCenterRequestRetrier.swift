@@ -7,24 +7,22 @@
 
 import Foundation
 import Alamofire
+import RxSwift
 
 public class CTActivityCenterRequestRetrier: RequestRetrier {
     private typealias RefreshCompletion = (_ succeeded: Bool, _ tokenResponse: CTOAuth2TokenResponse?) -> Void
 
     private let lock = NSLock()
-    private let apiConfig: CTApiConfig
 
     private var isRefreshing = false
     private var requestsToRetry: [RequestRetryCompletion] = []
 
-    init(apiConfig: CTApiConfig) {
-        self.apiConfig = apiConfig
-    }
+    var disposeBag = DisposeBag()
 
     public func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
         lock.lock() ; defer { lock.unlock() }
 
-        if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 {
+        if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 || response.statusCode == 403 {
             requestsToRetry.append(completion)
 
             if !isRefreshing {
@@ -34,6 +32,7 @@ public class CTActivityCenterRequestRetrier: RequestRetrier {
                     strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
 
                     if succeeded, let tokenResponse = tokenResponse {
+                        print("✅ Saving")
                         CTActivityCenter.shared.authManager.saveTokenResponse(tokenResponse)
                     }
 
@@ -50,25 +49,20 @@ public class CTActivityCenterRequestRetrier: RequestRetrier {
         guard !isRefreshing else { return }
 
         isRefreshing = true
-        let urlString = "\(apiConfig.fullUrl)/oauth"
 
-        let params: [String: Any] = [
-            "refresh_token": CTKit.shared.authManager.getRefreshToken(),
-            "client_id": apiConfig.clientId,
-            "client_secret": apiConfig.clientSecret,
-            "grant_type": "refresh_token"
-        ]
+        CTJwtService().getJwtForActivityCenter().subscribe(onNext: { [weak self] jwtToken in
+            guard let strongSelf = self else { return }
 
-        _ = Alamofire.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default)
-            .responseJSON { [weak self] response in
-                guard let strongSelf = self else { return }
-                guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
-                    completion(false, nil)
-                    return
-                }
-
-                completion(true, getResponse)
-                strongSelf.isRefreshing = false
-        }
+            completion(true, CTOAuth2TokenResponse(accessToken: jwtToken,
+                                                   refreshToken: nil,
+                                                   expiresIn: 3600 * 4,
+                                                   scope: nil,
+                                                   tokenType: "jwt")
+            )
+            strongSelf.isRefreshing = false
+        }, onError: { _ in
+            completion(false, nil)
+            self.isRefreshing = false
+        }).disposed(by: disposeBag)
     }
 }

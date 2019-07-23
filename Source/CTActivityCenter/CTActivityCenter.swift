@@ -10,8 +10,8 @@ import Foundation
 public class CTActivityCenter:CTKitBase {
     public static var shared: CTActivityCenter!
 
-    public var restManager: CTRestManager!
-    public var authManager: CTAuthManagerBase!
+    public var restManager: CTRestManager
+    public var authManager: CTAuthManagerBase
 
     public var isConfigured = false
 
@@ -22,7 +22,7 @@ public class CTActivityCenter:CTKitBase {
 
         self.restManager = CTRestManager(withConfig: APIConfig,
                                          requestAdapter: CTActivityCenterRequestAdapter(),
-                                         requestRetrier: CTActivityCenterRequestRetrier(apiConfig: APIConfig))
+                                         requestRetrier: CTActivityCenterRequestRetrier())
         self.authManager = CTJwtAuthManager()
         self.isConfigured = true
     }
