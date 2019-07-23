@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 class CTJwtService {
-    func getJwtForUser() -> Observable<String> {
+    func getJwtForActivityCenter() -> Observable<String> {
         return CTKit.shared.restManager.get(endpoint: "jwt/notificationcenter").map { (dict: [String:String]) in
             return dict["token"]!}
     }
