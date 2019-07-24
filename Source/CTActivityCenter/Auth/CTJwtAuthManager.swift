@@ -27,7 +27,7 @@ public class CTJwtAuthManager: CTAuthManagerBase {
         // Terminate here.
     }
 
-    public func saveTokenResponse(_ tokenResponse: CTCredetialResponse) {
+    public func saveTokenResponse(_ tokenResponse: CTCredentialResponse) {
         activeToken = tokenResponse.accessToken
     }
 }

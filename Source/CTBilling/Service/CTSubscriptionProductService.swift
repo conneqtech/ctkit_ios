@@ -11,7 +11,7 @@ import RxSwift
 public class CTSubscriptionProductService: NSObject {
 
     public func fetchAll() -> Observable<[CTSubscriptionProductModel]> {
-        return CTKit.shared.subscriptionManager.get(endpoint: "product")
+        return CTBilling.shared.restManager.get(endpoint: "product")
     }
 
     public func fetchAll(withProductType productType: CTSubscriptionProductType) -> Observable<[CTSubscriptionProductModel]> {

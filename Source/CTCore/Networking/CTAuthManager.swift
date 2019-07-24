@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import Alamofire
 
-public class CTAuthManager {
+public class CTAuthManager: CTAuthManagerBase {
     private let apiConfig: CTApiConfig
 
     public init(withConfig config: CTApiConfig) {
@@ -32,7 +32,7 @@ public class CTAuthManager {
                     switch response.result {
                     case .success:
                         guard let data = response.data,
-                            let getResponse = try? JSONDecoder().decode(CTCredetialResponse.self, from: data) else {
+                            let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
                             observer.onError(NSError(domain: "tbi", code: 500, userInfo: nil))
                             return
                         }
@@ -90,7 +90,7 @@ public class CTAuthManager {
                 .responseJSON { (response) in
                     switch response.result {
                     case .success:
-                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredetialResponse.self, from: data) else {
+                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
                             observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                             return
                         }
@@ -109,15 +109,11 @@ public class CTAuthManager {
         }
     }
 
-    func getAccesToken() -> String {
-        return retrieveDataFromStore(forKey: CTKit.ACCESS_TOKEN_KEY)
-    }
-
     func getRefreshToken() -> String {
         return retrieveDataFromStore(forKey: CTKit.REFRESH_TOKEN_KEY)
     }
 
-    func saveTokenResponse(_ tokenResponse: CTCredetialResponse) {
+    public func saveTokenResponse(_ tokenResponse: CTCredentialResponse) {
         CTKit.shared.authToken.onNext(tokenResponse)
 
         switch CTKit.shared.credentialSaveLocation {
@@ -138,6 +134,22 @@ public class CTAuthManager {
         default:
             print("NOTH")
         }
+    }
+
+    public func hasActiveSession() -> Bool {
+        return true
+    }
+
+    public func getActiveSessionEndDate() -> Date {
+        return Date()
+    }
+
+    public func getActiveSessionToken() -> String {
+        return retrieveDataFromStore(forKey: CTKit.ACCESS_TOKEN_KEY)
+    }
+
+    public func terminateActiveSession() {
+        // Kill the session
     }
 }
 

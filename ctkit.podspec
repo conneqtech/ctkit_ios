@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.version          = '0.20.0'
   spec.summary          = 'SDK to communicate with the connected bike api'
-  spec.swift_versions   = ['4.0', '4.2', '5.0']
+  spec.swift_version    = '4.2'
 
   spec.description      = <<-DESC
     The iOS implementation of our SDK, it allows developers to do cool things with our API.

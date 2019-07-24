@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol CTAuthManagerBase {
-    func saveTokenResponse(_ tokenResponse: CTCredetialResponse)
+    func saveTokenResponse(_ tokenResponse: CTCredentialResponse)
     
     func hasActiveSession() -> Bool
 

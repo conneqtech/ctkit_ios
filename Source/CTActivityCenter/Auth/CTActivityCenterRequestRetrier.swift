@@ -10,7 +10,7 @@ import Alamofire
 import RxSwift
 
 public class CTActivityCenterRequestRetrier: RequestRetrier {
-    private typealias RefreshCompletion = (_ succeeded: Bool, _ tokenResponse: CTCredetialResponse?) -> Void
+    private typealias RefreshCompletion = (_ succeeded: Bool, _ tokenResponse: CTCredentialResponse?) -> Void
 
     private let lock = NSLock()
 
@@ -52,7 +52,7 @@ public class CTActivityCenterRequestRetrier: RequestRetrier {
         CTJwtService().getJwtForActivityCenter().subscribe(onNext: { [weak self] jwtToken in
             guard let strongSelf = self else { return }
 
-            completion(true, CTCredetialResponse(accessToken: jwtToken,
+            completion(true, CTCredentialResponse(accessToken: jwtToken,
                                                    refreshToken: nil,
                                                    expiresIn: 3600 * 4,
                                                    scope: nil,

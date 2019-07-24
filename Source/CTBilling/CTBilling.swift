@@ -7,8 +7,15 @@
 
 import Foundation
 
-public class CTBilling {
-    public static func configure(withClientId clientId: String, clientSecret: String, baseURL: String) {
+public class CTBilling: CTKitBase {
+    public static var shared: CTBilling!
+
+    public var restManager: CTRestManager
+    public var authManager: CTAuthManagerBase
+
+    public var isConfigured = false
+
+    private init(withClientId clientId: String, clientSecret: String, baseURL: String) {
         let APIConfig = CTVendorApiConfig(
             withBaseUrl: baseURL,
             clientId: clientId,
@@ -18,6 +25,13 @@ public class CTBilling {
             vendor: ""
         )
 
-        CTKit.shared.subscriptionManager = CTRestManager(withConfig: APIConfig)
+        self.restManager = CTRestManager(withConfig: APIConfig)
+        self.authManager = CTAuthManager(withConfig: APIConfig)
+        
+        self.isConfigured = true
+    }
+
+    public static func configure(withClientId clientId: String, clientSecret: String, baseURL: String) {
+        CTBilling.shared = CTBilling.init(withClientId: clientId, clientSecret: clientSecret, baseURL: baseURL)
     }
 }
