@@ -16,6 +16,7 @@ public class CTActivityCenterRequestAdapter: RequestAdapter {
             let accessToken = CTActivityCenter.shared.authManager.getActiveSessionToken()
 
             if accessToken != "" {
+                print("Adding token")
                 urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             }
 
