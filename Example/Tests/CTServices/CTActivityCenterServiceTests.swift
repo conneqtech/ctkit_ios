@@ -15,13 +15,12 @@ import Mockingjay
 
 class CTActivityCenterServiceTests: XCTestCase {
 
-    //TODO This will be done when it's finally setup
-//    override func setUp() {
-//        let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()!
-//    }
-//
-//    func test_get_all_activity() {
-//        let results = try! CTActivityCenterService().fetchAll().toBlocking().first()!
-//        print(results)
-//    }
+    override func setUp() {
+        let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()!
+    }
+
+    func test_get_all_activity() {
+        let results = try! CTActivityCenterService().fetchAll().toBlocking().first()!
+        print(results)
+    }
 }

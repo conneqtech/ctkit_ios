@@ -10,8 +10,7 @@ import RxSwift
 
 public class CTActivityCenterService: NSObject {
 
-    public func fetchAll() -> Observable<CTUserModel> {
+    public func fetchAll() -> Observable<CTPaginatedResponseModel<CTActivtyModel>> {
         return CTActivityCenter.shared.restManager.get(endpoint: "notification/")
     }
-
 }
