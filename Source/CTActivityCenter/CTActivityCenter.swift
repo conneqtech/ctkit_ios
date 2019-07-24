@@ -30,16 +30,4 @@ public class CTActivityCenter:CTKitBase {
     public static func configure(withBaseURL baseURL: String) {
         CTActivityCenter.shared = CTActivityCenter.init(withBaseURL: baseURL)
     }
-
-    public func hasActiveSession() -> Bool {
-        return false
-    }
-
-    public func getActiveSessionEndDate() -> Date {
-        return Date()
-    }
-    
-    public func terminateActiveSession() {
-        // Kill session
-    }
 }
