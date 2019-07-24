@@ -17,13 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        CTKit.configure(withClientId: "58e5b0b5-4e5a-47d1-a775-c182fa6b64da", clientSecret: "F2h$7c>9zj;TnpTVG6rHxyJ7dCbC$H{{pxzH8bN6X=2=7HLJJ4", baseURL: "https://axa.api.bike.staging.conneq.tech")
+        CTKit.configure(withClientId: "58e5b0b5-4e5a-47d1-a775-c182fa6b64da",
+                        clientSecret: "F2h$7c>9zj;TnpTVG6rHxyJ7dCbC$H{{pxzH8bN6X=2=7HLJJ4",
+                        baseURL: "https://axa.api.bike.staging.conneq.tech")
         
         CTKit.shared.debugMode = true
-        CTKit.shared.addSubscriptions(
+        CTBilling.configure(
             withClientId: "58e5b0b5-4e5a-47d1-a775-c182fa6b64da",
             clientSecret: "F2h$7c>9zj;TnpTVG6rHxyJ7dCbC$H{{pxzH8bN6X=2=7HLJJ4",
             baseURL: "https://api.cb.staging.conneq.tech/axa")
+
+        CTActivityCenter.configure(withBaseURL: "https://api.activity-center.staging.conneq.tech")
         return true
     }
 

@@ -24,6 +24,12 @@ public class CTApiConfig {
     }
 }
 
+public class CTJwtApiConfig: CTApiConfig {
+    init (withBaseUrl baseUrl: String) {
+        super.init(withBaseUrl: baseUrl, clientId: "", clientSecret: "", grantType: .jwt)
+    }
+}
+
 public class CTVendorApiConfig: CTApiConfig {
     var version: String = ""
     var vendor: String = ""

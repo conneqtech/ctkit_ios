@@ -21,6 +21,13 @@ public class CTRestManager {
         sessionManager.retrier = CTRequestRetrier(apiConfig: self.apiConfig)
     }
 
+    public init(withConfig config: CTApiConfig, requestAdapter: RequestAdapter, requestRetrier: RequestRetrier) {
+        self.apiConfig = config
+        self.sessionManager = SessionManager()
+        sessionManager.adapter = requestAdapter
+        sessionManager.retrier = requestRetrier
+    }
+
     public func get<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
         return genericCall(.get, endpoint: endpoint, parameters: parameters, encoding: URLEncoding.default, useToken: useToken)
     }
