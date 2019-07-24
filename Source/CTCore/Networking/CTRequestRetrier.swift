@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class CTRequestRetrier: RequestRetrier {
-    private typealias RefreshCompletion = (_ succeeded: Bool, _ tokenResponse: CTOAuth2TokenResponse?) -> Void
+    private typealias RefreshCompletion = (_ succeeded: Bool, _ tokenResponse: CTCredentialResponse?) -> Void
 
     private let lock = NSLock()
     private let apiConfig: CTApiConfig
@@ -62,7 +62,7 @@ class CTRequestRetrier: RequestRetrier {
         _ = Alamofire.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { [weak self] response in
                 guard let strongSelf = self else { return }
-                guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
+                guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
                     completion(false, nil)
                     return
                 }

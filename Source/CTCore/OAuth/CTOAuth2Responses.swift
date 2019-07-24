@@ -6,7 +6,7 @@
 //  Copyright © 2018 Conneqtech. All rights reserved.
 //
 
-public struct CTOAuth2TokenResponse: Codable {
+public struct CTCredentialResponse: Codable {
     public var accessToken: String
     public var refreshToken: String?
     public var expiresIn: Int

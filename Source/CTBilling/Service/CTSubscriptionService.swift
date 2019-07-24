@@ -21,7 +21,7 @@ public class CTSubscriptionService: NSObject {
      - Returns: An observable containing a list of all subscriptions found.
      */
     public func fetchAll(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
-        return CTKit.shared.subscriptionManager.get(endpoint: "subscription/bike/\(identifier)")
+        return CTBilling.shared.restManager.get(endpoint: "subscription/bike/\(identifier)")
     }
 
     /**
@@ -56,13 +56,12 @@ public class CTSubscriptionService: NSObject {
      */
     @available(*, deprecated, message: "Please use claim(_, _) instead")
     public func startTrial(withBikeId identifier: Int, imei: String) -> Observable<CTSubscriptionModel> {
-        return CTKit.shared.subscriptionManager.post(endpoint: "trial", parameters: [
+        return CTBilling.shared.restManager.post(endpoint: "trial", parameters: [
             "bike_id": identifier,
             "hash": imei
             ]
         )
     }
-
 
     /**
      Claim the bike in the billing api
@@ -73,7 +72,7 @@ public class CTSubscriptionService: NSObject {
      - Returns: An observable of the newly started subscription (claim)
      */
     public func claim(withBikeId identifier: Int, imei: String) -> Observable<CTSubscriptionModel> {
-        return CTKit.shared.subscriptionManager.post(endpoint: "claim", parameters: [
+        return CTBilling.shared.restManager.post(endpoint: "claim", parameters: [
             "bike_id": identifier,
             "hash": imei
             ]

@@ -14,7 +14,6 @@ public struct CTBikeModel: CTBaseModel {
     public var batteryPercentage: Double?
     public var lastLocation: CTBikeLocationModel?
     public var owner: CTBasicUserModel?
-    public var linkedUsers: [CTBasicUserModel]?
 
     public var name: String
     public var keyIdentifier: String?
@@ -64,7 +63,6 @@ public struct CTBikeModel: CTBaseModel {
         case batteryPercentage = "battery_percentage"
         case lastLocation = "last_location"
         case owner = "owning_user"
-        case linkedUsers = "linked_users"
         case themeColor = "color_hex"
         case imageUrl = "bike_image_url"
         case creationDate = "creation_date"
@@ -88,6 +86,5 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(imageUrl, forKey: .imageUrl)
         try container.encode(frameIdentifier, forKey: .frameIdentifier)
         try container.encode(isStolen, forKey: .isStolen)
-        try container.encode(linkedUsers, forKey: .linkedUsers)
     }
 }
