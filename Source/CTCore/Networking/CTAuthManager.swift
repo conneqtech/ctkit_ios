@@ -32,7 +32,7 @@ public class CTAuthManager {
                     switch response.result {
                     case .success:
                         guard let data = response.data,
-                            let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
+                            let getResponse = try? JSONDecoder().decode(CTCredetialResponse.self, from: data) else {
                             observer.onError(NSError(domain: "tbi", code: 500, userInfo: nil))
                             return
                         }
@@ -90,7 +90,7 @@ public class CTAuthManager {
                 .responseJSON { (response) in
                     switch response.result {
                     case .success:
-                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTOAuth2TokenResponse.self, from: data) else {
+                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredetialResponse.self, from: data) else {
                             observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                             return
                         }
@@ -117,7 +117,7 @@ public class CTAuthManager {
         return retrieveDataFromStore(forKey: CTKit.REFRESH_TOKEN_KEY)
     }
 
-    func saveTokenResponse(_ tokenResponse: CTOAuth2TokenResponse) {
+    func saveTokenResponse(_ tokenResponse: CTCredetialResponse) {
         CTKit.shared.authToken.onNext(tokenResponse)
 
         switch CTKit.shared.credentialSaveLocation {

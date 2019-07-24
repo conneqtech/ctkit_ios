@@ -24,7 +24,7 @@ public class CTKit {
     public var subscriptionManager: CTRestManager!
     public var activityCenterManager: CTRestManager!
 
-    public var authToken = PublishSubject<CTOAuth2TokenResponse>()
+    public var authToken = PublishSubject<CTCredetialResponse>()
 
     public var accessToken: String? {
         get {
