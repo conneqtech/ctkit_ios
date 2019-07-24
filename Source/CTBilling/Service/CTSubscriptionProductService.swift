@@ -17,5 +17,4 @@ public class CTSubscriptionProductService: NSObject {
     public func fetchAll(withProductType productType: CTSubscriptionProductType) -> Observable<[CTSubscriptionProductModel]> {
         return self.fetchAll().map { $0.filter { $0.productType ==  productType } }
     }
-
 }

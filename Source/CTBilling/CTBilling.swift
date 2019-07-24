@@ -26,7 +26,7 @@ public class CTBilling: CTKitBase {
         )
 
         self.restManager = CTRestManager(withConfig: APIConfig)
-        self.authManager = CTAuthManager(withConfig: APIConfig)
+        self.authManager = CTKit.shared.authManager
         
         self.isConfigured = true
     }
