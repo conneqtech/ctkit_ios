@@ -14,7 +14,7 @@ public struct CTActivityButtonModel: CTBaseModel {
 
     enum CodingKeys: String, CodingKey {
         case text
-        case textArgs = "text_argd"
+        case textArgs = "text_args"
         case action
     }
 }
