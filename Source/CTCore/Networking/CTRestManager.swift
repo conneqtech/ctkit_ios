@@ -104,7 +104,7 @@ public class CTRestManager {
 
     private func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Completable {
         return Completable.create { (completable) in
-            var headers: [String: String] = [:]
+            var headers: [String: String] = self.computeHeaders()!
 
             if let bearer = useToken {
                 headers["Authorization"] = "Bearer \(bearer)"

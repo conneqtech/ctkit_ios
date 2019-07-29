@@ -11,7 +11,6 @@ public struct CTBikeModel: CTBaseModel {
     public let id: Int
     public let imei: String
     public let frameIdentifier: String
-    public var batteryPercentage: Double?
     public var lastLocation: CTBikeLocationModel?
     public var owner: CTBasicUserModel?
 
@@ -60,7 +59,6 @@ public struct CTBikeModel: CTBaseModel {
         case name = "name"
         case frameIdentifier = "frame_number"
         case keyIdentifier = "key_number"
-        case batteryPercentage = "battery_percentage"
         case lastLocation = "last_location"
         case owner = "owning_user"
         case themeColor = "color_hex"
