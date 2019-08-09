@@ -1,12 +1,8 @@
 {
   "name": "ctkit",
-  "version": "0.20.0",
+  "version": "0.20.4",
   "summary": "SDK to communicate with the connected bike api",
-  "swift_versions": [
-    "4.0",
-    "4.2",
-    "5.0"
-  ],
+  "swift_versions": "4.2",
   "description": "The iOS implementation of our SDK, it allows developers to do cool things with our API.",
   "homepage": "https://bitbucket.org/nfnty_admin/ctkit_ios",
   "license": {
@@ -18,7 +14,7 @@
   },
   "source": {
     "git": "https://bitbucket.org/nfnty_admin/ctkit_ios.git",
-    "tag": "0.20.0"
+    "tag": "0.20.4"
   },
   "platforms": {
     "ios": "10.0"
@@ -48,7 +44,11 @@
     {
       "name": "ActivityCenter",
       "source_files": "Source/CTActivityCenter/**/*.swift"
+    },
+    {
+      "name": "Content",
+      "source_files": "Source/CTContent/**/*.swift"
     }
   ],
-  "swift_version": "5.0"
+  "swift_version": "4.2"
 }

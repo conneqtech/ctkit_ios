@@ -36,4 +36,8 @@ Pod::Spec.new do |spec|
   spec.subspec 'ActivityCenter' do |activity_center|
     activity_center.source_files = 'Source/CTActivityCenter/**/*.swift'
   end
+
+  spec.subspec 'Content' do |content|
+      content.source_files = 'Source/CTContent/**/*.swift'
+  end
 end

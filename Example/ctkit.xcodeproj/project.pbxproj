@@ -45,6 +45,7 @@
 		C07FEDB821899BDC005577C1 /* oauth-success.json in Resources */ = {isa = PBXBuildFile; fileRef = C07FEDB721899BDC005577C1 /* oauth-success.json */; };
 		C08B174B2190831F00A662E2 /* bike-registration-failed.json in Resources */ = {isa = PBXBuildFile; fileRef = C08B174A2190831F00A662E2 /* bike-registration-failed.json */; };
 		C098CA20219C60A3004174D5 /* bike-list.json in Resources */ = {isa = PBXBuildFile; fileRef = C098CA1F219C60A3004174D5 /* bike-list.json */; };
+		C0BFCE7222FC51C400D1E0FF /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = C0BFCE7122FC51C400D1E0FF /* test.md */; };
 		C0CF249422BB83B700595AA1 /* CTStatisticsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CF249322BB83B700595AA1 /* CTStatisticsServiceTests.swift */; };
 		C0DFD37A21919EF000AB4194 /* bike-registration-successful.json in Resources */ = {isa = PBXBuildFile; fileRef = C0DFD37921919EF000AB4194 /* bike-registration-successful.json */; };
 		C0EC37F7218079A100E7EAC4 /* createValidationError.json in Resources */ = {isa = PBXBuildFile; fileRef = C0EC37F52180792300E7EAC4 /* createValidationError.json */; };
@@ -115,6 +116,7 @@
 		C07FEDB721899BDC005577C1 /* oauth-success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "oauth-success.json"; sourceTree = "<group>"; };
 		C08B174A2190831F00A662E2 /* bike-registration-failed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-registration-failed.json"; sourceTree = "<group>"; };
 		C098CA1F219C60A3004174D5 /* bike-list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-list.json"; sourceTree = "<group>"; };
+		C0BFCE7122FC51C400D1E0FF /* test.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = test.md; sourceTree = "<group>"; };
 		C0CF249322BB83B700595AA1 /* CTStatisticsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTStatisticsServiceTests.swift; sourceTree = "<group>"; };
 		C0DFD37921919EF000AB4194 /* bike-registration-successful.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bike-registration-successful.json"; sourceTree = "<group>"; };
 		C0EC37F52180792300E7EAC4 /* createValidationError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = createValidationError.json; sourceTree = "<group>"; };
@@ -397,9 +399,18 @@
 			path = CTBikeService;
 			sourceTree = "<group>";
 		};
+		C0BFCE7022FC51B100D1E0FF /* CTContent */ = {
+			isa = PBXGroup;
+			children = (
+				C0BFCE7122FC51C400D1E0FF /* test.md */,
+			);
+			path = CTContent;
+			sourceTree = "<group>";
+		};
 		C0EC37F3218078F500E7EAC4 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				C0BFCE7022FC51B100D1E0FF /* CTContent */,
 				85B5EABA219DA90E007ACF55 /* CTTheftCaseService */,
 				85B5EAB3219D6012007ACF55 /* CTRideService */,
 				C069CA5E219B08C5003BE8C3 /* CTBikeLocationService */,
@@ -539,6 +550,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0BFCE7222FC51C400D1E0FF /* test.md in Resources */,
 				C01C070F21AFE05E001DA570 /* uploadImages.xcassets in Resources */,
 				C0F4A71C22B912D40077397B /* connectivity_subscription.json in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,

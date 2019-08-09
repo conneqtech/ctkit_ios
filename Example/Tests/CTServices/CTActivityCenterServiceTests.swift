@@ -20,7 +20,7 @@ class CTActivityCenterServiceTests: XCTestCase {
     }
 
     func test_get_all_activity() {
-        let results = try! CTActivityCenterService().fetchAll().toBlocking().first()!
+        let results = try! CTActivityCenterService().fetchAllPaginated().toBlocking().first()!
         print(results)
     }
 }
