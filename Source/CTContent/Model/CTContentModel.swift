@@ -8,10 +8,9 @@
 import Foundation
 
 public enum CTContentType: String, Codable {
-    case allStatic // Nothing is swipeable
     case titleStatic // The body and images are swipeable (get them from pages)
     case titleAndBodyStatic // The images are swipeable (get them from pages). The title and body should be gotten from CTContentModel
-    case allMoving // Title + Body + Images are swipeable (get them from pages)
+    case allMoving // Title + Body + Images are swipeable (get them from pages), when there is only 1 page don't swipe.
 }
 
 public struct CTContentModel: CTBaseModel {
