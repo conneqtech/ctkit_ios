@@ -15,23 +15,17 @@ public class CTContent: CTKitBase {
 
     public var isConfigured = false
 
-    private init(withClientId clientId: String, clientSecret: String, baseURL: String) {
-        let APIConfig = CTVendorApiConfig(
-            withBaseUrl: baseURL,
-            clientId: clientId,
-            clientSecret: clientSecret,
-            grantType: .clientCredentials,
-            version: "v1",
-            vendor: ""
+    private init(withBaseURL baseURL: String) {
+        let APIConfig = CTJwtApiConfig(
+            withBaseUrl: baseURL
         )
 
         self.restManager = CTRestManager(withConfig: APIConfig)
-        self.authManager = CTKit.shared.authManager
-        
+        self.authManager = CTJwtAuthManager()
         self.isConfigured = true
     }
 
-    public static func configure(withClientId clientId: String, clientSecret: String, baseURL: String) {
-        CTContent.shared = CTContent.init(withClientId: clientId, clientSecret: clientSecret, baseURL: baseURL)
+    public static func configure(withBaseURL baseURL: String) {
+        CTContent.shared = CTContent.init(withBaseURL: baseURL)
     }
 }
