@@ -13,26 +13,26 @@ public class CTContentService: NSObject {
     /**
      For now the following mock responses are sent back:
 
-     8c1f9af2-43dd-4264-9719-ad002f278545: Title and body is static, images swipe
-     07fd3545-77bc-48b0-a319-daf7db575b36: Title is static, body and images swipe
-     b3a18f32-3dd2-4b7b-b8bb-d0f7053ca6f1: Everything can swipe
-     d221a35e-0772-4e6a-89c1-d0934b9d5868: Nothing can swipe
+     845f19ee-23a0-47ce-80e6-31351787dc31: Title and body is static, images swipe
+     3b42363f-f373-4c95-b657-5a3bf3285b2b: Title is static, body and images swipe
+     4ca1e76d-77d3-40af-8c12-b5f55eb63b5d: Everything can swipe
+     b97f98ef-63ff-473f-90f9-a77d0b019cfb: Nothing can swipe
 
      */
     public func fetchContent(withIdentifier identifier: String) -> Observable<CTContentModel> {
-        if identifier == "8c1f9af2-43dd-4264-9719-ad002f278545" {
+        if identifier == "845f19ee-23a0-47ce-80e6-31351787dc31" {
             return Observable.of(getStaticTitleAndBodySwipingImages())
         }
         
-        if identifier == "07fd3545-77bc-48b0-a319-daf7db575b36" {
+        if identifier == "3b42363f-f373-4c95-b657-5a3bf3285b2b" {
             return Observable.of(getStaticTitleSwipingBodyAndImages())
         }
         
-        if identifier == "b3a18f32-3dd2-4b7b-b8bb-d0f7053ca6f1" {
+        if identifier == "4ca1e76d-77d3-40af-8c12-b5f55eb63b5d" {
             return Observable.of(getAllMovingContent())
         }
         
-        if identifier == "d221a35e-0772-4e6a-89c1-d0934b9d5868" {
+        if identifier == "b97f98ef-63ff-473f-90f9-a77d0b019cfb" {
             return Observable.of(getAllStaticContent())
         }
         
