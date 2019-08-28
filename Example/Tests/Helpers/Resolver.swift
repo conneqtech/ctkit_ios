@@ -27,4 +27,9 @@ public class Resolver {
         let url = Bundle(for: type(of: self)).url(forResource: name, withExtension: "json")!
         return try! Data(contentsOf: url)
     }
+
+    func getMarkownForResource(name: String) -> String {
+        let url = Bundle(for: type(of: self)).url(forResource: name, withExtension: "md")!
+        return try! String(contentsOf: url)
+    }
 }
