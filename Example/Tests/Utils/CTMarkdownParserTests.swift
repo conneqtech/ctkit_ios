@@ -27,6 +27,12 @@ class CTMarkdownParserTests: XCTestCase {
         XCTAssertEqual(contentModel?.imageUrl, "https://example.com/image.png")
 
         XCTAssertEqual(contentModel?.pages.count, 0)
+
+        XCTAssertEqual(contentModel?.actions[0].text, "Theft")
+        XCTAssertEqual(contentModel?.actions[0].link, "app://sparta/cool_feature_link")
+
+        XCTAssertEqual(contentModel?.actions[1].text, "Feature")
+        XCTAssertEqual(contentModel?.actions[1].link, "app://sparta/cool_feature_link")
     }
 
     func test_AllMoving() {
@@ -54,6 +60,8 @@ class CTMarkdownParserTests: XCTestCase {
         XCTAssertEqual(contentModel?.pages[2].title, "Theft lock now active")
         XCTAssertEqual(contentModel?.pages[2].body, "Today we have a new feature for you to try out, this will blow you out of the water\nBody text even more")
         XCTAssertEqual(contentModel?.pages[2].imageUrl, "https://example.com/image.png")
+
+        XCTAssertEqual(contentModel?.actions.count, 0)
     }
 
     func test_staticTitle() {
@@ -80,6 +88,9 @@ class CTMarkdownParserTests: XCTestCase {
         XCTAssertNil(contentModel?.pages[2].title)
         XCTAssertEqual(contentModel?.pages[2].body, "Body text even more")
         XCTAssertEqual(contentModel?.pages[2].imageUrl, "https://example.com/image.png")
+
+        XCTAssertEqual(contentModel?.actions[0].text, "Show me the feature")
+        XCTAssertEqual(contentModel?.actions[0].link, "app://sparta/cool_feature_link")
     }
 
     func test_staticBodyAndTitle() {
@@ -107,5 +118,8 @@ class CTMarkdownParserTests: XCTestCase {
         XCTAssertNil(contentModel?.pages[2].title)
         XCTAssertNil(contentModel?.pages[2].body)
         XCTAssertEqual(contentModel?.pages[2].imageUrl, "https://example.com/image.png")
+
+        XCTAssertEqual(contentModel?.actions[0].text, "Show me the feature")
+        XCTAssertEqual(contentModel?.actions[0].link, "app://sparta/cool_feature_link")
     }
 }

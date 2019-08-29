@@ -44,7 +44,8 @@ public class CTContentService: NSObject {
                                      body: "Static body nt efficitur nisl. Quisque faucibus dolor arcu, nec luctus velit pretium ut. Sed aliquet ex felis, sit amet molestie urna rhoncus vitae. Vestibulum u sollicitudin tellus lacus ut dolor. Donec id pretium neque, vitae tempus purus. Curabitur pulvinar mi quis elit eleifend volutpat. Aliquam et urna id turpis laoreet fermentum at sit amet erat. Mauris velit nibh, rutrum id metus consequat, tincidunt efficitur nisl. Quisque faucibus dolor arcu, nec luctus velit pretium ut. Sed aliquet",
                                      type: .allStatic,
                                      imageUrl: "https://images.unsplash.com/photo-1565286364541-5f0326e869ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80",
-                                     pages: [])
+                                     pages: [],
+                                     actions: [])
 
         return  content
     }
@@ -62,7 +63,7 @@ public class CTContentService: NSObject {
                                imageUrl: "https://images.unsplash.com/photo-1565286364541-5f0326e869ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80")
         ]
 
-        let content = CTContentModel(title: "Static title", body: "Static body, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquam, neque vel condimentum cursus, justo lorem congue eros, eu sollicitudin tellus lacus ut dolor. Donec id pretium neque, vitae tempus purus. Curabitur pulvinar mi quis elit eleifend volutpat. Aliquam et urna id turpis laoreet fermentum at sit amet erat. Mauris velit nibh, rutrum id metus consequat, tincidunt efficitur nisl. Quisque faucibus dolor arcu, nec luctus velit pretium ut. Sed aliquet ex felis, sit amet molestie urna rhoncus vitae. Vestibulum mollis non nunc vel condimentum.", type: .titleAndBodyStatic, imageUrl: nil, pages: pages)
+        let content = CTContentModel(title: "Static title", body: "Static body, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquam, neque vel condimentum cursus, justo lorem congue eros, eu sollicitudin tellus lacus ut dolor. Donec id pretium neque, vitae tempus purus. Curabitur pulvinar mi quis elit eleifend volutpat. Aliquam et urna id turpis laoreet fermentum at sit amet erat. Mauris velit nibh, rutrum id metus consequat, tincidunt efficitur nisl. Quisque faucibus dolor arcu, nec luctus velit pretium ut. Sed aliquet ex felis, sit amet molestie urna rhoncus vitae. Vestibulum mollis non nunc vel condimentum.", type: .titleAndBodyStatic, imageUrl: nil, pages: pages, actions: [])
 
         return  content
     }
@@ -80,7 +81,7 @@ public class CTContentService: NSObject {
                                imageUrl: "https://images.unsplash.com/photo-1565286364541-5f0326e869ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80")
         ]
 
-        let content = CTContentModel(title: "Static title", body: nil, type: .titleStatic, imageUrl: nil, pages: pages)
+        let content = CTContentModel(title: "Static title", body: nil, type: .titleStatic, imageUrl: nil, pages: pages, actions: [])
 
         return  content
     }
@@ -98,7 +99,7 @@ public class CTContentService: NSObject {
                                imageUrl: "https://images.unsplash.com/photo-1565286364541-5f0326e869ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80")
         ]
 
-        let content = CTContentModel(title: nil, body: nil, type: .allMoving, imageUrl: nil, pages: pages)
+        let content = CTContentModel(title: nil, body: nil, type: .allMoving, imageUrl: nil, pages: pages, actions: [])
 
         return  content
     }

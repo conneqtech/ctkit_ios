@@ -36,7 +36,9 @@ public class CTMarkdownParser {
             pages = extractPages(withContentArray: contentArray)
         }
 
-        return CTContentModel(title: title, body: body, type: contentType, imageUrl: imageUrl, pages: pages)
+        var actions = extractActions(withContentArray: contentArray)
+
+        return CTContentModel(title: title, body: body, type: contentType, imageUrl: imageUrl, pages: pages, actions: actions)
     }
 }
 
@@ -123,32 +125,54 @@ extension CTMarkdownParser {
         let lastPageEndIndex = contentArray.index(of: swipeItemsEndMarker)
 
         for (index, item) in pageIndexes.enumerated() {
+            var pageSlice: ArraySlice<String>?
             if index != pageIndexes.count - 1 {
                 let endIndex = pageIndexes[index+1] - 1
-                let pageSlice = contentArray[item..<endIndex]
+                pageSlice = contentArray[item..<endIndex]
+            } else {
+                if let lastPageEndIndex = lastPageEndIndex {
+                    pageSlice = contentArray[item..<lastPageEndIndex]
+                }
+            }
 
-                let pageArray = Array(pageSlice)
+            if let slice = pageSlice {
+                let pageArray = Array(slice)
                 let title = extractTitle(withContentArray: pageArray)
                 let body = extractBody(withContentArray: pageArray)
                 let imageUrl = extractImageUrl(withContentArray: pageArray)
 
                 let contentPage = CTContentPageModel(title: title, body: body, imageUrl: imageUrl)
                 pages.append(contentPage)
-            } else {
-                if let lastPageEndIndex = lastPageEndIndex {
-                    let pageSlice = contentArray[item..<lastPageEndIndex]
+            } 
+        }
+        return pages
+    }
+}
 
-                    let pageArray = Array(pageSlice)
-                    let title = extractTitle(withContentArray: pageArray)
-                    let body = extractBody(withContentArray: pageArray)
-                    let imageUrl = extractImageUrl(withContentArray: pageArray)
+// MARK: - Button extraction
+extension CTMarkdownParser {
+    func extractActions(withContentArray contentArray: [String]) -> [CTContentButtonModel] {
+        var actions: [CTContentButtonModel] = []
 
-                    let contentPage = CTContentPageModel(title: title, body: body, imageUrl: imageUrl)
-                    pages.append(contentPage)
+        if let actionMarkerIndex = contentArray.index(of: actionMarker) {
+            let markdownActions = contentArray[actionMarkerIndex...]
+
+            for action in markdownActions {
+                if action.starts(with: "[") && action.last == ")" {
+                    var text = action[action.index(of: "[")!...action.index(of: "]")!]
+                    text = text.dropFirst()
+                    text = text.dropLast()
+
+                    var link = action[action.index(of: "(")!...action.index(of: ")")!]
+                    link = link.dropFirst()
+                    link = link.dropLast()
+
+                   actions.append(CTContentButtonModel(text: String(text), link: String(link)))
                 }
             }
         }
-        return pages
+
+        return actions
     }
 }
 
