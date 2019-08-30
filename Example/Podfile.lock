@@ -1,30 +1,6 @@
 PODS:
   - Alamofire (4.7.3)
-  - ctkit (0.22.2):
-    - Alamofire (~> 4.7)
-    - ctkit/ActivityCenter (= 0.22.2)
-    - ctkit/Bike (= 0.22.2)
-    - ctkit/Billing (= 0.22.2)
-    - ctkit/Content (= 0.22.2)
-    - ctkit/Core (= 0.22.2)
-    - RxSwift (~> 4.0)
-  - ctkit/ActivityCenter (0.22.2):
-    - Alamofire (~> 4.7)
-    - ctkit/Core
-    - RxSwift (~> 4.0)
-  - ctkit/Bike (0.22.2):
-    - Alamofire (~> 4.7)
-    - ctkit/Core
-    - RxSwift (~> 4.0)
-  - ctkit/Billing (0.22.2):
-    - Alamofire (~> 4.7)
-    - ctkit/Core
-    - RxSwift (~> 4.0)
-  - ctkit/Content (0.22.2):
-    - Alamofire (~> 4.7)
-    - ctkit/Core
-    - RxSwift (~> 4.0)
-  - ctkit/Core (0.22.2):
+  - ctkit (0.22.3):
     - Alamofire (~> 4.7)
     - RxSwift (~> 4.0)
   - Mockingjay (2.0.1):
@@ -68,7 +44,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  ctkit: dac862a524f8093b4ba34700f6584d95189b2b05
+  ctkit: 1b16c9d705fa06069a5c875918194e9884b259ca
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46

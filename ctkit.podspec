@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-  spec.version          = '0.22.3'
+  spec.version          = '0.23.0'
   spec.summary          = 'SDK to communicate with the connected bike api'
   spec.swift_version    = '4.2'
 
@@ -14,34 +14,34 @@ Pod::Spec.new do |spec|
 
   spec.ios.deployment_target = '10.0'
 
-  spec.source_files = 'Source/{CTKit}/**/*.swift'
+  spec.source_files = 'Source/{CTCore,CTContent,CTBilling,CTBike,CTActivityCenter}/**/*.swift'
 
   spec.dependency 'Alamofire', '~> 4.7'
   spec.dependency 'RxSwift', '~> 4.0'
 
   spec.name = 'ctkit'
 
-  spec.subspec 'Core' do |core|
-    core.source_files = 'Source/CTCore/**/*.swift'
-  end
+  #  spec.subspec 'Core' do |core|
+  # core.source_files = 'Source/CTCore/**/*.swift'
+  #end
 
-  spec.subspec 'Bike' do |bike|
-    bike.source_files = 'Source/CTBike/**/*.swift'
-    bike.dependency 'ctkit/Core'
-  end
+  #spec.subspec 'Bike' do |bike|
+  #  bike.source_files = 'Source/CTBike/**/*.swift'
+  #  bike.dependency 'ctkit/Core'
+  #end
 
-  spec.subspec 'Billing' do |billing|
-    billing.source_files = 'Source/CTBilling/**/*.swift'
-    billing.dependency 'ctkit/Core'
-  end
+  #spec.subspec 'Billing' do |billing|
+  #  billing.source_files = 'Source/CTBilling/**/*.swift'
+  #  billing.dependency 'ctkit/Core'
+  #end
 
-  spec.subspec 'ActivityCenter' do |activity_center|
-    activity_center.source_files = 'Source/CTActivityCenter/**/*.swift'
-    activity_center.dependency 'ctkit/Core'
-  end
+  #spec.subspec 'ActivityCenter' do |activity_center|
+  #  activity_center.source_files = 'Source/CTActivityCenter/**/*.swift'
+  #  activity_center.dependency 'ctkit/Core'
+  #end
 
-  spec.subspec 'Content' do |content|
-      content.source_files = 'Source/CTContent/**/*.swift'
-      content.dependency 'ctkit/Core'
-  end
+  #spec.subspec 'Content' do |content|
+  #    content.source_files = 'Source/CTContent/**/*.swift'
+  #    content.dependency 'ctkit/Core'
+  #end
 end
