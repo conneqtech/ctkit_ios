@@ -36,7 +36,7 @@ public class CTMarkdownParser {
             pages = extractPages(withContentArray: contentArray)
         }
 
-        var actions = extractActions(withContentArray: contentArray)
+        let actions = extractActions(withContentArray: contentArray)
 
         return CTContentModel(title: title, body: body, type: contentType, imageUrl: imageUrl, pages: pages, actions: actions)
     }

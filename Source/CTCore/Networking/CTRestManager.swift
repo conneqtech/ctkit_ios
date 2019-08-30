@@ -180,7 +180,7 @@ public class CTRestManager {
 
                             print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
                             do {
-                                let model = try decoder.decode(T.self, from: rData)
+                                let _ = try decoder.decode(T.self, from: rData)
                                 print("✅ Parsing success")
                             } catch let modelParsingError {
                                 print("🚒 Parsing failed")
