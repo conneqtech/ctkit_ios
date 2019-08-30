@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-  spec.version          = '0.20.3'
+  spec.version          = '0.22.0'
   spec.summary          = 'SDK to communicate with the connected bike api'
   spec.swift_version    = '4.2'
 
@@ -35,5 +35,9 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'ActivityCenter' do |activity_center|
     activity_center.source_files = 'Source/CTActivityCenter/**/*.swift'
+  end
+
+  spec.subspec 'Content' do |content|
+      content.source_files = 'Source/CTContent/**/*.swift'
   end
 end

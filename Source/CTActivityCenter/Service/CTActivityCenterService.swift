@@ -20,7 +20,7 @@ public class CTActivityCenterService: NSObject {
     }
 
     public func dismissActivity(withId identifier: String) -> Completable {
-        return CTActivityCenter.shared.restManager.delete(endpoint: "activity/\(identifier)/")
+        return CTActivityCenter.shared.restManager.delete(endpoint: "activity/\(identifier)")
     }
 
     public func dismissAllActivities() -> Completable {
