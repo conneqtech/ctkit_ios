@@ -22,4 +22,5 @@ public struct CTContentModel: CTBaseModel {
     public let imageUrl:String?
 
     public let pages: [CTContentPageModel]
+    public let actions: [CTContentButtonModel]
 }
