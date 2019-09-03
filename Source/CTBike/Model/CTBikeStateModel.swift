@@ -16,6 +16,7 @@ public struct CTBikeStateModel: CTBaseModel {
     public let batteryPercentage:Int?
     public let isCharging:Bool?
     public let lastFullChargeDate:Date?
+    public let range:Int?
 
     enum CodingKeys: String, CodingKey {
         case isPoweredOn = "powered_on"
@@ -24,5 +25,6 @@ public struct CTBikeStateModel: CTBaseModel {
         case batteryPercentage = "battery_percentage"
         case isCharging = "charging"
         case lastFullChargeDate = "last_full_charge"
+        case range
     }
 }
