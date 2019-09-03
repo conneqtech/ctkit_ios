@@ -83,6 +83,11 @@ public class CTAuthManager: CTAuthManagerBase {
     private func login(parameters: [String: String]) -> Observable<Any> {
         return Observable<Any>.create { (observer) -> Disposable in
             let url = URL(string: "\(self.apiConfig.fullUrl)/oauth")!
+//            if(!Connectivity.isConnectedToInternet){
+//                return Disposables.create(with: {
+//                    observer.onError(CTErrorHandler().handleNoInternet())
+//                })
+//            }else{
             let requestReference = Alamofire.request(url,
                                                      method: .post,
                                                      parameters: parameters)
@@ -106,6 +111,8 @@ public class CTAuthManager: CTAuthManagerBase {
             return Disposables.create(with: {
                 requestReference.cancel()
             })
+            
+//            }
         }
     }
 

@@ -34,11 +34,13 @@ internal class CTErrorHandler: NSObject {
             case 500:
                 handledError = handleInternalServerError()
             default:
-                handledError = CTBasicError(translationKey: "api.error.unhandled.unknown-responsecode",
-                                            description: "The response code we received from the API is one we don't handle. Please try again at a later time.")
+                    handledError = CTBasicError(translationKey: "api.error.unhandled.unknown-responsecode",
+                                                description: "The response code we received from the API is one we don't handle. Please try again at a later time.")
             }
+        } else if (!Connectivity.isConnectedToInternet) {
+            handledError = handleNoInternet()
         }
-
+        
         if let handledError = handledError {
             return handledError
         }
@@ -136,5 +138,18 @@ internal class CTErrorHandler: NSObject {
 
     func handleInternalServerError() -> CTBasicError? {
         return CTBasicError(translationKey: "api.error.500.internal-server-error", description: "Internal server error", code: 500)
+    }
+    
+    func handleNoInternet() -> CTErrorProtocol {
+        print("no internet check")
+        return CTBasicError(translationKey: "ctkit.error.no-internet", description: "Failed to connect to server")
+    }
+    
+}
+
+
+class Connectivity {
+    class var isConnectedToInternet:Bool {
+        return NetworkReachabilityManager()!.isReachable
     }
 }
