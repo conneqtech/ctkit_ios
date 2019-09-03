@@ -3,7 +3,7 @@ version: 2.1
 references:
   container_config: &container_config
     macos:
-      xcode: "10.2.0"
+      xcode: "10.3.0"
     shell: /bin/bash --login -o pipefail
     working_directory: /Users/distiller/project/Example
 
@@ -78,10 +78,6 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - run:
-          name: Install gem dependencies
-          working_directory: cnt_ios
-          command: bundle check || bundle install --path vendor/bundle
       - run:
           name: cocoapods specs
           command: |
