@@ -94,6 +94,10 @@ internal extension CTKit {
         if CTActivityCenter.shared != nil {
             CTActivityCenter.shared.authManager.terminateActiveSession()
         }
+
+        if CTContent.shared != nil {
+            CTContent.shared.authManager.terminateActiveSession()
+        }
     }
 
     func hasActiveSession() -> Bool {
