@@ -20,7 +20,9 @@ public class CTContent: CTKitBase {
             withBaseUrl: baseURL
         )
 
-        self.restManager = CTRestManager(withConfig: APIConfig)
+        self.restManager = CTRestManager(withConfig: APIConfig,
+                                         requestAdapter: CTContentRequestAdapter(),
+                                         requestRetrier: CTContentRequestRetrier())
         self.authManager = CTJwtAuthManager()
         self.isConfigured = true
     }
