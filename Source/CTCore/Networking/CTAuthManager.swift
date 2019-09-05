@@ -83,36 +83,35 @@ public class CTAuthManager: CTAuthManagerBase {
     private func login(parameters: [String: String]) -> Observable<Any> {
         return Observable<Any>.create { (observer) -> Disposable in
             let url = URL(string: "\(self.apiConfig.fullUrl)/oauth")!
-//            if(!Connectivity.isConnectedToInternet){
-//                return Disposables.create(with: {
-//                    observer.onError(CTErrorHandler().handleNoInternet())
-//                })
-//            }else{
-            let requestReference = Alamofire.request(url,
-                                                     method: .post,
-                                                     parameters: parameters)
-                .validate()
-                .responseJSON { (response) in
-                    switch response.result {
-                    case .success:
-                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
-                            observer.onError(CTErrorHandler().handle(withDecodingError: nil))
-                            return
+            if (!Connectivity.isConnectedToInternet) {
+                observer.onError(CTErrorHandler().handleNoInternet())
+                return Disposables.create()
+            } else {
+                let requestReference = Alamofire.request(url,
+                                                         method: .post,
+                                                         parameters: parameters)
+                    .validate()
+                    .responseJSON { (response) in
+                        switch response.result {
+                        case .success:
+                            guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
+                                observer.onError(CTErrorHandler().handle(withDecodingError: nil))
+                                return
+                            }
+
+                            self.saveTokenResponse(getResponse)
+                            observer.onNext(getResponse)
+                            observer.onCompleted()
+                        case .failure:
+                            observer.onError(CTErrorHandler().handle(response: response))
                         }
+                }
 
-                        self.saveTokenResponse(getResponse)
-                        observer.onNext(getResponse)
-                        observer.onCompleted()
-                    case .failure:
-                        observer.onError(CTErrorHandler().handle(response: response))
-                    }
+                return Disposables.create(with: {
+                    requestReference.cancel()
+                })
+                
             }
-
-            return Disposables.create(with: {
-                requestReference.cancel()
-            })
-            
-//            }
         }
     }
 
