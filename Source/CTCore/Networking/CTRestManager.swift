@@ -55,9 +55,12 @@ public class CTRestManager {
 
     public func upload<T: Codable>(endpoint: String, image: UIImage, useToken: String? = nil) -> Observable<T> {
         return Observable<T>.create { (observer) -> Disposable in
-
+            if (!Connectivity.isConnectedToInternet) {
+                observer.onError(CTErrorHandler().handleNoInternet())
+                return Disposables.create()
+            }
             var headers: [String: String] = [:]
-
+            
             if let bearer = useToken {
                 headers["Authorization"] = "Bearer \(bearer)"
             }
@@ -104,6 +107,10 @@ public class CTRestManager {
 
     private func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Completable {
         return Completable.create { (completable) in
+            if (!Connectivity.isConnectedToInternet) {
+                completable(.error(CTErrorHandler().handleNoInternet()))
+                return Disposables.create()
+            }
             var headers: [String: String] = self.computeHeaders()!
 
             if let bearer = useToken {
@@ -134,81 +141,85 @@ public class CTRestManager {
     }
 
     private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
-        return Observable<T>.create { (observer) -> Disposable in
+        
+            return Observable<T>.create { (observer) -> Disposable in
+                if(!Connectivity.isConnectedToInternet){
+                    observer.onError(CTErrorHandler().handleNoInternet())
+                    return Disposables.create()
+                }
+                var headers: [String: String] = self.computeHeaders()!
 
-            var headers: [String: String] = self.computeHeaders()!
+                if let bearer = useToken {
+                    headers["Authorization"] = "Bearer \(bearer)"
+                }
 
-            if let bearer = useToken {
-                headers["Authorization"] = "Bearer \(bearer)"
+                let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+                let requestReference = self.sessionManager.request(url,
+                                                                   method: method,
+                                                                   parameters: parameters,
+                                                                   encoding: encoding,
+                                                                   headers: headers)
+                    .validate(statusCode: 200..<300)
+                    .validate(contentType: ["application/json"])
+                    .responseJSON { (response) in
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .formatted(.iso8601CT)
+
+                        if CTKit.shared.debugMode {
+                            print("=========================================")
+                            print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
+                            if let parameters = parameters {
+                                print("📄 Parameters:")
+                                print(parameters)
+                            }
+
+                            if let rData = response.data {
+                                print("♻️ Response with \(rData.count) bytes")
+
+                                if response.result.isFailure {
+                                    print("⚠️ The call failed with the following error")
+                                } else {
+                                    print("✅ The call succeeded with the following data")
+                                }
+
+                                do {
+                                    let jsonResponse = try JSONSerialization.jsonObject(with: rData, options: [])
+                                    print(jsonResponse) //Response result
+                                } catch let parsingError {
+                                    print("Error", parsingError)
+                                }
+
+                                print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+                                do {
+                                    let _ = try decoder.decode(T.self, from: rData)
+                                    print("✅ Parsing success")
+                                } catch let modelParsingError {
+                                    print("🚒 Parsing failed")
+                                    print(modelParsingError)
+                                }
+                                print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+                            }
+                            print("=========================================")
+                        }
+
+                        switch response.result {
+                        case .success:
+                            guard let data = response.data, let getResponse = try? decoder.decode(T.self, from: data) else {
+                                observer.onError(CTErrorHandler().handle(withDecodingError: nil))
+                                return
+                            }
+
+                            observer.onNext(getResponse)
+                            observer.onCompleted()
+                        case .failure:
+                            observer.onError(CTErrorHandler().handle(response: response))
+                        }
+                }
+
+                return Disposables.create(with: {
+                    requestReference.cancel()
+                })
             }
-
-            let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
-            let requestReference = self.sessionManager.request(url,
-                                                               method: method,
-                                                               parameters: parameters,
-                                                               encoding: encoding,
-                                                               headers: headers)
-                .validate(statusCode: 200..<300)
-                .validate(contentType: ["application/json"])
-                .responseJSON { (response) in
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .formatted(.iso8601CT)
-
-                    if CTKit.shared.debugMode {
-                        print("=========================================")
-                        print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
-                        if let parameters = parameters {
-                            print("📄 Parameters:")
-                            print(parameters)
-                        }
-
-                        if let rData = response.data {
-                            print("♻️ Response with \(rData.count) bytes")
-
-                            if response.result.isFailure {
-                                print("⚠️ The call failed with the following error")
-                            } else {
-                                print("✅ The call succeeded with the following data")
-                            }
-
-                            do {
-                                let jsonResponse = try JSONSerialization.jsonObject(with: rData, options: [])
-                                print(jsonResponse) //Response result
-                            } catch let parsingError {
-                                print("Error", parsingError)
-                            }
-
-                            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                            do {
-                                let _ = try decoder.decode(T.self, from: rData)
-                                print("✅ Parsing success")
-                            } catch let modelParsingError {
-                                print("🚒 Parsing failed")
-                                print(modelParsingError)
-                            }
-                            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                        }
-                        print("=========================================")
-                    }
-
-                    switch response.result {
-                    case .success:
-                        guard let data = response.data, let getResponse = try? decoder.decode(T.self, from: data) else {
-                            observer.onError(CTErrorHandler().handle(withDecodingError: nil))
-                            return
-                        }
-
-                        observer.onNext(getResponse)
-                        observer.onCompleted()
-                    case .failure:
-                        observer.onError(CTErrorHandler().handle(response: response))
-                    }
-            }
-
-            return Disposables.create(with: {
-                requestReference.cancel()
-            })
-        }
     }
 
     func computeHeaders() -> [String:String]? {
