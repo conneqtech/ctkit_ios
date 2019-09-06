@@ -340,6 +340,8 @@
 		C0B960F7231FEEA3008740C5 /* CTContentRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B960F6231FEEA3008740C5 /* CTContentRequestAdapter.swift */; };
 		C0B960F9231FEED2008740C5 /* CTContentRequestRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B960F8231FEED2008740C5 /* CTContentRequestRetrier.swift */; };
 		C0B960FB231FEFD0008740C5 /* CTContentResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B960FA231FEFD0008740C5 /* CTContentResponseModel.swift */; };
+		C0C44D042322891A008F6F41 /* CTBatteryStatisticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C44D032322891A008F6F41 /* CTBatteryStatisticsModel.swift */; };
+		C0C44D06232289DF008F6F41 /* CTBatteryStatisticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C44D05232289DF008F6F41 /* CTBatteryStatisticsService.swift */; };
 		C0C98C8C7D07E1598F20EE2F0539197D /* NMBExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C5FC3D2BE51E6C1CC9026627C66715 /* NMBExpectation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		C1B7E78560812901A067948845E40D8F /* CTAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B7733E77D2E6A1222D5F3F12D3986F /* CTAPIConfig.swift */; };
 		C20B55FBD645ED3888C6A019CAFDCB24 /* Platform.Darwin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330FA943E127DA281A846F1CBB413E8 /* Platform.Darwin.swift */; };
@@ -950,6 +952,8 @@
 		C0B960F6231FEEA3008740C5 /* CTContentRequestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTContentRequestAdapter.swift; sourceTree = "<group>"; };
 		C0B960F8231FEED2008740C5 /* CTContentRequestRetrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTContentRequestRetrier.swift; sourceTree = "<group>"; };
 		C0B960FA231FEFD0008740C5 /* CTContentResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTContentResponseModel.swift; sourceTree = "<group>"; };
+		C0C44D032322891A008F6F41 /* CTBatteryStatisticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBatteryStatisticsModel.swift; sourceTree = "<group>"; };
+		C0C44D05232289DF008F6F41 /* CTBatteryStatisticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBatteryStatisticsService.swift; sourceTree = "<group>"; };
 		C12A7E7D6A9D8637BBDF385D316CE74A /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		C173C704D26105877625E5401D11A699 /* URITemplate-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "URITemplate-prefix.pch"; sourceTree = "<group>"; };
 		C26196B7C9337A71F874B6B1D3658E42 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
@@ -1998,6 +2002,7 @@
 				53BEF64CDB53781AD32FEB4CECFFF125 /* CTUploadedFile.swift */,
 				3BDBC26E106B468E701A535EBD14B6F9 /* CTUserModel.swift */,
 				113B4BED09553FECF45E33807C9F5EED /* CTUserRecoveryResultModel.swift */,
+				C0C44D032322891A008F6F41 /* CTBatteryStatisticsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2020,6 +2025,7 @@
 				BB5F074EF6F3E10B86C73503FDACC2BF /* CTUploadService.swift */,
 				304FF0808AA271A4D87709CB6AE7AAB0 /* CTUserRecoveryService.swift */,
 				E7E39864C441507C3B228D0595B1F277 /* CTUserService.swift */,
+				C0C44D05232289DF008F6F41 /* CTBatteryStatisticsService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2958,6 +2964,7 @@
 				FAE79858E443E27578D2B9DAEA2EC132 /* CTBikeLocationService.swift in Sources */,
 				E229A8ACC9CA4B0388BEF105CF070439 /* CTBikeModel.swift in Sources */,
 				0FA7CB104743E5CA0EB1EE9C804F1803 /* CTBikeNotificationModel.swift in Sources */,
+				C0C44D042322891A008F6F41 /* CTBatteryStatisticsModel.swift in Sources */,
 				9831C842A0C9CC5D2641669AF9CA75CF /* CTBikeNotificationSettingsModel.swift in Sources */,
 				BCAC79FFF86D1295A1494962B950AF5F /* CTBikeService.swift in Sources */,
 				012F4DA25D53572F8B2D9FA7A11FF3B1 /* CTBikeStateModel.swift in Sources */,
@@ -2984,6 +2991,7 @@
 				16C99C35631020D89ABACA4F0AD34580 /* CTGeofenceStatsModel.swift in Sources */,
 				A30D70FC1351CA8F38D9720438635689 /* CTInsuranceModel.swift in Sources */,
 				2CD5C722830C8D079649A63A8768B915 /* CTInviteModel.swift in Sources */,
+				C0C44D06232289DF008F6F41 /* CTBatteryStatisticsService.swift in Sources */,
 				CB9916DFB5BE8FD47FC51B1062FF7F8E /* CTJwtAuthManager.swift in Sources */,
 				0314191A40577E8968E9E906485E243D /* CTJwtService.swift in Sources */,
 				AD92E208FC45C1ED70C9AB7FA18436F4 /* ctkit-dummy.m in Sources */,
