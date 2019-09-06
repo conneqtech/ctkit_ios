@@ -146,6 +146,9 @@ internal class CTErrorHandler: NSObject {
 
 class Connectivity {
     class var isConnectedToInternet:Bool {
-        return NetworkReachabilityManager()!.isReachable
+        if let manager = NetworkReachabilityManager() {
+            return manager.isReachable
+        }
+        return false
     }
 }

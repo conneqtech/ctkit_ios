@@ -55,19 +55,17 @@ public class CTRestManager {
 
     public func upload<T: Codable>(endpoint: String, image: UIImage, useToken: String? = nil) -> Observable<T> {
         return Observable<T>.create { (observer) -> Disposable in
-
+            if (!Connectivity.isConnectedToInternet) {
+                observer.onError(CTErrorHandler().handleNoInternet())
+                return Disposables.create()
+            }
             var headers: [String: String] = [:]
-
+            
             if let bearer = useToken {
                 headers["Authorization"] = "Bearer \(bearer)"
             }
 
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
-            
-            if (!Connectivity.isConnectedToInternet) {
-                observer.onError(CTErrorHandler().handleNoInternet())
-                return Disposables.create()
-            }
             Alamofire.upload(multipartFormData: { formData in
                 if let fixedOrientation = image.fixedOrientation(), let imageData = fixedOrientation.pngData() {
                     formData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
@@ -109,6 +107,10 @@ public class CTRestManager {
 
     private func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Completable {
         return Completable.create { (completable) in
+            if (!Connectivity.isConnectedToInternet) {
+                completable(.error(CTErrorHandler().handleNoInternet()))
+                return Disposables.create()
+            }
             var headers: [String: String] = self.computeHeaders()!
 
             if let bearer = useToken {
@@ -116,10 +118,6 @@ public class CTRestManager {
             }
 
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
-            if (!Connectivity.isConnectedToInternet) {
-                completable(.error(CTErrorHandler().handleNoInternet()))
-                return Disposables.create()
-            }
             let requestReference = self.sessionManager.request(url,
                                                                method: method,
                                                                parameters: parameters,
@@ -145,7 +143,10 @@ public class CTRestManager {
     private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
         
             return Observable<T>.create { (observer) -> Disposable in
-
+                if(!Connectivity.isConnectedToInternet){
+                    observer.onError(CTErrorHandler().handleNoInternet())
+                    return Disposables.create()
+                }
                 var headers: [String: String] = self.computeHeaders()!
 
                 if let bearer = useToken {
@@ -153,11 +154,6 @@ public class CTRestManager {
                 }
 
                 let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
-                
-                if(!Connectivity.isConnectedToInternet){
-                    observer.onError(CTErrorHandler().handleNoInternet())
-                    return Disposables.create()
-                }
                 let requestReference = self.sessionManager.request(url,
                                                                    method: method,
                                                                    parameters: parameters,
