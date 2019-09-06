@@ -86,32 +86,31 @@ public class CTAuthManager: CTAuthManagerBase {
             if (!Connectivity.isConnectedToInternet) {
                 observer.onError(CTErrorHandler().handleNoInternet())
                 return Disposables.create()
-            } else {
-                let requestReference = Alamofire.request(url,
-                                                         method: .post,
-                                                         parameters: parameters)
-                    .validate()
-                    .responseJSON { (response) in
-                        switch response.result {
-                        case .success:
-                            guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
-                                observer.onError(CTErrorHandler().handle(withDecodingError: nil))
-                                return
-                            }
-
-                            self.saveTokenResponse(getResponse)
-                            observer.onNext(getResponse)
-                            observer.onCompleted()
-                        case .failure:
-                            observer.onError(CTErrorHandler().handle(response: response))
-                        }
-                }
-
-                return Disposables.create(with: {
-                    requestReference.cancel()
-                })
-                
             }
+            let requestReference = Alamofire.request(url,
+                                                     method: .post,
+                                                     parameters: parameters)
+                .validate()
+                .responseJSON { (response) in
+                    switch response.result {
+                    case .success:
+                        guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
+                            observer.onError(CTErrorHandler().handle(withDecodingError: nil))
+                            return
+                        }
+
+                        self.saveTokenResponse(getResponse)
+                        observer.onNext(getResponse)
+                        observer.onCompleted()
+                    case .failure:
+                        observer.onError(CTErrorHandler().handle(response: response))
+                    }
+            }
+
+            return Disposables.create(with: {
+                requestReference.cancel()
+            })
+            
         }
     }
 

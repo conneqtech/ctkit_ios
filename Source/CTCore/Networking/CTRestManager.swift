@@ -67,44 +67,43 @@ public class CTRestManager {
             if (!Connectivity.isConnectedToInternet) {
                 observer.onError(CTErrorHandler().handleNoInternet())
                 return Disposables.create()
-            } else {
-                Alamofire.upload(multipartFormData: { formData in
-                    if let fixedOrientation = image.fixedOrientation(), let imageData = fixedOrientation.pngData() {
-                        formData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
-                    }
-                }, to: url, encodingCompletion: { encodingResult in
-                    switch encodingResult {
-                    case .success(let upload, _, _):
-                        upload
-                            .validate(statusCode: 200..<300)
-                            .validate(contentType: ["application/json"])
-                            .responseJSON { response in
-                                let decoder = JSONDecoder()
-                                decoder.dateDecodingStrategy = .formatted(.iso8601CT)
-                                switch response.result {
-                                case .success:
-                                    guard let data = response.data, let getResponse = try? decoder.decode(T.self, from: data) else {
-                                        observer.onError(CTErrorHandler().handle(withDecodingError: nil))
-                                        return
-                                    }
-
-                                    observer.onNext(getResponse)
-                                    observer.onCompleted()
-
-                                case .failure:
-                                    observer.onError(CTErrorHandler().handle(response: response))
-                                }
-                        }
-                    case .failure(let encodingError):
-                        print(encodingError)
-                        observer.onError(CTBasicError(translationKey: "api.error.upload.failed", description: "Uploading failed"))
-                    }
-                })
-
-                return Disposables.create(with: {
-
-                })
             }
+            Alamofire.upload(multipartFormData: { formData in
+                if let fixedOrientation = image.fixedOrientation(), let imageData = fixedOrientation.pngData() {
+                    formData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
+                }
+            }, to: url, encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload
+                        .validate(statusCode: 200..<300)
+                        .validate(contentType: ["application/json"])
+                        .responseJSON { response in
+                            let decoder = JSONDecoder()
+                            decoder.dateDecodingStrategy = .formatted(.iso8601CT)
+                            switch response.result {
+                            case .success:
+                                guard let data = response.data, let getResponse = try? decoder.decode(T.self, from: data) else {
+                                    observer.onError(CTErrorHandler().handle(withDecodingError: nil))
+                                    return
+                                }
+
+                                observer.onNext(getResponse)
+                                observer.onCompleted()
+
+                            case .failure:
+                                observer.onError(CTErrorHandler().handle(response: response))
+                            }
+                    }
+                case .failure(let encodingError):
+                    print(encodingError)
+                    observer.onError(CTBasicError(translationKey: "api.error.upload.failed", description: "Uploading failed"))
+                }
+            })
+
+            return Disposables.create(with: {
+
+            })
         }
     }
 
@@ -120,27 +119,26 @@ public class CTRestManager {
             if (!Connectivity.isConnectedToInternet) {
                 completable(.error(CTErrorHandler().handleNoInternet()))
                 return Disposables.create()
-            } else {
-                let requestReference = self.sessionManager.request(url,
-                                                                   method: method,
-                                                                   parameters: parameters,
-                                                                   encoding: encoding,
-                                                                   headers: headers)
-                    .validate(statusCode: 200..<300)
-                    .validate(contentType: ["application/json"])
-                    .responseJSON { (response) in
-                        switch response.result {
-                        case .success:
-                            completable(.completed)
-                        case .failure:
-                            completable(.error(CTErrorHandler().handle(response: response)))
-                        }
-                }
-
-                return Disposables.create(with: {
-                    requestReference.cancel()
-                })
             }
+            let requestReference = self.sessionManager.request(url,
+                                                               method: method,
+                                                               parameters: parameters,
+                                                               encoding: encoding,
+                                                               headers: headers)
+                .validate(statusCode: 200..<300)
+                .validate(contentType: ["application/json"])
+                .responseJSON { (response) in
+                    switch response.result {
+                    case .success:
+                        completable(.completed)
+                    case .failure:
+                        completable(.error(CTErrorHandler().handle(response: response)))
+                    }
+            }
+
+            return Disposables.create(with: {
+                requestReference.cancel()
+            })
         }
     }
 
@@ -159,7 +157,7 @@ public class CTRestManager {
                 if(!Connectivity.isConnectedToInternet){
                     observer.onError(CTErrorHandler().handleNoInternet())
                     return Disposables.create()
-                }else{
+                }
                 let requestReference = self.sessionManager.request(url,
                                                                    method: method,
                                                                    parameters: parameters,
@@ -226,7 +224,6 @@ public class CTRestManager {
                     requestReference.cancel()
                 })
             }
-        }
     }
 
     func computeHeaders() -> [String:String]? {
