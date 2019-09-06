@@ -89,6 +89,15 @@ internal extension CTKit {
         UserDefaults.standard.removeObject(forKey: CTKit.ACTIVE_USER_ID_KEY)
         UserDefaults.standard.removeObject(forKey: CTKit.ACCESS_TOKEN_KEY)
         UserDefaults.standard.removeObject(forKey: CTKit.REFRESH_TOKEN_KEY)
+
+
+        if CTActivityCenter.shared != nil {
+            CTActivityCenter.shared.authManager.terminateActiveSession()
+        }
+
+        if CTContent.shared != nil {
+            CTContent.shared.authManager.terminateActiveSession()
+        }
     }
 
     func hasActiveSession() -> Bool {
