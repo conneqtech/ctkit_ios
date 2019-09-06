@@ -149,6 +149,6 @@ class Connectivity {
         if let manager = NetworkReachabilityManager() {
             return manager.isReachable
         }
-        return false
+        return true
     }
 }
