@@ -12,7 +12,7 @@ public class CTJwtAuthManager: CTAuthManagerBase {
     var activeToken: String = ""
     
     public func hasActiveSession() -> Bool {
-        return true
+        return activeToken != ""
     }
 
     public func getActiveSessionEndDate() -> Date {
@@ -25,6 +25,7 @@ public class CTJwtAuthManager: CTAuthManagerBase {
 
     public func terminateActiveSession() {
         // Terminate here.
+        activeToken = ""
     }
 
     public func saveTokenResponse(_ tokenResponse: CTCredentialResponse) {
