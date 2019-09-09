@@ -18,6 +18,10 @@ public class CTAuthManager: CTAuthManagerBase {
 
     public func getClientToken() -> Observable<String> {
         return Observable<String>.create { (observer) -> Disposable in
+            if (!Connectivity.isConnectedToInternet) {
+                observer.onError(CTErrorHandler().handleNoInternet())
+                return Disposables.create()
+            }
             let url = URL(string: "\(self.apiConfig.fullUrl)/oauth")!
             let requestReference = Alamofire.request(url,
                                                      method: .post,
