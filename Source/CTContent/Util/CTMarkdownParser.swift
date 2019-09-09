@@ -184,7 +184,7 @@ extension CTMarkdownParser {
      */
     func prepareContentArray(withContentString contentString: String) -> [String] {
         var content: [String] = []
-        let lines = contentString.split { $0.isNewline }
+        let lines = contentString.components(separatedBy: CharacterSet.newlines)
         lines.forEach { content.append(String($0)) }
 
         return content
