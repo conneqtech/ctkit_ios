@@ -10,8 +10,8 @@ target 'ctkit_Example' do
 
     pod 'Quick'
     pod 'Nimble'
-    pod 'RxBlocking', '~> 4.0'
-    pod 'RxTest',     '~> 4.0'
+    pod 'RxBlocking'
+    pod 'RxTest'
     pod 'Mockingjay'
   end
 end
