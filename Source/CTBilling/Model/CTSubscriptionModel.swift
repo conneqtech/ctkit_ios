@@ -15,7 +15,7 @@ public struct CTSubscriptionModel: CTBaseModel {
     public let startDate: Date
     public let endDate: Date?
     public let productId: Int
-    public let product: CTProductModel
+    public let product: CTProductModel?
     public let type: CTSubscriptionProductType
     public let insurance: CTInsuranceModel?
     public let insuranceType: CTInsuranceType?

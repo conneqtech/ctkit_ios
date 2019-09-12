@@ -1,8 +1,8 @@
 {
   "name": "ctkit",
-  "version": "0.22.3",
+  "version": "0.26.0",
   "summary": "SDK to communicate with the connected bike api",
-  "swift_versions": "4.2",
+  "swift_versions": "5.0",
   "description": "The iOS implementation of our SDK, it allows developers to do cool things with our API.",
   "homepage": "https://bitbucket.org/nfnty_admin/ctkit_ios",
   "license": {
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://bitbucket.org/nfnty_admin/ctkit_ios.git",
-    "tag": "0.22.3"
+    "tag": "0.26.0"
   },
   "platforms": {
     "ios": "10.0"
@@ -25,8 +25,8 @@
       "~> 4.7"
     ],
     "RxSwift": [
-      "~> 4.0"
+      "~> 5.0"
     ]
   },
-  "swift_version": "4.2"
+  "swift_version": "5.0"
 }

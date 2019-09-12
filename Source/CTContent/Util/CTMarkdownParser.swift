@@ -122,7 +122,7 @@ extension CTMarkdownParser {
             }
         }
 
-        let lastPageEndIndex = contentArray.index(of: swipeItemsEndMarker)
+        let lastPageEndIndex = contentArray.firstIndex(of: swipeItemsEndMarker)
 
         for (index, item) in pageIndexes.enumerated() {
             var pageSlice: ArraySlice<String>?
@@ -143,7 +143,7 @@ extension CTMarkdownParser {
 
                 let contentPage = CTContentPageModel(title: title, body: body, imageUrl: imageUrl)
                 pages.append(contentPage)
-            } 
+            }
         }
         return pages
     }
@@ -154,16 +154,16 @@ extension CTMarkdownParser {
     func extractActions(withContentArray contentArray: [String]) -> [CTContentButtonModel] {
         var actions: [CTContentButtonModel] = []
 
-        if let actionMarkerIndex = contentArray.index(of: actionMarker) {
+        if let actionMarkerIndex = contentArray.firstIndex(of: actionMarker) {
             let markdownActions = contentArray[actionMarkerIndex...]
 
             for action in markdownActions {
                 if action.starts(with: "[") && action.last == ")" {
-                    var text = action[action.index(of: "[")!...action.index(of: "]")!]
+                    var text = action[action.firstIndex(of: "[")!...action.firstIndex(of: "]")!]
                     text = text.dropFirst()
                     text = text.dropLast()
 
-                    var link = action[action.index(of: "(")!...action.index(of: ")")!]
+                    var link = action[action.firstIndex(of: "(")!...action.firstIndex(of: ")")!]
                     link = link.dropFirst()
                     link = link.dropLast()
 
