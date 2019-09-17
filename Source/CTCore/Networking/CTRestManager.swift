@@ -32,6 +32,10 @@ public class CTRestManager {
         return genericCall(.get, endpoint: endpoint, parameters: parameters, encoding: URLEncoding.default, useToken: useToken)
     }
 
+    public func getUnparsed(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<String> {
+        return genericUnparsedCall(.get, endpoint: endpoint, useToken: useToken)
+    }
+
     public func post<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
         return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
@@ -143,10 +147,12 @@ public class CTRestManager {
     private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
         
             return Observable<T>.create { (observer) -> Disposable in
+
                 if(!Connectivity.isConnectedToInternet){
                     observer.onError(CTErrorHandler().handleNoInternet())
                     return Disposables.create()
                 }
+
                 var headers: [String: String] = self.computeHeaders()!
 
                 if let bearer = useToken {
@@ -165,42 +171,7 @@ public class CTRestManager {
                         let decoder = JSONDecoder()
                         decoder.dateDecodingStrategy = .formatted(.iso8601CT)
 
-                        if CTKit.shared.debugMode {
-                            print("=========================================")
-                            print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
-                            if let parameters = parameters {
-                                print("📄 Parameters:")
-                                print(parameters)
-                            }
-
-                            if let rData = response.data {
-                                print("♻️ Response with \(rData.count) bytes")
-
-                                if response.result.isFailure {
-                                    print("⚠️ The call failed with the following error")
-                                } else {
-                                    print("✅ The call succeeded with the following data")
-                                }
-
-                                do {
-                                    let jsonResponse = try JSONSerialization.jsonObject(with: rData, options: [])
-                                    print(jsonResponse) //Response result
-                                } catch let parsingError {
-                                    print("Error", parsingError)
-                                }
-
-                                print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                                do {
-                                    let _ = try decoder.decode(T.self, from: rData)
-                                    print("✅ Parsing success")
-                                } catch let modelParsingError {
-                                    print("🚒 Parsing failed")
-                                    print(modelParsingError)
-                                }
-                                print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                            }
-                            print("=========================================")
-                        }
+                        self.responseDebugger(method, endpoint: endpoint, parameters: parameters, response: response, decodeType: T.self)
 
                         switch response.result {
                         case .success:
@@ -222,6 +193,52 @@ public class CTRestManager {
             }
     }
 
+    private func genericUnparsedCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<String> {
+
+        return Observable<String>.create { (observer) -> Disposable in
+
+            if(!Connectivity.isConnectedToInternet){
+                observer.onError(CTErrorHandler().handleNoInternet())
+                return Disposables.create()
+            }
+
+            var headers: [String: String] = self.computeHeaders()!
+
+            if let bearer = useToken {
+                headers["Authorization"] = "Bearer \(bearer)"
+            }
+
+            let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+            let requestReference = self.sessionManager.request(url,
+                                                               method: method,
+                                                               parameters: parameters,
+                                                               encoding: encoding,
+                                                               headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseString { (response) in
+
+                if response.result.isSuccess {
+                    if let result = response.result.value {
+                        observer.onNext(result)
+                    } else {
+                        observer.onNext("")
+                    }
+
+                    observer.onCompleted()
+                } else {
+                    observer.onError(response.error!) //CTErrorHandler().handle(response: response)
+                }
+            }
+
+            return Disposables.create(with: {
+                requestReference.cancel()
+            })
+        }
+    }
+}
+
+// MARK: - Request helper functions
+fileprivate extension CTRestManager {
     func computeHeaders() -> [String:String]? {
         var headers:[String:String] = Alamofire.SessionManager.defaultHTTPHeaders
 
@@ -241,5 +258,52 @@ public class CTRestManager {
         headers["X-Device-Language"]            = UIDevice.deviceLanguage()
 
         return headers
+    }
+
+    func responseDebugger<T>(_ method: Alamofire.HTTPMethod,
+                                         endpoint: String,
+                                         parameters: [String: Any]? = nil,
+                                         response: DataResponse<Any>,
+                                         decodeType: T.Type) where T: Codable {
+        if !CTKit.shared.debugMode {
+            return
+        }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(.iso8601CT)
+
+        print(".=========================================.")
+        print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
+        if let parameters = parameters {
+            print("📄 Parameters:")
+            print(parameters)
+        }
+
+        if let rData = response.data {
+            print("♻️ Response with \(rData.count) bytes")
+
+            if response.result.isFailure {
+                print("⚠️ The call failed with the following error")
+            } else {
+                print("✅ The call succeeded with the following data")
+            }
+
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: rData, options: [])
+                print(jsonResponse) //Response result
+            } catch let parsingError {
+                print("Error", parsingError)
+            }
+
+            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+            do {
+                _ = try decoder.decode(decodeType, from: rData)
+                print("✅ Parsing success")
+            } catch let modelParsingError {
+                print("🚒 Parsing failed")
+                print(modelParsingError)
+            }
+            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+        }
+        print(".=========================================.")
     }
 }
