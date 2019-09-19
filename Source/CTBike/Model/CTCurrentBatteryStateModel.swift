@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CTCurrentBatteryStateModel: CTBaseModel {
+public struct CTCurrentBatteryStateModel: CTBaseModel {
 
     public let current: Int?
     public let batteryPercentage: Int?
