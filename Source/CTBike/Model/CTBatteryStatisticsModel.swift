@@ -22,4 +22,12 @@ public struct CTBatteryStatisticsModel: CTBaseModel {
         case secondsInRide = "seconds_in_ride"
         case secondsCharging = "seconds_charging"
     }
+
+    public init(date: Date, batteryPercentage: Int, charging: Bool, secondsInRide: Int, secondsCharging: Int) {
+        self.date = date
+        self.batteryPercentage = batteryPercentage
+        self.charging = charging
+        self.secondsInRide = secondsInRide
+        self.secondsCharging = secondsCharging
+    }
 }
