@@ -22,7 +22,7 @@ public class CTBatteryStatisticsService: NSObject {
     }
 
     public func getCurrentBatteryState(withBikeId identifier: Int) -> Observable<CTCurrentBatteryStateModel> {
-        return CTKit.shared.restManager.get(endpoint:"bike/\'\(identifier)/battery/current-state")
+        return CTKit.shared.restManager.get(endpoint:"bike/\(identifier)/battery/current-state")
     }
 }
 
