@@ -21,7 +21,7 @@ public class CTBatteryStatisticsService: NSObject {
         return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/battery", parameters: parameters)
     }
 
-    public func getCurrentBatteryState(withBikeId identifier: Int) -> Observable<CTCurrentBatteryStateModel> {
+    public func fetchCurrentBatteryState(withBikeId identifier: Int) -> Observable<CTCurrentBatteryStateModel> {
         return CTKit.shared.restManager.get(endpoint:"bike/\(identifier)/battery/current-state")
     }
 }
