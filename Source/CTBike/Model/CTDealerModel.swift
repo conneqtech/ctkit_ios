@@ -12,10 +12,11 @@ public struct CTDealerModel: CTBaseModel {
     public let id: Int
     public let name: String
     public let reference: String
-    public let address: String
-    public let postalCode: String
-    public let city: String
-    public let country: String
+
+    public let address: String?
+    public let postalCode: String?
+    public let city: String?
+    public let country: String?
 
     public let email: String?
     public let phoneNumber: String?

@@ -26,7 +26,7 @@ public class CTDealerService: NSObject {
                 "or;reference;like;\(search)",
                 "or;address;like;\(search)",
                 "or;city;like;\(search)",
-                "or;postal_code;like;\(search)",
+                "or;postal_code;like;\(search)"
             ],
             "limit": limit,
             "offset": (page - 1) * limit
@@ -39,11 +39,16 @@ public class CTDealerService: NSObject {
         return CTKit.shared.restManager.get(endpoint: "dealer/\(identfier)")
     }
 
-    public func linkDealer(withId identifier: Int, toBike bikeIdentifier: Int) -> Observable<CTDealerModel> {
-        return Observable.empty()
+
+    public func linkDealer(withId dealerIdentifier: Int, toBike bikeIdentifier: Int) -> Observable<CTBikeModel> {
+        return CTKit.shared.restManager.patch(endpoint: "bike/\(bikeIdentifier)", parameters: [
+            "dealer_id" : dealerIdentifier
+        ])
     }
 
-    public func unlinkDealer(fromBike identifier: Int) -> Completable {
-        return Completable.empty()
+    public func unlinkDealer(fromBike identifier: Int) -> Observable<CTBikeModel> {
+         return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: [
+            "dealer_id" : NSNull.self
+       ])
     }
 }
