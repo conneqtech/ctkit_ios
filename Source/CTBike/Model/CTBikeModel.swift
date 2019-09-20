@@ -29,7 +29,15 @@ public struct CTBikeModel: CTBaseModel {
     public let inviteUri: String?
     public let articleNumber: String?
 
-    public init(withId id: Int, imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true, articleNumber: String? = nil) {
+    public let dealerId: Int?
+
+    public init(withId id: Int,
+                imei: String,
+                frameIdentifier identifier: String,
+                name: String,
+                isOwner: Bool = true,
+                articleNumber: String? = nil
+    ) {
         self.id = id
         self.imei = imei
         self.frameIdentifier = identifier
@@ -39,6 +47,7 @@ public struct CTBikeModel: CTBaseModel {
         self.bluetoothName = ""
         self.inviteUri = ""
         self.articleNumber = articleNumber
+        self.dealerId = nil
     }
 
     public init(withImei imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
@@ -51,6 +60,7 @@ public struct CTBikeModel: CTBaseModel {
         self.bluetoothName = ""
         self.inviteUri = ""
         self.articleNumber = ""
+        self.dealerId = nil
     }
 
     enum CodingKeys: String, CodingKey {
@@ -73,6 +83,8 @@ public struct CTBikeModel: CTBaseModel {
 
         case inviteUri = "invite_code_uri"
         case articleNumber = "article_number"
+
+        case dealerId = "dealer_id"
     }
 
     public func encode(to encoder: Encoder) throws {
