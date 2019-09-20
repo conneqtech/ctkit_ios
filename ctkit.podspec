@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-  spec.version          = '1.3.0'
+  spec.version          = '1.3.1'
   spec.summary          = 'SDK to communicate with the connected bike api'
   spec.swift_version    = '5.0'
 
