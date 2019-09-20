@@ -15,6 +15,7 @@ public struct CTCurrentBatteryStateModel: CTBaseModel {
     public let lastFullChargeDate: Date?
     public let isCharging: Bool?
     public let range:Int?
+    public let fullChargeIndication: Date?
 
     enum CodingKeys: String, CodingKey {
         case current
@@ -23,5 +24,6 @@ public struct CTCurrentBatteryStateModel: CTBaseModel {
         case lastFullChargeDate = "last_full_charge"
         case isCharging = "charging"
         case range
+        case fullChargeIndication = "full_charge_indication"
     }
 }
