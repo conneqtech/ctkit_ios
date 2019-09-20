@@ -353,6 +353,8 @@
 		C05CA0F0F750C8D638724CA02E928696 /* CTBikeNotificationSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6281686A76DD891008253AB8AA443835 /* CTBikeNotificationSettingsModel.swift */; };
 		C09C71022333C50A00B76D5B /* CTCurrentBatteryStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09C71012333C50A00B76D5B /* CTCurrentBatteryStateModel.swift */; };
 		C0C98C8C7D07E1598F20EE2F0539197D /* NMBExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A73696F05802E6701F0022FDBA9F0A /* NMBExpectation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
+		C0EB0FAB2334D25800286133 /* CTDealerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EB0FAA2334D25800286133 /* CTDealerService.swift */; };
+		C0EB0FAD2334D2B800286133 /* CTDealerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EB0FAC2334D2B800286133 /* CTDealerModel.swift */; };
 		C2EC20D2930DE9B5FAE8D4DA52D81B71 /* VirtualTimeScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D778351F6D7A6630D38EEA3B5F12660 /* VirtualTimeScheduler.swift */; };
 		C43FC4EFD9E762C454E4168953475A55 /* HooksPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAA300A37709D190E8AE5480B804DD0 /* HooksPhase.swift */; };
 		C4C46BA54D5345B6CAB1F609DCFA7B6A /* Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732EC994CF55E79ADC4E8D3AE16F34D0 /* Rx.swift */; };
@@ -946,6 +948,8 @@
 		BFD8211A168548C483396D443748FE4A /* Resources.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Resources.swift; path = RxBlocking/Resources.swift; sourceTree = "<group>"; };
 		C0916B7AED569F4AB590DFDDDBFFC41F /* AssertionRecorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssertionRecorder.swift; path = Sources/Nimble/Adapters/AssertionRecorder.swift; sourceTree = "<group>"; };
 		C09C71012333C50A00B76D5B /* CTCurrentBatteryStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTCurrentBatteryStateModel.swift; sourceTree = "<group>"; };
+		C0EB0FAA2334D25800286133 /* CTDealerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTDealerService.swift; sourceTree = "<group>"; };
+		C0EB0FAC2334D2B800286133 /* CTDealerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTDealerModel.swift; sourceTree = "<group>"; };
 		C12B538521FE8357941322F6149F7C71 /* Never.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Never.swift; path = RxSwift/Observables/Never.swift; sourceTree = "<group>"; };
 		C17C27A508155E82E74833DF4F4586B3 /* Nimble-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Nimble-dummy.m"; sourceTree = "<group>"; };
 		C2A73696F05802E6701F0022FDBA9F0A /* NMBExpectation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NMBExpectation.swift; path = Sources/Nimble/Adapters/NMBExpectation.swift; sourceTree = "<group>"; };
@@ -1235,6 +1239,7 @@
 				BD6FB83FB67B109BB0570AF44B2409E8 /* CTUserModel.swift */,
 				E3F3C6FB48EE903DB191DCAACCC69C22 /* CTUserRecoveryResultModel.swift */,
 				C09C71012333C50A00B76D5B /* CTCurrentBatteryStateModel.swift */,
+				C0EB0FAC2334D2B800286133 /* CTDealerModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1949,6 +1954,7 @@
 				9DAA6D7BAFC288D38E792A0826786218 /* CTUploadService.swift */,
 				C58DD83C68A43FD899561476A9720768 /* CTUserRecoveryService.swift */,
 				546B17017DD6B97C7052C75953616410 /* CTUserService.swift */,
+				C0EB0FAA2334D25800286133 /* CTDealerService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2897,7 +2903,9 @@
 				B625B9DFB4690C5AE178A47AF80E76F7 /* CTDeviceModel.swift in Sources */,
 				545CDEE62DE02F7A09DE90115944E663 /* CTEntityState.swift in Sources */,
 				FC0AC798025D3E48CCDFAD3C9C130C33 /* CTErrorHandler.swift in Sources */,
+				C0EB0FAD2334D2B800286133 /* CTDealerModel.swift in Sources */,
 				8517AE66794FB0F2D37F3452C56702B9 /* CTErrorProtocol.swift in Sources */,
+				C0EB0FAB2334D25800286133 /* CTDealerService.swift in Sources */,
 				AD94D64C933E9D620548D702B89A82B2 /* CTErrorType.swift in Sources */,
 				99CB4EA8E553891DC5C575325B084B9F /* CTFilter.swift in Sources */,
 				31078F3E633A484C6E288040CBCFA463 /* CTGeofenceModel.swift in Sources */,
