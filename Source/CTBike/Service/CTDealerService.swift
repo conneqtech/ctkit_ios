@@ -48,7 +48,7 @@ public class CTDealerService: NSObject {
 
     public func unlinkDealer(fromBike identifier: Int) -> Observable<CTBikeModel> {
          return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: [
-            "dealer_id" : NSNull.self
+            "dealer_id" : 0
        ])
     }
 }
