@@ -24,6 +24,7 @@ public struct CTInviteModel: CTBaseModel {
     public let avatarUrl: String
 
     public let statusChangeDate: Date?
+    public let isEmergencyContact: Bool
 
      enum CodingKeys: String, CodingKey {
         case id
@@ -34,5 +35,7 @@ public struct CTInviteModel: CTBaseModel {
         case avatarUrl = "avatar_url"
 
         case statusChangeDate = "status_changed_on"
+        
+        case isEmergencyContact = "is_emergency_contact"
     }
 }
