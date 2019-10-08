@@ -1,5 +1,7 @@
+source 'https://cdn.cocoapods.org/'
+
 use_frameworks!
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 
 target 'ctkit_Example' do

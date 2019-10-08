@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-  spec.version          = '1.4.0'
+  spec.version          = '1.4.1'
   spec.summary          = 'SDK to communicate with the connected bike api'
   spec.swift_version    = '5.0'
 
@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
 
   spec.ios.deployment_target = '10.0'
 
-  spec.source_files = 'Source/{CTCore,CTContent,CTBilling,CTBike,CTActivityCenter}/**/*.swift'
+  spec.source_files = 'Source/{CTCore,CTContent,CTBilling,CTBike,CTActivityCenter, CTExternal}/**/*.swift'
 
   spec.dependency 'Alamofire', '~> 4.7'
   spec.dependency 'RxSwift', '~> 5.0'
