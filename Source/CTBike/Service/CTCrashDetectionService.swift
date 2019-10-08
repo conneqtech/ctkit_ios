@@ -11,7 +11,15 @@ import RxSwift
 public class CTCrashDetectionService: NSObject {
 
     public func setEmergencyContact(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
-        return setEmergencyContactStatus(withBikeId: bikeId, inviteId: inviteId, enabled: true)
+        return fetchEmergencyContact(withBikeId: bikeId).flatMap { response -> Observable<CTInviteModel> in
+            guard let response = response else { // We didn't have an emergency contact yet.
+                return self.setEmergencyContactStatus(withBikeId: bikeId, inviteId: inviteId, enabled: true)
+            }
+
+            return self.removeEmergencyContact(withBikeId: bikeId, inviteId: response.id).flatMap { _ in
+                return self.setEmergencyContactStatus(withBikeId: bikeId, inviteId: inviteId, enabled: true)
+            }
+        }
     }
 
     public func removeEmergencyContact(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
