@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
 
   spec.ios.deployment_target = '10.0'
 
-  spec.source_files = 'Source/{CTCore,CTContent,CTBilling,CTBike,CTActivityCenter}/**/*.swift'
+  spec.source_files = 'Source/{CTCore,CTContent,CTBilling,CTBike,CTActivityCenter, CTExternal}/**/*.swift'
 
   spec.dependency 'Alamofire', '~> 4.7'
   spec.dependency 'RxSwift', '~> 5.0'
