@@ -37,6 +37,7 @@
 		C00A8A36218735DC003F67CB /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A8A35218735DC003F67CB /* Resolver.swift */; };
 		C01C070E21AFDEE2001DA570 /* uploadImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */; };
 		C01C070F21AFE05E001DA570 /* uploadImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */; };
+		C039847723619E0000ED5E44 /* CTKitActiveSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039847623619E0000ED5E44 /* CTKitActiveSessionTests.swift */; };
 		C04390A922E6D4130000DDBB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04390A822E6D4130000DDBB /* Launch Screen.storyboard */; };
 		C04390AF22E6E2490000DDBB /* CTActivityCenterServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04390AE22E6E2490000DDBB /* CTActivityCenterServiceTests.swift */; };
 		C05E5F81231680A7006DD6FB /* static.md in Resources */ = {isa = PBXBuildFile; fileRef = C05E5F7D231680A6006DD6FB /* static.md */; };
@@ -113,6 +114,7 @@
 		C00A8A32218735A9003F67CB /* 400-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "400-error.json"; sourceTree = "<group>"; };
 		C00A8A35218735DC003F67CB /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		C01C070D21AFDEE2001DA570 /* uploadImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = uploadImages.xcassets; sourceTree = "<group>"; };
+		C039847623619E0000ED5E44 /* CTKitActiveSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTKitActiveSessionTests.swift; sourceTree = "<group>"; };
 		C04390A822E6D4130000DDBB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C04390AE22E6E2490000DDBB /* CTActivityCenterServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTActivityCenterServiceTests.swift; sourceTree = "<group>"; };
 		C04C0AAE21746E9B00F9ADE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				C0F40CDC218C4F5800F92CC9 /* CTModels */,
 				C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */,
 				C04C0AAE21746E9B00F9ADE0 /* Info.plist */,
+				C039847623619E0000ED5E44 /* CTKitActiveSessionTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -774,6 +777,7 @@
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 				C0FBCDA122B4CF5200E368C3 /* CTBikeTypeServiceTests.swift in Sources */,
 				C05E5F87231680DC006DD6FB /* CTMarkdownParserTests.swift in Sources */,
+				C039847723619E0000ED5E44 /* CTKitActiveSessionTests.swift in Sources */,
 				C0CF249422BB83B700595AA1 /* CTStatisticsServiceTests.swift in Sources */,
 				C04390AF22E6E2490000DDBB /* CTActivityCenterServiceTests.swift in Sources */,
 				C0F1996122BA1B7700BE0FFD /* CTBikeStateServiceTests.swift in Sources */,
