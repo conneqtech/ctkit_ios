@@ -85,11 +85,14 @@ internal extension CTKit {
         KeychainSwift().delete(CTKit.ACTIVE_USER_ID_KEY)
         KeychainSwift().delete(CTKit.ACCESS_TOKEN_KEY)
         KeychainSwift().delete(CTKit.REFRESH_TOKEN_KEY)
+        KeychainSwift().delete(CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY)
+        KeychainSwift().delete(CTKit.REFRESH_TOKEN_EXPIRE_TIME_KEY)
 
         UserDefaults.standard.removeObject(forKey: CTKit.ACTIVE_USER_ID_KEY)
         UserDefaults.standard.removeObject(forKey: CTKit.ACCESS_TOKEN_KEY)
         UserDefaults.standard.removeObject(forKey: CTKit.REFRESH_TOKEN_KEY)
-
+        UserDefaults.standard.removeObject(forKey: CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY)
+        UserDefaults.standard.removeObject(forKey: CTKit.REFRESH_TOKEN_EXPIRE_TIME_KEY)
 
         if CTActivityCenter.shared != nil {
             CTActivityCenter.shared.authManager.terminateActiveSession()
@@ -101,7 +104,7 @@ internal extension CTKit {
     }
 
     func hasActiveSession() -> Bool {
-        return hasActiveAccessToken() || hasActiveRefreshToken()
+        return hasActiveAccessToken() //|| hasActiveRefreshToken()
     }
 }
 
@@ -121,9 +124,31 @@ private extension CTKit {
     func hasActiveAccessToken() -> Bool {
         switch CTKit.shared.credentialSaveLocation {
         case .keychain:
-            return KeychainSwift().get(CTKit.ACCESS_TOKEN_KEY) != nil
+            guard let dateString = KeychainSwift().get(CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY) else {
+                return false
+            }
+
+            let date = DateFormatter.iso8601CT.date(from: dateString)!
+
+            var dateValid = false
+            if date > Date() {
+                dateValid = true
+            }
+
+            return dateValid && KeychainSwift().get(CTKit.ACCESS_TOKEN_KEY) != nil
         case .userDefaults:
-            return UserDefaults.standard.string(forKey: CTKit.ACCESS_TOKEN_KEY) != nil
+            guard let dateString = UserDefaults.standard.string(forKey:CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY) else {
+                return false
+            }
+
+            let date = DateFormatter.iso8601CT.date(from: dateString)!
+
+            var dateValid = false
+            if date > Date() {
+                dateValid = true
+            }
+
+            return dateValid && UserDefaults.standard.string(forKey: CTKit.ACCESS_TOKEN_KEY) != nil
         case .none:
             return false
         }

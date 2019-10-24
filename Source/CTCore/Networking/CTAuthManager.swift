@@ -129,6 +129,7 @@ public class CTAuthManager: CTAuthManagerBase {
         case .keychain:
             let keychain = KeychainSwift()
             keychain.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
+            keychain.set(Date().addingTimeInterval(Double(tokenResponse.expiresIn)).toAPIDate(), forKey: CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY)
 
             if let refreshToken = tokenResponse.refreshToken {
                 keychain.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY)
@@ -136,6 +137,8 @@ public class CTAuthManager: CTAuthManagerBase {
 
         case .userDefaults:
             UserDefaults.standard.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
+            UserDefaults.standard.set(Date().addingTimeInterval(Double(tokenResponse.expiresIn)).toAPIDate(),
+                                      forKey: CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY)
 
             if let refreshToken = tokenResponse.refreshToken {
                 UserDefaults.standard.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY)

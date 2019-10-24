@@ -26,7 +26,8 @@ class CTBikeTypeServiceTests: XCTestCase {
                                       lightToggle: false,
                                       chargeIndication: true,
                                       lastFullChargeDate: false,
-                                      range: false
+                                      range: false,
+                                      crashDetection: false
         )
 
         stubbedBikeType = CTBikeTypeModel(id: 1,
