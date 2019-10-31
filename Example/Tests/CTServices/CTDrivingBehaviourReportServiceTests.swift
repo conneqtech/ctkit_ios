@@ -22,7 +22,7 @@ class CTDrivingBehaviourReportServiceTests: XCTestCase {
     }
 
     func test_drivingReport() {
-        let result = try! CTDrivingBehaviourReportService().fetchReport(withBikeId: 1295,
+        let result = try! CTDrivingBehaviourReportService().fetchBikeReport(withBikeId: 1295,
                                                                         from: Date().addingTimeInterval(-96000),
                                                                         till: Date()).toBlocking().first()!
 
