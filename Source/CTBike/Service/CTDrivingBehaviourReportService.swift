@@ -26,6 +26,8 @@ public class CTDrivingBehaviourReportService: NSObject {
             var eveningRides = 0
             var nightRides = 0
 
+            var totalRides = 0
+
             var caloriesBurned = 0
             var totalDistance = 0
 
@@ -41,6 +43,7 @@ public class CTDrivingBehaviourReportService: NSObject {
                     nightRides = $0.numRides
                 }
 
+                totalRides += $0.numRides
                 caloriesBurned += $0.caloriesBurned
                 totalDistance += $0.distance
             }
@@ -49,6 +52,7 @@ public class CTDrivingBehaviourReportService: NSObject {
                                                  afternoonRides: afternoonRides,
                                                  eveningRides: eveningRides,
                                                  nightRides: nightRides,
+                                                 totalRides: totalRides,
                                                  caloriesBurned: caloriesBurned,
                                                  totalDistance: totalDistance
             )
