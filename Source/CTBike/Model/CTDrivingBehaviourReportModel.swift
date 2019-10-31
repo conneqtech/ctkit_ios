@@ -15,5 +15,5 @@ public struct CTDrivingBehaviourReportModel: CTBaseModel {
     public var nightRides: Int
 
     public var caloriesBurned: Int
-    public var kilometersDriven: Int
+    public var totalDistance: Int
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CTDayPart: Codable {
+public enum CTDayPart: String, Codable {
     case morning
     case afternoon
     case evening
