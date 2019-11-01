@@ -17,7 +17,7 @@ class CTCrashDetectionServiceTests: XCTestCase {
     override func setUp() {
 //        let _ = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()!
     }
-
+    
     func test_set_emergency_contact() {
 //        let ec = try! CTCrashDetectionService().setEmergencyContact(withBikeId: 1295, inviteId: "u1630").toBlocking().first()!
 //        print(ec)

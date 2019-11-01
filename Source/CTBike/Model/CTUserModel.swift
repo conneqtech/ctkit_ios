@@ -73,6 +73,8 @@ public struct CTUserModel: CTBaseModel {
     ///Postalcode, maximum length is 10 characters
     public var postalCode: String?
 
+    public var privacyStatementAcceptedOn: Date?
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case email = "username"
@@ -92,6 +94,7 @@ public struct CTUserModel: CTBaseModel {
         case city = "city"
         case country = "country"
         case postalCode = "postal_code"
+        case privacyStatementAcceptedOn = "privacy_statement_accepted_on"
     }
 
     public init(withEmail email: String, andName name: String) {
