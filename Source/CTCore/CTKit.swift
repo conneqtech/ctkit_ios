@@ -61,7 +61,7 @@ public class CTKit {
         return getCurrentActiveUserId()
     }
 
-    internal var credentialSaveLocation: CTOAuth2CredentialSaveLocation = .keychain
+    public var credentialSaveLocation: CTOAuth2CredentialSaveLocation = .keychain
 
     private init(clientId: String, clientSecret: String, baseURL: String) {
         let APIConfig = CTApiConfig(withBaseUrl: baseURL,

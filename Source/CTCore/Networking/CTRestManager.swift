@@ -193,11 +193,14 @@ public class CTRestManager {
             }
     }
 
-    private func genericUnparsedCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<String> {
-
+    private func genericUnparsedCall(_ method: Alamofire.HTTPMethod,
+                                     endpoint: String,
+                                     parameters: [String: Any]? = nil,
+                                     encoding: ParameterEncoding = JSONEncoding.default,
+                                     useToken: String?) -> Observable<String> {
         return Observable<String>.create { (observer) -> Disposable in
 
-            if(!Connectivity.isConnectedToInternet){
+            if(!Connectivity.isConnectedToInternet) {
                 observer.onError(CTErrorHandler().handleNoInternet())
                 return Disposables.create()
             }
@@ -256,15 +259,16 @@ fileprivate extension CTRestManager {
         headers["X-Device-App-Version"]         = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
         headers["X-Device-App-Language"]        = language
         headers["X-Device-Language"]            = UIDevice.deviceLanguage()
+        headers["X-Device-Timezone"]            = NSTimeZone.system.identifier
 
         return headers
     }
 
     func responseDebugger<T>(_ method: Alamofire.HTTPMethod,
-                                         endpoint: String,
-                                         parameters: [String: Any]? = nil,
-                                         response: DataResponse<Any>,
-                                         decodeType: T.Type) where T: Codable {
+                             endpoint: String,
+                             parameters: [String: Any]? = nil,
+                             response: DataResponse<Any>,
+                             decodeType: T.Type) where T: Codable {
         if !CTKit.shared.debugMode {
             return
         }
