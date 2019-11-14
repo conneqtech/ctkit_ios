@@ -52,7 +52,7 @@ fileprivate extension CTDrivingBehaviourReportService {
         var totalDistance = 0
 
         data.forEach {
-            switch $0.timeOfDay {
+            switch $0.grouping {
             case .morning:
                 morningRides = $0.numRides
             case .afternoon:
