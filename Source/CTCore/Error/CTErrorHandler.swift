@@ -34,8 +34,8 @@ internal class CTErrorHandler: NSObject {
             case 500:
                 handledError = handleInternalServerError()
             default:
-                    handledError = CTBasicError(translationKey: "api.error.unhandled.unknown-responsecode",
-                                                description: "The response code we received from the API is one we don't handle. Please try again at a later time.")
+                handledError = CTBasicError(translationKey: "api.error.unhandled.unknown-responsecode",
+                                            description: "The response code we received from the API is one we don't handle. Please try again at a later time.")
             }
         }
         
@@ -48,12 +48,16 @@ internal class CTErrorHandler: NSObject {
     }
 
     func handle(response: DataResponse<Any>) -> CTErrorProtocol {
+        if(!Connectivity.isConnectedToInternet){
+            return CTErrorHandler().handleNoInternet()
+        }
+
         guard let jsonData = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any] else {
             var responseDict = [String: Any]()
             if let response = response.response {
                 responseDict = [
                     "status": response.statusCode
-                    ]
+                ]
             }
             return self.handle(withJSONData: responseDict)
         }
@@ -73,8 +77,8 @@ internal class CTErrorHandler: NSObject {
 
         // Handle all 401 the same. It means the user is not logged in
         return CTBasicError(translationKey: "api.error.401.user-not-logged-in",
-                               description: "User is not logged in",
-                               code: 401)
+                            description: "User is not logged in",
+                            code: 401)
     }
 
     func handleForbidden(body: [String: Any]) -> CTBasicError? {

@@ -20,7 +20,7 @@ struct CTDrivingBehaviourAPIModel: CTBaseModel {
     var averageSpeed: Int
     var carbonDioxide: Int
     var numRides: Int
-    var timeOfDay: CTDayPart
+    var grouping: CTDayPart
     var distance: Int
 
     enum CodingKeys: String, CodingKey {
@@ -28,7 +28,7 @@ struct CTDrivingBehaviourAPIModel: CTBaseModel {
         case averageSpeed = "speed"
         case carbonDioxide = "carbon_dioxide"
         case numRides = "num_rides"
-        case timeOfDay = "time_of_day"
+        case grouping = "grouping"
         case distance = "distance"
     }
 }
