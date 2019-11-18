@@ -43,7 +43,7 @@ struct CTDrivingBehaviourAPIModel: CTBaseModel {
 
     enum CodingKeys: String, CodingKey {
         case caloriesBurned = "calories"
-        case averageSpeed
+        case averageSpeed = "speed"
         case carbonDioxide = "carbon_dioxide"
         case numRides = "num_rides"
         case grouping
