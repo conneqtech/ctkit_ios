@@ -25,7 +25,7 @@ fileprivate extension CTDrivingBehaviourReportService {
         let parameters: [String:Any] = [
             "from": from.toAPIDate(),
             "till": till.toAPIDate(),
-            "grouping_type": grouping
+            "grouping_type": grouping.rawValue
         ]
         
         var endpoint = "v2/bike/ride/stats"

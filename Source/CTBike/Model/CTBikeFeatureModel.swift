@@ -18,6 +18,8 @@ public struct CTBikeFeatureModel: CTBaseModel {
     public let lastFullChargeDate: Bool
     public let range: Bool
     public let crashDetection: Bool
+    public let powerDistribution: Bool
+    public let shiftAdvice: Bool
 
     enum CodingKeys: String, CodingKey {
         case bluetooth
@@ -30,5 +32,7 @@ public struct CTBikeFeatureModel: CTBaseModel {
         case lastFullChargeDate = "last_full_charge_date"
         case range
         case crashDetection = "crash_detection"
+        case powerDistribution = "power_distribution"
+        case shiftAdvice = "shift_advice"
     }
 }
