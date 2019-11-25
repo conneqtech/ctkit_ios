@@ -13,7 +13,7 @@ class CTJwtService {
         return CTKit.shared.restManager.get(endpoint: "jwt/activitycenter").map { (dict: [String:String]) in
             return dict["token"]!}
     }
-
+    
     func getJwtForContentAPI() -> Observable<String> {
         return CTKit.shared.restManager.get(endpoint: "jwt/contentapi").map { (dict: [String:String]) in
             return dict["token"]!}
