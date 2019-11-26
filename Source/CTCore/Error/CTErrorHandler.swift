@@ -34,8 +34,20 @@ internal class CTErrorHandler: NSObject {
             case 500:
                 handledError = handleInternalServerError()
             default:
-                handledError = CTBasicError(translationKey: "api.error.unhandled.unknown-responsecode",
-                                            description: "The response code we received from the API is one we don't handle. Please try again at a later time.")
+                var detail = "api.error.unhandled.unknown-responsecode"
+                var translated = "The response code we received from the API is one we don't handle. Please try again at a later time."
+                if let detailFromData = data?["detail"] as? String {
+                    detail = detailFromData
+                }
+                
+                if let translatedFromData = data?["error_translatable"] as? String {
+                    translated = translatedFromData
+                }
+                
+                handledError = CTBasicError(translationKey: detail,
+                                            description: translated,
+                                            errorBody: unwrappedResponse,
+                                            code: httpCode)
             }
         }
         
