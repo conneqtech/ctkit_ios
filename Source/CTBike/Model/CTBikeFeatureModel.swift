@@ -20,6 +20,7 @@ public struct CTBikeFeatureModel: CTBaseModel {
     public let crashDetection: Bool
     public let powerDistribution: Bool
     public let shiftAdvice: Bool
+    public let odometer: Bool
 
     enum CodingKeys: String, CodingKey {
         case bluetooth
@@ -34,5 +35,6 @@ public struct CTBikeFeatureModel: CTBaseModel {
         case crashDetection = "crash_detection"
         case powerDistribution = "power_distribution"
         case shiftAdvice = "shift_advice"
+        case odometer
     }
 }

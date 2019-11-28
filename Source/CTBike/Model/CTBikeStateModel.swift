@@ -8,16 +8,17 @@
 import Foundation
 
 public struct CTBikeStateModel: CTBaseModel {
-
+    
     public let isPoweredOn: Bool?
     public let isDigitalLockLocked: Bool?
     public let isPhysicalLockLocked: Bool?
-
-    public let batteryPercentage:Int?
-    public let isCharging:Bool?
-    public let lastFullChargeDate:Date?
-    public let range:Int?
-
+    
+    public let batteryPercentage: Int?
+    public let isCharging: Bool?
+    public let lastFullChargeDate: Date?
+    public let range: Int?
+    public let odometer: Int?
+    
     enum CodingKeys: String, CodingKey {
         case isPoweredOn = "powered_on"
         case isDigitalLockLocked = "ecu_locked"
@@ -26,5 +27,6 @@ public struct CTBikeStateModel: CTBaseModel {
         case isCharging = "charging"
         case lastFullChargeDate = "last_full_charge"
         case range
+        case odometer
     }
 }
