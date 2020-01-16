@@ -12,6 +12,7 @@ public enum CTBikeRegistrationFlow: String, Codable {
     case imei = "imei_flow"
     case booklet = "booklet_flow"
     case customerService = "customer-service_flow"
+    case frameNumberOnly = "frame_number_only_flow"
 }
 
 /**
