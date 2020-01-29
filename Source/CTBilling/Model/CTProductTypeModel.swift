@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CTProductTypesModel: CTBaseModel {
+public struct CTProductTypesModel :CTBaseModel {
     
     public let productTypes :[CTProductTypeModel]
     enum CodingKeys: String, CodingKey {
@@ -15,7 +15,7 @@ public struct CTProductTypesModel: CTBaseModel {
     }
 }
 
-public struct CTProductTypeModel: CTBaseModel {
+public struct CTProductTypeModel :CTBaseModel {
     
     public let startDate :Date
     public let endDate :Date
