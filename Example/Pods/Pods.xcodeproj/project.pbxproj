@@ -15,6 +15,7 @@
 		031480C6704A60467C8648D988D75942 /* Zip+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BD9BAF912564B808A63FB3F75F815 /* Zip+Collection.swift */; };
 		039CBD9C9AC681515E74F47B32FD14CA /* Enumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B988A6BA21F90FE8426FB7D21A17D6 /* Enumerated.swift */; };
 		040A8CF385CDC7054E37D1E0794BAC1B /* ctkit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 911BA77CE37005530521EFBB3FEB7D4E /* ctkit-dummy.m */; };
+		04ACAE0723E1B27A00616AD9 /* CTProductTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ACAE0623E1B27A00616AD9 /* CTProductTypeModel.swift */; };
 		06FCEDD0BA2E1410F3768B860B4C8BDD /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 450128B3A0D0C094DA7DAF474782441D /* RxSwift.framework */; };
 		07F3213C6E6AA3E33667EDBA3CCF755A /* Pods-ctkit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A054F9B6995351D72DD39C4574DD9CB /* Pods-ctkit_Example-dummy.m */; };
 		0800A71B63C826478C051136D9EB07E1 /* WithLatestFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9710A230E9DC9C927C7507D79C1FE8B2 /* WithLatestFrom.swift */; };
@@ -591,6 +592,7 @@
 		031893FD3D882E436EC541DF783B1276 /* RxTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		031D4FC1EDAF093C1C21C3464F68607C /* QuickSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickSpec.h; path = Sources/QuickObjectiveC/QuickSpec.h; sourceTree = "<group>"; };
 		03EE0D50B1A637D3CE34C9607082C9F2 /* ctkit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ctkit.xcconfig; sourceTree = "<group>"; };
+		04ACAE0623E1B27A00616AD9 /* CTProductTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTProductTypeModel.swift; sourceTree = "<group>"; };
 		0539B9C2491549E6C8F199419E961D9C /* Reduce.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reduce.swift; path = RxSwift/Observables/Reduce.swift; sourceTree = "<group>"; };
 		056E6374C8FBBBC40088398BB14C7BFE /* String+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Rx.swift"; path = "RxSwift/Extensions/String+Rx.swift"; sourceTree = "<group>"; };
 		05E4F3A80F2C2D23595DCCCC88B642DE /* Event+Equatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Event+Equatable.swift"; path = "RxTest/Event+Equatable.swift"; sourceTree = "<group>"; };
@@ -1777,6 +1779,7 @@
 				FAA8DBC69B06579D045473652DDB085A /* CTProductModel.swift */,
 				DE26013B4B02E25B8FD233F8D698F2E9 /* CTSubscriptionModel.swift */,
 				2DECAFE2C343DC2ADB4A37786C904480 /* CTSubscriptionProductModel.swift */,
+				04ACAE0623E1B27A00616AD9 /* CTProductTypeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2632,6 +2635,7 @@
 				0C5E11DE24DAA737704B355F5F2F3426 /* ParameterEncoding.swift in Sources */,
 				98A929C8E9012AB167672714FFD2113C /* Request.swift in Sources */,
 				D65C254F5ABF2CB5ECEE50FE8F8E1A80 /* Response.swift in Sources */,
+				04ACAE0723E1B27A00616AD9 /* CTProductTypeModel.swift in Sources */,
 				E3747EC31FCCA97D75A81FC700CF7E24 /* ResponseSerialization.swift in Sources */,
 				64744C911253C3E01461FAD7C935C8D7 /* Result.swift in Sources */,
 				F13F2AA7F2E6D95A181CAB99B900D531 /* ServerTrustPolicy.swift in Sources */,

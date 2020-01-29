@@ -25,12 +25,25 @@ public class CTSubscriptionService: NSObject {
     }
 
     /**
-     Fetches all known subscriptions for a bike with the connectivity type.
-     
-     - Parameter identifier: The bike identifier you want to retrieve the data for
-     
-     - Returns: An observable containing a list of all subscriptions found.
-     */
+        Fetches all known product types for a bike.
+        
+        - Parameter identifier: The bike identifier you want to retrieve the data for
+
+        - Returns: An observable containing a list of all product types found.
+        */
+    
+    
+    public func fetchProductTypes(withBikeId identifier: Int) -> Observable<CTProductTypesModel>{
+        return CTBilling.shared.restManager.get(endpoint: "subscription/bike/\(identifier)/product-type")
+    }
+    /**
+    Fetches all known subscriptions for a bike with the connectivity type.
+    
+    - Parameter identifier: The bike identifier you want to retrieve the data for
+    
+    - Returns: An observable containing a list of all subscriptions found.
+    */
+    
     public func fetchConnectivitySubscriptions(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
         return fetchByType(withBikeId: identifier, type: .connectivity)
     }
