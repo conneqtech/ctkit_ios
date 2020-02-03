@@ -33,7 +33,7 @@ public class CTSubscriptionService: NSObject {
         */
     
     
-    public func fetchProductTypes(withBikeId identifier: Int) -> Observable<CTProductTypesModel>{
+    public func fetchProductTypes(withBikeId identifier: Int) -> Observable<[CTProductTypeModel]>{
         return CTBilling.shared.restManager.get(endpoint: "subscription/bike/\(identifier)/product-type")
     }
     /**
