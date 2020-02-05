@@ -11,9 +11,9 @@ import Foundation
 public struct CTProductTypeModel :CTBaseModel {
     
     public let startDate :Date
-    public let endDate :Date
+    public let endDate :Date?
     public let cancelled :Bool
-    public let productTypeId :String?
+    public let productTypeId :CTSubscriptionProductType
     public let logoUrl :String?
     public let insurance :CTInsuranceModel?
     
