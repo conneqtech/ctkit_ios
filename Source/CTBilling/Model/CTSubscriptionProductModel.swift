@@ -7,9 +7,9 @@
 
 import Foundation
 
-public enum CTSubscriptionProductType: String, Codable {
-    case connectivity = "1"
-    case insurance = "2"
+public enum CTSubscriptionProductType: Int, Codable {
+    case connectivity = 1
+    case insurance = 2
 }
 
 public enum CTInsuranceType: String, Codable {
