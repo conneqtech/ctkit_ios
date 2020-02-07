@@ -10,12 +10,13 @@ import Foundation
 
 public struct CTProductTypeModel :CTBaseModel {
     
-    public let startDate :Date
+    public let startDate :Date?
     public let endDate :Date?
-    public let cancelled :Bool
+    public let cancelled :Bool?
     public let productTypeId :CTSubscriptionProductType
-    public let logoUrl :String?
+    public let logoUrl :String
     public let insurance :CTInsuranceModel?
+    public let active: Bool
     
     enum CodingKeys: String, CodingKey {
         
@@ -25,5 +26,6 @@ public struct CTProductTypeModel :CTBaseModel {
         case productTypeId = "product_type_id"
         case logoUrl = "logo_url"
         case insurance
+        case active
     }
 }
