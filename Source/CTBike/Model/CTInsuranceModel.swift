@@ -13,11 +13,15 @@ public struct CTInsuranceModel: CTBaseModel {
     public let transactionId: String?
     public let polisNumber: String?
     public let polisPK: String?
+    public let provider: String
+    public let cascoCoverage :Bool
 
     enum CodingKeys: String, CodingKey {
         case id
         case transactionId = "transaction_id"
         case polisNumber = "polis_number"
         case polisPK = "polis_pk"
+        case provider = "provider"
+        case cascoCoverage = "casco_coverage"
     }
 }
