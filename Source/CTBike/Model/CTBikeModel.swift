@@ -30,6 +30,8 @@ public struct CTBikeModel: CTBaseModel {
     public let articleNumber: String?
 
     public let dealerId: Int?
+    
+    public let activationCode: String?
 
     public init(withId id: Int,
                 imei: String,
@@ -48,6 +50,7 @@ public struct CTBikeModel: CTBaseModel {
         self.inviteUri = ""
         self.articleNumber = articleNumber
         self.dealerId = nil
+        self.activationCode = ""
     }
 
     public init(withImei imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
@@ -61,6 +64,7 @@ public struct CTBikeModel: CTBaseModel {
         self.inviteUri = ""
         self.articleNumber = ""
         self.dealerId = nil
+        self.activationCode = ""
     }
 
     enum CodingKeys: String, CodingKey {
@@ -85,6 +89,7 @@ public struct CTBikeModel: CTBaseModel {
         case articleNumber = "article_number"
 
         case dealerId = "dealer_id"
+        case activationCode = "activation_code"
     }
 
     public func encode(to encoder: Encoder) throws {
