@@ -23,6 +23,7 @@ public struct CTDealerModel: CTBaseModel {
     public let website: String?
 
     public let location: CTLatLonModel?
+    public let isFixed: Bool
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -36,5 +37,6 @@ public struct CTDealerModel: CTBaseModel {
         case phoneNumber = "phone_number"
         case website
         case location
+        case isFixed = "is_fixed"
     }
 }
