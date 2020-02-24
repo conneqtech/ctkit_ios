@@ -96,7 +96,7 @@ public class CTRideService: NSObject {
     }
 
     public func getTranslationKey(forRide ride: CTRideModel) -> String {
-        return "ride.name.\(getDayName(forDate: ride.startDate)).\(getDayPartName(forDate: ride.startDate))"
+        return "ride_name_\(getDayName(forDate: ride.startDate))_\(getDayPartName(forDate: ride.startDate))"
     }
 }
 
