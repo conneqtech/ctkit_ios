@@ -24,7 +24,7 @@ public struct CTBikeModel: CTBaseModel {
     public var type: String?
 
     public let bluetoothPassword: String?
-    public let bluetoothName: String?
+    public var bluetoothName: String?
 
     public let inviteUri: String?
     public let articleNumber: String?
@@ -100,6 +100,7 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(themeColor, forKey: .themeColor)
         try container.encode(imageUrl, forKey: .imageUrl)
         try container.encode(frameIdentifier, forKey: .frameIdentifier)
+        try container.encode(bluetoothName, forKey: .bluetoothName)
         try container.encode(isStolen, forKey: .isStolen)
     }
 }
