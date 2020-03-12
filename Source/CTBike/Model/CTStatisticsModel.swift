@@ -14,6 +14,7 @@ public struct CTStatisticsModel: CTBaseModel {
     public let calories: Int
     public let averageSpeed: Int
     public let distanceTraveled: Int
+    public let topSpeed: Int
 
     enum CodingKeys: String, CodingKey {
         case from
@@ -22,6 +23,7 @@ public struct CTStatisticsModel: CTBaseModel {
         case calories
         case averageSpeed = "avg_speed"
         case distanceTraveled = "distance_traveled"
+        case topSpeed = "top_speed"
     }
 
     public init(withFrom from: Date, till: Date) {
@@ -31,5 +33,6 @@ public struct CTStatisticsModel: CTBaseModel {
         self.calories = -1
         self.averageSpeed = -1
         self.distanceTraveled = -1
+        self.topSpeed = -1
     }
 }
