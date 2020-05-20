@@ -11,15 +11,7 @@ import RxSwift
 public class CTCrashDetectionService: NSObject {
 
     public func setEmergencyContact(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
-        return fetchEmergencyContact(withBikeId: bikeId).flatMap { response -> Observable<CTInviteModel> in
-            guard let response = response else { // We didn't have an emergency contact yet.
-                return self.setEmergencyContactStatus(withBikeId: bikeId, inviteId: inviteId, enabled: true)
-            }
-
-            return self.removeEmergencyContact(withBikeId: bikeId, inviteId: response.id).flatMap { _ in
-                return self.setEmergencyContactStatus(withBikeId: bikeId, inviteId: inviteId, enabled: true)
-            }
-        }
+         return self.setEmergencyContactStatus(withBikeId: bikeId, inviteId: inviteId, enabled: true)
     }
 
     public func removeEmergencyContact(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
@@ -29,6 +21,12 @@ public class CTCrashDetectionService: NSObject {
     public func fetchEmergencyContact(withBikeId bikeId: Int) -> Observable<CTInviteModel?> {
         return CTShareBikeService().fetchAcceptedInvites(withBikeId: bikeId).map { (response: CTPaginatedResponseModel<CTInviteModel>) in
             return response.data.filter { $0.isEmergencyContact == true }.first
+        }
+    }
+    
+   public func fetchEmergencyContacts(withBikeId bikeId: Int) -> Observable<[CTInviteModel]> {
+        return CTShareBikeService().fetchAcceptedInvites(withBikeId: bikeId).map { (response: CTPaginatedResponseModel<CTInviteModel>) in
+            return response.data.filter { $0.isEmergencyContact == true }
         }
     }
 }

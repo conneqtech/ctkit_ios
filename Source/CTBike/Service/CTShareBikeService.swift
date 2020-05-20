@@ -53,6 +53,10 @@ public class CTShareBikeService: NSObject {
     public func revokeAcceptedInvite(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
         return patchInviteStatus(bikeId, inviteId, status: "revoked")
     }
+    
+    public func fetchSingleInvite(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
+        return CTKit.shared.restManager.get(endpoint: "bike/\(bikeId)/invite/\(inviteId)")
+    }
 }
 
 fileprivate extension CTShareBikeService {
