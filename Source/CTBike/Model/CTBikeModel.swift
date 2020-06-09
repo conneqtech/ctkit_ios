@@ -13,7 +13,7 @@ public struct CTBikeModel: CTBaseModel {
     public let frameIdentifier: String
     public var lastLocation: CTBikeLocationModel?
     public var owner: CTBasicUserModel?
-
+    
     public var name: String
     public var keyIdentifier: String?
     public var themeColor: String?
@@ -22,17 +22,59 @@ public struct CTBikeModel: CTBaseModel {
     public var isStolen: Bool?
     public var isRequestingUserOwner: Bool
     public var type: String?
-
+    
     public let bluetoothPassword: String?
     public var bluetoothName: String?
-
+    
     public let inviteUri: String?
     public let articleNumber: String?
-
+    
     public let dealerId: Int?
     
     public let activationCode: String?
-
+    
+    public init(id: Int = 0,
+                imei: String = "860000000000000",
+                frameIdentifier: String = "FR4M3NUMB3R",
+                lastLocation: CTBikeLocationModel? = nil,
+                owner: CTBasicUserModel? = nil,
+                name: String = "Lightning mc queso",
+                keyIdentifier: String? = nil,
+                themeColor: String? = nil,
+                imageUrl: String? = nil,
+                creationDate: Date? = nil,
+                isStolen: Bool? = false,
+                isRequestingUserOwner: Bool = false,
+                type: String? = nil,
+                bluetoothPassword: String? = nil,
+                bluetoothName: String? = nil,
+                inviteUri: String? = nil,
+                articleNumber: String? = nil,
+                dealerId: Int? = nil,
+                activationCode: String? = nil) {
+        self.id = id
+        self.imei = imei
+        self.frameIdentifier = frameIdentifier
+        self.lastLocation = lastLocation
+        self.owner = owner
+        self.name = name
+        self.keyIdentifier = keyIdentifier
+        self.themeColor = themeColor
+        self.imageUrl = imageUrl
+        self.creationDate = creationDate
+        self.isStolen = isStolen
+        self.isRequestingUserOwner = isRequestingUserOwner
+        self.type = type
+        self.bluetoothPassword = bluetoothPassword
+        self.bluetoothName = bluetoothName
+        self.inviteUri = inviteUri
+        self.articleNumber = articleNumber
+        self.dealerId = dealerId
+        self.activationCode = activationCode
+    }
+    
+    
+    
     public init(withId id: Int,
                 imei: String,
                 frameIdentifier identifier: String,
@@ -52,7 +94,7 @@ public struct CTBikeModel: CTBaseModel {
         self.dealerId = nil
         self.activationCode = ""
     }
-
+    
     public init(withImei imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
         self.id = -1
         self.imei = imei
@@ -66,7 +108,7 @@ public struct CTBikeModel: CTBaseModel {
         self.dealerId = nil
         self.activationCode = ""
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case imei = "imei"
@@ -81,20 +123,20 @@ public struct CTBikeModel: CTBaseModel {
         case isStolen = "is_stolen"
         case isRequestingUserOwner = "is_requesting_user_owner"
         case type = "type"
-
+        
         case bluetoothPassword = "blepass"
         case bluetoothName = "blename"
-
+        
         case inviteUri = "invite_code_uri"
         case articleNumber = "article_number"
-
+        
         case dealerId = "dealer_id"
         case activationCode = "activation_code"
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-
+        
         try container.encode(name, forKey: .name)
         try container.encode(keyIdentifier, forKey: .keyIdentifier)
         try container.encode(themeColor, forKey: .themeColor)
