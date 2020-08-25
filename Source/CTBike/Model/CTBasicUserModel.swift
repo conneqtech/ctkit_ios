@@ -30,7 +30,7 @@ public struct CTBasicUserModel: CTBaseModel {
     }
 
     public init (withUsername username: String) {
-        self.init(username: username)
+        self.init(email: username)
     }
 
     public func encode(to encoder: Encoder) throws {

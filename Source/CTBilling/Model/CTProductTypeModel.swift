@@ -8,14 +8,14 @@
 import Foundation
 
 
-public struct CTProductTypeModel :CTBaseModel {
+public struct CTProductTypeModel: CTBaseModel {
     
-    public let startDate :Date?
-    public let endDate :Date?
-    public let cancelled :Bool?
-    public let productTypeId :CTSubscriptionProductType
-    public let logoUrl :String
-    public let insurance :CTInsuranceModel?
+    public let startDate: Date?
+    public let endDate: Date?
+    public let cancelled: Bool?
+    public let productTypeId: CTSubscriptionProductType
+    public let logoUrl: String
+    public let insurance: CTInsuranceModel?
     public let active: Bool
     
     enum CodingKeys: String, CodingKey {
