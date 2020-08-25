@@ -186,7 +186,7 @@ extension CTMarkdownParser {
         var content: [String] = []
         let lines = contentString.components(separatedBy: CharacterSet.newlines)
         lines.forEach {
-            if $0.count != 0 {
+            if !$0.isEmpty {
                 content.append(String($0))
             }
         }

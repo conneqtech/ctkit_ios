@@ -67,7 +67,7 @@ fileprivate extension CTDrivingBehaviourReportService {
         }
         
         // Average over the averages
-        averagePowerDistribution = averagePowerDistribution / data.count
+        averagePowerDistribution /= data.count
         
         return CTDrivingBehaviourReportModel (
             groupedData: groupedItems,
