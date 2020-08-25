@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-  spec.version          = '1.10.0'
+  spec.version          = '1.10.1'
   spec.summary          = 'SDK to communicate with the connected bike api'
   spec.swift_version    = '5.0'
 
@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.homepage         = 'https://bitbucket.org/nfnty_admin/ctkit_ios'
   spec.license          = { :type => 'proprietary', :file => 'LICENSE' }
   spec.author           = { 'Conneqtech B.V.' => 'info@conneqtech.com' }
-  spec.source           = { :git => 'https://bitbucket.org/nfnty_admin/ctkit_ios.git', :tag => spec.version.to_s }
+  spec.source           = { :git => 'git@bitbucket.org:nfnty_admin/ctkit_ios.git', :tag => spec.version.to_s }
 
   spec.ios.deployment_target = '10.0'
 
