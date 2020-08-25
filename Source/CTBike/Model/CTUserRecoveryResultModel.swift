@@ -10,4 +10,9 @@ import Foundation
 struct CTUserRecoveryResultModel: CTBaseModel {
     let success: Bool
     let username: String
+    
+    public init(success: Bool, username: String) {
+        self.success = success
+        self.username = username
+    }
 }

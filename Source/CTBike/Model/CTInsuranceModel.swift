@@ -24,4 +24,13 @@ public struct CTInsuranceModel: CTBaseModel {
         case provider = "provider"
         case cascoCoverage = "casco_coverage"
     }
+    
+    public init(id: Int, transactionId: String?, polisNumber: String?, polisPK: String?, provider: String, cascoCoverage: Bool) {
+        self.id = id
+        self.transactionId = transactionId
+        self.polisNumber = polisNumber
+        self.polisPK = polisPK
+        self.provider = provider
+        self.cascoCoverage = cascoCoverage
+    }
 }

@@ -21,12 +21,16 @@ public struct CTBasicUserModel: CTBaseModel {
         case displayName = "display_name"
         case profileImage = "avatar_url"
     }
+    
+    public init(id: Int = 0, email: String = "", displayName: String = "", profileImage: String = "") {
+        self.id = id
+        self.email = email
+        self.displayName = displayName
+        self.profileImage = profileImage
+    }
 
     public init (withUsername username: String) {
-        self.id = -1
-        self.email = username
-        self.profileImage = ""
-        self.displayName = ""
+        self.init(username: username)
     }
 
     public func encode(to encoder: Encoder) throws {

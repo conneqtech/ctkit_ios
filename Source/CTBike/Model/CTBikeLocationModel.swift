@@ -22,11 +22,11 @@ public struct CTBikeLocationModel: CTBaseModel {
         case speed = "speed"
     }
 
-    public init(withLongitude longitude: Double, latitude: Double, date: Date) {
+    public init(withLongitude longitude: Double = 0, latitude: Double = 0, date: Date = Date(), speed: Int = 0) {
         self.longitude = longitude
         self.latitude = latitude
         self.date = date
-        self.speed = 0
+        self.speed = speed
     }
 
     public func asCoordinate() -> CLLocationCoordinate2D {

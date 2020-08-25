@@ -15,7 +15,6 @@ public enum CTInviteStatus: String, Codable {
 }
 
 public struct CTInviteModel: CTBaseModel {
-
     public let id: String
     public let status: CTInviteStatus
 
@@ -37,5 +36,15 @@ public struct CTInviteModel: CTBaseModel {
         case statusChangeDate = "status_changed_on"
         
         case isEmergencyContact = "is_emergency_contact"
+    }
+    
+    public init(id: String, status: CTInviteStatus, linkedUserId: Int, displayName: String, avatarUrl: String, statusChangeDate: Date?, isEmergencyContact: Bool) {
+        self.id = id
+        self.status = status
+        self.linkedUserId = linkedUserId
+        self.displayName = displayName
+        self.avatarUrl = avatarUrl
+        self.statusChangeDate = statusChangeDate
+        self.isEmergencyContact = isEmergencyContact
     }
 }

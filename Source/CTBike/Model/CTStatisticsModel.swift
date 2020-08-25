@@ -26,13 +26,13 @@ public struct CTStatisticsModel: CTBaseModel {
         case topSpeed = "top_speed"
     }
 
-    public init(withFrom from: Date, till: Date) {
+    public init(from: Date, till: Date, co2: Int, calories: Int, averageSpeed: Int, distanceTraveled: Int, topSpeed: Int) {
         self.from = from
         self.till = till
-        self.co2 = -1
-        self.calories = -1
-        self.averageSpeed = -1
-        self.distanceTraveled = -1
-        self.topSpeed = -1
+        self.co2 = co2
+        self.calories = calories
+        self.averageSpeed = averageSpeed
+        self.distanceTraveled = distanceTraveled
+        self.topSpeed = topSpeed
     }
 }

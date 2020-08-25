@@ -8,7 +8,6 @@
 import Foundation
 
 public struct CTUnregisteredBikeInformationModel: CTBaseModel {
-
     /// Partial IMEI number the use as a textual hint for the user to input the full IMEI.
     public let partialIMEI: String
 

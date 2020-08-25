@@ -11,20 +11,23 @@ public struct CTBikeTypeModel: CTBaseModel {
     public let id: Int
     public let name: String
     public let registrationFlow: CTBikeRegistrationFlow
-
+    
     public let secondFactorTranslationKey: String
     public let secondFactorLocationImage: String?
-
+    
     public let images: [String]
     public let features: CTBikeFeatureModel
     
-    public init (name: String,
-                 registrationFlow: CTBikeRegistrationFlow = .imei,
-                 secondFactorTranslationKey: String = "",
-                 secondFactorLocationImage: String? = nil,
-                 images: [String] = [],
-                 features: CTBikeFeatureModel = CTBikeFeatureModel()) {
-        self.id = 0
+    public init (
+        id: Int = 0,
+        name: String = "",
+        registrationFlow: CTBikeRegistrationFlow = .imei,
+        secondFactorTranslationKey: String = "",
+        secondFactorLocationImage: String? = nil,
+        images: [String] = [],
+        features: CTBikeFeatureModel = CTBikeFeatureModel()) {
+        
+        self.id = id
         self.name = name
         self.registrationFlow = registrationFlow
         self.secondFactorTranslationKey = secondFactorTranslationKey
@@ -32,7 +35,7 @@ public struct CTBikeTypeModel: CTBaseModel {
         self.images = images
         self.features = features
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case name
