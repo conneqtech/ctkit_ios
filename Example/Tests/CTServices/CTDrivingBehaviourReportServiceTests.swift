@@ -24,7 +24,7 @@ class CTDrivingBehaviourReportServiceTests: XCTestCase {
     func test_drivingReport() {
         let result = try! CTDrivingBehaviourReportService().fetchBikeReport(withBikeId: 1295,
                                                                         from: Date().addingTimeInterval(-96000),
-                                                                        till: Date()).toBlocking().first()!
+                                                                        till: Date(), grouping: .dayOfWeek).toBlocking().first()!
 
         print(result)
     }
