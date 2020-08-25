@@ -14,7 +14,6 @@ public struct CTTheftCasePartnerDescriptionModel: CTBaseModel {
 }
 
 public struct CTTheftCasePartnerModel: CTBaseModel {
-
     public let id: Int
     public let name: String
     public let email: String
@@ -38,17 +37,17 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         case logo = "logo"
         case description = "descriptions"
     }
-
-    public init(withName name: String, description: CTTheftCasePartnerDescriptionModel) {
-        self.id = -1
+    
+    public init(id: Int, name: String, email: String, phoneNumber: String, address: String, postalCode: String, city: String, country: String, logo: String, description: CTTheftCasePartnerDescriptionModel) {
+        self.id = id
         self.name = name
-        self.email = ""
-        self.phoneNumber = ""
-        self.address = ""
-        self.postalCode = ""
-        self.city = ""
-        self.country = ""
-        self.logo = ""
+        self.email = email
+        self.phoneNumber = phoneNumber
+        self.address = address
+        self.postalCode = postalCode
+        self.city = city
+        self.country = country
+        self.logo = logo
         self.description = description
     }
 }

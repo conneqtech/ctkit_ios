@@ -16,7 +16,7 @@ public struct CTBikeNotificationSettingsModel: CTBaseModel {
     public var movingNotify: Bool
     public var motionNotify: Bool
 
-    public init (withBikeId identifier: Int, batteryOn: Bool, speedOn: Bool, movingOn: Bool, motionOn: Bool) {
+    public init (withBikeId identifier: Int = 0, batteryOn: Bool = true, speedOn: Bool = true, movingOn: Bool = true, motionOn: Bool = true) {
         self.bikeId = identifier
         self.batteryNotify = batteryOn
         self.speedNotify = speedOn

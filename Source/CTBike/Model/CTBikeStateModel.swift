@@ -29,4 +29,24 @@ public struct CTBikeStateModel: CTBaseModel {
         case range
         case odometer
     }
+    
+    public init(
+        isPoweredOn: Bool? = nil,
+        isDigitalLockLocked: Bool? = nil,
+        isPhysicalLockLocked: Bool? = nil,
+        batteryPercentage: Int? = nil,
+        isCharging: Bool? = nil,
+        lastFullChargeDate: Date? = nil,
+        range: Int? = nil,
+        odometer: Int? = nil) {
+        
+        self.isPoweredOn = isPoweredOn
+        self.isDigitalLockLocked = isDigitalLockLocked
+        self.isPhysicalLockLocked = isPhysicalLockLocked
+        self.batteryPercentage = batteryPercentage
+        self.isCharging = isCharging
+        self.lastFullChargeDate = lastFullChargeDate
+        self.range = range
+        self.odometer = odometer
+    }
 }

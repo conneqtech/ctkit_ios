@@ -8,7 +8,6 @@
 import Foundation
 
 public struct CTRideModel: CTBaseModel {
-
     //Attributes
     public let id: Int
     public var userId: Int
@@ -44,40 +43,22 @@ public struct CTRideModel: CTBaseModel {
         case weatherIconURL = "icon_url"
     }
 
-    public init(withName name: String, rideType: String, userId: Int = -1, bikeId: Int = -1, startDate: Date, endDate: Date, distance: Double = 10.0) {
-        self.id = -1
-        self.name = name
-        self.rideType = rideType
-        self.userId = userId
-        self.bikeId = bikeId
-        self.startDate = startDate
-        self.endDate = endDate
-        self.creationDate = Date()
-
-        self.calories = -1
-        self.averageSpeed = -1
-        self.distanceTraveled = distance
-        self.co2 = -1
-        self.weatherIconURL = ""
-    }
-
-    public init(withId id: Int, name: String, rideType: String, userId: Int = -1, bikeId: Int = -1, startDate: Date, endDate: Date, distance: Double = 10.0) {
+    public init(id: Int, userId: Int, bikeId: Int, name: String, rideType: String, creationDate: Date, startDate: Date, endDate: Date, calories: Double, averageSpeed: Double, distanceTraveled: Double, co2: Double, weatherIconURL: String) {
         self.id = id
-        self.name = name
-        self.rideType = rideType
         self.userId = userId
         self.bikeId = bikeId
+        self.name = name
+        self.rideType = rideType
+        self.creationDate = creationDate
         self.startDate = startDate
         self.endDate = endDate
-        self.creationDate = Date()
-
-        self.calories = -1
-        self.averageSpeed = -1
-        self.distanceTraveled = distance
-        self.co2 = -1
-        self.weatherIconURL = ""
+        self.calories = calories
+        self.averageSpeed = averageSpeed
+        self.distanceTraveled = distanceTraveled
+        self.co2 = co2
+        self.weatherIconURL = weatherIconURL
     }
-
+    
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let weatherInfo = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .weatherInfo)

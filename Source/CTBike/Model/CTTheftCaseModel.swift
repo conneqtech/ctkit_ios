@@ -63,58 +63,29 @@ public struct CTTheftCaseModel: CTBaseModel {
         case caseFinalized = "finalized"
     }
 
-    public init(withPartner partner: CTTheftCasePartnerModel) {
-        self.id = -1
-        self.caseNumber = nil
-        self.partnerCaseNumber = nil
-        self.partner = partner
-
-        self.bikeId = -1
-        self.bikeFrameType = ""
-        self.bikeType = ""
-        self.bikeColor = ""
-        self.bikeAdditionalDetails = ""
-        self.bikeImages = []
-
-        self.ownerName = ""
-        self.ownerEmail = ""
-        self.ownerPhone = ""
-        self.ownerAddress = ""
-        self.ownerPostalCode = ""
-        self.ownerCity = ""
-        self.ownerCountry = ""
-        self.caseStatus = ""
-        self.bikeIsInsured = false
-        self.caseFinalized = false
-        self.reportDate = Date()
-        self.policeCaseNumber = ""
-    }
-
-    public init(withPartnerCaseNumber partnerCaseNumber: String, partner: CTTheftCasePartnerModel) {
-        self.id = -1
-        self.caseNumber = nil
+    public init(id: Int, caseNumber: String? = nil, partnerCaseNumber: String?, partner: CTTheftCasePartnerModel, bikeId: Int, bikeFrameType: String, bikeType: String, bikeColor: String, bikeAdditionalDetails: String, bikeImages: [String], ownerName: String, ownerEmail: String, ownerPhone: String, ownerAddress: String, ownerPostalCode: String, ownerCity: String, ownerCountry: String, reportDate: Date, caseStatus: String, bikeIsInsured: Bool, policeCaseNumber: String, caseFinalized: Bool) {
+        self.id = id
+        self.caseNumber = caseNumber
         self.partnerCaseNumber = partnerCaseNumber
         self.partner = partner
-
-        self.bikeId = -1
-        self.bikeFrameType = ""
-        self.bikeType = ""
-        self.bikeColor = ""
-        self.bikeAdditionalDetails = ""
-        self.bikeImages = []
-
-        self.ownerName = ""
-        self.ownerEmail = ""
-        self.ownerPhone = ""
-        self.ownerAddress = ""
-        self.ownerPostalCode = ""
-        self.ownerCity = ""
-        self.ownerCountry = ""
-        self.caseStatus = ""
-        self.bikeIsInsured = false
-        self.caseFinalized = false
-        self.reportDate = Date()
-        self.policeCaseNumber = ""
+        self.bikeId = bikeId
+        self.bikeFrameType = bikeFrameType
+        self.bikeType = bikeType
+        self.bikeColor = bikeColor
+        self.bikeAdditionalDetails = bikeAdditionalDetails
+        self.bikeImages = bikeImages
+        self.ownerName = ownerName
+        self.ownerEmail = ownerEmail
+        self.ownerPhone = ownerPhone
+        self.ownerAddress = ownerAddress
+        self.ownerPostalCode = ownerPostalCode
+        self.ownerCity = ownerCity
+        self.ownerCountry = ownerCountry
+        self.reportDate = reportDate
+        self.caseStatus = caseStatus
+        self.bikeIsInsured = bikeIsInsured
+        self.policeCaseNumber = policeCaseNumber
+        self.caseFinalized = caseFinalized
     }
 
     public func encode(to encoder: Encoder) throws {
