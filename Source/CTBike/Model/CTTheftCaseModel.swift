@@ -63,7 +63,30 @@ public struct CTTheftCaseModel: CTBaseModel {
         case caseFinalized = "finalized"
     }
 
-    public init(id: Int, caseNumber: String? = nil, partnerCaseNumber: String?, partner: CTTheftCasePartnerModel, bikeId: Int, bikeFrameType: String, bikeType: String, bikeColor: String, bikeAdditionalDetails: String, bikeImages: [String], ownerName: String, ownerEmail: String, ownerPhone: String, ownerAddress: String, ownerPostalCode: String, ownerCity: String, ownerCountry: String, reportDate: Date, caseStatus: String, bikeIsInsured: Bool, policeCaseNumber: String, caseFinalized: Bool) {
+    public init(
+        id: Int = 0,
+        caseNumber: String? = nil,
+        partnerCaseNumber: String? = nil,
+        partner: CTTheftCasePartnerModel,
+        bikeId: Int = 0,
+        bikeFrameType: String = "",
+        bikeType: String = "",
+        bikeColor: String = "",
+        bikeAdditionalDetails: String = "",
+        bikeImages: [String] = [],
+        ownerName: String = "",
+        ownerEmail: String = "",
+        ownerPhone: String = "",
+        ownerAddress: String = "",
+        ownerPostalCode: String = "",
+        ownerCity: String = "",
+        ownerCountry: String = "",
+        reportDate: Date = Date(),
+        caseStatus: String = "",
+        bikeIsInsured: Bool = false,
+        policeCaseNumber: String = "",
+        caseFinalized: Bool = false) {
+        
         self.id = id
         self.caseNumber = caseNumber
         self.partnerCaseNumber = partnerCaseNumber
