@@ -43,7 +43,19 @@ public struct CTRideModel: CTBaseModel {
         case weatherIconURL = "icon_url"
     }
 
-    public init(id: Int, userId: Int, bikeId: Int, name: String, rideType: String, creationDate: Date, startDate: Date, endDate: Date, calories: Double, averageSpeed: Double, distanceTraveled: Double, co2: Double, weatherIconURL: String) {
+    public init(id: Int = 0,
+                userId: Int = 0,
+                bikeId: Int = 0,
+                name: String = "",
+                rideType: String = "",
+                creationDate: Date = Date(),
+                startDate: Date = Date(),
+                endDate: Date = Date(),
+                calories: Double = 0,
+                averageSpeed: Double = 0,
+                distanceTraveled: Double = 0,
+                co2: Double = 0,
+                weatherIconURL: String = "") {
         self.id = id
         self.userId = userId
         self.bikeId = bikeId
