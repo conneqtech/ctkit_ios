@@ -33,7 +33,7 @@ public struct CTTheftCaseModel: CTBaseModel {
     public var reportDate: Date
     public var caseStatus: String
     public var bikeIsInsured: Bool
-    public var policeCaseNumber: String
+    public var policeCaseNumber: String?
     public let caseFinalized: Bool
 
     enum CodingKeys: String, CodingKey {
