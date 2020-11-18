@@ -33,6 +33,8 @@ public struct CTBikeModel: CTBaseModel {
     
     public let activationCode: String?
     
+    public var isRideInProgress: Bool?
+    
     public init(id: Int = 0,
                 imei: String = "860000000000000",
                 frameIdentifier: String = "FR4M3NUMB3R",
@@ -72,8 +74,6 @@ public struct CTBikeModel: CTBaseModel {
         self.dealerId = dealerId
         self.activationCode = activationCode
     }
-    
-    
     
     public init(withId id: Int,
                 imei: String,
@@ -132,6 +132,8 @@ public struct CTBikeModel: CTBaseModel {
         
         case dealerId = "dealer_id"
         case activationCode = "activation_code"
+        
+        case isRideInProgress = "ride_in_progress"
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -144,5 +146,6 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(frameIdentifier, forKey: .frameIdentifier)
         try container.encode(bluetoothName, forKey: .bluetoothName)
         try container.encode(isStolen, forKey: .isStolen)
+        try container.encode(isRideInProgress, forKey: .isRideInProgress)
     }
 }
