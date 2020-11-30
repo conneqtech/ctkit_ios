@@ -146,6 +146,5 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(frameIdentifier, forKey: .frameIdentifier)
         try container.encode(bluetoothName, forKey: .bluetoothName)
         try container.encode(isStolen, forKey: .isStolen)
-        try container.encode(isRideInProgress, forKey: .isRideInProgress)
     }
 }
