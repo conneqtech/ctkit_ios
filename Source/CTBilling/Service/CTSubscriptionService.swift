@@ -85,11 +85,16 @@ public class CTSubscriptionService: NSObject {
      - Returns: An observable of the newly started subscription (claim)
      */
     public func claim(withBikeId identifier: Int, imei: String) -> Observable<CTSubscriptionModel> {
-        return CTBilling.shared.restManager.post(endpoint: "claim", parameters: [
-            "bike_id": identifier,
-            "hash": imei
-            ]
-        )
+
+        if !CTBikeModel.isBikeOwner(bikeId: identifier) {
+            return CTSubscriptionModel.mockSubscription()
+        } else {
+            return CTBilling.shared.restManager.post(endpoint: "claim", parameters: [
+                "bike_id": identifier,
+                "hash": imei
+                ]
+            )
+        }
     }
 
     // Private API.
