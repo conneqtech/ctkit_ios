@@ -147,4 +147,15 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(bluetoothName, forKey: .bluetoothName)
         try container.encode(isStolen, forKey: .isStolen)
     }
+    
+    static func isBikeOwner(bikeId: Int) -> Bool {
+        var optionalBike: CTBikeModel? = nil
+        let semaphore = DispatchSemaphore(value: 0)
+        CTBikeService().fetch(withId: bikeId).map {bike in
+            optionalBike = bike
+            semaphore.signal()
+        }
+        semaphore.wait(timeout: DispatchTime(uptimeNanoseconds: 1000000000))
+        return optionalBike != nil && optionalBike!.isRequestingUserOwner
+    }
 }

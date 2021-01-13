@@ -55,28 +55,21 @@ public class CTShareBikeService: NSObject {
     }
     
     public func fetchSingleInvite(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
-        return CTKit.shared.restManager.get(endpoint: "bike/\(bikeId)/invite/\(inviteId)")
+        if !CTBikeModel.isBikeOwner(bikeId: bikeId) {
+            return CTInviteModel.mockInvite()
+        } else {
+            return CTKit.shared.restManager.get(endpoint: "bike/\(bikeId)/invite/\(inviteId)")
+        }
     }
 }
 
 fileprivate extension CTShareBikeService {
 
     func fetchInvites(withBikeId identifier: Int, status: String) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
-        
-        var optionalBike: CTBikeModel? = nil
-        let semaphore = DispatchSemaphore(value: 0)
-        CTBikeService().fetch(withId: identifier).map {bike in
-            optionalBike = bike
-            semaphore.signal()
-        }
-        semaphore.wait(timeout: DispatchTime(uptimeNanoseconds: 1000000000))
-        
-        if let bike = optionalBike, bike.isRequestingUserOwner {
+        if !CTBikeModel.isBikeOwner(bikeId: identifier){
             return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/invite?filter=or;invite_status;eq;\(status)")
         } else {
-            let mockCTMeta = CTMeta(limit: 0, offset: 0, totalRecords: 0, availableFilterFieldNames: [], availableOrderFieldNames: [])
-            let mockPaginatedResponseModel: CTPaginatedResponseModel<CTInviteModel> = CTPaginatedResponseModel(filters: [], orderClauses: [], meta: mockCTMeta, data: [])
-            return Observable.of(mockPaginatedResponseModel)
+            return CTInviteModel.mockPaginatedInvite()
         }
     }
 
