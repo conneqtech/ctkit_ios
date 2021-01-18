@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxBlocking
 
 public struct CTBikeModel: CTBaseModel {
     public let id: Int
@@ -149,13 +150,12 @@ public struct CTBikeModel: CTBaseModel {
     }
     
     static func isBikeOwner(bikeId: Int) -> Bool {
-        var optionalBike: CTBikeModel? = nil
-        let semaphore = DispatchSemaphore(value: 0)
-        CTBikeService().fetch(withId: bikeId).map {bike in
-            optionalBike = bike
-            semaphore.signal()
+        do {
+            guard let bike = try CTBikeService().fetch(withId: bikeId).toBlocking().first() else { return false }
+            return bike.isRequestingUserOwner
+        } catch {
+            print(error)
+            return false
         }
-        semaphore.wait(timeout: DispatchTime(uptimeNanoseconds: 1000000000))
-        return optionalBike != nil && optionalBike!.isRequestingUserOwner
     }
 }
