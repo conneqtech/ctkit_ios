@@ -61,17 +61,17 @@ public class CTShareBikeService: NSObject {
             return CTKit.shared.restManager.get(endpoint: "bike/\(bikeId)/invite/\(inviteId)")
         }
     }
-}
-
-fileprivate extension CTShareBikeService {
-
+    
     func fetchInvites(withBikeId identifier: Int, status: String) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
-        if !CTBikeModel.isBikeOwner(bikeId: identifier){
+        if CTBikeModel.isBikeOwner(bikeId: identifier){
             return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/invite?filter=or;invite_status;eq;\(status)")
         } else {
             return CTInviteModel.mockPaginatedInvite()
         }
     }
+}
+
+fileprivate extension CTShareBikeService {
 
     func patchInviteStatus(_ bikeId: Int, _ inviteId: String, status: String) -> Observable<CTInviteModel> {
         return CTKit.shared.restManager.patch(endpoint: "bike/\(bikeId)/invite/\(inviteId)", parameters: ["invite_status": status])

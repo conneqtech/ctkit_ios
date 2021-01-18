@@ -27,6 +27,7 @@ class CTSubscriptionServiceTests: XCTestCase {
             XCTAssertTrue(subscription.bikeId != 0, "Bike id shouldnt be 0")
         } catch {
             print(error)
+            // Error is true because there is already a decoding error if its a real subscription
             XCTAssert(true)
         }
     }
