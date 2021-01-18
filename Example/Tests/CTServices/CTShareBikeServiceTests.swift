@@ -27,16 +27,16 @@ class CTShareBikeServiceTests: XCTestCase {
 //        XCTAssertTrue(invite.linkedUserId == 0)
 //    }
 //
-//    func testFetchSingleInviteNotOwner() {
-//        let bike = try! CTBikeService().fetchShared().toBlocking().first()!.first!
-//
-//    }
+    func testFetchSingleInviteNotOwner() {
+        let bike = try! CTBikeService().fetchShared().toBlocking().first()!.first!
+        let invite = try! CTShareBikeService().fetchSingleInvite(withBikeId: bike.id, inviteId: "").toBlocking().first()!
+        XCTAssertTrue(invite.id == "")
+    }
 
     func testFetchInvitesOwner() {
         let bike = try! CTBikeService().fetchOwned().toBlocking().first()!.first!
         let invites = try! CTShareBikeService().fetchInvites(withBikeId: bike.id, status: "accepted").toBlocking().first()!.meta.limit
         XCTAssertTrue(invites == 20)
-
     }
 
     func testFetchInvitesNotOwner() {
