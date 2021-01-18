@@ -22,24 +22,26 @@ class CTShareBikeServiceTests: XCTestCase {
 
 //    func testFetchSingleInviteOwner() {
 //        let bike = try! CTBikeService().fetchOwned().toBlocking().first()!.first!
-//        
+//
 //        let invite = try! CTShareBikeService().fetchSingleInvite(withBikeId: bike.id, inviteId: "").toBlocking().first()!
 //        XCTAssertTrue(invite.linkedUserId == 0)
 //    }
-//    
+//
 //    func testFetchSingleInviteNotOwner() {
 //        let bike = try! CTBikeService().fetchShared().toBlocking().first()!.first!
-//        
+//
 //    }
-//    
-//    func testFetchInvitesOwner() {
-//        let bike = try! CTBikeService().fetchOwned().toBlocking().first()!.first!
-//        let invites = try! CTShareBikeService().fetchInvites(withBikeId: bike.id, status: "accepted")
-//    }
+
+    func testFetchInvitesOwner() {
+        let bike = try! CTBikeService().fetchOwned().toBlocking().first()!.first!
+        let invites = try! CTShareBikeService().fetchInvites(withBikeId: bike.id, status: "accepted").toBlocking().first()!.meta.limit
+        XCTAssertTrue(invites == 20)
+
+    }
 
     func testFetchInvitesNotOwner() {
         let bike = try! CTBikeService().fetchShared().toBlocking().first()!.first!
-        let invites = try! CTShareBikeService().fetchInvites(withBikeId: bike.id, status: "accepted").toBlocking().first()!.data
-        XCTAssertTrue(invites.count == 0)
+        let invites = try! CTShareBikeService().fetchInvites(withBikeId: bike.id, status: "accepted").toBlocking().first()!.meta.limit
+        XCTAssertTrue(invites == 0)
     }
 }
