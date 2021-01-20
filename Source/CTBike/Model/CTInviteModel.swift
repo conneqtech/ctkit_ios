@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 public enum CTInviteStatus: String, Codable {
     case open
@@ -46,5 +47,16 @@ public struct CTInviteModel: CTBaseModel {
         self.avatarUrl = avatarUrl
         self.statusChangeDate = statusChangeDate
         self.isEmergencyContact = isEmergencyContact
+    }
+    
+    static func mockInvite() -> Observable<CTInviteModel> {
+        let mockInviteModel = CTInviteModel(id: "", status: .accepted, linkedUserId: 0, displayName: "", avatarUrl: "", statusChangeDate: nil, isEmergencyContact: false)
+        return Observable.of(mockInviteModel)
+    }
+    
+    static func mockPaginatedInvite() -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        let mockCTMeta = CTMeta(limit: 0, offset: 0, totalRecords: 0, availableFilterFieldNames: [], availableOrderFieldNames: [])
+        let mockPaginatedResponseModel: CTPaginatedResponseModel<CTInviteModel> = CTPaginatedResponseModel(filters: [], orderClauses: [], meta: mockCTMeta, data: [])
+        return Observable.of(mockPaginatedResponseModel)
     }
 }
