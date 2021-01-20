@@ -26,20 +26,20 @@ public class CTShareBikeService: NSObject {
         return CTKit.shared.restManager.delete(endpoint: "bike/\(identifier)/invite-code")
     }
 
-    public func fetchOpenInvites(withBikeId identifier: Int) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
-        return fetchInvites(withBikeId: identifier, status: "open")
+    public func fetchOpenInvites(withBike bike: CTBikeModel) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        return fetchInvites(withBike: bike, status: "open")
     }
 
-    public func fetchDeniedInvites(withBikedId identifier: Int) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
-        return fetchInvites(withBikeId: identifier, status: "denied")
+    public func fetchDeniedInvites(withBike bike: CTBikeModel) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        return fetchInvites(withBike: bike, status: "denied")
     }
 
-    public func fetchAcceptedInvites(withBikeId identifier: Int) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
-        return fetchInvites(withBikeId: identifier, status: "accepted")
+    public func fetchAcceptedInvites(withBike bike: CTBikeModel) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        return fetchInvites(withBike: bike, status: "accepted")
     }
 
-    public func fetchRevokedInvites(withBikedId identifier: Int) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
-        return fetchInvites(withBikeId: identifier, status: "revoked")
+    public func fetchRevokedInvites(withBike bike: CTBikeModel) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        return fetchInvites(withBike: bike, status: "revoked")
     }
 
     public func acceptOpenInvite(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
@@ -54,17 +54,17 @@ public class CTShareBikeService: NSObject {
         return patchInviteStatus(bikeId, inviteId, status: "revoked")
     }
     
-    public func fetchSingleInvite(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
-        if !CTBikeModel.isBikeOwner(bikeId: bikeId) {
+    public func fetchSingleInvite(withBike bike: CTBikeModel, inviteId: String) -> Observable<CTInviteModel> {
+        if !bike.isRequestingUserOwner {
             return CTInviteModel.mockInvite()
         } else {
-            return CTKit.shared.restManager.get(endpoint: "bike/\(bikeId)/invite/\(inviteId)")
+            return CTKit.shared.restManager.get(endpoint: "bike/\(bike.id)/invite/\(inviteId)")
         }
     }
     
-    func fetchInvites(withBikeId identifier: Int, status: String) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
-        if CTBikeModel.isBikeOwner(bikeId: identifier){
-            return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)/invite?filter=or;invite_status;eq;\(status)")
+    func fetchInvites(withBike bike: CTBikeModel, status: String) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
+        if bike.isRequestingUserOwner {
+            return CTKit.shared.restManager.get(endpoint: "bike/\(bike.id)/invite?filter=or;invite_status;eq;\(status)")
         } else {
             return CTInviteModel.mockPaginatedInvite()
         }

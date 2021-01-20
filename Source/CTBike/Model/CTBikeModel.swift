@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RxBlocking
 
 public struct CTBikeModel: CTBaseModel {
     public let id: Int
@@ -147,15 +146,5 @@ public struct CTBikeModel: CTBaseModel {
         try container.encode(frameIdentifier, forKey: .frameIdentifier)
         try container.encode(bluetoothName, forKey: .bluetoothName)
         try container.encode(isStolen, forKey: .isStolen)
-    }
-    
-    static func isBikeOwner(bikeId: Int) -> Bool {
-        do {
-            guard let bike = try CTBikeService().fetch(withId: bikeId).toBlocking().first() else { return false }
-            return bike.isRequestingUserOwner
-        } catch {
-            print(error)
-            return false
-        }
     }
 }
