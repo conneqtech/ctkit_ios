@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AEE476E25B1E1990026DB94 /* CTShareBikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE476D25B1E1990026DB94 /* CTShareBikeServiceTests.swift */; };
+		1AEE477D25B4B5010026DB94 /* CTSubscriptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE477C25B4B5010026DB94 /* CTSubscriptionServiceTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -78,6 +80,8 @@
 /* Begin PBXFileReference section */
 		0502DB87E74326CD1237263D /* Pods_ctkit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A022129160031D4DFE4941 /* Pods-ctkit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.release.xcconfig"; path = "Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		1AEE476D25B1E1990026DB94 /* CTShareBikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTShareBikeServiceTests.swift; sourceTree = "<group>"; };
+		1AEE477C25B4B5010026DB94 /* CTSubscriptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTSubscriptionServiceTests.swift; sourceTree = "<group>"; };
 		40A29E48D88AE252052555D9 /* Pods-ctkit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		44BB3DEB83F1FAE8C4E8EDC4 /* Pods_ctkit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5535CE0605CA21FBACD7DE9B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -490,6 +494,8 @@
 				C04390AE22E6E2490000DDBB /* CTActivityCenterServiceTests.swift */,
 				C06D479A234C605200AFC6BC /* CTCrashDetectionServiceTests.swift */,
 				C074CDC5236AD804005F5157 /* CTDrivingBehaviourReportServiceTests.swift */,
+				1AEE476D25B1E1990026DB94 /* CTShareBikeServiceTests.swift */,
+				1AEE477C25B4B5010026DB94 /* CTSubscriptionServiceTests.swift */,
 			);
 			path = CTServices;
 			sourceTree = "<group>";
@@ -652,21 +658,21 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
 			);
@@ -705,12 +711,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ctkit_Example/Pods-ctkit_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ctkit/ctkit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ctkit.framework",
 			);
@@ -779,7 +787,9 @@
 				C0F071CE2179C1FB00FE08FE /* CTErrorHandlerTests.swift in Sources */,
 				C00A8A36218735DC003F67CB /* Resolver.swift in Sources */,
 				C0FBCDA122B4CF5200E368C3 /* CTBikeTypeServiceTests.swift in Sources */,
+				1AEE476E25B1E1990026DB94 /* CTShareBikeServiceTests.swift in Sources */,
 				C05E5F87231680DC006DD6FB /* CTMarkdownParserTests.swift in Sources */,
+				1AEE477D25B4B5010026DB94 /* CTSubscriptionServiceTests.swift in Sources */,
 				C039847723619E0000ED5E44 /* CTKitActiveSessionTests.swift in Sources */,
 				C074CDC6236AD804005F5157 /* CTDrivingBehaviourReportServiceTests.swift in Sources */,
 				C0CF249422BB83B700595AA1 /* CTStatisticsServiceTests.swift in Sources */,

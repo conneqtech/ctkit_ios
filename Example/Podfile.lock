@@ -1,7 +1,8 @@
 PODS:
   - Alamofire (4.9.0)
-  - ctkit (1.5.1):
+  - ctkit (1.11.0):
     - Alamofire (~> 4.7)
+    - RxBlocking
     - RxSwift (~> 5.0)
   - Mockingjay (3.0.0-alpha.1):
     - Mockingjay/Core (= 3.0.0-alpha.1)
@@ -28,7 +29,7 @@ DEPENDENCIES:
   - RxTest
 
 SPEC REPOS:
-  https://cdn.cocoapods.org/:
+  trunk:
     - Alamofire
     - Mockingjay
     - Nimble
@@ -44,7 +45,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
-  ctkit: c526e8b52e7b4feb71ef9a523632fedb37c611c6
+  ctkit: cb3cbe50436ed815549a4c7efb116aad76d90715
   Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
   Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
@@ -55,4 +56,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9b2fc450843f3b9635b3d85b8193359ef62d3934
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.10.0
