@@ -8,21 +8,17 @@
 import Foundation
 import RxSwift
 
-class CTProductTypeModelApi: NSObject {
+public class CTProductTypeModelApi {
 
     public static let shared: CTProductTypeModelApi = CTProductTypeModelApi()
     
-    func fetchProducts(withBikeId identifier: Int) -> Observable<[CTProductTypeModel]>{
+    public func fetchProducts(withBikeId identifier: Int) -> Observable<[CTProductTypeModel]>{
         return CTBilling.shared.restManager.get(endpoint: "subscription/bike/\(identifier)/product-type")
     }
 
-    func fetchInsuranceProducts(withBikeId identifier: Int) -> Observable<[CTProductTypeModel]> {
-        return fetchProductsByType(withBikeId: identifier, type: .insurance)
-    }
-
-    func fetchProductsByType(withBikeId identifier: Int, type: CTSubscriptionProductType) -> Observable<[CTProductTypeModel]> {
-        return fetchProducts(withBikeId: identifier).map { subscription in
-            subscription.filter { $0.productTypeId == type && $0.active }
+    public func fetchInsuranceProducts(withBikeId identifier: Int) -> Observable<[CTProductTypeModel]> {
+        return self.fetchProducts(withBikeId: identifier).map { product in
+            product.filter({ $0.productTypeId == .insurance && $0.active })
         }
     }
 }
