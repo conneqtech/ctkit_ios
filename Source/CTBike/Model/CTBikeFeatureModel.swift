@@ -21,7 +21,8 @@ public struct CTBikeFeatureModel: CTBaseModel {
     public let powerDistribution    : Bool
     public let shiftAdvice          : Bool
     public let odometer             : Bool
-    public let nonConnected: Bool
+    public let nonConnected         : Bool
+    public let uninsurable          : Bool
     
     public init(bluetooth: Bool = false,
                 physicalLock: Bool = false,
@@ -35,7 +36,7 @@ public struct CTBikeFeatureModel: CTBaseModel {
                 powerDistribution: Bool = false,
                 shiftAdvice: Bool = false,
                 odometer: Bool = false,
-                nonConnected: Bool = false) {
+                nonConnected: Bool = false, uninsurable: Bool = false) {
         self.bluetooth          = bluetooth
         self.physicalLock       = physicalLock
         self.digitalLock        = digitalLock
@@ -49,6 +50,7 @@ public struct CTBikeFeatureModel: CTBaseModel {
         self.shiftAdvice        = shiftAdvice
         self.odometer           = odometer
         self.nonConnected       = nonConnected
+        self.uninsurable        = uninsurable
     }
 
     enum CodingKeys: String, CodingKey {
@@ -66,5 +68,7 @@ public struct CTBikeFeatureModel: CTBaseModel {
         case shiftAdvice        = "shift_advice"
         case odometer
         case nonConnected       = "non_connected"
+        case uninsurable        = "uninsurable"
     }
 }
+
