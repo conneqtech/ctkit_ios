@@ -13,51 +13,6 @@ import RxSwift
  It allows for convenience methods that get the information required about subscriptions.
  */
 public class CTSubscriptionService: NSObject {
-    /**
-     Fetches all known active subscriptions for a bike.
-     
-     - Parameter identifier: The bike identifier you want to retrieve the data for
-
-     - Returns: An observable containing a list of all subscriptions found.
-     */
-    public func fetchAll(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
-        return CTBilling.shared.restManager.get(endpoint: "subscription/bike/\(identifier)")
-    }
-
-    /**
-        Fetches all known product types for a bike.
-        
-        - Parameter identifier: The bike identifier you want to retrieve the data for
-
-        - Returns: An observable containing a list of all product types found.
-        */
-    
-    
-    public func fetchProductTypes(withBikeId identifier: Int) -> Observable<[CTProductTypeModel]>{
-        return CTBilling.shared.restManager.get(endpoint: "subscription/bike/\(identifier)/product-type")
-    }
-    /**
-    Fetches all known subscriptions for a bike with the connectivity type.
-    
-    - Parameter identifier: The bike identifier you want to retrieve the data for
-    
-    - Returns: An observable containing a list of all subscriptions found.
-    */
-    
-    public func fetchConnectivitySubscriptions(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
-        return fetchByType(withBikeId: identifier, type: .connectivity)
-    }
-
-    /**
-     Fetches all known subscriptions for a bike with the insurance type.
-     
-     - Parameter identifier: The bike identifier you want to retrieve the data for
-     
-     - Returns: An observable containing a list of all subscriptions found.
-     */
-    public func fetchInsuranceSubscriptions(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]> {
-        return fetchByType(withBikeId: identifier, type: .insurance)
-    }
 
     /**
      Starts a trial for a bike.
@@ -96,11 +51,14 @@ public class CTSubscriptionService: NSObject {
             )
         }
     }
+    
+    public func fetchProducts(withBikeId identifier: Int) -> Observable<[CTProductTypeModel]>{
+        return CTBilling.shared.restManager.get(endpoint: "subscription/bike/\(identifier)/product-type")
+    }
 
-    // Private API.
-    private func fetchByType(withBikeId identifier: Int, type: CTSubscriptionProductType) -> Observable<[CTSubscriptionModel]> {
-        return fetchAll(withBikeId: identifier).map { subscription in
-            subscription.filter { $0.type == type }
+    public func fetchInsuranceProducts(withBikeId identifier: Int) -> Observable<[CTProductTypeModel]> {
+        return self.fetchProducts(withBikeId: identifier).map { product in
+            product.filter({ $0.productTypeId == .insurance && $0.active })
         }
     }
 }
