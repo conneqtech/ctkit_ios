@@ -7,10 +7,9 @@
 
 
 import Foundation
-import ctkit
 import RxSwift
 
-class CTPhoneAsAGpsService {
+public class CTPhoneAsAGpsService: NSObject {
 
     public func postPayload(ridePayload: CTRidePayloadModel, bike: CTBikeModel) {
         do {

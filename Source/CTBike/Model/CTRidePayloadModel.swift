@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 import CoreTelephony
 
-struct CTRidePayloadModel: Codable {
+public struct CTRidePayloadModel: Codable {
     
     var ver: Int
     var imei: Int
@@ -19,7 +19,7 @@ struct CTRidePayloadModel: Codable {
     var tracker: RideTracker
     var device: RideDevice?
     
-    init(bike: CTBikeModel, location: CLLocation?, state: [String: Any], carrier: CTCarrier) {
+    public init(bike: CTBikeModel, location: CLLocation?, state: [String: Any], carrier: CTCarrier) {
         
         self.ver = 2
         self.imei = Int(bike.imei)!
@@ -29,7 +29,7 @@ struct CTRidePayloadModel: Codable {
         self.device = RideDevice(bike: bike, state: state)
     }
     
-    mutating func filterOutZeros() {
+    public mutating func filterOutZeros() {
         
         // Inside device.metric
         if let bmv = self.device?.metric.bmv, bmv < 1 {
