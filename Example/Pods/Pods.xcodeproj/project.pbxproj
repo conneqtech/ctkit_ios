@@ -46,6 +46,8 @@
 		192A3F8BEC1A99FD8712D3E09724D72C /* FailureMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF0E8AD53417E860645194584D288E2 /* FailureMessage.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		1945CD5D63A1C164AEAAA9A33E85571E /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0817D553D2431C26FCE35383D60E883E /* Alamofire-dummy.m */; };
 		1986B50C74F1697EA43F68335C93CEB3 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319B3935D44E2129F974824A8C86A08 /* MultipartFormData.swift */; };
+		1A6D98BD25DFAEF200BA493F /* CTRideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D98BC25DFAEF100BA493F /* CTRideModel.swift */; };
+		1A6D98CA25DFAF3400BA493F /* CTRidePayloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D98C925DFAF3400BA493F /* CTRidePayloadModel.swift */; };
 		1A8588D1B419DE1A3DB2D8A6A975E868 /* TestScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692ED5A563C582C70F02FDF8FC9E352 /* TestScheduler.swift */; };
 		1AA2A9FA3F84E13AE30E3FBEE2758B5E /* CTBikeStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78FDC88BC453BE8334593A691B7FDC /* CTBikeStateModel.swift */; };
 		1C095DC888BF7889BC529BF9FDBEB07E /* ScheduledItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C4B82AC241C720DD631D381C82575 /* ScheduledItem.swift */; };
@@ -659,6 +661,8 @@
 		19798BA0BA544F5E43A6B2A3ED2E11B2 /* Recorded.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Recorded.swift; path = RxTest/Recorded.swift; sourceTree = "<group>"; };
 		1A074F56F3C48450FC24481B54951576 /* HistoricalScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HistoricalScheduler.swift; path = RxSwift/Schedulers/HistoricalScheduler.swift; sourceTree = "<group>"; };
 		1A1CC64CBFBBC4B8FBC943CE4C39DE34 /* CTBilling.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTBilling.swift; sourceTree = "<group>"; };
+		1A6D98BC25DFAEF100BA493F /* CTRideModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTRideModel.swift; sourceTree = "<group>"; };
+		1A6D98C925DFAF3400BA493F /* CTRidePayloadModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTRidePayloadModel.swift; sourceTree = "<group>"; };
 		1AD52E53960AD1310C69AB779C053F0B /* Pods-ctkit_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ctkit_Example-Info.plist"; sourceTree = "<group>"; };
 		1BA9EF8C24522FC9429ED388453F8B27 /* CTBikeStateService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTBikeStateService.swift; sourceTree = "<group>"; };
 		1BCC449037DBB4E6B66E5A53DEFFDDD7 /* PriorityQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriorityQueue.swift; path = Platform/DataStructures/PriorityQueue.swift; sourceTree = "<group>"; };
@@ -1654,7 +1658,9 @@
 				DD9A769D2BA94CB7C0590EEF83F3FB2F /* CTInsuranceModel.swift */,
 				E2C279A6299C3DE04C64C383FF11881C /* CTInviteModel.swift */,
 				C34250574369B3781B54AAFBC3A77998 /* CTLatLonModel.swift */,
+				1A6D98BC25DFAEF100BA493F /* CTRideModel.swift */,
 				3E69624A490FC5156F8E140ED479AC84 /* CTRideModel.swift */,
+				1A6D98C925DFAF3400BA493F /* CTRidePayloadModel.swift */,
 				EB542C6CD66A1E0904050F58F4E60B4E /* CTStatisticsModel.swift */,
 				F52BA1F5E85E68F298BB31306E3C5C22 /* CTTheftCaseModel.swift */,
 				C1145B12E348D7ADA27BCE399C673D71 /* CTTheftCasePartnerModel.swift */,
@@ -2827,6 +2833,7 @@
 				1AA2A9FA3F84E13AE30E3FBEE2758B5E /* CTBikeStateModel.swift in Sources */,
 				82AF97F4D127FC9910D87514EDEB135A /* CTBikeStateService.swift in Sources */,
 				7250F52266DF585EA9AB974572CC303C /* CTBikeTypeModel.swift in Sources */,
+				1A6D98CA25DFAF3400BA493F /* CTRidePayloadModel.swift in Sources */,
 				5CD295E39710B7BAA996B5A1034AD881 /* CTBikeTypeService.swift in Sources */,
 				BEB8BF9ED1DA9081A4B8E0438EC2A85C /* CTBilling.swift in Sources */,
 				F91E263477AD02B5F15BC8F41956CD5A /* CTCloudMessagingService.swift in Sources */,
@@ -2863,6 +2870,7 @@
 				31291B691432A71DA98ABD1B85B771EF /* CTKit.swift in Sources */,
 				4440A6F9F2EB67306B0B9C84DE90590B /* CTKitBase.swift in Sources */,
 				103785D2836EAFFC619E82FAE770594E /* CTLatLonModel.swift in Sources */,
+				1A6D98BD25DFAEF200BA493F /* CTRideModel.swift in Sources */,
 				999373B1372ACC1E81E8C2A9FD12C05F /* CTMarkdownParser.swift in Sources */,
 				76F40AE2E8F6D8FD258BDB99CE2B2256 /* CTMeta.swift in Sources */,
 				3BB60DC7870B395FF7647279F975BD1A /* CTOAuth2AuthenticationLevel.swift in Sources */,

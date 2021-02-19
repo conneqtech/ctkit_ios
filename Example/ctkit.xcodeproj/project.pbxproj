@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A6D98D825DFAFB200BA493F /* CTRidePayloadModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D98D725DFAFB200BA493F /* CTRidePayloadModelTests.swift */; };
 		1AEE476E25B1E1990026DB94 /* CTShareBikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE476D25B1E1990026DB94 /* CTShareBikeServiceTests.swift */; };
 		1AEE477D25B4B5010026DB94 /* CTSubscriptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE477C25B4B5010026DB94 /* CTSubscriptionServiceTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		0502DB87E74326CD1237263D /* Pods_ctkit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A022129160031D4DFE4941 /* Pods-ctkit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.release.xcconfig"; path = "Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		1A6D98D725DFAFB200BA493F /* CTRidePayloadModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTRidePayloadModelTests.swift; sourceTree = "<group>"; };
 		1AEE476D25B1E1990026DB94 /* CTShareBikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTShareBikeServiceTests.swift; sourceTree = "<group>"; };
 		1AEE477C25B4B5010026DB94 /* CTSubscriptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTSubscriptionServiceTests.swift; sourceTree = "<group>"; };
 		40A29E48D88AE252052555D9 /* Pods-ctkit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +170,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A6D98D625DFAF5200BA493F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A6D98D725DFAFB200BA493F /* CTRidePayloadModelTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		40FC24F28C0CFACFC9F657A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,10 +233,10 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1A6D98D625DFAF5200BA493F /* Models */,
 				C05E5F85231680C2006DD6FB /* Utils */,
 				C00A8A34218735CD003F67CB /* Helpers */,
 				C0F40CDB218C4F3400F92CC9 /* CTServices */,
-				C0F40CDC218C4F5800F92CC9 /* CTModels */,
 				C0F071CD2179C1FB00FE08FE /* CTErrorHandlerTests.swift */,
 				C04C0AAE21746E9B00F9ADE0 /* Info.plist */,
 				C039847623619E0000ED5E44 /* CTKitActiveSessionTests.swift */,
@@ -498,13 +508,6 @@
 				1AEE477C25B4B5010026DB94 /* CTSubscriptionServiceTests.swift */,
 			);
 			path = CTServices;
-			sourceTree = "<group>";
-		};
-		C0F40CDC218C4F5800F92CC9 /* CTModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CTModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -793,6 +796,7 @@
 				C039847723619E0000ED5E44 /* CTKitActiveSessionTests.swift in Sources */,
 				C074CDC6236AD804005F5157 /* CTDrivingBehaviourReportServiceTests.swift in Sources */,
 				C0CF249422BB83B700595AA1 /* CTStatisticsServiceTests.swift in Sources */,
+				1A6D98D825DFAFB200BA493F /* CTRidePayloadModelTests.swift in Sources */,
 				C04390AF22E6E2490000DDBB /* CTActivityCenterServiceTests.swift in Sources */,
 				C0F1996122BA1B7700BE0FFD /* CTBikeStateServiceTests.swift in Sources */,
 			);
