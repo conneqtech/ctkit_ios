@@ -24,6 +24,9 @@ public struct CTRideModel: CTBaseModel {
     public let distanceTraveled: Double
     public let co2: Double
     public let weatherIconURL: String
+    
+    // Paag specific attributes
+    public let activeTime: Int
 
     enum CodingKeys: String, CodingKey {
         case weatherInfo = "weather_info"
@@ -41,6 +44,8 @@ public struct CTRideModel: CTBaseModel {
         case distanceTraveled = "distance_traveled"
         case co2 = "co2"
         case weatherIconURL = "icon_url"
+        
+        case activeTime = "active_time"
     }
 
     public init(id: Int = 0,
@@ -55,7 +60,9 @@ public struct CTRideModel: CTBaseModel {
                 averageSpeed: Double = 0,
                 distanceTraveled: Double = 0,
                 co2: Double = 0,
-                weatherIconURL: String = "") {
+                weatherIconURL: String = "",
+                activeTime: Int = 0
+    ) {
         self.id = id
         self.userId = userId
         self.bikeId = bikeId
@@ -69,6 +76,7 @@ public struct CTRideModel: CTBaseModel {
         self.distanceTraveled = distanceTraveled
         self.co2 = co2
         self.weatherIconURL = weatherIconURL
+        self.activeTime = activeTime
     }
     
     public init (from decoder: Decoder) throws {
@@ -90,7 +98,8 @@ public struct CTRideModel: CTBaseModel {
         averageSpeed = try container.decode(Double.self, forKey: .averageSpeed)
         distanceTraveled = try container.decode(Double.self, forKey: .distanceTraveled)
         co2 = try container.decode(Double.self, forKey: .co2)
-
+        
+         activeTime = try container.decode(Int.self, forKey: .activeTime)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -100,7 +109,5 @@ public struct CTRideModel: CTBaseModel {
         try container.encode(rideType, forKey: .rideType)
         try container.encode(startDate.toAPIDate(), forKey: .startDate)
         try container.encode(endDate.toAPIDate(), forKey: .endDate)
-
     }
-
 }
