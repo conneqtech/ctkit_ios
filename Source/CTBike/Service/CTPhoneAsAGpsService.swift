@@ -12,15 +12,18 @@ import RxSwift
 public class CTPhoneAsAGpsService: NSObject {
 
     public func postPayload(ridePayload: CTRidePayloadModel, bike: CTBikeModel) {
-        do {
-            let data = try JSONEncoder().encode(ridePayload)
-            guard let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
-                throw NSError()
-            }
-            print("Posting RidePayload")
-//            let _: Observable<CTRidePayloadModel> = CTKit.shared.restManager.post(endpoint: "/bike/\(bike.id)/ride/phone/registerloc", parameters: dictionary)
-        } catch {
-            print(error)
+        return CTKit.shared.restManager.postUnobserved(endpoint: "v2/bike/\(bike.id)/ride/phone/registerloc", parameters: try? ridePayload.asDictionary())
+    }
+    
+    public func endRide(bike: CTBikeModel) -> Observable<CTRideModel> {
+        return CTKit.shared.restManager.post(endpoint: "v2/bike/\(bike.id)/ride/phone/endride")
+    }
+    
+    public func postMetaData(bike: CTBikeModel, activeTime: Int, errorMask: Int? = nil) {
+        var params: [String: Any] = ["active_time": activeTime]
+        if let error = errorMask {
+            params["error_mask"] = error
         }
+        CTKit.shared.restManager.postUnobserved(endpoint: "v2/bike/\(bike.id)/ride/phone/registermeta", parameters: params)
     }
 }
