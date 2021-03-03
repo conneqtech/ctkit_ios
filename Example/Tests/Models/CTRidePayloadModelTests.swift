@@ -18,6 +18,80 @@ class CTRidePayloadModelTests: XCTestCase {
     
     var allNonZerosRidePayload = CTRidePayloadModel(bike: CTBikeModel(), location: CLLocation(), state: [:], carrier: CTCarrier())
     
+   
+    var testRidePayload: [String: Any] =   [
+        "ver": 2, //hardcoded 2
+        "imei": 111100000000038, //imei of bike as int
+        "ttype": "CT", // CTKit as tracker type
+        "pver": "1.0", // PVer can be CTKit version, or just 1.0
+        "tracker": [
+            "loc": [
+                "alt": 39, //altitude in meters as integer
+                "ang": 54, //angle int between 0-359
+                "hdop": 1, // hdop value if available (lookup hdop)
+                "sp": 12, //speed in km/h
+                "geo": [ //GeoJSON spec Point type
+                    "coordinates": [
+                        4.894409179687499, //longitude as float
+                        52.373922404495474 //latitude as float
+                    ],
+                    "type": "Point" //hardcoded
+                ]
+            ],
+            "gsm": [ // If available from device API's
+                "cid": 4651, //cell tower ID
+                "lac": 10173,
+                "mcc": 460,
+                "mnc": 0
+            ],
+            "metric": [
+                "bbatp": 99,          // 1053 - Backup Battery Percentage
+                "bbatv": 4.1,         // 1053 - Backup Battery Voltage
+            ],
+            "config": [
+                "blefwver": "1.04",   // 1020 - BLE Version
+            ]
+        ],
+        "device": [ // If connected to BLE
+            "config": [
+                "bdcc": 14000,        // 1020 - Bike design capacity
+                "bfcc": 50000,        // 1053 - Bike Battery FCC mAh/mWh
+                "bfccp": 100,         // 1053 - Bike Battery FCC Percentage
+                "bser": "GA18220012", // 1020 - Serial number battery
+                "dcontver": "1.08",   // 1020 - Controller software version
+                "ddisver": "1.09",    // 1020 - Display software version
+                "dser": "AC1234567",  // 1020 - Serial number bike
+                "dswver": "S0312",    // 1020 - Bike software version
+                "dtype": "11.01.01",  // 1020 - Bike Type
+                "dwheel": 220,        // 1020 - Wheel diameter
+            ],
+            "metric": [
+                "bcur": -1000,        // 1053 - Bike Battery Actual Current
+                "bcyc": 114,          // 1053 - Bike Battery Charging Cycles
+                "berr": "3EF",        // 1053 - Battery Errors
+                "bmv": 32.036,        // 1053 - Bike Battery Pack Voltage (min value 1). Exposed in BLE as bpackv
+                "bsoc": 99,           // 1051 - Bike Battery SOC mAh/mWh (min value 1)
+                "bsocp": 90,          // 1051 - Bike Battery SOC Percentage (min value 1)
+                "bstate": 2,          // 1053 - Battery State
+                "btemp": 40,          // 1053 - Bike Battery temperature
+                "dactualsp": 27,      // 1051 - Speed
+                "deculock": false,    // 1051 - ECU Lock Status
+                "derllock": true,     // 1051 - ERL Lock Status
+                "dlight": true,       // 1051 - Light status
+                "dodom": 8400,        // 1051 - Odometer (in m) (min value 1)
+                "dpedcad": 15,        // 1054 - Pedal cadence
+                "dpedpow": 75,        // 1054 - Pedal power
+                "drange": 90,         // 1051 - Range
+                "dstatus": true,      // 1051 - Bike status
+                "dwheels": 25,        // 1054 - Bike wheel speed
+                "mactorq": 30,        // 1054 - Actual Torque
+                "merr": "3EF",        // 1054 - Motor Errors
+                "mpow": 250,          // 1054 - Motor Power
+                "msupp": 5            // 1051 - Support mode
+            ]
+        ]
+    ]
+    
     private func setAllZeros() {
         // Device.metric
         self.allZerosRidePayload.device?.metric.bmv = 0.0001
@@ -30,7 +104,7 @@ class CTRidePayloadModelTests: XCTestCase {
         self.allZerosRidePayload.tracker.loc.ang = 0
         self.allZerosRidePayload.tracker.loc.hdop = 0
         self.allZerosRidePayload.tracker.loc.sp = 0
-        self.allZerosRidePayload.tracker.loc.geo.coordiantes = [0, 0]
+        self.allZerosRidePayload.tracker.loc.geo.coordinates = [0, 0]
         
         // Tracker.gsm
         self.allZerosRidePayload.tracker.gsm?.cid = 0
@@ -70,7 +144,7 @@ class CTRidePayloadModelTests: XCTestCase {
         self.allNonZerosRidePayload.tracker.loc.ang = 010
         self.allNonZerosRidePayload.tracker.loc.hdop = 010
         self.allNonZerosRidePayload.tracker.loc.sp = 010
-        self.allNonZerosRidePayload.tracker.loc.geo.coordiantes = [010, 010]
+        self.allNonZerosRidePayload.tracker.loc.geo.coordinates = [010, 010]
         
         // Tracker.gsm
         self.allNonZerosRidePayload.tracker.gsm?.cid = 010
@@ -118,7 +192,7 @@ class CTRidePayloadModelTests: XCTestCase {
         XCTAssert(self.allZerosRidePayload.tracker.loc.ang == nil)
         XCTAssert(self.allZerosRidePayload.tracker.loc.hdop == nil)
         XCTAssert(self.allZerosRidePayload.tracker.loc.sp == nil)
-        XCTAssert(self.allZerosRidePayload.tracker.loc.geo.coordiantes == nil)
+        XCTAssert(self.allZerosRidePayload.tracker.loc.geo.coordinates == nil)
         
         // Tracker.gsm
         XCTAssert(self.allZerosRidePayload.tracker.gsm?.cid == nil)
@@ -160,7 +234,7 @@ class CTRidePayloadModelTests: XCTestCase {
         XCTAssert(self.allNonZerosRidePayload.tracker.loc.ang != nil)
         XCTAssert(self.allNonZerosRidePayload.tracker.loc.hdop != nil)
         XCTAssert(self.allNonZerosRidePayload.tracker.loc.sp != nil)
-        XCTAssert(self.allNonZerosRidePayload.tracker.loc.geo.coordiantes != nil)
+        XCTAssert(self.allNonZerosRidePayload.tracker.loc.geo.coordinates != nil)
         
         // Tracker.gsm
         XCTAssert(self.allNonZerosRidePayload.tracker.gsm?.cid != nil)
@@ -218,7 +292,7 @@ class CTRidePayloadModelTests: XCTestCase {
         XCTAssert(loc["ang"] == nil)
         XCTAssert(loc["hdop"] == nil)
         XCTAssert(loc["sp"] == nil)
-        XCTAssert(geo["coordiantes"] == nil)
+        XCTAssert(geo["coordinates"] == nil)
         
         // Tracker.gsm
         XCTAssert(gsm["cid"] == nil)
@@ -274,7 +348,7 @@ class CTRidePayloadModelTests: XCTestCase {
         XCTAssert(loc["ang"] != nil)
         XCTAssert(loc["hdop"] != nil)
         XCTAssert(loc["sp"] != nil)
-        XCTAssert(geo["coordiantes"] != nil)
+        XCTAssert(geo["coordinates"] != nil)
         
         // Tracker.gsm
         XCTAssert(gsm["cid"] != nil)

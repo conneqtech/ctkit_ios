@@ -202,19 +202,19 @@ public class CTRestManager {
                                                            parameters: parameters,
                                                            encoding: encoding,
                                                            headers: headers)
-            .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
-            .responseJSON { (response) in
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(.iso8601CT)
-
-                switch response.result {
-                case .success:
-                    break
-                case .failure:
-                    print("ERROR: \(response)")
-                    break
-                }
+        .validate(statusCode: 200..<300)
+        .validate(contentType: ["application/json"])
+        .responseJSON { (response) in
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(.iso8601CT)
+            switch response.result {
+            case .success:
+                break
+            case .failure:
+//                print(response.debugDescription)
+                print("ERROR: \(response)")
+                break
+            }
         }
     }
     

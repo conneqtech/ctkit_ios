@@ -25,7 +25,7 @@ public struct CTRideModel: CTBaseModel {
     public let co2: Double
     public let weatherIconURL: String
     
-    // Paag specific attributes
+    // Paag specific attributes: rating, error_mask
     public let activeTime: Int
 
     enum CodingKeys: String, CodingKey {
