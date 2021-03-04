@@ -28,6 +28,8 @@ public struct CTRideModel: CTBaseModel {
     // Paag specific attributes: error_mask
     public let activeTime: Int
     public var rating: Int?
+    public var errorMask: Int
+    
 
     enum CodingKeys: String, CodingKey {
         case weatherInfo = "weather_info"
@@ -48,6 +50,8 @@ public struct CTRideModel: CTBaseModel {
         
         case activeTime = "active_time"
         case rating = "rating"
+        case errorMask = "error_mask"
+        
     }
 
     public init(id: Int = 0,
@@ -64,7 +68,8 @@ public struct CTRideModel: CTBaseModel {
                 co2: Double = 0,
                 weatherIconURL: String = "",
                 activeTime: Int = 0,
-                rating: Int = 0
+                rating: Int = 0,
+                errorMask: Int = 0
     ) {
         self.id = id
         self.userId = userId
@@ -81,6 +86,7 @@ public struct CTRideModel: CTBaseModel {
         self.weatherIconURL = weatherIconURL
         self.activeTime = activeTime
         self.rating = rating
+        self.errorMask = errorMask
     }
     
     public init (from decoder: Decoder) throws {
@@ -105,6 +111,7 @@ public struct CTRideModel: CTBaseModel {
         
         activeTime = try container.decode(Int.self, forKey: .activeTime)
         rating = try container.decodeIfPresent(Int.self, forKey: .rating)
+        errorMask = try container.decode(Int.self, forKey: .errorMask)
     }
 
     public func encode(to encoder: Encoder) throws {
