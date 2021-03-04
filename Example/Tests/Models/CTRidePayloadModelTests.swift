@@ -393,4 +393,10 @@ class CTRidePayloadModelTests: XCTestCase {
         XCTAssert(ver == 2)
         XCTAssert(type == "Point")
     }
+    
+    func testAngSmallerThanZero() {
+        self.allNonZerosRidePayload.tracker.loc.ang = -1
+        self.allNonZerosRidePayload.filterOutZeros()
+        XCTAssert(allNonZerosRidePayload.tracker.loc.ang == nil)
+    }
 }
