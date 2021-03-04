@@ -124,6 +124,12 @@ public struct CTRidePayloadModel: Codable {
         if config.dwheel == 0 {
             self.device?.config?.dwheel = nil
         }
+        
+        //ang < 0
+        if let ang = self.tracker.loc.ang, ang < 0 {
+            self.tracker.loc.ang = nil
+            
+        }
     }
 }
 
@@ -149,7 +155,7 @@ struct RideLocation: Codable {
     var geo: RideGeoCoordinate
     
     init(location: CLLocation?, state: [String: Any]) {
-        
+
         if let l = location {
             self.alt = Int(l.altitude)
             self.ang = Int(l.course)
@@ -254,14 +260,14 @@ struct RideMetric: Codable {
     var bstate: Int?
     var btemp: Int?
     var dactualsp: Double?
-    var deculock: Int?
-    var derllock: Int?
-    var dlight: Int?
+    var deculock: Bool?
+    var derllock: Bool?
+    var dlight: Bool?
     var dodom: Int64?
     var dpedcad: Int?
     var dpedpow: Int?
     var drange: Int?
-    var dstatus: Int?
+    var dstatus: Bool?
     var dwheels: Int?
     var mactorq: Int?
     var merr: String?
@@ -279,14 +285,14 @@ struct RideMetric: Codable {
         self.bstate = state["bikeBatteryState"] as? Int
         self.btemp = state["bikeBatteryTemperature"] as? Int
         self.dactualsp = state["bikeSpeed"] as? Double
-        self.deculock = (state["ecuLockStatus"] as? Int)
-        self.derllock = (state["erlLockStatus"] as? Int)
-        self.dlight = (state["bikeLightStatus"] as? Int)
+        self.deculock = (state["ecuLockStatus"] as? Bool)
+        self.derllock = (state["erlLockStatus"] as? Bool)
+        self.dlight = (state["bikeLightStatus"] as? Bool)
         self.dodom = state["bikeOdometer"] as? Int64
         self.dpedcad = state["pedalCadence"] as? Int
         self.dpedpow = state["pedalPower"] as? Int
         self.drange = state["bikeRange"] as? Int
-        self.dstatus = (state["bikeStatus"] as? Int)
+        self.dstatus = (state["bikeStatus"] as? Bool)
         self.dwheels = state["bikeWheelSpeed"] as? Int
         self.mactorq = state["bikeActualTorque"] as? Int
         self.merr = state["motorErrors"] as? String
