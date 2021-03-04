@@ -16,7 +16,7 @@ internal class CTErrorHandler: NSObject {
 
     func handle(withJSONData data: [String: Any]?) -> CTErrorProtocol {
         var handledError: CTErrorProtocol?
-
+        
         if let unwrappedResponse = data, let httpCode = unwrappedResponse["status"] as? Int {
             switch httpCode {
             case 400:
@@ -65,6 +65,14 @@ internal class CTErrorHandler: NSObject {
         }
 
         guard let jsonData = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any] else {
+            var responseInfo = [String:Any]()
+            responseInfo["response_statusCode"] = response.response?.statusCode
+            responseInfo["response_description"] = response.response?.description
+            responseInfo["response_result_error"] = response.result.error
+            responseInfo["response_result_description"] = response.result.description
+            responseInfo["response_data"] = String(decoding: response.data ?? Data(), as: UTF8.self)
+            NotificationCenter.default.post(name: Notification.Name("LogErrorRequest"), object: nil, userInfo: responseInfo)
+            
             var responseDict = [String: Any]()
             if let response = response.response {
                 responseDict = [
@@ -73,7 +81,6 @@ internal class CTErrorHandler: NSObject {
             }
             return self.handle(withJSONData: responseDict)
         }
-
         return self.handle(withJSONData: jsonData)
     }
 
