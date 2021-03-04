@@ -14,6 +14,7 @@ class CTPhoneAsAGpsServiceTests: XCTestCase {
 
     var user: CTUserModel? = nil
     var bike: CTBikeModel? = nil
+    
     var payload: [String: Any] =   [
          "ver": 2, //hardcoded 2
          "imei": 111100000000038, //imei of bike as int
@@ -89,37 +90,63 @@ class CTPhoneAsAGpsServiceTests: XCTestCase {
      
     
     override func setUp() {
-        self.user = try! CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()!
-        self.bike = try! CTBikeService().fetchOwned().toBlocking().first()!.first!
-        self.payload["imei"] = bike?.imei
-        
+        do {
+            self.user = try CTUserService().login(email: "inigo.llamosas@conneqtech.com", password: "testtest").toBlocking().first()
+            self.bike = try CTBikeService().fetchOwned().toBlocking().first()?.filter({ $0.id == 2072 }).first
+            self.payload["imei"] = bike?.imei
+        } catch {
+            print(error)
+            XCTFail()
+        }
     }
 
     override func tearDown() {
         CTUserService().logout()
     }
     
-    
     func testPostPayload() {
         
         guard let bike = self.bike,
-              let user = self.user else { return }
-        let x = CTBikeService()
-        CTPhoneAsAGpsService().postPayload(ridePayload: self.ridePayload, bike: bike)
-//        wait(1)
-//        let busyBike = CTBikeService().fetch(withId: bike.id).toBlocking().first()!
-//        XCAssert(busyBike.isRideInProgress == true)
-//        XCAssert(currentRideUserId == user.id)
-//
-//
-//        wait(1)
-//        CTPhoneAsAGpsService().postMetaData(bike: bike, activeTime: 5, errorMask: 1)
-//
-//        let newlyCreatedRide = CTPhoneAsAGpsService().endRide(bike: bike).toBlocking().first()!
-//
-//        XCAssert(newlyCreatedRide.errorMask == 1)
-//        XCAssert(newlyCreatedRide.activeTime == 5)
-//
-//        CTPhoneAsAGpsService().patchNameRating(toRide: ride, name: "The ride of my life", rating: 5)
+              let user = self.user else { XCTFail()
+                                          return }
+
+        // Create ride
+        CTKit.shared.restManager.postUnobserved(endpoint: "v2/bike/\(bike.id)/ride/phone/registerloc", parameters: self.payload)
+        _ = XCTWaiter.wait(for: [expectation(description: "Wait for 3 seconds")], timeout: 3)
+
+        
+        do {
+            let busyBikeOpt = try CTBikeService().fetch(withId: bike.id).toBlocking().first()
+            guard let busyBike = busyBikeOpt else {
+                XCTFail()
+                return
+            }
+
+            // Test bike is busy
+            XCTAssert(busyBike.isRideInProgress == true)
+            XCTAssert(busyBike.currentRideUserId == user.id)
+
+            // Post metadata and endride
+            CTPhoneAsAGpsService().postMetaData(bike: bike, activeTime: 5, errorMask: 1)
+            let newlyCreatedRideOpt = try CTPhoneAsAGpsService().endRide(bike: bike).toBlocking().first()
+            guard let newlyCreatedRide = newlyCreatedRideOpt else {
+                XCTFail()
+                return
+            }
+            XCTAssert(newlyCreatedRide.errorMask == 1)
+            XCTAssert(newlyCreatedRide.activeTime == 5)
+
+            // Update ride
+            guard let updatedRide = try CTPhoneAsAGpsService().patchNameRating(toRide: newlyCreatedRide, name: "The ride of my life", rating: 4).toBlocking().first() else {
+                XCTFail()
+                return
+            }
+            XCTAssert(updatedRide.name == "The ride of my life")
+            XCTAssert(updatedRide.rating == 4)
+            
+        } catch {
+            print(error)
+             XCTFail()
+        }
     }
 }
