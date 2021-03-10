@@ -22,8 +22,8 @@ public class CTPhoneAsAGpsService: NSObject {
 
      - Parameter bike: The bike you want to create the ride for
      */
-    public func postPayload(ridePayload: CTRidePayloadModel, bike: CTBikeModel) {
-        CTKit.shared.restManager.postUnobserved(endpoint: "v2/bike/\(bike.id)/ride/phone/registerloc", parameters: try? ridePayload.asDictionary())
+    public func postPayload(ridePayload: CTRidePayloadModel, bike: CTBikeModel, callBack: @escaping () -> ()) {
+        CTKit.shared.restManager.postUnobserved(endpoint: "v2/bike/\(bike.id)/ride/phone/registerloc", parameters: try? ridePayload.asDictionary(), callBack: callBack)
     }
     
     /**
@@ -52,7 +52,7 @@ public class CTPhoneAsAGpsService: NSObject {
         if let error = errorMask {
             params["error_mask"] = error
         }
-        CTKit.shared.restManager.postUnobserved(endpoint: "v2/bike/\(bike.id)/ride/phone/registermeta", parameters: params)
+        CTKit.shared.restManager.postUnobserved(endpoint: "v2/bike/\(bike.id)/ride/phone/registermeta", parameters: params, callBack: {})
     }
     
     /**
