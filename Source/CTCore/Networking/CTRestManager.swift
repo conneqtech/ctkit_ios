@@ -40,8 +40,8 @@ public class CTRestManager {
         return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
     
-    public func postUnobserved(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil, callBack: @escaping () -> ()) {
-        return genericUnobservedCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken, callBack: callBack)
+    public func post(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil, callBack: (() -> ())? = nil) {
+        return genericCallbackCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken, callBack: callBack)
     }
 
     public func patch<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
@@ -191,10 +191,9 @@ public class CTRestManager {
             }
     }
 
-    private func genericUnobservedCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, callBack: @escaping () -> ()) {
+    private func genericCallbackCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, callBack: (() -> ())? = nil) {
         
         var headers: [String: String] = self.computeHeaders()!
-
 
         let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
         let requestReference = self.sessionManager.request(url,
@@ -209,12 +208,12 @@ public class CTRestManager {
             decoder.dateDecodingStrategy = .formatted(.iso8601CT)
             switch response.result {
             case .success:
-                callBack()
+                callBack?()
                 break
             case .failure:
 //                print(response.debugDescription)
                 print("ERROR: \(response)")
-                callBack()
+                callBack?()
                 break
             }
         }
