@@ -19,8 +19,8 @@ public class CTPhoneAsAGpsService: NSObject {
      Posts payloads for the ongoing ride. The first payload creates the ride on the API
 
      - Parameter ridePayload: The payload to be sent to the API
-
      - Parameter bike: The bike you want to create the ride for
+     - Parameter callBack: The callback on execution of the method
      */
     public func postPayload(ridePayload: CTRidePayloadModel, bike: CTBikeModel, callBack: @escaping () -> ()) {
         CTKit.shared.restManager.post(endpoint: "v2/bike/\(bike.id)/ride/phone/registerloc", parameters: try? ridePayload.asDictionary(), callBack: callBack)
@@ -30,7 +30,6 @@ public class CTPhoneAsAGpsService: NSObject {
      Ends the ride
 
      - Parameter bike: The bike you want to end the ride for
-     
      - Returns: An observable of the newly created ride object
      */
     public func endRide(bike: CTBikeModel) -> Observable<CTRideModel> {
@@ -43,6 +42,7 @@ public class CTPhoneAsAGpsService: NSObject {
      - Parameter bike: The bike you want to record metadata for
      - Parameter activeTime: The active time in seconds of the ongoing ride
      - Parameter errorMask: An error indicating what went wrong during the recording: 1 GPS, 2 Bluetooth, 3 GPS + Bluetooth, 4 timeout
+     - Parameter callBack: The callback on execution of the method
      */
     public func postMetaData(bike: CTBikeModel, activeTime: Int? = nil, errorMask: Int? = nil, callBack: (() -> ())? = nil) {
         var params: [String: Any] = [:]

@@ -58,7 +58,7 @@ public struct CTRidePayloadModel: Codable {
         if self.tracker.loc.sp == 0 {
             self.tracker.loc.sp = nil
         }
-        if self.tracker.loc.geo.coordinates?.count == 0 || self.tracker.loc.geo.coordinates?.filter({ Double($0)! > 0 }).count == 0 {
+        if self.tracker.loc.geo.coordinates?.count == 0 || self.tracker.loc.geo.coordinates?.filter({ $0 > 0 }).count == 0 {
             self.tracker.loc.geo.coordinates = nil
         }
 
@@ -135,12 +135,12 @@ public struct CTRidePayloadModel: Codable {
 
 
 struct RideGeoCoordinate: Codable {
-    var coordinates: [String]?
+    var coordinates: [Double]?
     var type: String
     
     init(coordinate: CLLocationCoordinate2D?) {
         if let c = coordinate {
-            self.coordinates = [NSDecimalNumber(value: c.longitude).stringValue, NSDecimalNumber(value: c.latitude).stringValue]
+            self.coordinates = [c.longitude, c.latitude]
         }
         self.type = "Point"
     }
