@@ -49,13 +49,13 @@ public struct CTRidePayloadModel: Codable {
         if self.tracker.loc.alt == 0 {
             self.tracker.loc.alt = nil
         }
-        if self.tracker.loc.ang == 0 {
+        if let ang = self.tracker.loc.ang, ang <= 0 {
             self.tracker.loc.ang = nil
         }
         if self.tracker.loc.hdop == 0 {
             self.tracker.loc.hdop = nil
         }
-        if self.tracker.loc.sp == 0 {
+        if let sp = self.tracker.loc.sp, sp <= 0 {
             self.tracker.loc.sp = nil
         }
         if self.tracker.loc.geo.coordinates?.count == 0 || self.tracker.loc.geo.coordinates?.filter({ $0 > 0 }).count == 0 {
@@ -124,12 +124,6 @@ public struct CTRidePayloadModel: Codable {
         if config.dwheel == 0 {
             self.device?.config?.dwheel = nil
         }
-        
-        //ang < 0
-        if let ang = self.tracker.loc.ang, ang < 0 {
-            self.tracker.loc.ang = nil
-            
-        }
     }
 }
 
@@ -151,7 +145,7 @@ struct RideLocation: Codable {
     var alt: Int?
     var ang: Int?
     var hdop: Int?
-    var sp: Double?
+    var sp: Int?
     var geo: RideGeoCoordinate
     
     init(location: CLLocation?, state: [String: Any]) {
@@ -159,8 +153,8 @@ struct RideLocation: Codable {
         if let l = location {
             self.alt = Int(l.altitude)
             self.ang = Int(l.course)
+            self.sp = Int(l.speed * 3.6)
         }
-        self.sp = state["bikeSpeed"] as? Double
         self.geo = RideGeoCoordinate(coordinate: location?.coordinate)
     }
 }
