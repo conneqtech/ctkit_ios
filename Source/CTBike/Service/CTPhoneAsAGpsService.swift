@@ -30,10 +30,11 @@ public class CTPhoneAsAGpsService: NSObject {
      Ends the ride
 
      - Parameter bike: The bike you want to end the ride for
+     - Parameter activeTime: The active  (unpaused) duration of the ride
      - Returns: An observable of the newly created ride object
      */
-    public func endRide(bike: CTBikeModel) -> Observable<CTRideModel> {
-        return CTKit.shared.restManager.post(endpoint: "v2/bike/\(bike.id)/ride/phone/endride")
+    public func endRide(bike: CTBikeModel, activeTime: Int) -> Observable<CTRideModel> {
+        return CTKit.shared.restManager.post(endpoint: "v2/bike/\(bike.id)/ride/phone/endride", parameters: ["active_time": activeTime])
     }
     
     /**

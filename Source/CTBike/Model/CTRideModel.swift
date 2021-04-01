@@ -25,7 +25,7 @@ public struct CTRideModel: CTBaseModel {
     public let co2: Double
     public let weatherIconURL: String
     
-    // Paag specific attributes: error_mask
+    // Paag specific attributes
     public let activeTime: Int
     public var rating: Int?
     public var errorMask: Int
