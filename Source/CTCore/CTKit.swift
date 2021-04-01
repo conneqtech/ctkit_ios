@@ -113,7 +113,7 @@ private extension CTKit {
     func saveCurrentActiveUserId(user: CTUserModel) {
         switch CTKit.shared.credentialSaveLocation {
         case .keychain:
-            KeychainSwift().set("\(user.id)", forKey: CTKit.ACTIVE_USER_ID_KEY)
+            KeychainSwift().set("\(user.id)", forKey: CTKit.ACTIVE_USER_ID_KEY, withAccess: .accessibleAfterFirstUnlock)
         case .userDefaults:
             UserDefaults.standard.set("\(user.id)", forKey: CTKit.ACTIVE_USER_ID_KEY)
         case .none:

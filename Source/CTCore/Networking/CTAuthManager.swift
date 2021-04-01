@@ -135,11 +135,11 @@ public class CTAuthManager: CTAuthManagerBase {
         switch CTKit.shared.credentialSaveLocation {
         case .keychain:
             let keychain = KeychainSwift()
-            keychain.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
-            keychain.set(Date().addingTimeInterval(Double(tokenResponse.expiresIn)).toAPIDate(), forKey: CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY)
+            keychain.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY, withAccess: .accessibleAfterFirstUnlock)
+            keychain.set(Date().addingTimeInterval(Double(tokenResponse.expiresIn)).toAPIDate(), forKey: CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY, withAccess: .accessibleAfterFirstUnlock)
             
             if let refreshToken = tokenResponse.refreshToken {
-                keychain.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY)
+                keychain.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY, withAccess: .accessibleAfterFirstUnlock)
             }
             
         case .userDefaults:

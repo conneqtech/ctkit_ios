@@ -35,6 +35,8 @@ public struct CTBikeModel: CTBaseModel {
     
     public var isRideInProgress: Bool?
     
+    public var currentRideUserId: Int?
+    
     public init(id: Int = 0,
                 imei: String = "860000000000000",
                 frameIdentifier: String = "FR4M3NUMB3R",
@@ -134,6 +136,8 @@ public struct CTBikeModel: CTBaseModel {
         case activationCode = "activation_code"
         
         case isRideInProgress = "ride_in_progress"
+        
+        case currentRideUserId = "current_ride_user_id"
     }
     
     public func encode(to encoder: Encoder) throws {
