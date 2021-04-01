@@ -39,6 +39,10 @@ public class CTRestManager {
     public func post<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
         return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
+    
+    public func post(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil, callBack: (() -> ())? = nil) {
+        return genericCallbackCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken, callBack: callBack)
+    }
 
     public func patch<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
         return genericCall(.patch, endpoint: endpoint, parameters: parameters, useToken: useToken)
@@ -187,6 +191,34 @@ public class CTRestManager {
             }
     }
 
+    private func genericCallbackCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, callBack: (() -> ())? = nil) {
+        
+        var headers: [String: String] = self.computeHeaders()!
+
+        let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+        let requestReference = self.sessionManager.request(url,
+                                                           method: method,
+                                                           parameters: parameters,
+                                                           encoding: encoding,
+                                                           headers: headers)
+        .validate(statusCode: 200..<300)
+        .validate(contentType: ["application/json"])
+        .responseJSON { (response) in
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(.iso8601CT)
+            switch response.result {
+            case .success:
+                callBack?()
+                break
+            case .failure:
+//                print(response.debugDescription)
+                print("ERROR: \(response)")
+                callBack?()
+                break
+            }
+        }
+    }
+    
     private func genericUnparsedCall(_ method: Alamofire.HTTPMethod,
                                      endpoint: String,
                                      parameters: [String: Any]? = nil,
