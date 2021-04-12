@@ -10,7 +10,7 @@ import RxSwift
 import Alamofire
 
 public class CTAuthManager: CTAuthManagerBase {
-    private let apiConfig: CTApiConfig
+    public let apiConfig: CTApiConfig
     
     public init(withConfig config: CTApiConfig) {
         self.apiConfig = config
