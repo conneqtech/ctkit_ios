@@ -69,8 +69,8 @@ public class CTRestManager {
             }
             var headers: [String: String] = [:]
             
-            if let bearer = useToken {
-                headers["Authorization"] = "Bearer \(bearer)"
+            if let accessToken = useToken {
+                headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
             }
 
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
@@ -121,8 +121,8 @@ public class CTRestManager {
             }
             var headers: [String: String] = self.computeHeaders()!
 
-            if let bearer = useToken {
-                headers["Authorization"] = "Bearer \(bearer)"
+            if let accessToken = useToken {
+                headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
             }
 
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
@@ -153,8 +153,8 @@ public class CTRestManager {
             return Observable<T>.create { (observer) -> Disposable in
                 var headers: [String: String] = self.computeHeaders()!
 
-                if let bearer = useToken {
-                    headers["Authorization"] = "Bearer \(bearer)"
+                if let accessToken = useToken {
+                    headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
                 }
 
                 let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
@@ -233,8 +233,8 @@ public class CTRestManager {
 
             var headers: [String: String] = self.computeHeaders()!
 
-            if let bearer = useToken {
-                headers["Authorization"] = "Bearer \(bearer)"
+            if let accessToken = useToken {
+                headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
             }
 
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!

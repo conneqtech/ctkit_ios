@@ -13,40 +13,39 @@ public class CTIdsAuthManager: NSObject {
 
     public let state = UUID().uuidString
     
+    var idsTokenApiUrl = ""
+    var idsLoginApiUrl = ""
+    var idsRedirectUri = ""
     
-    public func createRedirectUrl(idsLoginAPI: String, clientId: String, locale: String) -> URL? {
-
-        let queryItems = [URLQueryItem(name: "client_id", value: clientId), URLQueryItem(name: "redirect_uri", value: "https://app.conneq.tech"), URLQueryItem(name: "state", value: self.state), URLQueryItem(name: "locale", value: locale)]
-        if var urlComps = URLComponents(string: "\(idsLoginAPI)/login") {
+    public init(idsTokenApiUrl: String, idsLoginApiUrl: String, idsRedirectUri: String) {
+        self.idsTokenApiUrl = idsTokenApiUrl
+        self.idsLoginApiUrl = idsLoginApiUrl
+        self.idsRedirectUri = idsRedirectUri
+    }
+    
+    public func createRedirectUrl(clientId: String) -> URL? {
+        
+        guard let regionCode = Locale.current.regionCode,
+              let languageCode = Locale.current.languageCode else { return nil }
+        
+        let locale = "\(languageCode)_\(regionCode)"
+        
+        let queryItems = [URLQueryItem(name: "client_id", value: clientId), URLQueryItem(name: "redirect_uri", value: self.idsRedirectUri), URLQueryItem(name: "state", value: self.state), URLQueryItem(name: "locale", value: locale)]
+        if var urlComps = URLComponents(string: "\(self.idsLoginApiUrl)/login") {
             urlComps.queryItems = queryItems
             return urlComps.url
         }
         return nil
     }
     
-    public func getClientToken(authorizationCode: String, idsTokenApiUrl: URL, callBack: @escaping (() -> ())) {
+    public func login(authorizationCode: String) -> Observable<Any> {
 
-        let requestReference = Alamofire.request(idsTokenApiUrl,
-                                                 method: .post,
-                                                 parameters: [
-                                                    "grant_type": "authorization_code",
-                                                    "client_id": CTKit.shared.authManager.apiConfig.clientId,
-                                                    "client_secret": CTKit.shared.authManager.apiConfig.clientSecret,
-                                                    "code": authorizationCode,
-                                                    "redirect_uri": "https://app.conneq.tech"])
-        .validate()
-        .responseJSON { (response) in
-            switch response.result {
-                case .success:
-                    guard let data = response.data,
-                          let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
-                        return
-                    }
-                    CTKit.shared.authManager.saveTokenResponse(getResponse)
-                    callBack()
-                case .failure:
-                    print("Error: \(response)")
-            }
-        }
+        let parameters = ["grant_type": "authorization_code",
+                          "client_id": CTKit.shared.authManager.apiConfig.clientId,
+                          "client_secret": CTKit.shared.authManager.apiConfig.clientSecret,
+                          "code": authorizationCode,
+                          "redirect_uri": self.idsRedirectUri]
+        
+        return CTKit.shared.authManager.login(url: self.idsTokenApiUrl, parameters: parameters)
     }
 }

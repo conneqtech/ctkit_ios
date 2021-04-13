@@ -49,19 +49,39 @@ public class CTContentRequestRetrier: RequestRetrier {
 
         isRefreshing = true
 
-        CTJwtService().getJwtForContentAPI().subscribe(onNext: { [weak self] jwtToken in
-            guard let strongSelf = self else { return }
+        if let idAuthManager = CTKit.shared.idsAuthManager {
+            
+            CTKit.shared.authManager.refreshTokens(url: idAuthManager.idsTokenApiUrl) {  [weak self] succeeded, tokenResponse in
 
-            completion(true, CTCredentialResponse(accessToken: jwtToken,
-                                                  refreshToken: nil,
-                                                  expiresIn: 3600 * 4,
-                                                  scope: nil,
-                                                  tokenType: "jwt")
-            )
-            strongSelf.isRefreshing = false
-            }, onError: { _ in
-                completion(false, nil)
-                self.isRefreshing = false
-        }).disposed(by: disposeBag)
+                guard let strongSelf = self else { return }
+
+                strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
+
+                if succeeded, let tokenResponse = tokenResponse {
+                    CTKit.shared.authManager.saveTokenResponse(tokenResponse)
+                }
+
+                strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
+                strongSelf.requestsToRetry.removeAll()
+                
+                strongSelf.isRefreshing = false
+            }
+            
+        } else {
+            CTJwtService().getJwtForContentAPI().subscribe(onNext: { [weak self] jwtToken in
+                guard let strongSelf = self else { return }
+
+                completion(true, CTCredentialResponse(accessToken: jwtToken,
+                                                      refreshToken: nil,
+                                                      expiresIn: 3600 * 4,
+                                                      scope: nil,
+                                                      tokenType: "jwt")
+                )
+                strongSelf.isRefreshing = false
+                }, onError: { _ in
+                    completion(false, nil)
+                    self.isRefreshing = false
+            }).disposed(by: disposeBag)
+        }
     }
 }

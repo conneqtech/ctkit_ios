@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 
 class CTRequestRetrier: RequestRetrier {
-    private typealias RefreshCompletion = (_ succeeded: Bool, _ tokenResponse: CTCredentialResponse?) -> Void
 
     private let lock = NSLock()
     private let apiConfig: CTApiConfig
@@ -28,7 +27,13 @@ class CTRequestRetrier: RequestRetrier {
             requestsToRetry.append(completion)
 
             if !isRefreshing {
-                refreshTokens { [weak self] succeeded, tokenResponse in
+                
+                guard !self.isRefreshing else { return }
+
+                self.isRefreshing = true
+                
+                CTKit.shared.authManager.refreshTokens(url: self.apiConfig.fullUrl) {  [weak self] succeeded, tokenResponse in
+
                     guard let strongSelf = self else { return }
 
                     strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
@@ -39,36 +44,12 @@ class CTRequestRetrier: RequestRetrier {
 
                     strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
                     strongSelf.requestsToRetry.removeAll()
+                    
+                    strongSelf.isRefreshing = false
                 }
             }
         } else {
             completion(false, 0.0)
-        }
-    }
-
-    private func refreshTokens(completion: @escaping RefreshCompletion) {
-        guard !isRefreshing else { return }
-
-        isRefreshing = true
-        let urlString = "\(apiConfig.fullUrl)/oauth"
-
-        let params: [String: Any] = [
-            "refresh_token": CTKit.shared.authManager.getRefreshToken(),
-            "client_id": apiConfig.clientId,
-            "client_secret": apiConfig.clientSecret,
-            "grant_type": "refresh_token"
-        ]
-
-        _ = Alamofire.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default)
-            .responseJSON { [weak self] response in
-                guard let strongSelf = self else { return }
-                guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
-                    completion(false, nil)
-                    return
-                }
-
-                completion(true, getResponse)
-                strongSelf.isRefreshing = false
         }
     }
 }
