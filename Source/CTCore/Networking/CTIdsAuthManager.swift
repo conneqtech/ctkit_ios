@@ -38,14 +38,14 @@ public class CTIdsAuthManager: NSObject {
         return nil
     }
     
-    public func login(authorizationCode: String) -> Observable<Any> {
+    public func login(authorizationCode: String, callBack: @escaping (() -> ())) {
 
-        let parameters = ["grant_type": "authorization_code",
-                          "client_id": CTKit.shared.authManager.apiConfig.clientId,
-                          "client_secret": CTKit.shared.authManager.apiConfig.clientSecret,
-                          "code": authorizationCode,
-                          "redirect_uri": self.idsRedirectUri]
-        
-        return CTKit.shared.authManager.login(url: self.idsTokenApiUrl, parameters: parameters)
+//        let parameters = ["grant_type": "authorization_code",
+//                          "client_id": CTKit.shared.authManager.apiConfig.clientId,
+//                          "client_secret": CTKit.shared.authManager.apiConfig.clientSecret,
+//                          "code": authorizationCode,
+//                          "redirect_uri": self.idsRedirectUri]
+//
+//        return CTKit.shared.authManager.login(url: self.idsTokenApiUrl, parameters: parameters)
     }
 }
