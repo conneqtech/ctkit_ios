@@ -144,8 +144,7 @@ public class CTAuthManager: CTAuthManagerBase {
             }
             
             keychain.set(tokenResponse.tokenType, forKey: CTKit.TOKEN_TYPE)
-            
-            
+
         case .userDefaults:
             UserDefaults.standard.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
             UserDefaults.standard.set(Date().addingTimeInterval(Double(tokenResponse.expiresIn)).toAPIDate(),
@@ -154,6 +153,8 @@ public class CTAuthManager: CTAuthManagerBase {
             if let refreshToken = tokenResponse.refreshToken {
                 UserDefaults.standard.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY)
             }
+            
+            UserDefaults.standard.set(tokenResponse.tokenType, forKey: CTKit.TOKEN_TYPE)
         default:
             print("NOTH")
         }
@@ -229,7 +230,6 @@ extension CTAuthManager {
     }
 
     func refreshTokens(url: String, completion: @escaping (_ succeeded: Bool, _ tokenResponse: CTCredentialResponse?) -> Void) {
-
         let urlString = "\(url)/oauth"
 
         let params: [String: Any] = [
