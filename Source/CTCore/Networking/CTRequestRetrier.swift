@@ -21,32 +21,33 @@ class CTRequestRetrier: RequestRetrier {
     }
 
     func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
+        
         lock.lock() ; defer { lock.unlock() }
 
         if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 {
-            requestsToRetry.append(completion)
+            
+            self.requestsToRetry.append(completion)
 
-            if !isRefreshing {
-                
-                guard !self.isRefreshing else { return }
+            if self.isRefreshing {
+                return
+            }
 
-                self.isRefreshing = true
-                
-                CTKit.shared.authManager.refreshTokens(url: self.apiConfig.fullUrl) {  [weak self] succeeded, tokenResponse in
+            self.isRefreshing = true
+            
+            CTKit.shared.authManager.refreshTokens(url: self.apiConfig.fullUrl) {  [weak self] succeeded, tokenResponse in
 
-                    guard let strongSelf = self else { return }
+                guard let strongSelf = self else { return }
 
-                    strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
+                strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
 
-                    if succeeded, let tokenResponse = tokenResponse {
-                        CTKit.shared.authManager.saveTokenResponse(tokenResponse)
-                    }
-
-                    strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
-                    strongSelf.requestsToRetry.removeAll()
-                    
-                    strongSelf.isRefreshing = false
+                if succeeded, let tokenResponse = tokenResponse {
+                    CTKit.shared.authManager.saveTokenResponse(tokenResponse)
                 }
+
+                strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
+                strongSelf.requestsToRetry.removeAll()
+                
+                strongSelf.isRefreshing = false
             }
         } else {
             completion(false, 0.0)

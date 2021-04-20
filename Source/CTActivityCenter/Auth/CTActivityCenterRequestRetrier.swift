@@ -20,24 +20,29 @@ public class CTActivityCenterRequestRetrier: RequestRetrier {
     var disposeBag = DisposeBag()
 
     public func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
-        lock.lock() ; defer { lock.unlock() }
+        
+        self.lock.lock() ; defer { self.lock.unlock() }
 
         if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 {
-            requestsToRetry.append(completion)
+            
+            self.requestsToRetry.append(completion)
 
-            if !isRefreshing {
-                refreshTokens { [weak self] succeeded, tokenResponse in
-                    guard let strongSelf = self else { return }
+            if self.isRefreshing {
+                return
+            }
+            
+            self.refreshTokens { [weak self] succeeded, tokenResponse in
+                
+                guard let strongSelf = self else { return }
 
-                    strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
+                strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
 
-                    if succeeded, let tokenResponse = tokenResponse {
-                        CTActivityCenter.shared.authManager.saveTokenResponse(tokenResponse)
-                    }
-
-                    strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
-                    strongSelf.requestsToRetry.removeAll()
+                if succeeded, let tokenResponse = tokenResponse {
+                    CTActivityCenter.shared.authManager.saveTokenResponse(tokenResponse)
                 }
+
+                strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
+                strongSelf.requestsToRetry.removeAll()
             }
         } else {
             completion(false, 0.0)
@@ -45,26 +50,15 @@ public class CTActivityCenterRequestRetrier: RequestRetrier {
     }
 
     private func refreshTokens(completion: @escaping RefreshCompletion) {
-        guard !isRefreshing else { return }
 
-        isRefreshing = true
+        self.isRefreshing = true
 
         if let idAuthManager = CTKit.shared.idsAuthManager {
 
             CTKit.shared.authManager.refreshTokens(url: idAuthManager.idsTokenApiUrl) {  [weak self] succeeded, tokenResponse in
-
                 guard let strongSelf = self else { return }
-
-                strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
-
-                if succeeded, let tokenResponse = tokenResponse {
-                    CTKit.shared.authManager.saveTokenResponse(tokenResponse)
-                }
-
-                strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
-                strongSelf.requestsToRetry.removeAll()
-                
                 strongSelf.isRefreshing = false
+                completion(succeeded, tokenResponse)
             }
         } else {
             CTJwtService().getJwtForActivityCenter().subscribe(onNext: { [weak self] jwtToken in
