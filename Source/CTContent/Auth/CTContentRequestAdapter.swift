@@ -14,7 +14,7 @@ public class CTContentRequestAdapter: RequestAdapter {
 
         if urlRequest.value(forHTTPHeaderField: "Authorization") == nil {
             let accessToken = CTContent.shared.authManager.getActiveSessionToken()
-            urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            urlRequest.setValue("\(CTKit.shared.authManager.getTokenType()) \(accessToken)", forHTTPHeaderField: "Authorization")
 
             return urlRequest
         }

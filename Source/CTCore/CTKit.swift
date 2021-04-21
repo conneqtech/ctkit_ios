@@ -18,9 +18,13 @@ public class CTKit {
 
     internal static let ACCESS_TOKEN_EXPIRE_TIME_KEY = "accessTokenExpireDataTime"
     internal static let REFRESH_TOKEN_EXPIRE_TIME_KEY = "refreshTokenExpireDataTime"
+    
+    internal static let TOKEN_TYPE   = "token_type"
 
     public var restManager: CTRestManager!
-    public var authManager: CTAuthManager!
+    public var authManager: CTAuthManager
+    public var idsAuthManager: CTIdsAuthManager? = nil
+    
 
     public var authToken = PublishSubject<CTCredentialResponse>()
 
@@ -74,7 +78,7 @@ public class CTKit {
     }
 
     public static func configure(withClientId clientId: String, clientSecret: String, baseURL: String) {
-        CTKit.shared = CTKit.init(clientId: clientId, clientSecret: clientSecret, baseURL: baseURL)
+        CTKit.shared = CTKit(clientId: clientId, clientSecret: clientSecret, baseURL: baseURL)
     }
 }
 
