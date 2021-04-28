@@ -21,6 +21,10 @@ public class CTActivityCenterRequestRetrier: RequestRetrier {
 
     public func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
         
+        if let _ = CTKit.shared.idsAuthManager {
+            return
+        }
+        
         self.lock.lock() ; defer { self.lock.unlock() }
 
         if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 {
@@ -53,28 +57,19 @@ public class CTActivityCenterRequestRetrier: RequestRetrier {
 
         self.isRefreshing = true
 
-        if let idAuthManager = CTKit.shared.idsAuthManager {
+        CTJwtService().getJwtForActivityCenter().subscribe(onNext: { [weak self] jwtToken in
+            guard let strongSelf = self else { return }
 
-            CTKit.shared.authManager.refreshTokens(url: idAuthManager.idsTokenApiUrl) {  [weak self] succeeded, tokenResponse in
-                guard let strongSelf = self else { return }
-                strongSelf.isRefreshing = false
-                completion(succeeded, tokenResponse)
-            }
-        } else {
-            CTJwtService().getJwtForActivityCenter().subscribe(onNext: { [weak self] jwtToken in
-                guard let strongSelf = self else { return }
-
-                completion(true, CTCredentialResponse(accessToken: jwtToken,
-                                                       refreshToken: nil,
-                                                       expiresIn: 3600 * 4,
-                                                       scope: nil,
-                                                       tokenType: "jwt")
-                )
-                strongSelf.isRefreshing = false
-            }, onError: { _ in
-                completion(false, nil)
-                self.isRefreshing = false
-            }).disposed(by: disposeBag)
-        }
+            completion(true, CTCredentialResponse(accessToken: jwtToken,
+                                                   refreshToken: nil,
+                                                   expiresIn: 3600 * 4,
+                                                   scope: nil,
+                                                   tokenType: "jwt")
+            )
+            strongSelf.isRefreshing = false
+        }, onError: { _ in
+            completion(false, nil)
+            self.isRefreshing = false
+        }).disposed(by: disposeBag)
     }
 }
