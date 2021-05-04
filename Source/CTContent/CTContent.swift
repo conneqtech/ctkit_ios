@@ -20,10 +20,16 @@ public class CTContent: CTKitBase {
             withBaseUrl: baseURL
         )
 
-        self.restManager = CTRestManager(withConfig: APIConfig,
-                                         requestAdapter: CTContentRequestAdapter(),
-                                         requestRetrier: CTContentRequestRetrier())
-        self.authManager = CTJwtAuthManager()
+        if let _ = CTKit.shared.idsAuthManager {
+            self.restManager = CTRestManager(withConfig: APIConfig)
+            self.authManager = CTKit.shared.authManager
+        } else {
+            self.restManager = CTRestManager(withConfig: APIConfig,
+                                             requestAdapter: CTActivityCenterRequestAdapter(),
+                                             requestRetrier: CTActivityCenterRequestRetrier())
+            self.authManager = CTJwtAuthManager()
+        }
+
         self.isConfigured = true
     }
 
