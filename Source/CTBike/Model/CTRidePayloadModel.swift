@@ -44,6 +44,18 @@ public struct CTRidePayloadModel: Codable {
         if let dodom = self.device?.metric.dodom, dodom < 1 {
             self.device?.metric.dodom = nil
         }
+        
+        if let berr = self.device?.metric.berr {
+            self.device?.metric.berr = berr.trimmingCharacters(in: .whitespaces)
+        }
+        
+        if let merr = self.device?.metric.merr {
+            self.device?.metric.merr = merr.trimmingCharacters(in: .whitespaces)
+        }
+        
+        if let msupp = self.device?.metric.msupp, msupp < 0 {
+            self.device?.metric.msupp = nil
+        }
 
         // Tracker.loc
         if self.tracker.loc.alt == 0 {
