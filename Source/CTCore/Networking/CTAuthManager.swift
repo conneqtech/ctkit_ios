@@ -142,8 +142,8 @@ public class CTAuthManager: CTAuthManagerBase {
             if let refreshToken = tokenResponse.refreshToken {
                 keychain.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY, withAccess: .accessibleAfterFirstUnlock)
             }
-            
-            keychain.set(tokenResponse.tokenType, forKey: CTKit.TOKEN_TYPE)
+
+            keychain.set(tokenResponse.tokenType, forKey: CTKit.TOKEN_TYPE, withAccess: .accessibleAfterFirstUnlock)
 
         case .userDefaults:
             UserDefaults.standard.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
