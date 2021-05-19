@@ -72,9 +72,11 @@ public struct CTUserModel: CTBaseModel {
 
     ///Postalcode, maximum length is 10 characters
     public var postalCode: String?
-
+    
+    public var privacyStatementAccepted: Bool?
+    
     public var privacyStatementAcceptedOn: Date?
-
+    
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case email = "username"
@@ -94,6 +96,7 @@ public struct CTUserModel: CTBaseModel {
         case city = "city"
         case country = "country"
         case postalCode = "postal_code"
+        case privacyStatementAccepted = "privacy_statement_accepted"
         case privacyStatementAcceptedOn = "privacy_statement_accepted_on"
     }
 
@@ -122,6 +125,7 @@ public struct CTUserModel: CTBaseModel {
         try container.encode(city, forKey: .city)
         try container.encode(country, forKey: .country)
         try container.encode(postalCode, forKey: .postalCode)
+        try container.encode(privacyStatementAccepted, forKey: .privacyStatementAccepted)
     }
 
     public static func splitPhone(number: String) -> (countryCode: UInt64?, number: String) {
