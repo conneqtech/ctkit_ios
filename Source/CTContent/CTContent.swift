@@ -25,8 +25,8 @@ public class CTContent: CTKitBase {
             self.authManager = CTKit.shared.authManager
         } else {
             self.restManager = CTRestManager(withConfig: APIConfig,
-                                             requestAdapter: CTActivityCenterRequestAdapter(),
-                                             requestRetrier: CTActivityCenterRequestRetrier())
+                                             requestAdapter: CTContentRequestAdapter(),
+                                             requestRetrier: CTContentRequestRetrier())
             self.authManager = CTJwtAuthManager()
         }
 
