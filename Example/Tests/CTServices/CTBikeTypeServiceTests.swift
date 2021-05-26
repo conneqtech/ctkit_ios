@@ -36,7 +36,8 @@ class CTBikeTypeServiceTests: XCTestCase {
                                           secondFactorTranslationKey: "sticker.under.battery",
                                           secondFactorLocationImage: "https://example.com",
                                           images: [],
-                                          features: features
+                                          features: features,
+                                          characteristics: ["color": "blue"]
         )
 
         self.stub(http(.get, uri: "/bike-type/1"), json(try! stubbedBikeType.asDictionary(), status: 200))
@@ -59,6 +60,12 @@ class CTBikeTypeServiceTests: XCTestCase {
         XCTAssertEqual(result.features.lightToggle, false)
         XCTAssertEqual(result.features.chargeIndication, true)
         XCTAssertEqual(result.features.lastFullChargeDate, false)
+        if let characteristics = result.characteristics,
+           let color = characteristics["color"] {
+            XCTAssertEqual(color, "blue")
+        } else {
+            XCTFail()
+        }
     }
 
     func test_fetchBikeType_withArticleNumber() {
