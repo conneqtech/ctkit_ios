@@ -211,11 +211,11 @@ public class CTRestManager {
                 callBack?()
                 break
             case .failure:
-                if CTKit.shared.debugMode {
-                    if let data = response.data {
-                        let json = String(data: data, encoding: String.Encoding.utf8)
-                        print("Failure Response: \(json)")
-                    }
+
+                if let data = response.data {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Failure Response: \(json)")
+                    NotificationCenter.default.post(name: Notification.Name("apiErrorNotification"), object: nil, userInfo: ["error": json])
                 }
                 print("ERROR: \(response)")
                 callBack?()
