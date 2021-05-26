@@ -111,7 +111,7 @@ class CTPhoneAsAGpsServiceTests: XCTestCase {
                                           return }
 
         // Create ride
-        CTKit.shared.restManager.postUnobserved(endpoint: "v2/bike/\(bike.id)/ride/phone/registerloc", parameters: self.payload)
+        CTKit.shared.restManager.post(endpoint: "v2/bike/\(bike.id)/ride/phone/registerloc", parameters: self.payload)
         _ = XCTWaiter.wait(for: [expectation(description: "Wait for 3 seconds")], timeout: 3)
 
         
@@ -128,7 +128,7 @@ class CTPhoneAsAGpsServiceTests: XCTestCase {
 
             // Post metadata and endride
             CTPhoneAsAGpsService().postMetaData(bike: bike, activeTime: 5, errorMask: 1)
-            let newlyCreatedRideOpt = try CTPhoneAsAGpsService().endRide(bike: bike).toBlocking().first()
+            let newlyCreatedRideOpt = try CTPhoneAsAGpsService().endRide(bike: bike, activeTime: 100).toBlocking().first()
             guard let newlyCreatedRide = newlyCreatedRideOpt else {
                 XCTFail()
                 return
