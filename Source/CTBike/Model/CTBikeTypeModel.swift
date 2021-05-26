@@ -18,6 +18,8 @@ public struct CTBikeTypeModel: CTBaseModel {
     public let images: [String]
     public let features: CTBikeFeatureModel
     
+    public let characteristics: [String: String]?
+    
     public init (
         id: Int = 0,
         name: String = "",
@@ -25,7 +27,8 @@ public struct CTBikeTypeModel: CTBaseModel {
         secondFactorTranslationKey: String = "",
         secondFactorLocationImage: String? = nil,
         images: [String] = [],
-        features: CTBikeFeatureModel = CTBikeFeatureModel()) {
+        features: CTBikeFeatureModel = CTBikeFeatureModel(),
+        characteristics: [String: String]? = nil) {
         
         self.id = id
         self.name = name
@@ -34,6 +37,7 @@ public struct CTBikeTypeModel: CTBaseModel {
         self.secondFactorLocationImage = secondFactorLocationImage
         self.images = images
         self.features = features
+        self.characteristics = characteristics
     }
     
     enum CodingKeys: String, CodingKey {
@@ -44,5 +48,6 @@ public struct CTBikeTypeModel: CTBaseModel {
         case secondFactorLocationImage = "second_factor_location_image"
         case images
         case features
+        case characteristics
     }
 }
