@@ -287,8 +287,8 @@ struct RideMetric: Codable {
         self.berr = state["bikeBatteryErrors"] as? String
         self.bmv = state["bikeBatteryPackVoltage"] as? Double
         self.bsoc = state["bikeBatterySOC"] as? Int
-        self.bsocp = state["bikeBatterySOCPercentage"] as? Int
-        self.bstate = state["bikeBa tteryState"] as? Int
+        self.bsocp = state["bikeBatteryPercentage"] as? Int
+        self.bstate = state["bikeBatteryState"] as? Int
         self.btemp = state["bikeBatteryTemperature"] as? Int
         if let bikeSpeed = state["bikeSpeed"] as? Double {
             self.dactualsp = Int(bikeSpeed)
