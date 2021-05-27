@@ -265,7 +265,7 @@ struct RideMetric: Codable {
     var bsocp: Int?
     var bstate: Int?
     var btemp: Int?
-    var dactualsp: Double?
+    var dactualsp: Int?
     var deculock: Bool?
     var derllock: Bool?
     var dlight: Bool?
@@ -288,9 +288,11 @@ struct RideMetric: Codable {
         self.bmv = state["bikeBatteryPackVoltage"] as? Double
         self.bsoc = state["bikeBatterySOC"] as? Int
         self.bsocp = state["bikeBatterySOCPercentage"] as? Int
-        self.bstate = state["bikeBatteryState"] as? Int
+        self.bstate = state["bikeBa tteryState"] as? Int
         self.btemp = state["bikeBatteryTemperature"] as? Int
-        self.dactualsp = state["bikeSpeed"] as? Double
+        if let bikeSpeed = state["bikeSpeed"] as? Double {
+            self.dactualsp = Int(bikeSpeed)
+        }
         self.deculock = (state["ecuLockStatus"] as? Bool)
         self.derllock = (state["erlLockStatus"] as? Bool)
         self.dlight = (state["bikeLightStatus"] as? Bool)
