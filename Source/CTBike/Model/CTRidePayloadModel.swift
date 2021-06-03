@@ -185,11 +185,11 @@ struct RideGsm: Codable {
 
 struct RideTrackerMetric: Codable {
     var bbatp: Int?
-    var bbatv: Int?
+    var bbatv: Double?
     
     init(state: [String: Any]) {
         self.bbatp = state["bikeBatterySOCPercentage"] as? Int
-        self.bbatv = state["backupBatteryVoltage"] as? Int
+        self.bbatv = state["backupBatteryVoltage"] as? Double
     }
 }
 
@@ -269,7 +269,7 @@ struct RideMetric: Codable {
     var deculock: Bool?
     var derllock: Bool?
     var dlight: Bool?
-    var dodom: Int64?
+    var dodom: Int?
     var dpedcad: Int?
     var dpedpow: Int?
     var drange: Int?
@@ -296,7 +296,7 @@ struct RideMetric: Codable {
         self.deculock = (state["ecuLockStatus"] as? Bool)
         self.derllock = (state["erlLockStatus"] as? Bool)
         self.dlight = (state["bikeLightStatus"] as? Bool)
-        self.dodom = state["bikeOdometer"] as? Int64
+        self.dodom = state["bikeOdometer"] as? Int
         self.dpedcad = state["pedalCadence"] as? Int
         self.dpedpow = state["pedalPower"] as? Int
         self.drange = state["bikeRange"] as? Int
