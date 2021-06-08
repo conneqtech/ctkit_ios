@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CTContentPageModel: CTBaseModel {
+public struct CTContentBodyModel: CTBaseModel {
     public let title: String?
     public let body: String?
     public let imageUrl: String?

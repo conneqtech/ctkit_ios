@@ -83,7 +83,7 @@
 		22F267075EB742245798F0669800F8CA /* URITemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1E74C5D5678E0C378E9EAF02699695 /* URITemplate.framework */; };
 		2406516CF5E3552CD59AB2E6A59B3D16 /* BehaviorSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF8FC8D000F70EC1444FB629E4BCB4 /* BehaviorSubject.swift */; };
 		2432100DBFB954DDC3AC2CEA3E170B9D /* BeIdenticalTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60FCF293554ED91201C522DBECB6A9 /* BeIdenticalTo.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
-		24593B85B4BE302AD2BB0A010C3FC251 /* CTContentPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568C10BC4FD3887B301E5C1F3FA531AB /* CTContentPageModel.swift */; };
+		24593B85B4BE302AD2BB0A010C3FC251 /* CtContentBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568C10BC4FD3887B301E5C1F3FA531AB /* CtContentBodyModel.swift */; };
 		253C9079315793CE64A94C9D562A62F2 /* Encodable+CTKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC659448DD1CB6BCBD368F436C4C8E /* Encodable+CTKit.swift */; };
 		25A7A69BBF341C261AFAEC2425AFABA5 /* CTLatLonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23CF756B1B269EA0A33A6EF6CDB3492 /* CTLatLonModel.swift */; };
 		265301A3E9B4765F32EBD7155168981E /* StartWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3645ECC8C8B5FC653E457B08AEB75 /* StartWith.swift */; };
@@ -790,7 +790,7 @@
 		562CBAB7DBCD9B0AD2E950DE29B9732A /* MatcherFunc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MatcherFunc.swift; path = Sources/Nimble/Matchers/MatcherFunc.swift; sourceTree = "<group>"; };
 		56418F349294318B351721876DA3BE51 /* CTIdsAuthManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTIdsAuthManager.swift; sourceTree = "<group>"; };
 		5670B7025E76B9A79004D76F78134922 /* CTMeta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTMeta.swift; sourceTree = "<group>"; };
-		568C10BC4FD3887B301E5C1F3FA531AB /* CTContentPageModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTContentPageModel.swift; sourceTree = "<group>"; };
+		568C10BC4FD3887B301E5C1F3FA531AB /* CtContentBodyModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CtContentBodyModel.swift; sourceTree = "<group>"; };
 		5723E64806465510FE243B3094BDF2D3 /* CTContentRequestRetrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTContentRequestRetrier.swift; sourceTree = "<group>"; };
 		572F53B5094C1723D780B6FDF2E00AAD /* ScheduledItemType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScheduledItemType.swift; path = RxSwift/Schedulers/Internal/ScheduledItemType.swift; sourceTree = "<group>"; };
 		573306368B2C9EB4BD3FD317CFE1A014 /* BeVoid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeVoid.swift; path = Sources/Nimble/Matchers/BeVoid.swift; sourceTree = "<group>"; };
@@ -1619,7 +1619,7 @@
 			children = (
 				E572B03BDCAAC34B075A00F8B876E719 /* CTContentButtonModel.swift */,
 				493AFEDFCF2ACE779DF2DFA77A3875E0 /* CTContentModel.swift */,
-				568C10BC4FD3887B301E5C1F3FA531AB /* CTContentPageModel.swift */,
+				568C10BC4FD3887B301E5C1F3FA531AB /* CtContentBodyModel.swift */,
 				95E1BA2784B948961171C3D43E913077 /* CTContentResponseModel.swift */,
 			);
 			path = Model;
@@ -3075,7 +3075,7 @@
 				A9FA39446F8F4DAD87EA79DA1B102B2B /* CTContent.swift in Sources */,
 				3D10919F985736C58A1D48D649CA6D37 /* CTContentButtonModel.swift in Sources */,
 				D41C1B156724F7B42150BCF877E7B8E1 /* CTContentModel.swift in Sources */,
-				24593B85B4BE302AD2BB0A010C3FC251 /* CTContentPageModel.swift in Sources */,
+				24593B85B4BE302AD2BB0A010C3FC251 /* CtContentBodyModel.swift in Sources */,
 				9913F3BDB9D1B66FB74AC6AC3A792FC4 /* CTContentRequestAdapter.swift in Sources */,
 				CBCD019FFF270C1C19C731BD3A7A8C16 /* CTContentRequestRetrier.swift in Sources */,
 				60F1D6B741BCD6C11C7C4FA29E87958F /* CTContentResponseModel.swift in Sources */,
