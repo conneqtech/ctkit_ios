@@ -7,9 +7,6 @@
 
 import Foundation
 
-public enum CTValidationMessageType {
-}
-
 public struct CTApiValidationMessage {
 
     public var field: String

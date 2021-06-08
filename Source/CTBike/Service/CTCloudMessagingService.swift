@@ -17,7 +17,7 @@ public class CTCloudMessagingService: NSObject {
      
      - Returns: An observable containing the registered device
      */
-    public func registerDevice(withToken identifier: String) -> Observable<CTDeviceModel> {
+    public func registerDevice(withToken identifier: String) -> Observable<CTEmptyObjectModel> {
         return CTKit.shared.restManager.post(endpoint: "device", parameters: [
             "device_identifier": identifier,
             "device_type": "iOS"

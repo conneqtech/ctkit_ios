@@ -72,8 +72,7 @@ public struct CTSubscriptionModel: CTBaseModel {
         // Nothing to encode, we will never create subscriptions from CTKit.
     }
     
-    static func mockSubscription() -> Observable<CTSubscriptionModel> {
-        let mockSubscription = CTSubscriptionModel(withUserId: 0, bikeId: 0, productId: 0, type: .connectivity, product: CTProductModel(withTitle: "", description: "", type: 0, providerId: 0))
-        return Observable.of(mockSubscription)
+    static func mockSubscription() -> Observable<CTEmptyObjectModel> {
+        return Observable.of(CTEmptyObjectModel())
     }
 }

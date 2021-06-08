@@ -39,7 +39,7 @@ public class CTSubscriptionService: NSObject {
 
      - Returns: An observable of the newly started subscription (claim)
      */
-    public func claim(withBike bike: CTBikeModel) -> Observable<CTSubscriptionModel> {
+    public func claim(withBike bike: CTBikeModel) -> Observable<CTEmptyObjectModel> {
 
         if !bike.isRequestingUserOwner {
             return CTSubscriptionModel.mockSubscription()
