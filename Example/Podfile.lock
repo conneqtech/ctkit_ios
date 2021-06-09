@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
-  - ctkit (1.20.0):
+  - ctkit (1.22.0):
     - Alamofire (~> 4.7)
     - RxBlocking
     - RxSwift (~> 5.0)
