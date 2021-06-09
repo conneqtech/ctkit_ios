@@ -32,9 +32,5 @@ class CTSubscriptionServiceTests: XCTestCase {
         }
     }
 
-    func testClaimNotOwner() {
-        let bike = try! CTBikeService().fetchShared().toBlocking().first()!.first!
-        let subscription = try! CTSubscriptionService().claim(withBike: bike).toBlocking().first()!
-        XCTAssertTrue(subscription.bikeId == 0, "Bike id be 0")
-    }
+   
 }

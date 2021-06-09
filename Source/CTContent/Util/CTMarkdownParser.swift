@@ -19,79 +19,77 @@ public class CTMarkdownParser {
     
     public func parseContent(withContentString contentString: String) -> CTContentModel? {
         let lines: [String] = contentString.components(separatedBy: CharacterSet.newlines)
-        var result: CTContentModel = CTContentModel()
+        let result: CTContentModel = CTContentModel()
         result.pages = [CTContentBodyModel]()
         result.body = CTContentBodyModel()
-        var current = result.body
-        var captureAction = false
-        for oneLine in lines {
-            let line: String = oneLine.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            switch (true) {
-            case line.starts(with: swipeItemMarker), line == "": break
-                
-            case captureAction:
-                if let actionMarkerIndex = lines.firstIndex(of: actionMarker) {
-                    let markdownActions = lines[actionMarkerIndex...]
+            var current: CTContentBodyModel? = result.body
+            var captureAction = false
+            for oneLine in lines {
+                let line: String = oneLine.trimmingCharacters(in: .whitespacesAndNewlines)
+                switch (true) {
+                case line.starts(with: swipeItemsStartMarker), line == "": break
                     
-                    for action in markdownActions {
-                        if action.starts(with: "[") && action.last == ")" {
-                            var text = action[action.firstIndex(of: "[")!...action.firstIndex(of: "]")!]
-                            text = text.dropFirst()
-                            text = text.dropLast()
-                            
-                            var link = action[action.firstIndex(of: "(")!...action.firstIndex(of: ")")!]
-                            link = link.dropFirst()
-                            link = link.dropLast()
-                            
-                            result.button = CTContentButtonModel(text: String(text), link: String(link))
+                case captureAction:
+                    if let actionMarkerIndex = lines.firstIndex(of: actionMarker) {
+                        let markdownActions = lines[actionMarkerIndex...]
+                        
+                        for action in markdownActions {
+                            if action.starts(with: "[") && action.last == ")" {
+                                var text = action[action.firstIndex(of: "[")!...action.firstIndex(of: "]")!]
+                                text = text.dropFirst()
+                                text = text.dropLast()
+                                
+                                var link = action[action.firstIndex(of: "(")!...action.firstIndex(of: ")")!]
+                                link = link.dropFirst()
+                                link = link.dropLast()
+                                
+                                result.button = CTContentButtonModel(text: String(text), link: String(link))
+                            }
                         }
+                    }
+                    
+                    captureAction = false
+                    
+                case line.starts(with: titleMarker):
+                    if current?.title == nil {
+                        current?.title = String(line.dropFirst()).trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
+                    
+                case line.starts(with: actionMarker):
+                    if result.button == nil {
+                        captureAction = true
+                    }
+                    
+                case line.starts(with: swipeItemsEndMarker):
+                    current = result.body
+                    
+                case line.starts(with: swipeItemMarker):
+                    current = CTContentBodyModel()
+                    result.pages?.append(current)
+                    
+                case line.starts(with: imageMarker):
+                    let foundImage: String? = findUrlInString(line)
+                    if foundImage != nil || foundImage != "" {
+                        current?.imageUrl = foundImage
+                    }
+                    
+                default:
+                    if current?.body == nil {
+                        current?.body = ""
+                    }
+                    if let body = current?.body {
+                        current?.body = "\(body)\n\(line)".trimmingCharacters(in: .whitespacesAndNewlines)
                     }
                 }
                 
-                captureAction = false
-                
-            case line.starts(with: titleMarker):
-                if current?.title == nil {
-                    current?.title = String(line.dropFirst())
-                }
-                
-            case line.starts(with: actionMarker):
-                if result.button == nil {
-                    captureAction = true
-                }
-                
-            case line.starts(with: swipeItemsEndMarker):
-                current = result.body
-                
-                
-            case line.starts(with: swipeItemMarker):
-                current = CTContentBodyModel()
-                result.pages?.append(current ?? CTContentBodyModel())
-                
-            case line.starts(with: imageMarker):
-                let foundImage: String = findUrlInString(line)
-                if foundImage == nil || foundImage == "" {
-                    current?.imageUrl = foundImage == "" ? nil : foundImage
-                }
-                
-            default:
-                if current?.body == nil {
-                    current?.body = ""
-                }
-                else {
-                    let body = current?.body
-                    current?.body = "\(body)\n\(line)".trimmingCharacters(in: .whitespacesAndNewlines)
-                    
-                }
             }
             
+            if (result.body?.body == nil && result.body?.imageUrl == nil && result.body?.title == nil) {
+                result.body = nil
+            }
+            return result
         }
-        
-        if (result.body?.body == nil && result.body?.imageUrl == nil && result.body?.title == nil) {
-            result.body = nil
-        }
-        return result
-    }
+    
     
     func findUrlInString(_ imageLine: String?) -> String {
         guard let input = imageLine else {

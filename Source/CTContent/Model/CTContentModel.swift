@@ -9,8 +9,8 @@ import Foundation
 
 
 
-public struct CTContentModel: CTBaseModel {
+public class CTContentModel {
     public var body: CTContentBodyModel?
-    public var pages: [CTContentBodyModel]?
+    public var pages: [CTContentBodyModel?]?
     public var button: CTContentButtonModel?
 }
