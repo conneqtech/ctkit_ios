@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreLocation
-import CoreTelephony
 
 public struct CTRidePayloadModel: Codable {
     
@@ -19,13 +18,13 @@ public struct CTRidePayloadModel: Codable {
     var tracker: RideTracker
     var device: RideDevice?
     
-    public init(bike: CTBikeModel, location: CLLocation?, state: [String: Any], carrier: CTCarrier) {
+    public init(bike: CTBikeModel, location: CLLocation?, state: [String: Any], mobileCountryCode: Int? = nil, mobileNetworkCode: Int? = nil) {
         
         self.ver = 2
         self.imei = Int(bike.imei)!
         self.ttype = "CT"
         self.pver = "1.0"
-        self.tracker = RideTracker(location: location, state: state, carrier: carrier)
+        self.tracker = RideTracker(location: location, state: state, mobileCountryCode: mobileCountryCode, mobileNetworkCode: mobileNetworkCode)
         self.device = RideDevice(bike: bike, state: state)
     }
     
@@ -177,9 +176,9 @@ struct RideGsm: Codable {
     var mcc: Int?
     var mnc: Int?
     
-    init(carrier: CTCarrier) {
-        self.mcc = (carrier.mobileCountryCode != nil) ? Int(carrier.mobileCountryCode!) : nil
-        self.mnc = (carrier.mobileNetworkCode != nil) ? Int(carrier.mobileNetworkCode!) : nil
+    init(mobileCountryCode: Int?, mobileNetworkCode: Int?) {
+        self.mcc = mobileCountryCode
+        self.mnc = mobileNetworkCode
     }
 }
 
@@ -209,10 +208,10 @@ struct RideTracker: Codable {
     var metric: RideTrackerMetric?
     var config: RideTrackerConfig?
     
-    init(location: CLLocation?, state: [String: Any], carrier: CTCarrier) {
+    init(location: CLLocation?, state: [String: Any], mobileCountryCode: Int?, mobileNetworkCode: Int?) {
         
         self.loc = RideLocation(location: location, state: state)
-        self.gsm = RideGsm(carrier: carrier)
+        self.gsm = RideGsm(mobileCountryCode: mobileCountryCode, mobileNetworkCode: mobileNetworkCode)
         self.metric = RideTrackerMetric(state: state)
         self.config = RideTrackerConfig(state: state)
     }
