@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
-  - ctkit (1.16.0):
+  - ctkit (1.22.0):
     - Alamofire (~> 4.7)
     - RxBlocking
     - RxSwift (~> 5.0)
@@ -45,7 +45,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  ctkit: 099e68489fcdf829bc3362819b0ff341634d6d7b
+  ctkit: 6b04125c4c4a1eaced2d39fa8c9266ea611c52e0
   Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
