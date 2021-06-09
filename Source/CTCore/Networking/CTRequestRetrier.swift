@@ -33,8 +33,13 @@ class CTRequestRetrier: RequestRetrier {
             }
 
             self.isRefreshing = true
-            
-            CTKit.shared.authManager.refreshTokens(url: self.apiConfig.fullUrl) {  [weak self] succeeded, tokenResponse in
+
+            var apiUrl = self.apiConfig.fullUrl
+            if let ids = CTKit.shared.idsAuthManager {
+                apiUrl = ids.idsTokenApiUrl
+            }
+
+            CTKit.shared.authManager.refreshTokens(url: apiUrl) {  [weak self] succeeded, tokenResponse in
 
                 guard let strongSelf = self else { return }
 
