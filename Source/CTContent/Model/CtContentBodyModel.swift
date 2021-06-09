@@ -8,7 +8,7 @@
 import Foundation
 
 public struct CTContentBodyModel: CTBaseModel {
-    public let title: String?
-    public let body: String?
-    public let imageUrl: String?
+    public var title: String?
+    public var body: String?
+    public var imageUrl: String?
 }

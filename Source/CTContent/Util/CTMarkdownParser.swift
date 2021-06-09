@@ -25,13 +25,13 @@ public class CTMarkdownParser {
         var current = result.body
         var captureAction = false
         for oneLine in lines {
-            let line: String = oneLine.trimmingCharacters(in: .whitespacesAndNewlines)
-            switch {
+            let line: String = oneLine.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            switch (true) {
             case line.starts(with: swipeItemMarker), line == "": break
                 
             case captureAction:
-                if let actionMarkerIndex = contentArray.firstIndex(of: actionMarker) {
-                    let markdownActions = contentArray[actionMarkerIndex...]
+                if let actionMarkerIndex = lines.firstIndex(of: actionMarker) {
+                    let markdownActions = lines[actionMarkerIndex...]
                     
                     for action in markdownActions {
                         if action.starts(with: "[") && action.last == ")" {
@@ -51,12 +51,12 @@ public class CTMarkdownParser {
                 captureAction = false
                 
             case line.starts(with: titleMarker):
-                if current.title == null {
-                    current?.title = line.dropFirst()
+                if current?.title == nil {
+                    current?.title = String(line.dropFirst())
                 }
                 
             case line.starts(with: actionMarker):
-                if result.button == null {
+                if result.button == nil {
                     captureAction = true
                 }
                 
@@ -65,44 +65,50 @@ public class CTMarkdownParser {
                 
                 
             case line.starts(with: swipeItemMarker):
-                current = CTContentBody()
-                result.pages.append(current)
+                current = CTContentBodyModel()
+                result.pages?.append(current ?? CTContentBodyModel())
                 
             case line.starts(with: imageMarker):
                 let foundImage: String = findUrlInString(line)
-                if foundImage == null || foundImage == "" {
-                    current?.image = foundImage == "" ? nil : foundImage
+                if foundImage == nil || foundImage == "" {
+                    current?.imageUrl = foundImage == "" ? nil : foundImage
                 }
                 
             default:
-                if current.body == null {
-                    current.body = ""
+                if current?.body == nil {
+                    current?.body = ""
                 }
-                current?.body = "\(current?.body)\n\(line)".trim()
-                
+                else {
+                    let body = current?.body
+                    current?.body = "\(body)\n\(line)".trimmingCharacters(in: .whitespacesAndNewlines)
+                    
+                }
             }
             
         }
+        
+        if (result.body?.body == nil && result.body?.imageUrl == nil && result.body?.title == nil) {
+            result.body = nil
+        }
+        return result
     }
     
-    // MARK: - Utils
-    extension CTMarkdownParser {
-        
-        func findUrlInString(_ imageLine: String?) -> String {
-            guard let input = imageLine else {
-                return ""
-            }
-            
-            let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-            let matches = detector.matches(in: input, options: [], range: NSRange(location: 0, length: input.utf16.count))
-            
-            var url: String = ""
-            for match in matches {
-                guard let range = Range(match.range, in: input) else { continue }
-                url = String(input[range])
-            }
-            
-            return url
+    func findUrlInString(_ imageLine: String?) -> String {
+        guard let input = imageLine else {
+            return ""
         }
         
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let matches = detector.matches(in: input, options: [], range: NSRange(location: 0, length: input.utf16.count))
+        
+        var url: String = ""
+        for match in matches {
+            guard let range = Range(match.range, in: input) else { continue }
+            url = String(input[range])
+        }
+        
+        return url
     }
+}
+
+

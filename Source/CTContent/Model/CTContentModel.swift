@@ -10,7 +10,7 @@ import Foundation
 
 
 public struct CTContentModel: CTBaseModel {
-    public let body: CTContentBodyModel?
-    public let pages: [CTContentBodyModel]
-    public let button: CTContentButtonModel?
+    public var body: CTContentBodyModel?
+    public var pages: [CTContentBodyModel]?
+    public var button: CTContentButtonModel?
 }

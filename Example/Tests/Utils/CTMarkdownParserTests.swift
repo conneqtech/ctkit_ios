@@ -22,7 +22,7 @@ class CTMarkdownParserTests: XCTestCase {
         let contentModel = parser.parseContent(withContentString: content)
         XCTAssertEqual(contentModel?.type, CTContentType.allStatic)
 
-        XCTAssertEqual(contentModel?.title, "Cool new app feature")
+        XCTAssertEqual(contentModel?.body?.title, "Cool new app feature")
         XCTAssertEqual(contentModel?.body, "Today we have a new feature for you to try out, this will blow you out of the water\nBody text even more")
         XCTAssertEqual(contentModel?.imageUrl, "https://example.com/image.png")
 
