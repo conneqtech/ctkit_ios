@@ -210,12 +210,19 @@ public class CTRestManager {
             case .success:
                 callBack?()
                 break
-            case .failure:
+            case .failure(let error):
+                
+                var error = "localizedDescription: \(error.localizedDescription)"
 
+                if let statusCode = response.response?.statusCode{
+                    error += " statusCode: \(statusCode)"
+                }
+                
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
+                    error += " data: \(json)"
                     print("Failure Response: \(json)")
-                    NotificationCenter.default.post(name: Notification.Name("apiErrorNotification"), object: nil, userInfo: ["error": json])
+                    NotificationCenter.default.post(name: Notification.Name("apiErrorNotification"), object: nil, userInfo: ["error": error, "url": url.absoluteString])
                 }
                 print("ERROR: \(response)")
                 callBack?()
