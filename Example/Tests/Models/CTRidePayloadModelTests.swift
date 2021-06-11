@@ -14,9 +14,9 @@ import CoreTelephony
 
 class CTRidePayloadModelTests: XCTestCase {
 
-    var allZerosRidePayload = CTRidePayloadModel(bike: CTBikeModel(), location: CLLocation(), state: [:], carrier: CTCarrier())
+    var allZerosRidePayload = CTRidePayloadModel(bike: CTBikeModel(), location: CLLocation(), state: [:])
     
-    var allNonZerosRidePayload = CTRidePayloadModel(bike: CTBikeModel(), location: CLLocation(), state: [:], carrier: CTCarrier())
+    var allNonZerosRidePayload = CTRidePayloadModel(bike: CTBikeModel(), location: CLLocation(), state: [:])
     
 
     private func setAllZeros() {
