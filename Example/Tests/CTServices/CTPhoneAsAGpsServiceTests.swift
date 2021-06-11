@@ -91,8 +91,8 @@ class CTPhoneAsAGpsServiceTests: XCTestCase {
     
     override func setUp() {
         do {
-            self.user = try CTUserService().login(email: "inigo.llamosas@conneqtech.com", password: "testtest").toBlocking().first()
-            self.bike = try CTBikeService().fetchOwned().toBlocking().first()?.filter({ $0.id == 2072 }).first
+            self.user = try CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()
+            self.bike = try CTBikeService().fetchOwned().toBlocking().first()?.filter({ $0.id == 2161 }).first
             self.payload["imei"] = bike?.imei
         } catch {
             print(error)
@@ -134,7 +134,7 @@ class CTPhoneAsAGpsServiceTests: XCTestCase {
                 return
             }
             XCTAssert(newlyCreatedRide.errorMask == 1)
-            XCTAssert(newlyCreatedRide.activeTime == 5)
+            XCTAssert(newlyCreatedRide.activeTime == 100)
 
             // Update ride
             guard let updatedRide = try CTPhoneAsAGpsService().patchNameRating(toRide: newlyCreatedRide, name: "The ride of my life", rating: 4).toBlocking().first() else {
