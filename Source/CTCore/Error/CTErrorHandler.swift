@@ -64,8 +64,8 @@ internal class CTErrorHandler: NSObject {
             return CTErrorHandler().handleNoInternet()
         }
 
-        let error = error.getDescriptiveErrorFromResponse(response: response)
-        NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: ["error": error])
+        let errorInfo = error.getInfoFromResponse(response)
+        NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: errorInfo)
         
         guard let jsonData = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any] else {
 

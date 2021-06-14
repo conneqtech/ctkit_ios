@@ -11,20 +11,24 @@ import Alamofire
 
 extension Error {
     
-    func getDescriptiveErrorFromResponse(response: DataResponse<Any>) -> String {
+    func getInfoFromResponse(_ response: DataResponse<Any>) -> [String: Any] {
         
-        var error = "localizedDescription: \(self.localizedDescription)"
+        var responseInfo = [String: Any]()
+        responseInfo["localizedDescription"] = self.localizedDescription
 
-        if let statusCode = response.response?.statusCode{
-            error += " statusCode: \(statusCode)"
+        if let innerResponse = response.response{
+            responseInfo["statusCode"] = innerResponse.statusCode
+            responseInfo["description"] = innerResponse.description
         }
         
         if let data = response.data {
-            let json = String(data: data, encoding: String.Encoding.utf8)
-            error += " data: \(json)"
-            print("Failure Response: \(json)")
+            let json = String(data: data, encoding: .utf8)
+            responseInfo["data"] = json
         }
-        
-        return error
+
+        responseInfo["error"] = response.result.error
+        responseInfo["description"] = response.result.description
+
+        return responseInfo
     }
 }
