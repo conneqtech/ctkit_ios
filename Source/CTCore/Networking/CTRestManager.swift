@@ -39,6 +39,10 @@ public class CTRestManager {
     public func post<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
         return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
+    
+    public func post(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil, callBack: (() -> ())? = nil) {
+        return genericCallbackCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken, callBack: callBack)
+    }
 
     public func patch<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
         return genericCall(.patch, endpoint: endpoint, parameters: parameters, useToken: useToken)
@@ -65,8 +69,8 @@ public class CTRestManager {
             }
             var headers: [String: String] = [:]
             
-            if let bearer = useToken {
-                headers["Authorization"] = "Bearer \(bearer)"
+            if let accessToken = useToken {
+                headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
             }
 
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
@@ -117,8 +121,8 @@ public class CTRestManager {
             }
             var headers: [String: String] = self.computeHeaders()!
 
-            if let bearer = useToken {
-                headers["Authorization"] = "Bearer \(bearer)"
+            if let accessToken = useToken {
+                headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
             }
 
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
@@ -149,8 +153,8 @@ public class CTRestManager {
             return Observable<T>.create { (observer) -> Disposable in
                 var headers: [String: String] = self.computeHeaders()!
 
-                if let bearer = useToken {
-                    headers["Authorization"] = "Bearer \(bearer)"
+                if let accessToken = useToken {
+                    headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
                 }
 
                 let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
@@ -187,6 +191,46 @@ public class CTRestManager {
             }
     }
 
+    private func genericCallbackCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, callBack: (() -> ())? = nil) {
+        
+        var headers: [String: String] = self.computeHeaders()!
+
+        let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+        let requestReference = self.sessionManager.request(url,
+                                                           method: method,
+                                                           parameters: parameters,
+                                                           encoding: encoding,
+                                                           headers: headers)
+        .validate(statusCode: 200..<300)
+        .validate(contentType: ["application/json"])
+        .responseJSON { (response) in
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(.iso8601CT)
+            switch response.result {
+            case .success:
+                callBack?()
+                break
+            case .failure(let error):
+                
+                var error = "localizedDescription: \(error.localizedDescription)"
+
+                if let statusCode = response.response?.statusCode{
+                    error += " statusCode: \(statusCode)"
+                }
+                
+                if let data = response.data {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    error += " data: \(json)"
+                    print("Failure Response: \(json)")
+                    NotificationCenter.default.post(name: Notification.Name("apiErrorNotification"), object: nil, userInfo: ["error": error, "url": url.absoluteString])
+                }
+                print("ERROR: \(response)")
+                callBack?()
+                break
+            }
+        }
+    }
+    
     private func genericUnparsedCall(_ method: Alamofire.HTTPMethod,
                                      endpoint: String,
                                      parameters: [String: Any]? = nil,
@@ -201,8 +245,8 @@ public class CTRestManager {
 
             var headers: [String: String] = self.computeHeaders()!
 
-            if let bearer = useToken {
-                headers["Authorization"] = "Bearer \(bearer)"
+            if let accessToken = useToken {
+                headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
             }
 
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!

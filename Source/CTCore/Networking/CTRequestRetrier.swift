@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 
 class CTRequestRetrier: RequestRetrier {
-    private typealias RefreshCompletion = (_ succeeded: Bool, _ tokenResponse: CTCredentialResponse?) -> Void
 
     private let lock = NSLock()
     private let apiConfig: CTApiConfig
@@ -22,53 +21,41 @@ class CTRequestRetrier: RequestRetrier {
     }
 
     func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
+        
         lock.lock() ; defer { lock.unlock() }
 
         if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 {
-            requestsToRetry.append(completion)
+            
+            self.requestsToRetry.append(completion)
 
-            if !isRefreshing {
-                refreshTokens { [weak self] succeeded, tokenResponse in
-                    guard let strongSelf = self else { return }
+            if self.isRefreshing {
+                return
+            }
 
-                    strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
+            self.isRefreshing = true
 
-                    if succeeded, let tokenResponse = tokenResponse {
-                        CTKit.shared.authManager.saveTokenResponse(tokenResponse)
-                    }
+            var apiUrl = self.apiConfig.fullUrl
+            if let ids = CTKit.shared.idsAuthManager {
+                apiUrl = ids.idsTokenApiUrl
+            }
 
-                    strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
-                    strongSelf.requestsToRetry.removeAll()
+            CTKit.shared.authManager.refreshTokens(url: apiUrl) {  [weak self] succeeded, tokenResponse in
+
+                guard let strongSelf = self else { return }
+
+                strongSelf.lock.lock() ; defer { strongSelf.lock.unlock()}
+
+                if succeeded, let tokenResponse = tokenResponse {
+                    CTKit.shared.authManager.saveTokenResponse(tokenResponse)
                 }
+
+                strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0)}
+                strongSelf.requestsToRetry.removeAll()
+                
+                strongSelf.isRefreshing = false
             }
         } else {
             completion(false, 0.0)
-        }
-    }
-
-    private func refreshTokens(completion: @escaping RefreshCompletion) {
-        guard !isRefreshing else { return }
-
-        isRefreshing = true
-        let urlString = "\(apiConfig.fullUrl)/oauth"
-
-        let params: [String: Any] = [
-            "refresh_token": CTKit.shared.authManager.getRefreshToken(),
-            "client_id": apiConfig.clientId,
-            "client_secret": apiConfig.clientSecret,
-            "grant_type": "refresh_token"
-        ]
-
-        _ = Alamofire.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default)
-            .responseJSON { [weak self] response in
-                guard let strongSelf = self else { return }
-                guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
-                    completion(false, nil)
-                    return
-                }
-
-                completion(true, getResponse)
-                strongSelf.isRefreshing = false
         }
     }
 }

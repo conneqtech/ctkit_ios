@@ -24,17 +24,9 @@ class CTSubscriptionServiceTests: XCTestCase {
         let bike = try! CTBikeService().fetchOwned().toBlocking().first()!.first!
         do {
            _ = try CTSubscriptionService().claim(withBike: bike).toBlocking().first()!
-            XCTAssert(false)
         } catch {
             print(error)
-            // Error is true because there is already a decoding error if its a real subscription
-            XCTAssert(true)
+            XCTFail()
         }
-    }
-
-    func testClaimNotOwner() {
-        let bike = try! CTBikeService().fetchShared().toBlocking().first()!.first!
-        let subscription = try! CTSubscriptionService().claim(withBike: bike).toBlocking().first()!
-        XCTAssertTrue(subscription.bikeId == 0, "Bike id be 0")
     }
 }

@@ -1,6 +1,6 @@
 PODS:
-  - Alamofire (4.9.0)
-  - ctkit (1.11.0):
+  - Alamofire (4.9.1)
+  - ctkit (1.23.0):
     - Alamofire (~> 4.7)
     - RxBlocking
     - RxSwift (~> 5.0)
@@ -11,7 +11,7 @@ PODS:
     - URITemplate (~> 3.0)
   - Mockingjay/XCTest (3.0.0-alpha.1):
     - Mockingjay/Core
-  - Nimble (8.0.4)
+  - Nimble (9.2.0)
   - Quick (2.2.0)
   - RxBlocking (5.0.0):
     - RxSwift (~> 5)
@@ -44,10 +44,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
-  ctkit: cb3cbe50436ed815549a4c7efb116aad76d90715
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  ctkit: f12d493d02322694ba38446560d541fed22ca74e
   Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
-  Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
+  Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   RxBlocking: c67185d26498ea3cbe3e121917c3c16739e43123
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
@@ -56,4 +56,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9b2fc450843f3b9635b3d85b8193359ef62d3934
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

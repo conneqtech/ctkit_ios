@@ -10,7 +10,7 @@ import Foundation
 public struct CTBikeModel: CTBaseModel {
     public let id: Int
     public let imei: String
-    public let frameIdentifier: String
+    public let frameIdentifier: String?
     public var lastLocation: CTBikeLocationModel?
     public var owner: CTBasicUserModel?
     
@@ -35,9 +35,11 @@ public struct CTBikeModel: CTBaseModel {
     
     public var isRideInProgress: Bool?
     
+    public var currentRideUserId: Int?
+    
     public init(id: Int = 0,
                 imei: String = "860000000000000",
-                frameIdentifier: String = "FR4M3NUMB3R",
+                frameIdentifier: String? = "FR4M3NUMB3R",
                 lastLocation: CTBikeLocationModel? = nil,
                 owner: CTBasicUserModel? = nil,
                 name: String = "Lightning mc queso",
@@ -77,7 +79,7 @@ public struct CTBikeModel: CTBaseModel {
     
     public init(withId id: Int,
                 imei: String,
-                frameIdentifier identifier: String,
+                frameIdentifier identifier: String?,
                 name: String,
                 isOwner: Bool = true,
                 articleNumber: String? = nil
@@ -95,7 +97,7 @@ public struct CTBikeModel: CTBaseModel {
         self.activationCode = ""
     }
     
-    public init(withImei imei: String, frameIdentifier identifier: String, name: String, isOwner: Bool = true) {
+    public init(withImei imei: String, frameIdentifier identifier: String?, name: String, isOwner: Bool = true) {
         self.id = -1
         self.imei = imei
         self.frameIdentifier = identifier
@@ -134,6 +136,8 @@ public struct CTBikeModel: CTBaseModel {
         case activationCode = "activation_code"
         
         case isRideInProgress = "ride_in_progress"
+        
+        case currentRideUserId = "current_ride_user_id"
     }
     
     public func encode(to encoder: Encoder) throws {

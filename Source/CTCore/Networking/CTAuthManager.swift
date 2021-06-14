@@ -10,7 +10,8 @@ import RxSwift
 import Alamofire
 
 public class CTAuthManager: CTAuthManagerBase {
-    private let apiConfig: CTApiConfig
+        
+    public let apiConfig: CTApiConfig
     
     public init(withConfig config: CTApiConfig) {
         self.apiConfig = config
@@ -73,7 +74,7 @@ public class CTAuthManager: CTAuthManagerBase {
             parameters["id_token"] = token
         }
         
-        return self.login(parameters: parameters)
+        return self.login(url: self.apiConfig.fullUrl, parameters: parameters)
     }
     
     public func login(username: String, password: String) -> Observable<Any> {
@@ -85,16 +86,16 @@ public class CTAuthManager: CTAuthManagerBase {
             "grant_type": "password",
         ]
         
-        return self.login(parameters: parameters)
+        return self.login(url: self.apiConfig.fullUrl, parameters: parameters)
     }
     
-    private func login(parameters: [String: String]) -> Observable<Any> {
+    func login(url: String, parameters: [String: String]) -> Observable<Any> {
         return Observable<Any>.create { (observer) -> Disposable in
             if (!Connectivity.isConnectedToInternet) {
                 observer.onError(CTErrorHandler().handleNoInternet())
                 return Disposables.create()
             }
-            let url = URL(string: "\(self.apiConfig.fullUrl)/oauth")!
+            let url = URL(string: "\(url)/oauth")!
             let requestReference = Alamofire.request(url,
                                                      method: .post,
                                                      parameters: parameters)
@@ -135,13 +136,15 @@ public class CTAuthManager: CTAuthManagerBase {
         switch CTKit.shared.credentialSaveLocation {
         case .keychain:
             let keychain = KeychainSwift()
-            keychain.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
-            keychain.set(Date().addingTimeInterval(Double(tokenResponse.expiresIn)).toAPIDate(), forKey: CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY)
+            keychain.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY, withAccess: .accessibleAfterFirstUnlock)
+            keychain.set(Date().addingTimeInterval(Double(tokenResponse.expiresIn)).toAPIDate(), forKey: CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY, withAccess: .accessibleAfterFirstUnlock)
             
             if let refreshToken = tokenResponse.refreshToken {
-                keychain.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY)
+                keychain.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY, withAccess: .accessibleAfterFirstUnlock)
             }
-            
+
+            keychain.set(tokenResponse.tokenType, forKey: CTKit.TOKEN_TYPE, withAccess: .accessibleAfterFirstUnlock)
+
         case .userDefaults:
             UserDefaults.standard.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
             UserDefaults.standard.set(Date().addingTimeInterval(Double(tokenResponse.expiresIn)).toAPIDate(),
@@ -150,6 +153,8 @@ public class CTAuthManager: CTAuthManagerBase {
             if let refreshToken = tokenResponse.refreshToken {
                 UserDefaults.standard.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY)
             }
+            
+            UserDefaults.standard.set(tokenResponse.tokenType, forKey: CTKit.TOKEN_TYPE)
         default:
             print("NOTH")
         }
@@ -169,6 +174,10 @@ public class CTAuthManager: CTAuthManagerBase {
     
     public func terminateActiveSession() {
         // Kill the session
+    }
+    
+    public func getTokenType() -> String {
+        return retrieveDataFromStore(forKey: CTKit.TOKEN_TYPE)
     }
 }
 
@@ -218,5 +227,26 @@ extension CTAuthManager {
             }
         }
         print(".=========================================.")
+    }
+
+    func refreshTokens(url: String, completion: @escaping (_ succeeded: Bool, _ tokenResponse: CTCredentialResponse?) -> Void) {
+        let urlString = "\(url)/oauth"
+
+        let params: [String: Any] = [
+            "refresh_token": CTKit.shared.authManager.getRefreshToken(),
+            "client_id": apiConfig.clientId,
+            "client_secret": apiConfig.clientSecret,
+            "grant_type": "refresh_token"
+        ]
+
+        _ = Alamofire.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default)
+            .responseJSON { [weak self] response in
+                guard let strongSelf = self else { return }
+                guard let data = response.data, let getResponse = try? JSONDecoder().decode(CTCredentialResponse.self, from: data) else {
+                    completion(false, nil)
+                    return
+                }
+                completion(true, getResponse)
+        }
     }
 }
