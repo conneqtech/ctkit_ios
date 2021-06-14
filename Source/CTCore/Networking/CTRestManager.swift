@@ -97,8 +97,8 @@ public class CTRestManager {
                                 observer.onNext(getResponse)
                                 observer.onCompleted()
 
-                            case .failure:
-                                observer.onError(CTErrorHandler().handle(response: response))
+                            case .failure(let error):
+                                observer.onError(CTErrorHandler().handle(response: response, error: error))
                             }
                     }
                 case .failure(let encodingError):
@@ -137,8 +137,8 @@ public class CTRestManager {
                     switch response.result {
                     case .success:
                         completable(.completed)
-                    case .failure:
-                        completable(.error(CTErrorHandler().handle(response: response)))
+                    case .failure(let error):
+                        completable(.error(CTErrorHandler().handle(response: response, error: error)))
                     }
             }
 
@@ -180,8 +180,8 @@ public class CTRestManager {
 
                             observer.onNext(getResponse)
                             observer.onCompleted()
-                        case .failure:
-                            observer.onError(CTErrorHandler().handle(response: response))
+                        case .failure(let error):
+                            observer.onError(CTErrorHandler().handle(response: response, error: error))
                         }
                 }
 
@@ -211,25 +211,16 @@ public class CTRestManager {
                 callBack?()
                 break
             case .failure(let error):
-                
-                var error = "localizedDescription: \(error.localizedDescription)"
-
-                if let statusCode = response.response?.statusCode{
-                    error += " statusCode: \(statusCode)"
-                }
-                
-                if let data = response.data {
-                    let json = String(data: data, encoding: String.Encoding.utf8)
-                    error += " data: \(json)"
-                    print("Failure Response: \(json)")
-                    NotificationCenter.default.post(name: Notification.Name("apiErrorNotification"), object: nil, userInfo: ["error": error, "url": url.absoluteString])
-                }
+                let errorString = error.getDescriptiveErrorFromResponse(response: response)
+                NotificationCenter.default.post(name: Notification.Name("apiErrorNotification"), object: nil, userInfo: ["error": error, "url": url.absoluteString])
                 print("ERROR: \(response)")
                 callBack?()
                 break
             }
         }
     }
+    
+
     
     private func genericUnparsedCall(_ method: Alamofire.HTTPMethod,
                                      endpoint: String,

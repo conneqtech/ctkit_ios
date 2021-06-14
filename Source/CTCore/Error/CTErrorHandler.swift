@@ -59,20 +59,16 @@ internal class CTErrorHandler: NSObject {
                             description: "We received an API error that we could not handle. Please try again at a later time")
     }
 
-    func handle(response: DataResponse<Any>) -> CTErrorProtocol {
+    func handle(response: DataResponse<Any>, error: Error) -> CTErrorProtocol {
         if(!Connectivity.isConnectedToInternet){
             return CTErrorHandler().handleNoInternet()
         }
 
+        let error = error.getDescriptiveErrorFromResponse(response: response)
+        NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: ["error": error])
+        
         guard let jsonData = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any] else {
-            var responseInfo = [String:Any]()
-            responseInfo["response_statusCode"] = response.response?.statusCode
-            responseInfo["response_description"] = response.response?.description
-            responseInfo["response_result_error"] = response.result.error
-            responseInfo["response_result_description"] = response.result.description
-            responseInfo["response_data"] = String(decoding: response.data ?? Data(), as: UTF8.self)
-            NotificationCenter.default.post(name: Notification.Name("LogErrorRequest"), object: nil, userInfo: responseInfo)
-            
+
             var responseDict = [String: Any]()
             if let response = response.response {
                 responseDict = [
