@@ -44,8 +44,8 @@ public class CTAuthManager: CTAuthManagerBase {
                         
                         observer.onNext(getResponse.accessToken)
                         observer.onCompleted()
-                    case .failure:
-                        observer.onError(CTErrorHandler().handle(response: response))
+                    case .failure(let error):
+                        observer.onError(CTErrorHandler().handle(response: response, error: error))
                     }
             }
             
@@ -113,9 +113,9 @@ public class CTAuthManager: CTAuthManagerBase {
                         self.saveTokenResponse(getResponse)
                         observer.onNext(getResponse)
                         observer.onCompleted()
-                    case .failure:
+                    case .failure(let error):
                         self.responseDebugger(.post, endpoint: "oauth", parameters: parameters, response: response)
-                        observer.onError(CTErrorHandler().handle(response: response))
+                        observer.onError(CTErrorHandler().handle(response: response, error: error))
                     }
             }
             
