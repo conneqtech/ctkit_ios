@@ -15,15 +15,15 @@ public class CTActivityCenterService: NSObject {
             "limit": limit,
             "offset": (page - 1) * limit
         ]
-
         return CTActivityCenter.shared.restManager.get(endpoint: "activity/", parameters: parameters)
     }
 
     public func dismissActivity(withId identifier: String) -> Completable {
         return CTActivityCenter.shared.restManager.delete(endpoint: "activity/\(identifier)")
     }
-
-    public func dismissAllActivities() -> Completable {
-        return CTActivityCenter.shared.restManager.delete(endpoint: "activity/")
+    
+    public func fetchUnreadActivities(date: Date) -> Observable<CTPaginatedResponseModel<CTActivtyModel>> {
+        let parameters: [String: Any] = ["filter[]": "and;creation_date;gte;\(DateFormatter.utcDateFormatter.string(from: date))"]
+        return CTActivityCenter.shared.restManager.get(endpoint: "activity/", parameters: parameters)
     }
 }
