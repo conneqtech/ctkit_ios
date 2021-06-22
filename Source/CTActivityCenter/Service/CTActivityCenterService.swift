@@ -23,9 +23,7 @@ public class CTActivityCenterService: NSObject {
     }
     
     public func fetchUnreadActivities(date: Date) -> Observable<CTPaginatedResponseModel<CTActivtyModel>> {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let parameters: [String: Any] = ["filter[]": "and;creation_date;gte;\(dateFormatter.string(from: date))"]
+        let parameters: [String: Any] = ["filter[]": "and;creation_date;gte;\(DateFormatter.utcDateFormatter.string(from: date))"]
         return CTActivityCenter.shared.restManager.get(endpoint: "activity/", parameters: parameters)
     }
 }
