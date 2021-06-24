@@ -158,7 +158,7 @@ internal class CTErrorHandler: NSObject {
     }
     
     func handleNoInternet() -> CTErrorProtocol {
-        return CTBasicError(translationKey: "ctkit.error.no-internet", description: "Failed to connect to server")
+        return CTBasicError(translationKey: "ctkit.error.no-internet", description: "Not connected to the Internet")
     }
     
 }
