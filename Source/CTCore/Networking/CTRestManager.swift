@@ -35,6 +35,10 @@ public class CTRestManager {
     public func getUnparsed(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<String> {
         return genericUnparsedCall(.get, endpoint: endpoint, useToken: useToken)
     }
+    
+    public func postCompletable(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Completable {
+        return genericCompletableCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken)
+    }
 
     public func post<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
         return genericCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken)

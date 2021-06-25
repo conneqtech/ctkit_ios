@@ -39,16 +39,14 @@ public class CTSubscriptionService: NSObject {
 
      - Returns: An observable of the newly started subscription (claim)
      */
-    public func claim(withBike bike: CTBikeModel) -> Observable<CTEmptyObjectModel> {
-
+    public func claim(withBike bike: CTBikeModel) -> Completable {
         if !bike.isRequestingUserOwner {
-            return CTSubscriptionModel.mockSubscription()
+            return Completable.empty()
         } else {
-            return CTBilling.shared.restManager.post(endpoint: "claim", parameters: [
+            return CTBilling.shared.restManager.postCompletable(endpoint: "claim", parameters: [
                 "bike_id": bike.id,
                 "hash": bike.imei
-                ]
-            )
+            ])
         }
     }
     
