@@ -8,9 +8,12 @@
 import Foundation
 import Alamofire
 import RxSwift
+import AppAuth
 
 public class CTIdsAuthManager: NSObject {
 
+    private var authState: OIDAuthState?
+    
     public let state = UUID().uuidString
     
     var idsTokenApiUrl = ""
