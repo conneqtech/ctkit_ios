@@ -13,6 +13,7 @@ import AppAuth
 public class CTIdsAuthManager: NSObject {
 
     private var authState: OIDAuthState?
+    public var currentAuthorizationFlow: OIDExternalUserAgentSession? = nil
     
     public let state = UUID().uuidString
     
@@ -26,7 +27,25 @@ public class CTIdsAuthManager: NSObject {
         self.idsRedirectUri = idsRedirectUri
     }
     
+    public func saveToken(_ token: OIDTokenResponse) {
+
+        guard let tokenType = token.tokenType,
+              let accessToken = token.accessToken,
+              let expirationDate = token.accessTokenExpirationDate,
+              let tokenType = token.tokenType else { return }
+        
+        let credentialResponse = CTCredentialResponse(accessToken: accessToken,
+                                                      refreshToken: token.refreshToken,
+                                                      expiresIn: Int(expirationDate.timeIntervalSince(Date())),
+                                                      scope: token.scope,
+                                                      tokenType: tokenType)
+            
+        CTKit.shared.authManager.saveTokenResponse(credentialResponse)
+    }
+    
     public func createRedirectUrl(clientId: String) -> URL? {
+        
+
         
         guard let regionCode = Locale.current.regionCode,
               let languageCode = Locale.current.languageCode else { return nil }

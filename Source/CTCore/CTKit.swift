@@ -26,7 +26,6 @@ public class CTKit {
     public var authManager: CTAuthManager
     
     public var idsAuthManager: CTIdsAuthManager? = nil
-    public var currentAuthorizationFlow: OIDExternalUserAgentSession? = nil
 
     public var authToken = PublishSubject<CTCredentialResponse>()
 
