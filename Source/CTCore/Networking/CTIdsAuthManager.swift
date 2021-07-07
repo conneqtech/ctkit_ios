@@ -15,12 +15,12 @@ public class CTIdsAuthManager: NSObject {
     public var currentAuthorizationFlow: OIDExternalUserAgentSession? = nil
     var idsTokenApiUrl = ""
     var idsLoginApiUrl = ""
-    var idsRedirectUri = ""
+    var idsRedirectUrl = ""
     
     public init(idsTokenApiUrl: String, idsLoginApiUrl: String, idsRedirectUri: String) {
         self.idsTokenApiUrl = idsTokenApiUrl
         self.idsLoginApiUrl = idsLoginApiUrl
-        self.idsRedirectUri = idsRedirectUri
+        self.idsRedirectUrl = idsRedirectUri
     }
     
     public func saveToken(_ token: OIDTokenResponse) {
@@ -37,5 +37,31 @@ public class CTIdsAuthManager: NSObject {
                                                       tokenType: tokenType)
             
         CTKit.shared.authManager.saveTokenResponse(credentialResponse)
+    }
+    
+    public func getAppAuthRequest(clientId: String) -> OIDAuthorizationRequest? {
+        
+        guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
+              let idsLoginApiUrl = URL(string: "\(self.idsLoginApiUrl)/v1/login"),
+              let idsRedirectUrl = URL(string: self.idsRedirectUrl) else { return nil }
+
+        let configuration = OIDServiceConfiguration(authorizationEndpoint: idsLoginApiUrl,
+                                                    tokenEndpoint: idsTokenApiUrl)
+
+        // builds authentication request
+        let request = OIDAuthorizationRequest(configuration: configuration,
+                                              clientId: clientId,
+                                              clientSecret: nil,
+                                              scope: "openid profile",
+                                              redirectURL: idsRedirectUrl,
+                                              responseType: OIDResponseTypeCode,
+                                              state: nil,
+                                              nonce: nil,
+                                              codeVerifier: nil,
+                                              codeChallenge: nil,
+                                              codeChallengeMethod: nil,
+                                              additionalParameters: nil)
+
+        return request
     }
 }
