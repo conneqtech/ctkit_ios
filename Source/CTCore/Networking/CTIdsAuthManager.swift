@@ -34,7 +34,8 @@ public class CTIdsAuthManager: NSObject {
                                                       refreshToken: token.refreshToken,
                                                       expiresIn: Int(expirationDate.timeIntervalSince(Date())),
                                                       scope: token.scope,
-                                                      tokenType: tokenType)
+                                                      tokenType: tokenType,
+                                                      tokenId: token.idToken)
             
         CTKit.shared.authManager.saveTokenResponse(credentialResponse)
     }
@@ -65,29 +66,18 @@ public class CTIdsAuthManager: NSObject {
         return request
     }
     
-    public func getAppAuthLogoutRequest(clientId: String) -> OIDAuthorizationRequest? {
+    public func getAppAuthLogoutRequest(clientId: String) -> OIDEndSessionRequest?  {
         
         guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
-              let idsLoginApiUrl = URL(string: "\(self.idsLoginApiUrl)/v1/login"),
+              let idsLoginApiUrl = URL(string: "\(self.idsTokenApiUrl)/v1/openid/logout"),
               let idsRedirectUrl = URL(string: self.idsRedirectUrl) else { return nil }
-
-        let configuration = OIDServiceConfiguration(authorizationEndpoint: idsLoginApiUrl,
-                                                    tokenEndpoint: idsTokenApiUrl)
-
-        // builds authentication request
-        let request = OIDAuthorizationRequest(configuration: configuration,
-                                              clientId: clientId,
-                                              clientSecret: nil,
-                                              scope: "openid offline_access",
-                                              redirectURL: idsRedirectUrl,
-                                              responseType: OIDResponseTypeCode,
-                                              state: nil,
-                                              nonce: nil,
-                                              codeVerifier: nil,
-                                              codeChallenge: nil,
-                                              codeChallengeMethod: nil,
-                                              additionalParameters: nil)
-
+        
+        let configuration = OIDServiceConfiguration(authorizationEndpoint: idsLoginApiUrl, tokenEndpoint: idsTokenApiUrl, issuer: nil, registrationEndpoint: nil, endSessionEndpoint: idsLoginApiUrl)
+        
+        let request = OIDEndSessionRequest(configuration: configuration,
+                                           idTokenHint: CTKit.shared.authManager.getTokenId(),
+                                           postLogoutRedirectURL: idsRedirectUrl,
+                                           additionalParameters: nil)
         return request
     }
 }
