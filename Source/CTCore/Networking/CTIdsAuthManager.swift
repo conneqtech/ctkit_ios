@@ -39,7 +39,7 @@ public class CTIdsAuthManager: NSObject {
         CTKit.shared.authManager.saveTokenResponse(credentialResponse)
     }
     
-    public func getAppAuthRequest(clientId: String) -> OIDAuthorizationRequest? {
+    public func getAppAuthLoginRequest(clientId: String) -> OIDAuthorizationRequest? {
         
         guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
               let idsLoginApiUrl = URL(string: "\(self.idsLoginApiUrl)/v1/login"),
@@ -53,6 +53,32 @@ public class CTIdsAuthManager: NSObject {
                                               clientId: clientId,
                                               clientSecret: nil,
                                               scope: "openid profile",
+                                              redirectURL: idsRedirectUrl,
+                                              responseType: OIDResponseTypeCode,
+                                              state: nil,
+                                              nonce: nil,
+                                              codeVerifier: nil,
+                                              codeChallenge: nil,
+                                              codeChallengeMethod: nil,
+                                              additionalParameters: nil)
+
+        return request
+    }
+    
+    public func getAppAuthLogoutRequest(clientId: String) -> OIDAuthorizationRequest? {
+        
+        guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
+              let idsLoginApiUrl = URL(string: "\(self.idsLoginApiUrl)/v1/login"),
+              let idsRedirectUrl = URL(string: self.idsRedirectUrl) else { return nil }
+
+        let configuration = OIDServiceConfiguration(authorizationEndpoint: idsLoginApiUrl,
+                                                    tokenEndpoint: idsTokenApiUrl)
+
+        // builds authentication request
+        let request = OIDAuthorizationRequest(configuration: configuration,
+                                              clientId: clientId,
+                                              clientSecret: nil,
+                                              scope: "openid offline_access",
                                               redirectURL: idsRedirectUrl,
                                               responseType: OIDResponseTypeCode,
                                               state: nil,
