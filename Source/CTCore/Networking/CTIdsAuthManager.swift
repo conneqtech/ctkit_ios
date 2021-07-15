@@ -41,7 +41,7 @@ public class CTIdsAuthManager: NSObject {
         CTKit.shared.authManager.saveTokenResponse(credentialResponse)
     }
     
-    private func getAppAuthLoginRequest(clientId: String) -> OIDAuthorizationRequest? {
+    private func getAppAuthLoginRequest(clientId: String, clientSecret: String) -> OIDAuthorizationRequest? {
         
         guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
               let idsLoginApiUrl = URL(string: "\(self.idsLoginApiUrl)/v1/login"),
@@ -53,7 +53,7 @@ public class CTIdsAuthManager: NSObject {
         // builds authentication request
         let request = OIDAuthorizationRequest(configuration: configuration,
                                               clientId: clientId,
-                                              clientSecret: nil,
+                                              clientSecret: clientSecret,
                                               scope: "openid profile",
                                               redirectURL: idsRedirectUrl,
                                               responseType: OIDResponseTypeCode,
@@ -67,9 +67,9 @@ public class CTIdsAuthManager: NSObject {
         return request
     }
     
-    public func login(onViewController viewController: UIViewController, clientId: String, callBack: @escaping () -> ()) {
+    public func login(onViewController viewController: UIViewController, clientId: String, clientSecret: String, callBack: @escaping () -> ()) {
         
-        guard let request = CTKit.shared.idsAuthManager?.getAppAuthLoginRequest(clientId: clientId) else { return }
+        guard let request = CTKit.shared.idsAuthManager?.getAppAuthLoginRequest(clientId: clientId, clientSecret: clientSecret) else { return }
         
         CTKit.shared.idsAuthManager?.currentAuthorizationFlow = OIDAuthState.authState(byPresenting: request, presenting: viewController) { authState, error in
             if let authState = authState {
