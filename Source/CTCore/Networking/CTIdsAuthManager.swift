@@ -83,7 +83,7 @@ public class CTIdsAuthManager: NSObject {
         }
     }
     
-    private func getAppAuthLogoutRequest(clientId: String) -> OIDEndSessionRequest?  {
+    private func getAppAuthLogoutRequest() -> OIDEndSessionRequest?  {
         
         guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
               let idsLoginApiUrl = URL(string: "\(self.idsTokenApiUrl)/v1/openid/logout"),
@@ -101,9 +101,9 @@ public class CTIdsAuthManager: NSObject {
         return request
     }
     
-    public func logout(onViewController viewController: UIViewController, clientId: String, callBack: @escaping () -> ()) {
+    public func logout(onViewController viewController: UIViewController, callBack: @escaping () -> ()) {
         
-        guard let request = CTKit.shared.idsAuthManager?.getAppAuthLogoutRequest(clientId: clientId),
+        guard let request = CTKit.shared.idsAuthManager?.getAppAuthLogoutRequest(),
               let agent = OIDExternalUserAgentIOS(presenting: viewController) else { return }
         
         CTKit.shared.idsAuthManager?.currentAuthorizationFlow = OIDAuthorizationService.present(request, externalUserAgent: agent) { authState, error in
