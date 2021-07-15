@@ -8,44 +8,60 @@
 import Foundation
 import Alamofire
 import RxSwift
+import AppAuth
 
 public class CTIdsAuthManager: NSObject {
 
-    public let state = UUID().uuidString
-    
+    public var currentAuthorizationFlow: OIDExternalUserAgentSession? = nil
     var idsTokenApiUrl = ""
     var idsLoginApiUrl = ""
-    var idsRedirectUri = ""
+    var idsRedirectUrl = ""
     
     public init(idsTokenApiUrl: String, idsLoginApiUrl: String, idsRedirectUri: String) {
         self.idsTokenApiUrl = idsTokenApiUrl
         self.idsLoginApiUrl = idsLoginApiUrl
-        self.idsRedirectUri = idsRedirectUri
+        self.idsRedirectUrl = idsRedirectUri
     }
     
-    public func createRedirectUrl(clientId: String) -> URL? {
-        
-        guard let regionCode = Locale.current.regionCode,
-              let languageCode = Locale.current.languageCode else { return nil }
-        
-        let locale = "\(languageCode)_\(regionCode)"
-        
-        let queryItems = [URLQueryItem(name: "client_id", value: clientId), URLQueryItem(name: "redirect_uri", value: self.idsRedirectUri), URLQueryItem(name: "state", value: self.state), URLQueryItem(name: "locale", value: locale)]
-        if var urlComps = URLComponents(string: "\(self.idsLoginApiUrl)/login") {
-            urlComps.queryItems = queryItems
-            return urlComps.url
-        }
-        return nil
-    }
-    
-    public func login(authorizationCode: String) -> Observable<Any> {
+    public func saveToken(_ token: OIDTokenResponse) {
 
-        let parameters = ["grant_type": "authorization_code",
-                          "client_id": CTKit.shared.authManager.apiConfig.clientId,
-                          "client_secret": CTKit.shared.authManager.apiConfig.clientSecret,
-                          "code": authorizationCode,
-                          "redirect_uri": self.idsRedirectUri]
+        guard let tokenType = token.tokenType,
+              let accessToken = token.accessToken,
+              let expirationDate = token.accessTokenExpirationDate,
+              let tokenType = token.tokenType else { return }
         
-        return CTKit.shared.authManager.login(url: self.idsTokenApiUrl, parameters: parameters)
+        let credentialResponse = CTCredentialResponse(accessToken: accessToken,
+                                                      refreshToken: token.refreshToken,
+                                                      expiresIn: Int(expirationDate.timeIntervalSince(Date())),
+                                                      scope: token.scope,
+                                                      tokenType: tokenType)
+            
+        CTKit.shared.authManager.saveTokenResponse(credentialResponse)
+    }
+    
+    public func getAppAuthRequest(clientId: String) -> OIDAuthorizationRequest? {
+        
+        guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
+              let idsLoginApiUrl = URL(string: "\(self.idsLoginApiUrl)/v1/login"),
+              let idsRedirectUrl = URL(string: self.idsRedirectUrl) else { return nil }
+
+        let configuration = OIDServiceConfiguration(authorizationEndpoint: idsLoginApiUrl,
+                                                    tokenEndpoint: idsTokenApiUrl)
+
+        // builds authentication request
+        let request = OIDAuthorizationRequest(configuration: configuration,
+                                              clientId: clientId,
+                                              clientSecret: nil,
+                                              scope: "openid profile",
+                                              redirectURL: idsRedirectUrl,
+                                              responseType: OIDResponseTypeCode,
+                                              state: nil,
+                                              nonce: nil,
+                                              codeVerifier: nil,
+                                              codeChallenge: nil,
+                                              codeChallengeMethod: nil,
+                                              additionalParameters: nil)
+
+        return request
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import AppAuth
 
 public class CTKit {
 
@@ -23,8 +24,8 @@ public class CTKit {
 
     public var restManager: CTRestManager!
     public var authManager: CTAuthManager
-    public var idsAuthManager: CTIdsAuthManager? = nil
     
+    public var idsAuthManager: CTIdsAuthManager? = nil
 
     public var authToken = PublishSubject<CTCredentialResponse>()
 

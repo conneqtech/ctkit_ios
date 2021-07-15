@@ -21,10 +21,6 @@ public class CTContentRequestRetrier: RequestRetrier {
 
     public func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
         
-        if let _ = CTKit.shared.idsAuthManager {
-            return
-        }
-        
         self.lock.lock() ; defer { self.lock.unlock() }
 
         if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 {
