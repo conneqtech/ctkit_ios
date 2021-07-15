@@ -13,6 +13,7 @@ public struct CTCredentialResponse: Codable {
     public var expiresIn: Int
     public var scope: String?
     public var tokenType: String
+    public var tokenId: String?
     
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
@@ -20,6 +21,7 @@ public struct CTCredentialResponse: Codable {
         case expiresIn = "expires_in"
         case scope = "scope"
         case tokenType = "token_type"
+        case tokenId = "id_token"
     }
 }
 

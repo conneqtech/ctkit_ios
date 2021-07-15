@@ -10,6 +10,7 @@ import Alamofire
 import RxSwift
 import AppAuth
 
+
 public class CTIdsAuthManager: NSObject {
 
     public var currentAuthorizationFlow: OIDExternalUserAgentSession? = nil
@@ -34,12 +35,13 @@ public class CTIdsAuthManager: NSObject {
                                                       refreshToken: token.refreshToken,
                                                       expiresIn: Int(expirationDate.timeIntervalSince(Date())),
                                                       scope: token.scope,
-                                                      tokenType: tokenType)
+                                                      tokenType: tokenType,
+                                                      tokenId: token.idToken)
             
         CTKit.shared.authManager.saveTokenResponse(credentialResponse)
     }
     
-    public func getAppAuthRequest(clientId: String) -> OIDAuthorizationRequest? {
+    private func getAppAuthLoginRequest(clientId: String, clientSecret: String) -> OIDAuthorizationRequest? {
         
         guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
               let idsLoginApiUrl = URL(string: "\(self.idsLoginApiUrl)/v1/login"),
@@ -51,7 +53,7 @@ public class CTIdsAuthManager: NSObject {
         // builds authentication request
         let request = OIDAuthorizationRequest(configuration: configuration,
                                               clientId: clientId,
-                                              clientSecret: nil,
+                                              clientSecret: clientSecret,
                                               scope: "openid profile",
                                               redirectURL: idsRedirectUrl,
                                               responseType: OIDResponseTypeCode,
@@ -63,5 +65,57 @@ public class CTIdsAuthManager: NSObject {
                                               additionalParameters: nil)
 
         return request
+    }
+    
+    public func login(onViewController viewController: UIViewController, clientId: String, clientSecret: String, callBack: @escaping () -> ()) {
+        
+        guard let request = CTKit.shared.idsAuthManager?.getAppAuthLoginRequest(clientId: clientId, clientSecret: clientSecret) else { return }
+        
+        CTKit.shared.idsAuthManager?.currentAuthorizationFlow = OIDAuthState.authState(byPresenting: request, presenting: viewController) { authState, error in
+            if let authState = authState {
+
+                guard let token = authState.lastTokenResponse else { return }
+                CTKit.shared.idsAuthManager?.saveToken(token)
+                callBack()
+            } else {
+                print("Authorization error: \(String(describing: error))")
+            }
+        }
+    }
+    
+    private func getAppAuthLogoutRequest() -> OIDEndSessionRequest?  {
+        
+        guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
+              let idsLoginApiUrl = URL(string: "\(self.idsTokenApiUrl)/v1/openid/logout"),
+              let idsRedirectUrl = URL(string: self.idsRedirectUrl) else { return nil }
+        
+        let configuration = OIDServiceConfiguration(authorizationEndpoint: idsLoginApiUrl,
+                                                    tokenEndpoint: idsTokenApiUrl, issuer: nil,
+                                                    registrationEndpoint: nil,
+                                                    endSessionEndpoint: idsLoginApiUrl)
+        
+        let request = OIDEndSessionRequest(configuration: configuration,
+                                           idTokenHint: CTKit.shared.authManager.getTokenId(),
+                                           postLogoutRedirectURL: idsRedirectUrl,
+                                           additionalParameters: nil)
+        return request
+    }
+    
+    public func logout(onViewController viewController: UIViewController, callBack: @escaping () -> ()) {
+        
+        guard let request = CTKit.shared.idsAuthManager?.getAppAuthLogoutRequest(),
+              let agent = OIDExternalUserAgentIOS(presenting: viewController) else { return }
+        
+        CTKit.shared.idsAuthManager?.currentAuthorizationFlow = OIDAuthorizationService.present(request, externalUserAgent: agent) { authState, error in
+
+            if authState != nil {
+                HTTPCookieStorage.shared.cookies?.forEach { cookie in
+                    HTTPCookieStorage.shared.deleteCookie(cookie)
+                }
+                callBack()
+            } else {
+                print("Logout error: \(String(describing: error))")
+            }
+        }
     }
 }
