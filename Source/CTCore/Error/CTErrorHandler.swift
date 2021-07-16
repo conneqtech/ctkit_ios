@@ -64,7 +64,7 @@ internal class CTErrorHandler: NSObject {
             return CTErrorHandler().handleNoInternet()
         }
         
-        if self.isErrorValid(error, response: response) {
+        if self.isErrorReportable(error, response: response) {
             let errorInfo = error.getInfoFromResponse(response)
             NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: errorInfo)
         }
@@ -82,7 +82,7 @@ internal class CTErrorHandler: NSObject {
         return self.handle(withJSONData: jsonData)
     }
 
-    private func isErrorValid(_ error: Error, response: DataResponse<Any>) -> Bool {
+    private func isErrorReportable(_ error: Error, response: DataResponse<Any>) -> Bool {
 
         guard let errorCode = (error as NSError).code as? Int32 else { return false }
         
@@ -94,7 +94,7 @@ internal class CTErrorHandler: NSObject {
 
         // 53 is https://developer.apple.com/forums/thread/106838 apple bug for iOS 12
         // Rest are network errors https://developer.apple.com/documentation/foundation/1448136-nserror_codes
-        // -1200 is a SSL relarted NSURLErrorDomain network error
+        // -1200 is a SSL related NSURLErrorDomain network error
         return ![53,
                  CFNetworkErrors.cfurlErrorCancelled.rawValue,
                  CFNetworkErrors.cfurlErrorTimedOut.rawValue,
