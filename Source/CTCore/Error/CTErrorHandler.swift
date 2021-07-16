@@ -63,9 +63,11 @@ internal class CTErrorHandler: NSObject {
         if(!Connectivity.isConnectedToInternet){
             return CTErrorHandler().handleNoInternet()
         }
-
-        let errorInfo = error.getInfoFromResponse(response)
-        NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: errorInfo)
+        
+        if self.isErrorValid(error) {
+            let errorInfo = error.getInfoFromResponse(response)
+            NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: errorInfo)
+        }
         
         guard let jsonData = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any] else {
 
@@ -80,6 +82,24 @@ internal class CTErrorHandler: NSObject {
         return self.handle(withJSONData: jsonData)
     }
 
+    private func isErrorValid(_ error: Error) -> Bool {
+        
+        guard let errorCode = (error as NSError).code as? Int32 else { return false }
+
+        // 3 is trying to modify a demo account, unauthorized to perform action
+        // 53 is https://developer.apple.com/forums/thread/106838 apple bug for iOS 12
+        // Rest are network errors https://developer.apple.com/documentation/foundation/1448136-nserror_codes
+        // -1200 is a SSL relarted NSURLErrorDomain network error
+        return ![3,
+                53,
+                CFNetworkErrors.cfurlErrorCancelled.rawValue,
+                CFNetworkErrors.cfurlErrorTimedOut.rawValue,
+                CFNetworkErrors.cfurlErrorCannotFindHost.rawValue,
+                CFNetworkErrors.cfurlErrorCannotConnectToHost.rawValue,
+                CFNetworkErrors.cfurlErrorNetworkConnectionLost.rawValue,
+                -1200].contains(errorCode)
+    }
+    
     // Specialized handler functions
     func handleUnauthorized(body: [String: Any]) -> CTBasicError? {
         if let detail = body["detail"] as? String {
