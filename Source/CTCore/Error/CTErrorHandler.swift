@@ -64,7 +64,7 @@ internal class CTErrorHandler: NSObject {
             return CTErrorHandler().handleNoInternet()
         }
         
-        if self.isErrorValid(error) {
+        if self.isErrorValid(error, response: response) {
             let errorInfo = error.getInfoFromResponse(response)
             NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: errorInfo)
         }
@@ -82,22 +82,26 @@ internal class CTErrorHandler: NSObject {
         return self.handle(withJSONData: jsonData)
     }
 
-    private func isErrorValid(_ error: Error) -> Bool {
-        
-        guard let errorCode = (error as NSError).code as? Int32 else { return false }
+    private func isErrorValid(_ error: Error, response: DataResponse<Any>) -> Bool {
 
-        // 3 is trying to modify a demo account, unauthorized to perform action
+        guard let errorCode = (error as NSError).code as? Int32 else { return false }
+        
+        // 422. Alamofire.AFError: Trying to modify a demo account
+        // 401. Alamofire.AFError: Unauthorized
+        if let innerResponse = response.response, [401, 422].contains(innerResponse.statusCode) {
+            return false
+        }
+
         // 53 is https://developer.apple.com/forums/thread/106838 apple bug for iOS 12
         // Rest are network errors https://developer.apple.com/documentation/foundation/1448136-nserror_codes
         // -1200 is a SSL relarted NSURLErrorDomain network error
-        return ![3,
-                53,
-                CFNetworkErrors.cfurlErrorCancelled.rawValue,
-                CFNetworkErrors.cfurlErrorTimedOut.rawValue,
-                CFNetworkErrors.cfurlErrorCannotFindHost.rawValue,
-                CFNetworkErrors.cfurlErrorCannotConnectToHost.rawValue,
-                CFNetworkErrors.cfurlErrorNetworkConnectionLost.rawValue,
-                -1200].contains(errorCode)
+        return ![53,
+                 CFNetworkErrors.cfurlErrorCancelled.rawValue,
+                 CFNetworkErrors.cfurlErrorTimedOut.rawValue,
+                 CFNetworkErrors.cfurlErrorCannotFindHost.rawValue,
+                 CFNetworkErrors.cfurlErrorCannotConnectToHost.rawValue,
+                 CFNetworkErrors.cfurlErrorNetworkConnectionLost.rawValue,
+                 -1200].contains(errorCode)
     }
     
     // Specialized handler functions
