@@ -80,4 +80,20 @@ public class CTTheftCaseService: NSObject {
         ]
         return CTKit.shared.restManager.get(endpoint: "theft-case", parameters: params)
     }
+
+    /**
+     Cancel the theft case
+     */
+    public func cancel() -> Observable<CTTheftCaseModel> {
+        return CTKit.shared.restManager.patch(endpoint: "theft-case", parameters: ["case_status": "cancelled"])
+    }
+    
+    /**
+     Fetch all active theftcase links with the given ID
+     - Parameter caseId The id of the theft case.
+     - Returns: a list of active theft case links.
+     */
+    public func fetchActiveTheftCaseLinks(caseId: Int) -> Observable<[String]> {
+        return CTKit.shared.restManager.get(endpoint: "theft-case/\(caseId)/access-token")
+    }
 }
