@@ -89,11 +89,12 @@ public class CTTheftCaseService: NSObject {
     }
     
     /**
-     Fetch all active theftcase links with the given ID
-     - Parameter caseId The id of the theft case.
-     - Returns: a list of active theft case links.
+     Create link for a theft case valid for the specified duration
+     - Parameter caseId: The id of the theft case.
+     - Parameter durationHours: duration of validity of the link
+     - Returns: a link of the theft case to be shared
      */
-    public func fetchActiveTheftCaseLinks(caseId: Int) -> Observable<[String]> {
-        return CTKit.shared.restManager.get(endpoint: "theft-case/\(caseId)/access-token")
+    public func createTheftCaseLink(caseId: Int, durationHours: Int) -> Observable<CTTheftCaseLink> {
+        return CTKit.shared.restManager.post(endpoint: "theft-case/\(caseId)/access-token", parameters: ["duration": durationHours])
     }
 }
