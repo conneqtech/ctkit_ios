@@ -9,34 +9,35 @@ import Foundation
 
 public struct CTTheftCaseModel: CTBaseModel {
 
-    public let id: Int
+    public let id: Int?
     public var caseNumber: String?
     public let partnerCaseNumber: String?
 
-    public let partner: CTTheftCasePartnerModel
+    public let partner: CTTheftCasePartnerModel?
 
-    public var bikeId: Int
-    public var bikeFrameType: String
-    public var bikeType: String
-    public var bikeColor: String
-    public var bikeAdditionalDetails: String
-    public var bikeImages: [String]
+    public var bikeId: Int?
+    public var bikeFrameType: String?
+    public var bikeType: String?
+    public var bikeColor: String?
+    public var bikeAdditionalDetails: String?
+    public var bikeImages: [String]?
 
     //Owner details
-    public var ownerName: String
-    public var ownerEmail: String
-    public var ownerPhone: String
-    public var ownerAddress: String
-    public var ownerPostalCode: String
-    public var ownerCity: String
-    public var ownerCountry: String
-    public var reportDate: Date
-    public var caseStatus: String
-    public var bikeIsInsured: Bool
+    public var ownerName: String?
+    public var ownerEmail: String?
+    public var ownerPhone: String?
+    public var ownerAddress: String?
+    public var ownerPostalCode: String?
+    public var ownerCity: String?
+    public var ownerCountry: String?
+    public var reportDate: Date?
+    public var caseStatus: String?
+    public var bikeIsInsured: Bool?
     public var policeCaseNumber: String?
-    public let caseFinalized: Bool
-    public let linkable: Bool
-    public let cancellable: Bool
+
+    public let caseFinalized: Bool?
+    public let linkable: Bool?
+    public let cancellable: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
