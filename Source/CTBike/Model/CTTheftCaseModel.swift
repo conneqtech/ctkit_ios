@@ -34,7 +34,10 @@ public struct CTTheftCaseModel: CTBaseModel {
     public var caseStatus: String?
     public var bikeIsInsured: Bool?
     public var policeCaseNumber: String?
+
     public let caseFinalized: Bool?
+    public let linkable: Bool?
+    public let cancellable: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -61,6 +64,9 @@ public struct CTTheftCaseModel: CTBaseModel {
         case bikeIsInsured = "bike_is_insured"
         case policeCaseNumber = "police_case_number"
         case caseFinalized = "finalized"
+        
+        case linkable = "linkable"
+        case cancellable = "cancellable"
     }
 
     public init(
@@ -85,7 +91,9 @@ public struct CTTheftCaseModel: CTBaseModel {
         caseStatus: String = "",
         bikeIsInsured: Bool = false,
         policeCaseNumber: String = "",
-        caseFinalized: Bool = false) {
+        caseFinalized: Bool = false,
+        linkable: Bool = true,
+        cancellable: Bool = false) {
         
         self.id = id
         self.caseNumber = caseNumber
@@ -109,6 +117,8 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.bikeIsInsured = bikeIsInsured
         self.policeCaseNumber = policeCaseNumber
         self.caseFinalized = caseFinalized
+        self.linkable = linkable
+        self.cancellable = cancellable
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -129,6 +139,6 @@ public struct CTTheftCaseModel: CTBaseModel {
         try container.encode(ownerCountry, forKey: .ownerCountry)
         try container.encode(bikeIsInsured, forKey: .bikeIsInsured)
         try container.encode(policeCaseNumber, forKey: .policeCaseNumber)
-
+        try container.encode(cancellable, forKey: .cancellable)
     }
 }

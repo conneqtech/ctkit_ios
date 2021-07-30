@@ -80,4 +80,24 @@ public class CTTheftCaseService: NSObject {
         ]
         return CTKit.shared.restManager.get(endpoint: "theft-case", parameters: params)
     }
+
+    /**
+     Cancel the theft case
+     - Parameter caseId: The id of the theft case.
+     - Returns: the cancelled theft case
+     */
+    public func cancel(caseId: Int) -> Observable<CTTheftCaseModel> {
+        let caseStatus = CTTheftCaseStatus(caseStatus: "cancelled")
+        return CTKit.shared.restManager.patch(endpoint: "theft-case/\(caseId)", parameters: try? caseStatus.asDictionary())
+    }
+    
+    /**
+     Create link for a theft case valid for the specified duration
+     - Parameter caseId: The id of the theft case.
+     - Parameter durationHours: duration of validity of the link
+     - Returns: a link of the theft case to be shared
+     */
+    public func createTheftCaseLink(caseId: Int, durationHours: Int) -> Observable<CTTheftCaseLink> {
+        return CTKit.shared.restManager.post(endpoint: "theft-case/\(caseId)/access-token", parameters: ["duration": durationHours])
+    }
 }
