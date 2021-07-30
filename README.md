@@ -23,7 +23,7 @@ pod 'ctkit'
 ## Author
 
 Conneqtech B.V.
-gert-jan@conneqtech.com
+inigo.llamosas@conneqtech.com
 
 ## License
 
