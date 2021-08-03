@@ -270,8 +270,7 @@ extension CTAuthManager {
         let tokenId = CTKit.shared.authManager.getTokenId()
         if tokenId == "" {
             CTKit.shared.idsAuthManager?.refreshingToken = true
-            CTKit.shared.authManager.refreshTokens(url: idsManager.idsTokenApiUrl) { [weak self] succeeded, tokenResponse in
-                guard let strongSelf = self else { return }
+            CTKit.shared.authManager.refreshTokens(url: idsManager.idsTokenApiUrl) { succeeded, tokenResponse in
                 if succeeded, let tokenResponse = tokenResponse {
                     CTKit.shared.authManager.saveTokenResponse(tokenResponse)
                 }
