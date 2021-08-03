@@ -18,6 +18,8 @@ public class CTIdsAuthManager: NSObject {
     var idsLoginApiUrl = ""
     var idsRedirectUrl = ""
     
+    var refreshingToken = false
+    
     public init(idsTokenApiUrl: String, idsLoginApiUrl: String, idsRedirectUri: String) {
         self.idsTokenApiUrl = idsTokenApiUrl
         self.idsLoginApiUrl = idsLoginApiUrl
