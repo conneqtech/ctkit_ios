@@ -73,7 +73,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         id: Int = 0,
         caseNumber: String? = nil,
         partnerCaseNumber: String? = nil,
-        partner: CTTheftCasePartnerModel,
+        partner: CTTheftCasePartnerModel? = nil,
         bikeId: Int = 0,
         bikeFrameType: String = "",
         bikeType: String = "",
