@@ -55,9 +55,9 @@ public class CTTheftCaseService: NSObject {
      
      - Returns: An observable containing the most recent theft-case.
      */
-    public func fetchMostRecent(withBikeId identifier: Int) -> Observable<CTTheftCaseModel> {
+    public func fetchMostRecent(withBikeId identifier: Int) -> Observable<CTTheftCaseModel?> {
         return self.fetchAll(withBikeId: identifier).map { result in
-                return result.data[0]
+            return result.data.first
         }
     }
 
