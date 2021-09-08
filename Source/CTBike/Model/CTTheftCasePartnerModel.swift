@@ -11,6 +11,12 @@ public struct CTTheftCasePartnerDescriptionModel: CTBaseModel {
     public let en: String
     public let de: String
     public let nl: String
+    
+    public init(en: String, de: String, nl: String) {
+        self.en = en
+        self.de = de
+        self.nl = nl
+    }
 }
 
 public struct CTTheftCasePartnerModel: CTBaseModel {
