@@ -103,6 +103,7 @@ internal class CTErrorHandler: NSObject {
                  CFNetworkErrors.cfurlErrorNetworkConnectionLost.rawValue,
                  CFNetworkErrors.cfurlErrorServerCertificateUntrusted.rawValue,
                  CFNetworkErrors.cfurlErrorCallIsActive.rawValue,
+                 CFNetworkErrors.cfurlErrorNotConnectedToInternet.rawValue,
                  -1200].contains(errorCode)
     }
     
