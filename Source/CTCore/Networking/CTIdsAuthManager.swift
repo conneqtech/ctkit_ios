@@ -30,8 +30,7 @@ public class CTIdsAuthManager: NSObject {
 
         guard let tokenType = token.tokenType,
               let accessToken = token.accessToken,
-              let expirationDate = token.accessTokenExpirationDate,
-              let tokenType = token.tokenType else { return }
+              let expirationDate = token.accessTokenExpirationDate else { return }
         
         let credentialResponse = CTCredentialResponse(accessToken: accessToken,
                                                       refreshToken: token.refreshToken,
