@@ -84,7 +84,7 @@ internal class CTErrorHandler: NSObject {
 
     private func isErrorReportable(_ error: Error, response: DataResponse<Any>) -> Bool {
 
-        guard let errorCode = (error as NSError).code as? Int32 else { return false }
+        guard let errorCode = (error as NSError).code as? Int else { return false }
         
         // 422. Alamofire.AFError: Trying to modify a demo account
         // 401. Alamofire.AFError: Unauthorized
@@ -93,16 +93,18 @@ internal class CTErrorHandler: NSObject {
         }
 
         // 53 is https://developer.apple.com/forums/thread/106838 apple bug for iOS 12
-        // Rest are network errors https://developer.apple.com/documentation/foundation/1448136-nserror_codes
-        // -1200 is a SSL related NSURLErrorDomain network error
+        // Rest are network errors:
+        // https://developer.apple.com/documentation/foundation/1448136-nserror_codes
         return ![53,
-                 CFNetworkErrors.cfurlErrorCancelled.rawValue,
-                 CFNetworkErrors.cfurlErrorTimedOut.rawValue,
-                 CFNetworkErrors.cfurlErrorCannotFindHost.rawValue,
-                 CFNetworkErrors.cfurlErrorCannotConnectToHost.rawValue,
-                 CFNetworkErrors.cfurlErrorNetworkConnectionLost.rawValue,
-                 CFNetworkErrors.cfurlErrorServerCertificateUntrusted.rawValue,
-                 -1200].contains(errorCode)
+                 Int(CFNetworkErrors.cfurlErrorCancelled.rawValue),
+                 Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue),
+                 Int(CFNetworkErrors.cfurlErrorCannotFindHost.rawValue),
+                 Int(CFNetworkErrors.cfurlErrorCannotConnectToHost.rawValue),
+                 Int(CFNetworkErrors.cfurlErrorNetworkConnectionLost.rawValue),
+                 Int(CFNetworkErrors.cfurlErrorServerCertificateUntrusted.rawValue),
+                 Int(CFNetworkErrors.cfurlErrorCallIsActive.rawValue),
+                 Int(CFNetworkErrors.cfurlErrorNotConnectedToInternet.rawValue),
+                 Int(CFNetworkErrors.cfurlErrorSecureConnectionFailed.rawValue)].contains(errorCode)
     }
     
     // Specialized handler functions
