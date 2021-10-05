@@ -217,7 +217,7 @@ public class CTRestManager {
             case .failure(let error):
                 var userInfo = error.getInfoFromResponse(response)
                 userInfo["url"] = url.absoluteString
-                NotificationCenter.default.post(name: Notification.Name("apiErrorNotification"), object: nil, userInfo: userInfo)
+                CTErrorHandler().handle(response: response, error: error)
                 print("ERROR: \(response)")
                 callBack?()
                 break
