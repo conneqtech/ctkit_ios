@@ -77,19 +77,5 @@ class CTKitActiveSessionTests: XCTestCase {
         XCTAssertTrue(CTKit.shared.hasActiveSession())
         CTKit.shared.logout()
         XCTAssertFalse(CTKit.shared.hasActiveSession())
-    }
-    
-    func testFirstPkceImplementation() {
-
-        KeychainSwift().delete(CTKit.TOKEN_ID)
-        UserDefaults.standard.removeObject(forKey: CTKit.TOKEN_ID)
-
-        CTKit.shared.idsAuthManager = CTIdsAuthManager(idsTokenApiUrl: "apples", idsLoginApiUrl: "pears", idsRedirectUri: "peaches")
-        
-        XCTAssertFalse(CTKit.shared.authManager.pkceImplemented())
-        XCTAssertTrue(CTKit.shared.idsAuthManager?.refreshingToken == true)
-        _ = XCTWaiter.wait(for: [expectation(description: "Wait for 1 second")], timeout: 1)
-        XCTAssertTrue(CTKit.shared.idsAuthManager?.refreshingToken == false)
-        CTKit.shared.idsAuthManager = nil
-    }
+    } 
 }
