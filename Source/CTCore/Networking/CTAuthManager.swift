@@ -260,25 +260,4 @@ extension CTAuthManager {
                 completion(true, getResponse)
         }
     }
-    
-    public func pkceImplemented() -> Bool {
-     
-        guard let idsManager = CTKit.shared.idsAuthManager else { return true }
-        if idsManager.refreshingToken {
-            return false
-        }
-        let tokenId = CTKit.shared.authManager.getTokenId()
-        if tokenId == "" {
-            CTKit.shared.idsAuthManager?.refreshingToken = true
-            CTKit.shared.authManager.refreshTokens(url: idsManager.idsTokenApiUrl) { succeeded, tokenResponse in
-                if succeeded, let tokenResponse = tokenResponse {
-                    CTKit.shared.authManager.saveTokenResponse(tokenResponse)
-                }
-                CTKit.shared.idsAuthManager?.refreshingToken = false
-            }
-            return false
-        } else {
-            return true
-        }
-    }
 }
