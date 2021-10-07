@@ -86,24 +86,27 @@ public class CTIdsAuthManager: NSObject {
     }
     
     fileprivate func getAppAuthLogoutRequest(callBack: @escaping (OIDEndSessionRequest?) -> ())  {
-        
-        guard let idsTokenApiUrlString = CTKit.shared.idsAuthManager?.idsTokenApiUrl,
-              let idsTokenApiUrl = URL(string: "\(idsTokenApiUrlString)/oauth") else { return }
-
-        var tokenId = CTKit.shared.authManager.getTokenId()
-        if tokenId == "" {
-            CTKit.shared.authManager.refreshTokens(url: idsTokenApiUrlString) { succeeded, tokenResponse in
-                if succeeded, let tokenResponse = tokenResponse {
-                    print("BIEN JODER")
-                    CTKit.shared.authManager.saveTokenResponse(tokenResponse)
-                    guard let request = CTKit.shared.idsAuthManager?.getOIDEndSessionRequestForLogout() else { return }
-                    callBack(request)
-                }
-            }
-        } else {
-            print("SI JODER")
+        CTKit.shared.idsAuthManager?.getTokenIdForLogout(callBack: {
             guard let request = CTKit.shared.idsAuthManager?.getOIDEndSessionRequestForLogout() else { return }
             callBack(request)
+        })
+    }
+    
+    fileprivate func getTokenIdForLogout(callBack: @escaping () -> ()) {
+        
+        let tokenId = CTKit.shared.authManager.getTokenId()
+        if tokenId != "" {
+            callBack()
+            return
+        }
+        
+        guard let idsTokenApiUrlString = CTKit.shared.idsAuthManager?.idsTokenApiUrl else { return }
+        
+        CTKit.shared.authManager.refreshTokens(url: idsTokenApiUrlString) { succeeded, tokenResponse in
+            if succeeded, let tokenResponse = tokenResponse {
+                CTKit.shared.authManager.saveTokenResponse(tokenResponse)
+                callBack()
+            }
         }
     }
     
