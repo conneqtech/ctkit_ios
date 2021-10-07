@@ -13,9 +13,15 @@ import XCTest
 
 class CTIdsAuthManagerTests: XCTestCase {
 
-
-    func testIfUnexistentTokenidShouldNotRefresh() {
+    override func setUp() {
         CTKit.shared.idsAuthManager = CTIdsAuthManager(idsTokenApiUrl: "idsTokenApiUrl", idsLoginApiUrl: "idsLoginApiUrl", idsRedirectUri: "idsRedirectUri")
+    }
+
+    override func tearDown() {
+        CTKit.shared.idsAuthManager = nil
+    }
+    
+    func testIfUnexistentTokenidShouldNotRefresh() {
         let expectation = XCTestExpectation(description: "getTokenIdForLogout")
         var result: Bool? = nil
 
@@ -32,5 +38,21 @@ class CTIdsAuthManagerTests: XCTestCase {
         })
         wait(for: [expectation], timeout: 10.0)
         XCTAssert(result == true)
+    }
+    
+    func testIfUnexistentTokenidShouldRefresh() {
+        
+        KeychainSwift().delete(CTKit.TOKEN_ID)
+        UserDefaults.standard.removeObject(forKey: CTKit.TOKEN_ID)
+        
+        let expectation = XCTestExpectation(description: "getTokenIdForLogout")
+        var result: Bool? = nil
+
+        CTKit.shared.idsAuthManager?.getTokenIdForLogout(callBack: { didAlreadyHaveTokenId in
+            result = didAlreadyHaveTokenId
+            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 10.0)
+        XCTAssert(result == false)
     }
 }

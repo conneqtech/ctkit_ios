@@ -93,20 +93,22 @@ public class CTIdsAuthManager: NSObject {
     }
     
     func getTokenIdForLogout(callBack: @escaping (Bool) -> ()) {
-        
+
         let tokenId = CTKit.shared.authManager.getTokenId()
         if tokenId != "" {
+
             callBack(true)
             return
         }
-        
+
         guard let idsTokenApiUrlString = CTKit.shared.idsAuthManager?.idsTokenApiUrl else { return }
-        
+
         CTKit.shared.authManager.refreshTokens(url: idsTokenApiUrlString) { succeeded, tokenResponse in
+
             if succeeded, let tokenResponse = tokenResponse {
                 CTKit.shared.authManager.saveTokenResponse(tokenResponse)
-                callBack(false)
             }
+            callBack(false)
         }
     }
     
