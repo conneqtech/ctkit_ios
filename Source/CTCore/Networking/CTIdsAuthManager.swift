@@ -18,8 +18,6 @@ public class CTIdsAuthManager: NSObject {
     var idsLoginApiUrl = ""
     var idsRedirectUrl = ""
     
-    var refreshingToken = false
-    
     public init(idsTokenApiUrl: String, idsLoginApiUrl: String, idsRedirectUri: String) {
         self.idsTokenApiUrl = idsTokenApiUrl
         self.idsLoginApiUrl = idsLoginApiUrl
@@ -42,12 +40,15 @@ public class CTIdsAuthManager: NSObject {
         CTKit.shared.authManager.saveTokenResponse(credentialResponse)
     }
     
-    private func getAppAuthLoginRequest(clientId: String, clientSecret: String) -> OIDAuthorizationRequest? {
-        
-        guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
-              let idsLoginApiUrl = URL(string: "\(self.idsLoginApiUrl)/v1/login"),
-              let idsRedirectUrl = URL(string: self.idsRedirectUrl) else { return nil }
+    fileprivate func getAppAuthLoginRequest(clientId: String, clientSecret: String) -> OIDAuthorizationRequest? {
 
+        guard let idsTokenApiUrlString = CTKit.shared.idsAuthManager?.idsTokenApiUrl,
+              let idsTokenApiUrl = URL(string: "\(idsTokenApiUrlString)/oauth"),
+              let idsLoginApiUrlString = CTKit.shared.idsAuthManager?.idsLoginApiUrl,
+              let idsLoginApiUrl = URL(string: "\(idsLoginApiUrlString)/v1/login"),
+              let idsRedirectUrlString = CTKit.shared.idsAuthManager?.idsRedirectUrl,
+              let idsRedirectUrl = URL(string: idsRedirectUrlString) else { return nil }
+        
         let configuration = OIDServiceConfiguration(authorizationEndpoint: idsLoginApiUrl,
                                                     tokenEndpoint: idsTokenApiUrl)
 
@@ -84,39 +85,70 @@ public class CTIdsAuthManager: NSObject {
         }
     }
     
-    private func getAppAuthLogoutRequest() -> OIDEndSessionRequest?  {
+    fileprivate func getAppAuthLogoutRequest(callBack: @escaping (OIDEndSessionRequest?) -> ())  {
         
-        guard let idsTokenApiUrl = URL(string: "\(self.idsTokenApiUrl)/oauth"),
-              let idsLoginApiUrl = URL(string: "\(self.idsTokenApiUrl)/v1/openid/logout"),
-              let idsRedirectUrl = URL(string: self.idsRedirectUrl) else { return nil }
+        guard let idsTokenApiUrlString = CTKit.shared.idsAuthManager?.idsTokenApiUrl,
+              let idsTokenApiUrl = URL(string: "\(idsTokenApiUrlString)/oauth") else { return }
+
+        var tokenId = CTKit.shared.authManager.getTokenId()
+        if tokenId == "" {
+            CTKit.shared.authManager.refreshTokens(url: idsTokenApiUrlString) { succeeded, tokenResponse in
+                if succeeded, let tokenResponse = tokenResponse {
+                    print("BIEN JODER")
+                    CTKit.shared.authManager.saveTokenResponse(tokenResponse)
+                    guard let request = CTKit.shared.idsAuthManager?.getOIDEndSessionRequestForLogout() else { return }
+                    callBack(request)
+                }
+            }
+        } else {
+            print("SI JODER")
+            guard let request = CTKit.shared.idsAuthManager?.getOIDEndSessionRequestForLogout() else { return }
+            callBack(request)
+        }
+    }
+    
+    fileprivate func getOIDEndSessionRequestForLogout() -> OIDEndSessionRequest? {
         
+        let tokenId = CTKit.shared.authManager.getTokenId()
+
+        guard let idsTokenApiUrlString = CTKit.shared.idsAuthManager?.idsTokenApiUrl,
+              let idsTokenApiUrl = URL(string: "\(idsTokenApiUrlString)/oauth"),
+              let idsTokenApiUrlString = CTKit.shared.idsAuthManager?.idsTokenApiUrl,
+              let idsLoginApiUrl = URL(string: "\(idsTokenApiUrlString)/v1/openid/logout"),
+              let idsRedirectUrlString = CTKit.shared.idsAuthManager?.idsRedirectUrl,
+              let idsRedirectUrl = URL(string: idsRedirectUrlString) else { return nil }
+
         let configuration = OIDServiceConfiguration(authorizationEndpoint: idsLoginApiUrl,
-                                                    tokenEndpoint: idsTokenApiUrl, issuer: nil,
+                                                    tokenEndpoint: idsTokenApiUrl,
+                                                    issuer: nil,
                                                     registrationEndpoint: nil,
                                                     endSessionEndpoint: idsLoginApiUrl)
         
-        let request = OIDEndSessionRequest(configuration: configuration,
-                                           idTokenHint: CTKit.shared.authManager.getTokenId(),
-                                           postLogoutRedirectURL: idsRedirectUrl,
-                                           additionalParameters: nil)
-        return request
+        return OIDEndSessionRequest(configuration: configuration,
+                                    idTokenHint: tokenId,
+                                    postLogoutRedirectURL: idsRedirectUrl,
+                                    additionalParameters: nil)
     }
     
     public func logout(onViewController viewController: UIViewController, callBack: @escaping () -> ()) {
         
-        guard let request = CTKit.shared.idsAuthManager?.getAppAuthLogoutRequest(),
-              let agent = OIDExternalUserAgentIOS(presenting: viewController) else { return }
+        guard let agent = OIDExternalUserAgentIOS(presenting: viewController) else { return }
         
-        CTKit.shared.idsAuthManager?.currentAuthorizationFlow = OIDAuthorizationService.present(request, externalUserAgent: agent) { authState, error in
+        CTKit.shared.idsAuthManager?.getAppAuthLogoutRequest(callBack: { optRequest in
+            
+            guard let request = optRequest else { return }
 
-            if authState != nil {
-                HTTPCookieStorage.shared.cookies?.forEach { cookie in
-                    HTTPCookieStorage.shared.deleteCookie(cookie)
+            CTKit.shared.idsAuthManager?.currentAuthorizationFlow = OIDAuthorizationService.present(request, externalUserAgent: agent) { authState, error in
+
+                if authState != nil {
+                    HTTPCookieStorage.shared.cookies?.forEach { cookie in
+                        HTTPCookieStorage.shared.deleteCookie(cookie)
+                    }
+                    callBack()
+                } else {
+                    print("Logout error: \(String(describing: error))")
                 }
-                callBack()
-            } else {
-                print("Logout error: \(String(describing: error))")
             }
-        }
+        })
     }
 }
