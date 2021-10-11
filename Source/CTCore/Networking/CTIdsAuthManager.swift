@@ -53,18 +53,13 @@ public class CTIdsAuthManager: NSObject {
                                                     tokenEndpoint: idsTokenApiUrl)
 
         // builds authentication request
-        let request = OIDAuthorizationRequest(configuration: configuration,
-                                              clientId: clientId,
-                                              clientSecret: clientSecret,
-                                              scope: "openid profile",
-                                              redirectURL: idsRedirectUrl,
-                                              responseType: OIDResponseTypeCode,
-                                              state: nil,
-                                              nonce: nil,
-                                              codeVerifier: nil,
-                                              codeChallenge: nil,
-                                              codeChallengeMethod: nil,
-                                              additionalParameters: nil)
+        let request =  OIDAuthorizationRequest(configuration: configuration,
+                                               clientId: clientId,
+                                               clientSecret: clientSecret,
+                                               scopes: [OIDScopeOpenID, OIDScopeProfile],
+                                               redirectURL: idsRedirectUrl,
+                                               responseType: OIDResponseTypeCode,
+                                               additionalParameters: nil)
 
         return request
     }
