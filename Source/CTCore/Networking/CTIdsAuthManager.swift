@@ -45,7 +45,7 @@ public class CTIdsAuthManager: NSObject {
         guard let idsTokenApiUrlString = CTKit.shared.idsAuthManager?.idsTokenApiUrl,
               let idsTokenApiUrl = URL(string: "\(idsTokenApiUrlString)/oauth"),
               let idsLoginApiUrlString = CTKit.shared.idsAuthManager?.idsLoginApiUrl,
-              let idsLoginApiUrl = URL(string: "\(idsLoginApiUrlString)/v1/login"),
+              let idsLoginApiUrl = URL(string: "\(idsLoginApiUrlString)/login"),
               let idsRedirectUrlString = CTKit.shared.idsAuthManager?.idsRedirectUrl,
               let idsRedirectUrl = URL(string: idsRedirectUrlString) else { return nil }
         
