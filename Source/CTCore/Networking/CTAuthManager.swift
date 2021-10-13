@@ -144,7 +144,10 @@ public class CTAuthManager: CTAuthManagerBase {
             }
 
             keychain.set(tokenResponse.tokenType, forKey: CTKit.TOKEN_TYPE, withAccess: .accessibleAfterFirstUnlock)
-
+            
+            if let tokenId = tokenResponse.tokenId {
+                keychain.set(tokenId, forKey: CTKit.TOKEN_ID, withAccess: .accessibleAfterFirstUnlock)
+            }
         case .userDefaults:
             UserDefaults.standard.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
             UserDefaults.standard.set(Date().addingTimeInterval(Double(tokenResponse.expiresIn)).toAPIDate(),
@@ -155,6 +158,10 @@ public class CTAuthManager: CTAuthManagerBase {
             }
             
             UserDefaults.standard.set(tokenResponse.tokenType, forKey: CTKit.TOKEN_TYPE)
+            
+            if let tokenId = tokenResponse.tokenId {
+                UserDefaults.standard.set(tokenId, forKey: CTKit.TOKEN_ID)
+            }
         default:
             print("NOTH")
         }
@@ -178,6 +185,10 @@ public class CTAuthManager: CTAuthManagerBase {
     
     public func getTokenType() -> String {
         return retrieveDataFromStore(forKey: CTKit.TOKEN_TYPE)
+    }
+    
+    public func getTokenId() -> String {
+        return retrieveDataFromStore(forKey: CTKit.TOKEN_ID)
     }
 }
 

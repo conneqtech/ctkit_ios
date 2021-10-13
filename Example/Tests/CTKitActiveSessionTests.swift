@@ -77,5 +77,5 @@ class CTKitActiveSessionTests: XCTestCase {
         XCTAssertTrue(CTKit.shared.hasActiveSession())
         CTKit.shared.logout()
         XCTAssertFalse(CTKit.shared.hasActiveSession())
-    }
+    } 
 }

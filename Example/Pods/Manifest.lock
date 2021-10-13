@@ -1,7 +1,13 @@
 PODS:
   - Alamofire (4.9.1)
-  - ctkit (1.23.0):
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
+  - ctkit (1.30.0):
     - Alamofire (~> 4.7)
+    - AppAuth
     - RxBlocking
     - RxSwift (~> 5.0)
   - Mockingjay (3.0.0-alpha.1):
@@ -31,6 +37,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AppAuth
     - Mockingjay
     - Nimble
     - Quick
@@ -45,7 +52,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  ctkit: f12d493d02322694ba38446560d541fed22ca74e
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  ctkit: 1705f35ec8d87e61380c44f5b8eb3dc11fe7ae8a
   Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
