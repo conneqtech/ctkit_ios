@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import AppAuth
 
 public class CTKit {
 
@@ -19,12 +20,14 @@ public class CTKit {
     internal static let ACCESS_TOKEN_EXPIRE_TIME_KEY = "accessTokenExpireDataTime"
     internal static let REFRESH_TOKEN_EXPIRE_TIME_KEY = "refreshTokenExpireDataTime"
     
-    internal static let TOKEN_TYPE   = "token_type"
+    internal static let TOKEN_TYPE = "token_type"
+    
+    internal static let TOKEN_ID = "id_token"
 
     public var restManager: CTRestManager!
     public var authManager: CTAuthManager
-    public var idsAuthManager: CTIdsAuthManager? = nil
     
+    public var idsAuthManager: CTIdsAuthManager? = nil
 
     public var authToken = PublishSubject<CTCredentialResponse>()
 
@@ -91,12 +94,14 @@ internal extension CTKit {
         KeychainSwift().delete(CTKit.REFRESH_TOKEN_KEY)
         KeychainSwift().delete(CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY)
         KeychainSwift().delete(CTKit.REFRESH_TOKEN_EXPIRE_TIME_KEY)
+        KeychainSwift().delete(CTKit.TOKEN_ID)
 
         UserDefaults.standard.removeObject(forKey: CTKit.ACTIVE_USER_ID_KEY)
         UserDefaults.standard.removeObject(forKey: CTKit.ACCESS_TOKEN_KEY)
         UserDefaults.standard.removeObject(forKey: CTKit.REFRESH_TOKEN_KEY)
         UserDefaults.standard.removeObject(forKey: CTKit.ACCESS_TOKEN_EXPIRE_TIME_KEY)
         UserDefaults.standard.removeObject(forKey: CTKit.REFRESH_TOKEN_EXPIRE_TIME_KEY)
+        UserDefaults.standard.removeObject(forKey: CTKit.TOKEN_ID)
 
         if CTActivityCenter.shared != nil {
             CTActivityCenter.shared.authManager.terminateActiveSession()
