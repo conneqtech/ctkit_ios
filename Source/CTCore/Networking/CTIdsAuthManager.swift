@@ -110,10 +110,8 @@ public class CTIdsAuthManager: NSObject {
     fileprivate func getOIDEndSessionRequestForLogout() -> OIDEndSessionRequest? {
         
         let tokenId = CTKit.shared.authManager.getTokenId()
-
         guard let idsTokenApiUrlString = CTKit.shared.idsAuthManager?.idsTokenApiUrl,
               let idsTokenApiUrl = URL(string: "\(idsTokenApiUrlString)/oauth"),
-              let idsTokenApiUrlString = CTKit.shared.idsAuthManager?.idsTokenApiUrl,
               let idsLoginApiUrl = URL(string: "\(idsTokenApiUrlString)/v1/openid/logout"),
               let idsRedirectUrlString = CTKit.shared.idsAuthManager?.idsRedirectUrl,
               let idsRedirectUrl = URL(string: idsRedirectUrlString) else { return nil }
