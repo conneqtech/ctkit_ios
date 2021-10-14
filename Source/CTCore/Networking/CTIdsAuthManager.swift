@@ -60,7 +60,7 @@ public class CTIdsAuthManager: NSObject {
                                                redirectURL: idsRedirectUrl,
                                                responseType: OIDResponseTypeCode,
                                                additionalParameters: nil)
-
+        request.setValue(nil, forKey: "nonce")
         return request
     }
     
