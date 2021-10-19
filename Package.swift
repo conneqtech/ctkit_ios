@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "5.1.2"),
-        .package(name: "Alamofire", url: "https://github.com/Alamofire/Alamofire.git", .exact("4.8.2")),
+        .package(name: "Alamofire", url: "https://github.com/Alamofire/Alamofire.git", .exact("4.9.1")),
         .package(name: "AppAuth", url: "https://github.com/openid/AppAuth-iOS.git", from: "1.4.0")
     ],
     targets: [
