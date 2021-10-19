@@ -14,7 +14,7 @@ let package = Package(
             targets: ["ctkit"]),
     ],
     dependencies: [
-        .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", .exact("5.0.0")),
+        .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "5.1.2"),
         .package(name: "Alamofire", url: "https://github.com/Alamofire/Alamofire.git", from: "4.7.0"),
         .package(name: "AppAuth", url: "https://github.com/openid/AppAuth-iOS.git", from: "1.4.0")
     ],
