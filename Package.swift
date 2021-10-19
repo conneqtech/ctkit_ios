@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "ctkit",
     platforms: [
-        .macOS(.v10_12),
+//        .macOS(.v10_12),
         .iOS(.v10)
     ],
     products: [
