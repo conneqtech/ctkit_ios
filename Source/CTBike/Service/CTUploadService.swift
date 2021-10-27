@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import Alamofire
+import UIKit
 
 /**
  The CTUploadService is the main entrypoint where images can be uploaded.
