@@ -1,3 +1,6 @@
+import UIKit
+
+
 // @see https://gist.github.com/schickling/b5d86cb070130f80bb40
 internal extension UIImage {
 
