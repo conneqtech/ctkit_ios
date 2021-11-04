@@ -37,6 +37,8 @@ public struct CTBikeModel: CTBaseModel {
     
     public var currentRideUserId: Int?
     
+    public var odometer: Int?
+    
     public init(id: Int = 0,
                 imei: String = "860000000000000",
                 frameIdentifier: String? = "FR4M3NUMB3R",
@@ -138,6 +140,8 @@ public struct CTBikeModel: CTBaseModel {
         case isRideInProgress = "ride_in_progress"
         
         case currentRideUserId = "current_ride_user_id"
+        
+        case odometer = "odometer"
     }
     
     public func encode(to encoder: Encoder) throws {
