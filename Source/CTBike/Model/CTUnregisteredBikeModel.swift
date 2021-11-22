@@ -29,6 +29,9 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
 
     /// String representation of the fabrication date in yyy-mm-dd format. also acts as a meta field.
     public let manufacturerProductionDate: String?
+    
+    /// Optional email address if the user has already added the bike to a different email address
+    public let email: String?
 
     public let bikeTypeId: Int
 
@@ -42,6 +45,7 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
         case manufacturerModelName = "model_name"
         case manufacturerProductionDate = "fabrication_date"
         case bikeTypeId = "bike_type_id"
+        case email = "email"
     }
 
     public init(partialIMEI: String, frameNumber: String, manufacturerSKU: String, modelName: String?, registrationFlow: CTBikeRegistrationFlow) {
@@ -53,6 +57,7 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
         self.manufacturerModelName = modelName
         self.manufacturerProductionDate = ""
         self.bikeTypeId = -1
+        self.email = nil
     }
 
     public init (from decoder: Decoder) throws {
@@ -69,6 +74,8 @@ public struct CTUnregisteredBikeModel: CTBaseModel {
         manufacturerSKU = try? params.decode(String.self, forKey: .manufacturerSKU)
         manufacturerModelName = try? params.decode(String.self, forKey: .manufacturerModelName)
         manufacturerProductionDate = try? params.decode(String.self, forKey: .manufacturerProductionDate)
+        
+        email = try? params.decode(String.self, forKey: .email)
     }
 
     public func encode(to encoder: Encoder) throws {
