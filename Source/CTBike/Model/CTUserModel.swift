@@ -79,7 +79,7 @@ public struct CTUserModel: CTBaseModel {
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
-        case email = "username"
+        case email = "email"
         case firstName = "first_name"
         case lastName = "last_name"
         case name = "name"
