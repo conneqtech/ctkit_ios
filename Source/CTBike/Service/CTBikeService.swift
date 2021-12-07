@@ -168,7 +168,7 @@ public class CTBikeService: NSObject {
      - Returns: 0 or 1 results, based on a found bike the api.
      */
     public func searchBike(withActivationCode identifier: String) -> Observable<[CTUnregisteredBikeModel]> {
-        return CTKit.shared.restManager.get(endpoint: "bike/search", parameters: ["activation_code": identifier])
+        return CTKit.shared.restManager.get(endpoint: "v2/bike/search", parameters: ["activation_code": identifier])
     }
 
     /**
