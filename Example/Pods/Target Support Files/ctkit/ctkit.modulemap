@@ -1,6 +1,0 @@
-framework module ctkit {
-  umbrella header "ctkit-umbrella.h"
-
-  export *
-  module * { export * }
-}
