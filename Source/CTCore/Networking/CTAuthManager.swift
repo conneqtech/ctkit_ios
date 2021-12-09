@@ -143,10 +143,10 @@ public class CTAuthManager: CTAuthManagerBase {
                 keychain.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY, withAccess: .accessibleAfterFirstUnlock)
             }
 
-            keychain.set(tokenResponse.tokenType, forKey: CTKit.TOKENTYPE, withAccess: .accessibleAfterFirstUnlock)
+            keychain.set(tokenResponse.tokenType, forKey: CTKit.TOKEN_TYPE, withAccess: .accessibleAfterFirstUnlock)
             
             if let tokenId = tokenResponse.tokenId {
-                keychain.set(tokenId, forKey: CTKit.TOKENID, withAccess: .accessibleAfterFirstUnlock)
+                keychain.set(tokenId, forKey: CTKit.TOKEN_ID, withAccess: .accessibleAfterFirstUnlock)
             }
         case .userDefaults:
             UserDefaults.standard.set(tokenResponse.accessToken, forKey: CTKit.ACCESS_TOKEN_KEY)
@@ -157,10 +157,10 @@ public class CTAuthManager: CTAuthManagerBase {
                 UserDefaults.standard.set(refreshToken, forKey: CTKit.REFRESH_TOKEN_KEY)
             }
             
-            UserDefaults.standard.set(tokenResponse.tokenType, forKey: CTKit.TOKENTYPE)
+            UserDefaults.standard.set(tokenResponse.tokenType, forKey: CTKit.TOKEN_TYPE)
             
             if let tokenId = tokenResponse.tokenId {
-                UserDefaults.standard.set(tokenId, forKey: CTKit.TOKENID)
+                UserDefaults.standard.set(tokenId, forKey: CTKit.TOKEN_ID)
             }
         default:
             print("NOTH")
@@ -184,11 +184,11 @@ public class CTAuthManager: CTAuthManagerBase {
     }
     
     public func getTokenType() -> String {
-        return retrieveDataFromStore(forKey: CTKit.TOKENTYPE)
+        return retrieveDataFromStore(forKey: CTKit.TOKEN_TYPE)
     }
     
     public func getTokenId() -> String {
-        return retrieveDataFromStore(forKey: CTKit.TOKENID)
+        return retrieveDataFromStore(forKey: CTKit.TOKEN_ID)
     }
 }
 
