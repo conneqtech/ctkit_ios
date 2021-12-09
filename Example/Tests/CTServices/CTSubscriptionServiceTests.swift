@@ -23,7 +23,7 @@ class CTSubscriptionServiceTests: XCTestCase {
     func testClaimOwner() {
         let bike = try! CTBikeService().fetchOwned().toBlocking().first()!.first!
         do {
-           _ = try CTSubscriptionService().claim(withBike: bike).toBlocking().first()!
+           _ = try CTSubscriptionService().claim(withBike: bike).toBlocking().first()
         } catch {
             print(error)
             XCTFail()
