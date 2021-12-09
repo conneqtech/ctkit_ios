@@ -28,7 +28,7 @@ PODS:
 
 DEPENDENCIES:
   - ctkit (from `../`)
-  - Mockingjay (from `https://github.com/smaato/Mockingjay.git`)
+  - Mockingjay (from `https://github.com/kylef/Mockingjay.git`, branch `master`)
   - Nimble
   - Quick
   - RxBlocking
@@ -49,12 +49,13 @@ EXTERNAL SOURCES:
   ctkit:
     :path: "../"
   Mockingjay:
-    :git: https://github.com/smaato/Mockingjay.git
+    :branch: master
+    :git: https://github.com/kylef/Mockingjay.git
 
 CHECKOUT OPTIONS:
   Mockingjay:
-    :commit: 04d22548dc8832866fd3cb09bef0f878db2bcc18
-    :git: https://github.com/smaato/Mockingjay.git
+    :commit: b88c9dce2b7561cccbf35e2882b3c71a2efa387a
+    :git: https://github.com/kylef/Mockingjay.git
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -68,6 +69,6 @@ SPEC CHECKSUMS:
   RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
   URITemplate: 5f5a79f3e384884102c4e6b3325d159c20a8035a
 
-PODFILE CHECKSUM: 021e9745beb1aefa9753b194222e5cf03f630139
+PODFILE CHECKSUM: 78ad5154352c9ce1164c963bc57054e2a7ffba93
 
 COCOAPODS: 1.11.2
