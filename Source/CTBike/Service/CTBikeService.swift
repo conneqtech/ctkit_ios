@@ -172,6 +172,16 @@ public class CTBikeService: NSObject {
     }
 
     /**
+     Request paring for bikes that under user's other account(s)
+
+     - Parameter identifier: The activation code of the bike you want to add
+     - Returns: A Completable async callback.
+     */
+    public func requestPairing(forActivationCode identifier: String) -> Completable {
+        return CTKit.shared.restManager.postCompletable(endpoint: "v2/tools/support-request", parameters: ["activation_code": identifier])
+    }
+
+    /**
      Get bike type information
 
      - Parameter identifier: The id of the biketype. This can be found by calling searchBike(_)
