@@ -178,7 +178,7 @@ public class CTBikeService: NSObject {
      - Returns: A Completable async callback.
      */
     public func requestPairing(forActivationCode identifier: String) -> Completable {
-        return CTKit.shared.restManager.get(endpoint: "v2/tools/support-request", parameters: ["activation_code": identifier])
+        return CTKit.shared.restManager.postCompletable(endpoint: "v2/tools/support-request", parameters: ["activation_code": identifier])
     }
 
     /**
