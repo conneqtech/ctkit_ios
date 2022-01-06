@@ -92,7 +92,7 @@ class CTPhoneAsAGpsServiceTests: XCTestCase {
     override func setUp() {
         do {
             self.user = try CTUserService().login(email: "paul@conneqtech.com", password: "test").toBlocking().first()
-            self.bike = try CTBikeService().fetchOwned().toBlocking().first()?.filter({ $0.id == 2161 }).first
+            self.bike = try CTBikeService().fetchOwned().toBlocking().first()?.filter({ $0.frameIdentifier == "NONC005" }).first
             self.payload["imei"] = bike?.imei
         } catch {
             print(error)

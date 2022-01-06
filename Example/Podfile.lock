@@ -5,7 +5,7 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
-  - ctkit (1.30.0):
+  - ctkit (1.42.0):
     - Alamofire (~> 4.7)
     - AppAuth
     - RxBlocking
@@ -24,11 +24,11 @@ PODS:
   - RxSwift (5.0.0)
   - RxTest (5.0.0):
     - RxSwift (~> 5)
-  - URITemplate (3.0.0)
+  - URITemplate (3.0.1)
 
 DEPENDENCIES:
   - ctkit (from `../`)
-  - Mockingjay (~> 3.0.0-alpha.1)
+  - Mockingjay (from `https://github.com/kylef/Mockingjay.git`, branch `master`)
   - Nimble
   - Quick
   - RxBlocking
@@ -38,7 +38,6 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AppAuth
-    - Mockingjay
     - Nimble
     - Quick
     - RxBlocking
@@ -49,19 +48,27 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   ctkit:
     :path: "../"
+  Mockingjay:
+    :branch: master
+    :git: https://github.com/kylef/Mockingjay.git
+
+CHECKOUT OPTIONS:
+  Mockingjay:
+    :commit: b88c9dce2b7561cccbf35e2882b3c71a2efa387a
+    :git: https://github.com/kylef/Mockingjay.git
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
-  ctkit: 1705f35ec8d87e61380c44f5b8eb3dc11fe7ae8a
-  Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
+  ctkit: 8abc31c8682599d1440dd0b72e843ba28f99f8ba
+  Mockingjay: 97656c6f59879923976a0a52ef09da45756cca82
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   RxBlocking: c67185d26498ea3cbe3e121917c3c16739e43123
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
-  URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
+  URITemplate: 5f5a79f3e384884102c4e6b3325d159c20a8035a
 
-PODFILE CHECKSUM: 9b2fc450843f3b9635b3d85b8193359ef62d3934
+PODFILE CHECKSUM: 78ad5154352c9ce1164c963bc57054e2a7ffba93
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2
