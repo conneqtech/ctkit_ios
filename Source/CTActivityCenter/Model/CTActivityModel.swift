@@ -29,8 +29,8 @@ public struct CTActivtyModel: CTBaseModel {
     public let language: String?
     public let creationDate: Date
 
-    public init() {
-
+    public init(creationDate: Date) {
+        self.creationDate = creationDate
     }
     
     enum CodingKeys: String, CodingKey {
