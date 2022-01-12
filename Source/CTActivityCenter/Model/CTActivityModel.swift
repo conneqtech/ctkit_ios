@@ -29,20 +29,21 @@ public struct CTActivtyModel: CTBaseModel {
     public let language: String?
     public let creationDate: Date
 
+    // Note: we need this init for testing purposes
     public init(
-        id: String,
-        header: String,
-        headerArgs: [String],
-        subHeader: String,
+        id: String = "",
+        header: String = "",
+        headerArgs: [String] = [],
+        subHeader: String = "",
         subHeaderArgs: [String],
         text: String? = nil,
         textArgs: [String],
         button: CTActivityButtonModel? = nil,
         iconUrl: String? = nil,
-        isFeatured: Bool,
-        isDismissable: Bool,
+        isFeatured: Bool = false,
+        isDismissable: Bool = true,
         language: String? = nil,
-        creationDate: Date
+        creationDate: Date = Date()
     
     ) {
         self.id = id
