@@ -29,6 +29,10 @@ public struct CTActivtyModel: CTBaseModel {
     public let language: String?
     public let creationDate: Date
 
+    public init() {
+
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
 
