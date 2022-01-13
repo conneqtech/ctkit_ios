@@ -152,6 +152,15 @@ public class CTUserService: NSObject {
             return user
         }
     }
+    
+    /**
+     Deletes a user and by changing its status. Also affects the active subscptions.
+     
+     - Returns: A completable call indicating the operation was successful: 4xx means that there is an error and that the user should contact support. 5xx means that he could try again or contact support.
+     */
+    public func deleteUser(withId identifier: Int) -> Observable<Int> {
+        return CTKit.shared.restManager.archive(endpoint: "user").map { (_: CTUserModel) in identifier }
+    }
 }
 
 // MARK: - Session related functions
