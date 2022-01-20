@@ -159,7 +159,7 @@ public class CTUserService: NSObject {
      - Returns: A completable call
      */
     public func deleteAccount() -> Completable {
-        return CTKit.shared.restManager.genericCompletableCall(.patch, endpoint: "user", parameters: ["active_state": 2], useToken: nil)
+        return CTKit.shared.restManager.genericCompletableCall(.patch, endpoint: "user/me", parameters: ["active_state": 2], useToken: nil)
     }
 }
 
