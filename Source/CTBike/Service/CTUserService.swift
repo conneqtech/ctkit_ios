@@ -152,6 +152,15 @@ public class CTUserService: NSObject {
             return user
         }
     }
+    
+    /**
+     Deletes a user and by changing its status. Also affects the active subscptions.
+     
+     - Returns: A completable call
+     */
+    public func deleteAccount() -> Completable {
+        return CTKit.shared.restManager.genericCompletableCall(.patch, endpoint: "user/me", parameters: ["active_state": 2], useToken: nil)
+    }
 }
 
 // MARK: - Session related functions

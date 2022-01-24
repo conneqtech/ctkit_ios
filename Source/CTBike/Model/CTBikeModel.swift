@@ -21,7 +21,6 @@ public struct CTBikeModel: CTBaseModel {
     public var creationDate: Date?
     public var isStolen: Bool?
     public var isRequestingUserOwner: Bool
-    public var type: String?
     
     public let bluetoothPassword: String?
     public var bluetoothName: String?
@@ -51,7 +50,6 @@ public struct CTBikeModel: CTBaseModel {
                 creationDate: Date? = nil,
                 isStolen: Bool? = false,
                 isRequestingUserOwner: Bool = false,
-                type: String? = nil,
                 bluetoothPassword: String? = nil,
                 bluetoothName: String? = nil,
                 inviteUri: String? = nil,
@@ -70,7 +68,6 @@ public struct CTBikeModel: CTBaseModel {
         self.creationDate = creationDate
         self.isStolen = isStolen
         self.isRequestingUserOwner = isRequestingUserOwner
-        self.type = type
         self.bluetoothPassword = bluetoothPassword
         self.bluetoothName = bluetoothName
         self.inviteUri = inviteUri
@@ -126,7 +123,6 @@ public struct CTBikeModel: CTBaseModel {
         case creationDate = "creation_date"
         case isStolen = "is_stolen"
         case isRequestingUserOwner = "is_requesting_user_owner"
-        case type = "type"
         
         case bluetoothPassword = "blepass"
         case bluetoothName = "blename"
