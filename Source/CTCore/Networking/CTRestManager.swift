@@ -117,7 +117,7 @@ public class CTRestManager {
         }
     }
 
-    private func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Completable {
+    func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Completable {
         return Completable.create { (completable) in
             if (!Connectivity.isConnectedToInternet) {
                 completable(.error(CTErrorHandler().handleNoInternet()))
