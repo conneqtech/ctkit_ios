@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct CTProductTypeModel: CTBaseModel {
     
     public let startDate: Date?
@@ -27,5 +26,24 @@ public struct CTProductTypeModel: CTBaseModel {
         case logoUrl = "logo_url"
         case insurance
         case active
+    }
+    
+    // Note: we need this init for testing purposes
+    public init(
+        startDate: Date? = nil,
+        endDate: Date? = nil,
+        cancelled: Bool? = nil,
+        productTypeId: CTSubscriptionProductType = .insurance,
+        logoUrl: String = "",
+        insurance: CTInsuranceModel? = nil,
+        active: Bool = true
+    ) {
+        self.startDate = startDate
+        self.endDate = endDate
+        self.cancelled = cancelled
+        self.productTypeId = productTypeId
+        self.logoUrl = logoUrl
+        self.insurance = insurance
+        self.active = active
     }
 }
