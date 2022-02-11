@@ -44,6 +44,7 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         case country = "country"
         case logo = "logo"
         case description = "descriptions"
+        case filesTheftReport = "files_theft_report"
     }
     
     public init(id: Int, name: String, email: String, phoneNumber: String, address: String, postalCode: String, city: String, country: String, logo: String, description: CTTheftCasePartnerDescriptionModel, filesTheftReport: Bool? = nil) {
