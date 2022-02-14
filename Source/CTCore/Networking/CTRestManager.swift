@@ -181,7 +181,7 @@ public class CTRestManager {
                                 observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                                 return
                             }
-                            print("OSITA \(data)")
+                            print("OSITA \(String(data: data, encoding: .utf8))")
                             observer.onNext(getResponse)
                             observer.onCompleted()
                         case .failure(let error):
