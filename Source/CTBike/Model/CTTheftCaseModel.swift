@@ -99,7 +99,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         ownerCity: String = "",
         ownerCountry: String = "",
         reportDate: Date = Date(),
-        caseStatus: String = "",
+        caseStatus: TheftCaseStatus? = nil,
         bikeIsInsured: Bool = false,
         policeCaseNumber: String = "",
         caseFinalized: Bool = false,
