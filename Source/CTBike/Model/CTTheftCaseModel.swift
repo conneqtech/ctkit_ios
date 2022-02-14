@@ -7,6 +7,17 @@
 
 import Foundation
 
+public enum TheftCaseStatus: String {
+    case reported
+    case inrecovery = "in recovery"
+    case falseClaim = "false claim"
+    case found
+    case returned
+    case notFound = "not found"
+    case replaced
+    case cancelled
+}
+
 public struct CTTheftCaseModel: CTBaseModel {
 
     public let id: Int?
@@ -31,7 +42,7 @@ public struct CTTheftCaseModel: CTBaseModel {
     public var ownerCity: String?
     public var ownerCountry: String?
     public var reportDate: Date?
-    public var caseStatus: String?
+    public var caseStatus: TheftCaseStatus?
     public var bikeIsInsured: Bool?
     public var policeCaseNumber: String?
 
