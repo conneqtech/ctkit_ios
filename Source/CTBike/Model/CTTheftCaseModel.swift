@@ -8,14 +8,14 @@
 import Foundation
 
 public enum TheftCaseStatus: String {
-    case reported
+    case reported = "reported"
     case inrecovery = "in recovery"
     case falseClaim = "false claim"
-    case found
-    case returned
+    case found = "found"
+    case returned = "returned"
     case notFound = "not found"
-    case replaced
-    case cancelled
+    case replaced = "replaced"
+    case cancelled = "cancelled"
 }
 
 public struct CTTheftCaseModel: CTBaseModel {
