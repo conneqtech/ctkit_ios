@@ -181,7 +181,6 @@ public class CTRestManager {
                                 observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                                 return
                             }
-
                             observer.onNext(getResponse)
                             observer.onCompleted()
                         case .failure(let error):
