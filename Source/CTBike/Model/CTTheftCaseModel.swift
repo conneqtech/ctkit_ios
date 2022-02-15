@@ -42,7 +42,7 @@ public struct CTTheftCaseModel: CTBaseModel {
     public var ownerCity: String?
     public var ownerCountry: String?
     public var reportDate: Date?
-    public var caseStatusString: String?
+    public var caseStatusRaw: String?
     public var bikeIsInsured: Bool?
     public var policeCaseNumber: String?
 
@@ -50,8 +50,8 @@ public struct CTTheftCaseModel: CTBaseModel {
     public let linkable: Bool?
     public let cancellable: Bool?
 
-    public var theftCaseStatus: TheftCaseStatus {
-        switch self.caseStatusString {
+    public var status: TheftCaseStatus {
+        switch self.caseStatusRaw {
         case "reported":
             return .reported
         case "in recovery":
@@ -94,7 +94,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         case ownerCity = "owner_city"
         case ownerCountry = "owner_country"
         case reportDate = "report_date"
-        case caseStatusString = "case_status"
+        case caseStatusRaw = "case_status"
         case bikeIsInsured = "bike_is_insured"
         case policeCaseNumber = "police_case_number"
         case caseFinalized = "finalized"
@@ -122,7 +122,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         ownerCity: String = "",
         ownerCountry: String = "",
         reportDate: Date = Date(),
-        caseStatusString: String = "",
+        caseStatusRaw: String = "",
         bikeIsInsured: Bool = false,
         policeCaseNumber: String = "",
         caseFinalized: Bool = false,
@@ -147,7 +147,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.ownerCity = ownerCity
         self.ownerCountry = ownerCountry
         self.reportDate = reportDate
-        self.caseStatusString = caseStatusString
+        self.caseStatusRaw = caseStatusRaw
         self.bikeIsInsured = bikeIsInsured
         self.policeCaseNumber = policeCaseNumber
         self.caseFinalized = caseFinalized
