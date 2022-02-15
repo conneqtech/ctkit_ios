@@ -7,6 +7,17 @@
 
 import Foundation
 
+public enum TheftCaseStatus: String {
+    case reported
+    case inrecovery
+    case falseClaim
+    case found
+    case returned
+    case notFound
+    case replaced
+    case cancelled
+}
+
 public struct CTTheftCaseModel: CTBaseModel {
 
     public let id: Int?
@@ -31,7 +42,7 @@ public struct CTTheftCaseModel: CTBaseModel {
     public var ownerCity: String?
     public var ownerCountry: String?
     public var reportDate: Date?
-    public var caseStatus: String?
+    public var caseStatusRaw: String?
     public var bikeIsInsured: Bool?
     public var policeCaseNumber: String?
 
@@ -39,6 +50,29 @@ public struct CTTheftCaseModel: CTBaseModel {
     public let linkable: Bool?
     public let cancellable: Bool?
 
+    public var status: TheftCaseStatus {
+        switch self.caseStatusRaw {
+        case "reported":
+            return .reported
+        case "in recovery":
+            return .inrecovery
+        case "false claim":
+            return .falseClaim
+        case "found":
+            return .found
+        case "returned":
+            return .returned
+        case "not found":
+            return .notFound
+        case "replaced":
+            return .replaced
+        case "cancelled":
+            return .cancelled
+        default:
+            return .reported
+        }
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case caseNumber = "case_number"
@@ -60,7 +94,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         case ownerCity = "owner_city"
         case ownerCountry = "owner_country"
         case reportDate = "report_date"
-        case caseStatus = "case_status"
+        case caseStatusRaw = "case_status"
         case bikeIsInsured = "bike_is_insured"
         case policeCaseNumber = "police_case_number"
         case caseFinalized = "finalized"
@@ -88,7 +122,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         ownerCity: String = "",
         ownerCountry: String = "",
         reportDate: Date = Date(),
-        caseStatus: String = "",
+        caseStatusRaw: String = "",
         bikeIsInsured: Bool = false,
         policeCaseNumber: String = "",
         caseFinalized: Bool = false,
@@ -113,7 +147,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.ownerCity = ownerCity
         self.ownerCountry = ownerCountry
         self.reportDate = reportDate
-        self.caseStatus = caseStatus
+        self.caseStatusRaw = caseStatusRaw
         self.bikeIsInsured = bikeIsInsured
         self.policeCaseNumber = policeCaseNumber
         self.caseFinalized = caseFinalized
