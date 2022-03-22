@@ -5,7 +5,7 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
-  - ctkit (1.47.0):
+  - ctkit (1.51.0):
     - Alamofire (~> 4.7)
     - AppAuth
     - RxBlocking
@@ -60,7 +60,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
-  ctkit: 3a8615b43958788a938f889a56ccceb8031160a4
+  ctkit: dee267fe423a4acca46fb5f2f0072d4bf325572e
   Mockingjay: 97656c6f59879923976a0a52ef09da45756cca82
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
