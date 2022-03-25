@@ -64,18 +64,19 @@ public class CTIdsAuthManager: NSObject {
         return request
     }
     
-    public func login(onViewController viewController: UIViewController, clientId: String, clientSecret: String, callBack: @escaping () -> ()) {
+    public func login(onViewController viewController: UIViewController, clientId: String, clientSecret: String, callBack: @escaping (Error?) -> ()) {
         
         guard let request = CTKit.shared.idsAuthManager?.getAppAuthLoginRequest(clientId: clientId, clientSecret: clientSecret) else { return }
         
         CTKit.shared.idsAuthManager?.currentAuthorizationFlow = OIDAuthState.authState(byPresenting: request, presenting: viewController) { authState, error in
-            if let authState = authState {
+            if let authState = authState, error == nil {
 
                 guard let token = authState.lastTokenResponse else { return }
                 CTKit.shared.idsAuthManager?.saveToken(token)
-                callBack()
+                callBack(nil)
             } else {
                 print("Authorization error: \(String(describing: error))")
+                callBack(error)
             }
         }
     }
