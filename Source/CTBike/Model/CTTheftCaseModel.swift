@@ -30,6 +30,7 @@ public struct CTTheftCaseModel: CTBaseModel {
     public var bikeFrameType: String?
     public var bikeType: String?
     public var bikeColor: String?
+    public var bikeSecondaryColor: String?
     public var bikeAdditionalDetails: String?
     public var bikeImages: [String]?
     public var bikeIdentifiers: [String]?
@@ -84,6 +85,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         case bikeFrameType = "bike_frame_type"
         case bikeType = "bike_type"
         case bikeColor = "bike_color"
+        case bikeSecondaryColor = "bike_secondary_color"
         case bikeAdditionalDetails = "bike_additional_details"
         case bikeImages = "bike_images"
         case bikeIdentifiers = "bike_identifiers"
@@ -113,6 +115,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         bikeFrameType: String = "",
         bikeType: String = "",
         bikeColor: String = "",
+        bikeSecondaryColor: String = "",
         bikeAdditionalDetails: String = "",
         bikeImages: [String] = [],
         bikeIdentifiers: [String] = [],
@@ -139,6 +142,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.bikeFrameType = bikeFrameType
         self.bikeType = bikeType
         self.bikeColor = bikeColor
+        self.bikeSecondaryColor = bikeColor
         self.bikeAdditionalDetails = bikeAdditionalDetails
         self.bikeImages = bikeImages
         self.bikeIdentifiers = bikeIdentifiers
@@ -165,6 +169,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         try container.encode(bikeFrameType, forKey: .bikeFrameType)
         try container.encode(bikeType, forKey: .bikeType)
         try container.encode(bikeColor, forKey: .bikeColor)
+        try container.encode(bikeSecondaryColor, forKey: .bikeSecondaryColor)
         try container.encode(bikeAdditionalDetails, forKey: .bikeAdditionalDetails)
         try container.encode(bikeImages, forKey: .bikeImages)
         try container.encode(bikeIdentifiers, forKey: .bikeIdentifiers)
