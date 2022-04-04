@@ -33,7 +33,6 @@ public struct CTTheftCaseModel: CTBaseModel {
     public var bikeSecondaryColor: String?
     public var bikeAdditionalDetails: String?
     public var bikeImages: [String]?
-    public var bikeIdentifiers: [String]?
 
     //Owner details
     public var ownerName: String?
@@ -88,7 +87,6 @@ public struct CTTheftCaseModel: CTBaseModel {
         case bikeSecondaryColor = "bike_secondary_color"
         case bikeAdditionalDetails = "bike_additional_details"
         case bikeImages = "bike_images"
-        case bikeIdentifiers = "bike_identifiers"
         case ownerName = "owner_name"
         case ownerEmail = "owner_email"
         case ownerPhone = "owner_phone_number"
@@ -118,7 +116,6 @@ public struct CTTheftCaseModel: CTBaseModel {
         bikeSecondaryColor: String = "",
         bikeAdditionalDetails: String = "",
         bikeImages: [String] = [],
-        bikeIdentifiers: [String] = [],
         ownerName: String = "",
         ownerEmail: String = "",
         ownerPhone: String = "",
@@ -145,7 +142,6 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.bikeSecondaryColor = bikeColor
         self.bikeAdditionalDetails = bikeAdditionalDetails
         self.bikeImages = bikeImages
-        self.bikeIdentifiers = bikeIdentifiers
         self.ownerName = ownerName
         self.ownerEmail = ownerEmail
         self.ownerPhone = ownerPhone
@@ -172,7 +168,6 @@ public struct CTTheftCaseModel: CTBaseModel {
         try container.encode(bikeSecondaryColor, forKey: .bikeSecondaryColor)
         try container.encode(bikeAdditionalDetails, forKey: .bikeAdditionalDetails)
         try container.encode(bikeImages, forKey: .bikeImages)
-        try container.encode(bikeIdentifiers, forKey: .bikeIdentifiers)
         try container.encode(ownerName, forKey: .ownerName)
         try container.encode(ownerEmail, forKey: .ownerEmail)
         try container.encode(ownerPhone, forKey: .ownerPhone)
