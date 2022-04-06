@@ -69,15 +69,23 @@ public class CTIdsAuthManager: NSObject {
         guard let request = CTKit.shared.idsAuthManager?.getAppAuthLoginRequest(clientId: clientId, clientSecret: clientSecret) else { return }
 
         CTKit.shared.idsAuthManager?.currentAuthorizationFlow = OIDAuthState.authState(byPresenting: request, presenting: viewController) { optionalAuthState, optionalError in
-            if let authState = optionalAuthState,
-               let token = authState.lastTokenResponse, optionalError == nil {
-                CTKit.shared.idsAuthManager?.saveToken(token)
-                callBack(nil)
-            } else {
-                let error = optionalError ?? NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: "authState and/or authState.lastTokenResponse are nil"])
-                print("Authorization error: \(String(describing: error))")
-                callBack(error)
-            }
+//            if let authState = optionalAuthState,
+//               let token = authState.lastTokenResponse, optionalError == nil {
+//                CTKit.shared.idsAuthManager?.saveToken(token)
+//                callBack(nil)
+//            } else {
+//                if let error = optionalError {
+//                    print("Authorization error: \(String(describing: error))")
+//                    callBack(error)
+//                } else {
+                    var message = "authState is nil"
+                    if let authState = optionalAuthState, authState.lastTokenResponse == nil {
+                        message = "authState.lastTokenResponse is nil"
+                    }
+                    let error = optionalError ?? NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: message])
+                    callBack(error)
+//                }
+//            }
         }
     }
     
