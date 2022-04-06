@@ -82,7 +82,7 @@ public class CTIdsAuthManager: NSObject {
                     if let authState = optionalAuthState, authState.lastTokenResponse == nil {
                         message = "authState.lastTokenResponse is nil"
                     }
-                    let error = optionalError ?? NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: message])
+                    let error = NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: message])
                     callBack(error)
                 }
             }
