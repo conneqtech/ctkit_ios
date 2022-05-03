@@ -18,6 +18,46 @@ public enum TheftCaseStatus: String {
     case cancelled
 }
 
+func getCaseStatus(caseStatusRaw: String?) -> TheftCaseStatus {
+    switch caseStatusRaw {
+    case "reported":
+        return .reported
+    case "in recovery":
+        return .inrecovery
+    case "false claim":
+        return .falseClaim
+    case "found":
+        return .found
+    case "returned":
+        return .returned
+    case "not found":
+        return .notFound
+    case "replaced":
+        return .replaced
+    case "cancelled":
+        return .cancelled
+    default:
+        return .reported
+    }
+}
+
+public struct CaseStatusChange: CTBaseModel {
+    public let logDate: Date?
+    public let caseStatusRaw: String?
+    public var status: TheftCaseStatus {
+        return getCaseStatus(caseStatusRaw: self.caseStatusRaw)
+    }
+    enum CodingKeys: String, CodingKey {
+        case logDate = "log_date"
+        case caseStatusRaw = "case_status"
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(logDate, forKey: .logDate)
+        try container.encode(caseStatusRaw, forKey: .caseStatusRaw)
+    }
+}
+
 public struct CTTheftCaseModel: CTBaseModel {
 
     public let id: Int?
@@ -50,28 +90,13 @@ public struct CTTheftCaseModel: CTBaseModel {
     public let caseFinalized: Bool?
     public let linkable: Bool?
     public let cancellable: Bool?
+    
+    public let caseStatusLog: [CaseStatusChange]?
+    public let contactsUser: Bool?
+    public let alwaysReplace: Bool?
 
     public var status: TheftCaseStatus {
-        switch self.caseStatusRaw {
-        case "reported":
-            return .reported
-        case "in recovery":
-            return .inrecovery
-        case "false claim":
-            return .falseClaim
-        case "found":
-            return .found
-        case "returned":
-            return .returned
-        case "not found":
-            return .notFound
-        case "replaced":
-            return .replaced
-        case "cancelled":
-            return .cancelled
-        default:
-            return .reported
-        }
+        return getCaseStatus(caseStatusRaw: self.caseStatusRaw)
     }
     
     enum CodingKeys: String, CodingKey {
@@ -98,10 +123,14 @@ public struct CTTheftCaseModel: CTBaseModel {
         case caseStatusRaw = "case_status"
         case bikeIsInsured = "bike_is_insured"
         case policeCaseNumber = "police_case_number"
+
         case caseFinalized = "finalized"
-        
         case linkable = "linkable"
         case cancellable = "cancellable"
+
+        case caseStatusLog = "case_status_log"
+        case contactsUser = "contacts_user"
+        case alwaysReplace = "always_replace"
     }
 
     public init(
@@ -129,7 +158,10 @@ public struct CTTheftCaseModel: CTBaseModel {
         policeCaseNumber: String = "",
         caseFinalized: Bool = false,
         linkable: Bool = true,
-        cancellable: Bool = false) {
+        cancellable: Bool = false,
+        caseStatusLog: [CaseStatusChange]? = nil,
+        contactsUser: Bool = false,
+        alwaysReplace: Bool = false) {
         
         self.id = id
         self.caseNumber = caseNumber
@@ -156,6 +188,9 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.caseFinalized = caseFinalized
         self.linkable = linkable
         self.cancellable = cancellable
+        self.caseStatusLog = caseStatusLog
+        self.contactsUser = contactsUser
+        self.alwaysReplace = alwaysReplace
     }
 
     public func encode(to encoder: Encoder) throws {
