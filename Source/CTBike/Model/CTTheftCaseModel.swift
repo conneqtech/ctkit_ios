@@ -42,19 +42,25 @@ func getCaseStatus(caseStatusRaw: String?) -> TheftCaseStatus {
 }
 
 public struct CaseStatusChange: CTBaseModel {
+
     public let logDate: Date?
     public let caseStatusRaw: String?
+    
     public var status: TheftCaseStatus {
         return getCaseStatus(caseStatusRaw: self.caseStatusRaw)
     }
+    
     enum CodingKeys: String, CodingKey {
         case logDate = "log_date"
         case caseStatusRaw = "case_status"
     }
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(logDate, forKey: .logDate)
-        try container.encode(caseStatusRaw, forKey: .caseStatusRaw)
+
+    public init(
+        logDate: Date? = nil,
+        caseStatusRaw: String? = nil
+    ) {
+        self.logDate = logDate
+        self.caseStatusRaw = caseStatusRaw
     }
 }
 
