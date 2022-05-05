@@ -213,5 +213,6 @@ public struct CTTheftCaseModel: CTBaseModel {
         try container.encode(bikeIsInsured, forKey: .bikeIsInsured)
         try container.encode(policeCaseNumber, forKey: .policeCaseNumber)
         try container.encode(cancellable, forKey: .cancellable)
+        try container.encode(contactsUser, forKey: .contactsUser)
     }
 }
