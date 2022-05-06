@@ -96,10 +96,10 @@ public struct CTTheftCaseModel: CTBaseModel {
     public let caseFinalized: Bool?
     public let linkable: Bool?
     public let cancellable: Bool?
-    
-    public let caseStatusLog: [CaseStatusChange]?
-    public let contactsUser: Bool?
-    public let alwaysReplace: Bool?
+
+    public var caseStatusLog: [CaseStatusChange]?
+    public var contactsUser: Bool?
+    public var alwaysReplace: Bool?
 
     public var status: TheftCaseStatus {
         return getCaseStatus(caseStatusRaw: self.caseStatusRaw)
