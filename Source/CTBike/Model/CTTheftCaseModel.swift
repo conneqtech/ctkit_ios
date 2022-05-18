@@ -70,7 +70,7 @@ public struct CTTheftCaseModel: CTBaseModel {
     public var caseNumber: String?
     public let partnerCaseNumber: String?
 
-    public let partner: CTTheftCasePartnerModel?
+    public var partner: CTTheftCasePartnerModel?
 
     public var bikeId: Int?
     public var bikeFrameType: String?
