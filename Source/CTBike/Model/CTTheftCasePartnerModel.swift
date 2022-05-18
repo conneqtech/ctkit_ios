@@ -30,7 +30,7 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
     public let country: String
     public let logo: String
     public let description: CTTheftCasePartnerDescriptionModel
-    public let filesTheftReport: Bool?
+    public var filesTheftReport: Bool?
     
 
      enum CodingKeys: String, CodingKey {
