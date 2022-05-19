@@ -74,9 +74,17 @@ public class CTIdsAuthManager: NSObject {
                 CTKit.shared.idsAuthManager?.saveToken(token)
                 callBack(nil)
             } else {
-                let error = optionalError ?? NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: "authState and/or authState.lastTokenResponse are nil"])
-                print("Authorization error: \(String(describing: error))")
-                callBack(error)
+                if let error = optionalError {
+                    print("Authorization error: \(String(describing: error))")
+                    callBack(error)
+                } else {
+                    var message = "authState is nil"
+                    if let authState = optionalAuthState, authState.lastTokenResponse == nil {
+                        message = "authState.lastTokenResponse is nil"
+                    }
+                    let error = NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: message])
+                    callBack(error)
+                }
             }
         }
     }
