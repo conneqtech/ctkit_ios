@@ -30,7 +30,7 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
     public let country: String
     public let logo: String
     public let description: CTTheftCasePartnerDescriptionModel
-    public let filesTheftReport: Bool?
+    public var filesTheftReport: Bool?
     
 
      enum CodingKeys: String, CodingKey {
@@ -47,7 +47,19 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         case filesTheftReport = "files_theft_report"
     }
     
-    public init(id: Int, name: String, email: String, phoneNumber: String, address: String, postalCode: String, city: String, country: String, logo: String, description: CTTheftCasePartnerDescriptionModel, filesTheftReport: Bool? = nil) {
+    public init(
+        id: Int = 0,
+        name: String = "",
+        email: String = "",
+        phoneNumber: String = "",
+        address: String = "",
+        postalCode: String = "",
+        city: String = "",
+        country: String = "",
+        logo: String = "",
+        description: CTTheftCasePartnerDescriptionModel,
+        filesTheftReport: Bool? = nil) {
+
         self.id = id
         self.name = name
         self.email = email
