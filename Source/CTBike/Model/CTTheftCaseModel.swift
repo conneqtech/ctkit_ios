@@ -18,18 +18,65 @@ public enum TheftCaseStatus: String {
     case cancelled
 }
 
+func getCaseStatus(caseStatusRaw: String?) -> TheftCaseStatus {
+    switch caseStatusRaw {
+    case "reported":
+        return .reported
+    case "in recovery":
+        return .inrecovery
+    case "false claim":
+        return .falseClaim
+    case "found":
+        return .found
+    case "returned":
+        return .returned
+    case "not found":
+        return .notFound
+    case "replaced":
+        return .replaced
+    case "cancelled":
+        return .cancelled
+    default:
+        return .reported
+    }
+}
+
+public struct CaseStatusChange: CTBaseModel {
+
+    public let logDate: Date?
+    public let caseStatusRaw: String?
+    
+    public var status: TheftCaseStatus {
+        return getCaseStatus(caseStatusRaw: self.caseStatusRaw)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case logDate = "log_date"
+        case caseStatusRaw = "case_status"
+    }
+
+    public init(
+        logDate: Date? = nil,
+        caseStatusRaw: String? = nil
+    ) {
+        self.logDate = logDate
+        self.caseStatusRaw = caseStatusRaw
+    }
+}
+
 public struct CTTheftCaseModel: CTBaseModel {
 
     public let id: Int?
     public var caseNumber: String?
     public let partnerCaseNumber: String?
 
-    public let partner: CTTheftCasePartnerModel?
+    public var partner: CTTheftCasePartnerModel?
 
     public var bikeId: Int?
     public var bikeFrameType: String?
     public var bikeType: String?
     public var bikeColor: String?
+    public var bikeSecondaryColor: String?
     public var bikeAdditionalDetails: String?
     public var bikeImages: [String]?
 
@@ -50,27 +97,12 @@ public struct CTTheftCaseModel: CTBaseModel {
     public let linkable: Bool?
     public let cancellable: Bool?
 
+    public var caseStatusLog: [CaseStatusChange]?
+    public var contactsUser: Bool?
+    public var alwaysReplace: Bool?
+
     public var status: TheftCaseStatus {
-        switch self.caseStatusRaw {
-        case "reported":
-            return .reported
-        case "in recovery":
-            return .inrecovery
-        case "false claim":
-            return .falseClaim
-        case "found":
-            return .found
-        case "returned":
-            return .returned
-        case "not found":
-            return .notFound
-        case "replaced":
-            return .replaced
-        case "cancelled":
-            return .cancelled
-        default:
-            return .reported
-        }
+        return getCaseStatus(caseStatusRaw: self.caseStatusRaw)
     }
     
     enum CodingKeys: String, CodingKey {
@@ -83,9 +115,9 @@ public struct CTTheftCaseModel: CTBaseModel {
         case bikeFrameType = "bike_frame_type"
         case bikeType = "bike_type"
         case bikeColor = "bike_color"
+        case bikeSecondaryColor = "bike_secondary_color"
         case bikeAdditionalDetails = "bike_additional_details"
         case bikeImages = "bike_images"
-
         case ownerName = "owner_name"
         case ownerEmail = "owner_email"
         case ownerPhone = "owner_phone_number"
@@ -97,10 +129,14 @@ public struct CTTheftCaseModel: CTBaseModel {
         case caseStatusRaw = "case_status"
         case bikeIsInsured = "bike_is_insured"
         case policeCaseNumber = "police_case_number"
+
         case caseFinalized = "finalized"
-        
         case linkable = "linkable"
         case cancellable = "cancellable"
+
+        case caseStatusLog = "case_status_log"
+        case contactsUser = "contacts_user"
+        case alwaysReplace = "always_replace"
     }
 
     public init(
@@ -112,6 +148,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         bikeFrameType: String = "",
         bikeType: String = "",
         bikeColor: String = "",
+        bikeSecondaryColor: String = "",
         bikeAdditionalDetails: String = "",
         bikeImages: [String] = [],
         ownerName: String = "",
@@ -127,7 +164,10 @@ public struct CTTheftCaseModel: CTBaseModel {
         policeCaseNumber: String = "",
         caseFinalized: Bool = false,
         linkable: Bool = true,
-        cancellable: Bool = false) {
+        cancellable: Bool = false,
+        caseStatusLog: [CaseStatusChange]? = nil,
+        contactsUser: Bool = false,
+        alwaysReplace: Bool = false) {
         
         self.id = id
         self.caseNumber = caseNumber
@@ -137,6 +177,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.bikeFrameType = bikeFrameType
         self.bikeType = bikeType
         self.bikeColor = bikeColor
+        self.bikeSecondaryColor = bikeColor
         self.bikeAdditionalDetails = bikeAdditionalDetails
         self.bikeImages = bikeImages
         self.ownerName = ownerName
@@ -153,6 +194,9 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.caseFinalized = caseFinalized
         self.linkable = linkable
         self.cancellable = cancellable
+        self.caseStatusLog = caseStatusLog
+        self.contactsUser = contactsUser
+        self.alwaysReplace = alwaysReplace
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -162,6 +206,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         try container.encode(bikeFrameType, forKey: .bikeFrameType)
         try container.encode(bikeType, forKey: .bikeType)
         try container.encode(bikeColor, forKey: .bikeColor)
+        try container.encode(bikeSecondaryColor, forKey: .bikeSecondaryColor)
         try container.encode(bikeAdditionalDetails, forKey: .bikeAdditionalDetails)
         try container.encode(bikeImages, forKey: .bikeImages)
         try container.encode(ownerName, forKey: .ownerName)
