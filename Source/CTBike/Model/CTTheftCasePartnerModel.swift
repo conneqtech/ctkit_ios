@@ -7,17 +7,6 @@
 
 import Foundation
 
-public struct CTTheftCasePartnerDescriptionModel: CTBaseModel {
-    public let en: String
-    public let de: String
-    public let nl: String
-    
-    public init(en: String, de: String, nl: String) {
-        self.en = en
-        self.de = de
-        self.nl = nl
-    }
-}
 
 public struct CTTheftCasePartnerModel: CTBaseModel {
     public let id: Int
@@ -29,7 +18,6 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
     public let city: String
     public let country: String
     public let logo: String
-    public let description: CTTheftCasePartnerDescriptionModel
     public var filesTheftReport: Bool?
     
 
@@ -43,7 +31,6 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         case city = "city"
         case country = "country"
         case logo = "logo"
-        case description = "descriptions"
         case filesTheftReport = "files_theft_report"
     }
     
@@ -57,7 +44,6 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         city: String = "",
         country: String = "",
         logo: String = "",
-        description: CTTheftCasePartnerDescriptionModel,
         filesTheftReport: Bool? = nil) {
 
         self.id = id
@@ -69,7 +55,6 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         self.city = city
         self.country = country
         self.logo = logo
-        self.description = description
         self.filesTheftReport = filesTheftReport
     }
 }
