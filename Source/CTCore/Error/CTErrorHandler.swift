@@ -59,13 +59,14 @@ internal class CTErrorHandler: NSObject {
                             description: "We received an API error that we could not handle. Please try again at a later time")
     }
 
-    func handle(response: DataResponse<Any>, error: Error) -> CTErrorProtocol {
+    func handle(response: DataResponse<Any>, error: Error, url: String) -> CTErrorProtocol {
         if(!Connectivity.isConnectedToInternet){
             return CTErrorHandler().handleNoInternet()
         }
         
         if self.isErrorReportable(error, response: response) {
-            let errorInfo = error.getInfoFromResponse(response)
+            var errorInfo = error.getInfoFromResponse(response)
+            errorInfo["url"] = url
             NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: errorInfo)
         }
         
