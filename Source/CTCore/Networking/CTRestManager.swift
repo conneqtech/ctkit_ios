@@ -102,7 +102,7 @@ public class CTRestManager {
                                 observer.onCompleted()
 
                             case .failure(let error):
-                                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
+                                observer.onError(CTErrorHandler().handle(response: response, error: error))
                             }
                     }
                 case .failure(let encodingError):
@@ -142,7 +142,7 @@ public class CTRestManager {
                     case .success:
                         completable(.completed)
                     case .failure(let error):
-                        completable(.error(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString)))
+                        completable(.error(CTErrorHandler().handle(response: response, error: error)))
                     }
             }
 
@@ -184,7 +184,7 @@ public class CTRestManager {
                             observer.onNext(getResponse)
                             observer.onCompleted()
                         case .failure(let error):
-                            observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
+                            observer.onError(CTErrorHandler().handle(response: response, error: error))
                         }
                 }
 
@@ -214,7 +214,9 @@ public class CTRestManager {
                 callBack?()
                 break
             case .failure(let error):
-                CTErrorHandler().handle(response: response, error: error, url: url.absoluteString)
+                var userInfo = error.getInfoFromResponse(response)
+                userInfo["url"] = url.absoluteString
+                CTErrorHandler().handle(response: response, error: error)
                 print("ERROR: \(response)")
                 callBack?()
                 break
