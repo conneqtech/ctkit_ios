@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A60B70B28F4698A0032C55C /* CTNedbaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60B70A28F4698A0032C55C /* CTNedbaseResponse.swift */; };
 		OBJ_428 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_235 /* AFError.swift */; };
 		OBJ_429 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_236 /* Alamofire.swift */; };
 		OBJ_430 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_237 /* DispatchQueue+Alamofire.swift */; };
@@ -323,7 +324,6 @@
 		OBJ_782 /* CTOAuth2Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_142 /* CTOAuth2Responses.swift */; };
 		OBJ_783 /* CTBaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_144 /* CTBaseAuthManager.swift */; };
 		OBJ_784 /* CTKitBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_145 /* CTKitBase.swift */; };
-		OBJ_785 /* CTExternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_147 /* CTExternal.swift */; };
 		OBJ_800 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 /* End PBXBuildFile section */
 
@@ -366,9 +366,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		"Alamofire::Alamofire::Product" /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = /Users/inigollamosas/xcode/ctkit_ios/build/Debug/Alamofire.framework; sourceTree = "<absolute>"; };
-		"AppAuth::AppAuth::Product" /* AppAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppAuth.framework; path = /Users/inigollamosas/xcode/ctkit_ios/build/Debug/AppAuth.framework; sourceTree = "<absolute>"; };
-		"AppAuth::AppAuthCore::Product" /* AppAuthCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppAuthCore.framework; path = /Users/inigollamosas/xcode/ctkit_ios/build/Debug/AppAuthCore.framework; sourceTree = "<absolute>"; };
+		1A60B70528F469640032C55C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A60B70628F469640032C55C /* AppAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A60B70728F469640032C55C /* AppAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A60B70828F469640032C55C /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A60B70928F469640032C55C /* ctkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ctkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A60B70A28F4698A0032C55C /* CTNedbaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTNedbaseResponse.swift; sourceTree = "<group>"; };
 		OBJ_10 /* CTActivityCenterRequestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTActivityCenterRequestAdapter.swift; sourceTree = "<group>"; };
 		OBJ_100 /* CtContentBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CtContentBodyModel.swift; sourceTree = "<group>"; };
 		OBJ_102 /* CTContentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTContentService.swift; sourceTree = "<group>"; };
@@ -408,7 +411,6 @@
 		OBJ_142 /* CTOAuth2Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTOAuth2Responses.swift; sourceTree = "<group>"; };
 		OBJ_144 /* CTBaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBaseAuthManager.swift; sourceTree = "<group>"; };
 		OBJ_145 /* CTKitBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTKitBase.swift; sourceTree = "<group>"; };
-		OBJ_147 /* CTExternal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTExternal.swift; sourceTree = "<group>"; };
 		OBJ_15 /* CTActivityButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTActivityButtonModel.swift; sourceTree = "<group>"; };
 		OBJ_153 /* OIDAuthState+IOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OIDAuthState+IOS.m"; sourceTree = "<group>"; };
 		OBJ_154 /* OIDAuthorizationService+IOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OIDAuthorizationService+IOS.m"; sourceTree = "<group>"; };
@@ -734,8 +736,6 @@
 		OBJ_97 /* CTContentButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTContentButtonModel.swift; sourceTree = "<group>"; };
 		OBJ_98 /* CTContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTContentModel.swift; sourceTree = "<group>"; };
 		OBJ_99 /* CTContentResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTContentResponseModel.swift; sourceTree = "<group>"; };
-		"RxSwift::RxSwift::Product" /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = /Users/inigollamosas/xcode/ctkit_ios/build/Debug/RxSwift.framework; sourceTree = "<absolute>"; };
-		"ctkit::ctkit::Product" /* ctkit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ctkit.framework; path = /Users/inigollamosas/xcode/ctkit_ios/build/Debug/ctkit.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -908,7 +908,7 @@
 		OBJ_146 /* CTExternal */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_147 /* CTExternal.swift */,
+				1A60B70A28F4698A0032C55C /* CTNedbaseResponse.swift */,
 			);
 			path = CTExternal;
 			sourceTree = "<group>";
@@ -1354,7 +1354,7 @@
 			path = .build/checkouts/RxSwift/Sources/RxTest;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -1366,8 +1366,12 @@
 				OBJ_420 /* scripts.sh */,
 				OBJ_421 /* README.md */,
 				OBJ_422 /* ctkit.podspec */,
+				1A60B70528F469640032C55C /* Alamofire.framework */,
+				1A60B70628F469640032C55C /* AppAuth.framework */,
+				1A60B70728F469640032C55C /* AppAuthCore.framework */,
+				1A60B70828F469640032C55C /* RxSwift.framework */,
+				1A60B70928F469640032C55C /* ctkit.framework */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_53 /* Private models */ = {
@@ -1535,7 +1539,7 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = "Alamofire::Alamofire::Product" /* Alamofire.framework */;
+			productReference = 1A60B70528F469640032C55C /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		"Alamofire::SwiftPMPackageDescription" /* AlamofirePackageDescription */ = {
@@ -1566,7 +1570,7 @@
 			);
 			name = AppAuth;
 			productName = AppAuth;
-			productReference = "AppAuth::AppAuth::Product" /* AppAuth.framework */;
+			productReference = 1A60B70628F469640032C55C /* AppAuth.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		"AppAuth::AppAuthCore" /* AppAuthCore */ = {
@@ -1582,7 +1586,7 @@
 			);
 			name = AppAuthCore;
 			productName = AppAuthCore;
-			productReference = "AppAuth::AppAuthCore::Product" /* AppAuthCore.framework */;
+			productReference = 1A60B70728F469640032C55C /* AppAuthCore.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		"AppAuth::SwiftPMPackageDescription" /* AppAuthPackageDescription */ = {
@@ -1612,7 +1616,7 @@
 			);
 			name = RxSwift;
 			productName = RxSwift;
-			productReference = "RxSwift::RxSwift::Product" /* RxSwift.framework */;
+			productReference = 1A60B70828F469640032C55C /* RxSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		"RxSwift::SwiftPMPackageDescription" /* RxSwiftPackageDescription */ = {
@@ -1660,7 +1664,7 @@
 			);
 			name = ctkit;
 			productName = ctkit;
-			productReference = "ctkit::ctkit::Product" /* ctkit.framework */;
+			productReference = 1A60B70928F469640032C55C /* ctkit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1679,8 +1683,8 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
-			productRefGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
+			productRefGroup = OBJ_5;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1970,6 +1974,7 @@
 				OBJ_685 /* CTBikeLocationModel.swift in Sources */,
 				OBJ_686 /* CTBikeModel.swift in Sources */,
 				OBJ_687 /* CTBikeNotificationModel.swift in Sources */,
+				1A60B70B28F4698A0032C55C /* CTNedbaseResponse.swift in Sources */,
 				OBJ_688 /* CTBikeNotificationSettingsModel.swift in Sources */,
 				OBJ_689 /* CTBikeStateModel.swift in Sources */,
 				OBJ_690 /* CTBikeTypeModel.swift in Sources */,
@@ -2067,7 +2072,6 @@
 				OBJ_782 /* CTOAuth2Responses.swift in Sources */,
 				OBJ_783 /* CTBaseAuthManager.swift in Sources */,
 				OBJ_784 /* CTKitBase.swift in Sources */,
-				OBJ_785 /* CTExternal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

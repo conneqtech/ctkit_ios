@@ -18,4 +18,8 @@ class CTJwtService {
         return CTKit.shared.restManager.get(endpoint: "jwt/contentapi").map { (dict: [String:String]) in
             return dict["token"]!}
     }
+    
+    func getJwtForNedbase(endpoint: String, useToken: String, additionalHeaders: [String: String]) -> Observable<CTNedbaseResponse> {
+        return CTKit.shared.restManager.get(endpoint: endpoint, useToken: useToken, additionalHeaders: additionalHeaders)
+    }
 }
