@@ -103,7 +103,7 @@ public struct CTUserModel: CTBaseModel {
         case privacyStatementAccepted = "privacy_statement_accepted"
         case privacyStatementAcceptedOn = "privacy_statement_accepted_on"
         case isDemoAccount = "is_demo_account"
-        case join_date = "join_date"
+        case joinDate = "join_date"
     }
 
     public init(withEmail email: String, andName name: String) {
