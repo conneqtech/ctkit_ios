@@ -7,8 +7,6 @@
 
 import Foundation
 
-*/
 public struct CTNedbaseResponse: CTBaseModel {
-    
     public let token: String
 }
