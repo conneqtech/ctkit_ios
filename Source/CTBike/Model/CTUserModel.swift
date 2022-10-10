@@ -79,6 +79,8 @@ public struct CTUserModel: CTBaseModel {
     
     public var isDemoAccount: Bool?
     
+    public var joinDate: Date?
+    
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case email = "email"
@@ -101,6 +103,7 @@ public struct CTUserModel: CTBaseModel {
         case privacyStatementAccepted = "privacy_statement_accepted"
         case privacyStatementAcceptedOn = "privacy_statement_accepted_on"
         case isDemoAccount = "is_demo_account"
+        case join_date = "join_date"
     }
 
     public init(withEmail email: String, andName name: String) {
