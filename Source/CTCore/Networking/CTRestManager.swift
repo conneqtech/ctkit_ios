@@ -152,8 +152,7 @@ public class CTRestManager {
         }
     }
 
-    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
-        
+    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, additionalHeaders: [String: String]? = nil) -> Observable<T> where T: Codable {
             return Observable<T>.create { (observer) -> Disposable in
                 var headers: [String: String] = self.computeHeaders()!
 
@@ -161,6 +160,10 @@ public class CTRestManager {
                     headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
                 }
 
+                if let extraHeaders = additionalHeaders {
+                    headers = headers.merging(extraHeaders){ (current, _) in current }
+                }
+                
                 let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
                 let requestReference = self.sessionManager.request(url,
                                                                    method: method,
