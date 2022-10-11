@@ -19,7 +19,7 @@ public class CTJwtService: NSObject {
             return dict["token"]!}
     }
     
-    public func getJwtForNedbase(endpoint: String, useToken: String, additionalHeaders: [String: String]) -> Observable<CTNedbaseResponse> {
-        return CTKit.shared.restManager.get(endpoint: endpoint, useToken: useToken, additionalHeaders: additionalHeaders)
+    public func getJwtForNedbase(url: String, useToken: String, additionalHeaders: [String: String]) -> Observable<CTNedbaseResponse> {
+        return CTKit.shared.restManager.getGenericUrl(url: url, useToken: useToken, additionalHeaders: additionalHeaders)
     }
 }
