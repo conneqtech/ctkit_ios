@@ -199,10 +199,10 @@ public class CTRestManager {
 
     private func genericCallWithUrl<T>(_ method: Alamofire.HTTPMethod, url: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, additionalHeaders: [String: String]? = nil) -> Observable<T> where T: Codable {
             return Observable<T>.create { (observer) -> Disposable in
-                var headers: [String: String] = self.computeHeaders()!
+                var headers = additionalHeaders
 
                 if let accessToken = useToken {
-                    headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
+                    headers?["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
                 }
 //
 //                if let extraHeaders = additionalHeaders {
