@@ -204,10 +204,10 @@ public class CTRestManager {
                 if let accessToken = useToken {
                     headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
                 }
-
-                if let extraHeaders = additionalHeaders {
-                    headers = headers.merging(extraHeaders){ (current, _) in current }
-                }
+//
+//                if let extraHeaders = additionalHeaders {
+//                    headers = headers.merging(extraHeaders){ (current, _) in current }
+//                }
                 
                 let requestReference = self.sessionManager.request(url,
                                                                    method: method,
