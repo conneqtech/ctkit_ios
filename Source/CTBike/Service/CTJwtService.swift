@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-class CTJwtService {
+public class CTJwtService: NSObject {
     func getJwtForActivityCenter() -> Observable<String> {
         return CTKit.shared.restManager.get(endpoint: "jwt/activitycenter").map { (dict: [String:String]) in
             return dict["token"]!}
@@ -17,5 +17,9 @@ class CTJwtService {
     func getJwtForContentAPI() -> Observable<String> {
         return CTKit.shared.restManager.get(endpoint: "jwt/contentapi").map { (dict: [String:String]) in
             return dict["token"]!}
+    }
+    
+    public func getJwtForNedbase(url: String, useToken: String, additionalHeaders: [String: String]) -> Observable<CTNedbaseResponse> {
+        return CTKit.shared.restManager.getGenericUrl(url: url, useToken: useToken, additionalHeaders: additionalHeaders)
     }
 }

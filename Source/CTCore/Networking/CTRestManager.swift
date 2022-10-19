@@ -28,10 +28,14 @@ public class CTRestManager {
         sessionManager.retrier = requestRetrier
     }
 
-    public func get<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<T> {
+    public func get<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil) -> Observable<T> {
         return genericCall(.get, endpoint: endpoint, parameters: parameters, encoding: URLEncoding.default, useToken: useToken)
     }
 
+    public func getGenericUrl<T: Codable>(url: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil) -> Observable<T> {
+        return genericCallWithUrl(.get, url: url, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, additionalHeaders: additionalHeaders)
+    }
+    
     public func getUnparsed(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<String> {
         return genericUnparsedCall(.get, endpoint: endpoint, useToken: useToken)
     }
@@ -153,14 +157,13 @@ public class CTRestManager {
     }
 
     private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
-        
             return Observable<T>.create { (observer) -> Disposable in
                 var headers: [String: String] = self.computeHeaders()!
 
                 if let accessToken = useToken {
                     headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
                 }
-
+                
                 let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
                 let requestReference = self.sessionManager.request(url,
                                                                    method: method,
@@ -194,6 +197,51 @@ public class CTRestManager {
             }
     }
 
+    private func genericCallWithUrl<T>(_ method: Alamofire.HTTPMethod, url: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, additionalHeaders: [String: String]? = nil) -> Observable<T> where T: Codable {
+            return Observable<T>.create { (observer) -> Disposable in
+                var headers = additionalHeaders
+
+                if let accessToken = useToken {
+                    headers?["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
+                }
+//
+//                if let extraHeaders = additionalHeaders {
+//                    headers = headers.merging(extraHeaders){ (current, _) in current }
+//                }
+                
+                let requestReference = self.sessionManager.request(url,
+                                                                   method: method,
+                                                                   parameters: parameters,
+                                                                   encoding: encoding,
+                                                                   headers: headers)
+                    .validate(statusCode: 200..<300)
+                    .validate(contentType: ["application/json"])
+                    .responseJSON { (response) in
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .formatted(.iso8601CT)
+
+                        self.responseDebugger(method, endpoint: "", url: url, parameters: parameters, response: response, decodeType: T.self)
+
+                        switch response.result {
+                        case .success:
+                            guard let data = response.data, let getResponse = try? decoder.decode(T.self, from: data) else {
+                                observer.onError(CTErrorHandler().handle(withDecodingError: nil))
+                                return
+                            }
+                            observer.onNext(getResponse)
+                            observer.onCompleted()
+                        case .failure(let error):
+                            observer.onError(CTErrorHandler().handle(response: response, error: error, url: url))
+                        }
+                }
+
+                return Disposables.create(with: {
+                    requestReference.cancel()
+                })
+            }
+    }
+    
+    
     private func genericCallbackCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, callBack: (() -> ())? = nil) {
         
         var headers: [String: String] = self.computeHeaders()!
@@ -299,6 +347,7 @@ fileprivate extension CTRestManager {
 
     func responseDebugger<T>(_ method: Alamofire.HTTPMethod,
                              endpoint: String,
+                             url: String? = nil,
                              parameters: [String: Any]? = nil,
                              response: DataResponse<Any>,
                              decodeType: T.Type) where T: Codable {
@@ -309,7 +358,12 @@ fileprivate extension CTRestManager {
         decoder.dateDecodingStrategy = .formatted(.iso8601CT)
 
         print(".=========================================.")
-        print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
+        if let unwrappedUrl = url {
+            print("🌍[\(method)] \(unwrappedUrl)")
+        } else {
+            print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
+        }
+        
         if let parameters = parameters {
             print("📄 Parameters:")
             print(parameters)
