@@ -9,9 +9,9 @@ import Foundation
 
 public struct CTSubscriptionStatusModel: CTBaseModel {
     public let feature: String
-    public let startDate: Date
-    public let endDate: Date?
-    public let cancelDate: Date?
+    public let startDate: String
+    public let endDate: String?
+    public let cancelDate: String?
     enum CodingKeys: String, CodingKey {
         case feature
         case startDate = "start_date"
