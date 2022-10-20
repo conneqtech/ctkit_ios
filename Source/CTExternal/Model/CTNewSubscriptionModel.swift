@@ -8,7 +8,7 @@
 import Foundation
 
 public struct CTSubscriptionStatusModel: CTBaseModel {
-    
+
     public let feature: String?
     public let startDateString: String?
     public var startDate: Date? {
@@ -17,9 +17,17 @@ public struct CTSubscriptionStatusModel: CTBaseModel {
         }
     }
     public let endDateString: String?
-//    public let endDate: Date?
+    public var endDate: Date? {
+        get {
+            return self.endDateString?.fromAPIDate()
+        }
+    }
     public let cancelDateString: String?
-//    public let cancelDate: Date?e
+    public var cancelDate: Date? {
+        get {
+            return self.cancelDateString?.fromAPIDate()
+        }
+    }
     enum CodingKeys: String, CodingKey {
         case feature
         case startDateString = "startDate"
