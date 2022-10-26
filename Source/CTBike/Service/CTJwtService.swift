@@ -18,8 +18,12 @@ public class CTJwtService: NSObject {
         return CTKit.shared.restManager.get(endpoint: "jwt/contentapi").map { (dict: [String:String]) in
             return dict["token"]!}
     }
-    
-    public func getJwtForOnlineSubscriptions(url: String, useToken: String, additionalHeaders: [String: String]) -> Observable<CTOnlineSubscriptionsTokenResponse> {
-        return CTKit.shared.restManager.getGenericUrl(url: url, useToken: useToken, additionalHeaders: additionalHeaders)
+
+    public func getJwtForWebSubscriptions(url: String) -> Observable<CTOnlineSubscriptionsTokenResponse> {
+        let additionalHeaders: [String: String] = ["X-Original-URI": url,
+                                                  "Accept": "application/json",
+                                                  "X-Token-Lifetime": "600"]
+        let token = CTKit.shared.authManager.getActiveSessionToken()
+        return CTKit.shared.restManager.getGenericUrl(url: url, useToken: token, additionalHeaders: additionalHeaders)
     }
 }

@@ -176,7 +176,7 @@ public class CTRestManager {
                         let decoder = JSONDecoder()
                         decoder.dateDecodingStrategy = .formatted(.iso8601CT)
 
-                        self.responseDebugger(method, endpoint: endpoint, parameters: parameters, response: response, decodeType: T.self)
+                        self.responseDebugger(method, endpoint: endpoint, url: url.absoluteString, parameters: parameters, response: response, decodeType: T.self)
 
                         switch response.result {
                         case .success:
@@ -204,11 +204,7 @@ public class CTRestManager {
                 if let accessToken = useToken {
                     headers?["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
                 }
-//
-//                if let extraHeaders = additionalHeaders {
-//                    headers = headers.merging(extraHeaders){ (current, _) in current }
-//                }
-                
+
                 let requestReference = self.sessionManager.request(url,
                                                                    method: method,
                                                                    parameters: parameters,
