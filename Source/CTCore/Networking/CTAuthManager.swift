@@ -108,13 +108,13 @@ public class CTAuthManager: CTAuthManagerBase {
                             return
                         }
                         
-                        self.responseDebugger(.post, endpoint: "oauth", parameters: parameters, response: response)
+                        self.responseDebugger(.post, endpoint: "oauth", url: url.absoluteString, parameters: parameters, response: response)
                         
                         self.saveTokenResponse(getResponse)
                         observer.onNext(getResponse)
                         observer.onCompleted()
                     case .failure(let error):
-                        self.responseDebugger(.post, endpoint: "oauth", parameters: parameters, response: response)
+                        self.responseDebugger(.post, endpoint: "oauth", url: url.absoluteString, parameters: parameters, response: response)
                         observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
                     }
             }
@@ -205,9 +205,10 @@ extension CTAuthManager {
     }
     
     func responseDebugger(_ method: Alamofire.HTTPMethod,
-                             endpoint: String,
-                             parameters: [String: Any]? = nil,
-                             response: DataResponse<Any>) {
+                          endpoint: String,
+                          url: String? = nil,
+                          parameters: [String: Any]? = nil,
+                          response: DataResponse<Any>) {
         if !CTKit.shared.debugMode {
             return
         }
@@ -215,6 +216,13 @@ extension CTAuthManager {
         decoder.dateDecodingStrategy = .formatted(.iso8601CT)
         
         print(".=========================================.")
+        
+        if let unwrappedUrl = url {
+            print("🌍[\(method)] \(unwrappedUrl)")
+        } else {
+            print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
+        }
+        
         print("🌍[\(method)] \(self.apiConfig.fullUrl)/\(endpoint)")
         if let parameters = parameters {
             print("📄 Parameters:")
