@@ -19,8 +19,8 @@ public class CTJwtService: NSObject {
             return dict["token"]!}
     }
 
-    public func getJwtForWebSubscriptions(url: String) -> Observable<CTOnlineSubscriptionsTokenResponse> {
-        let additionalHeaders: [String: String] = ["X-Original-URI": url,
+    public func getJwtForWebSubscriptions(url: String, originalUri: String) -> Observable<CTOnlineSubscriptionsTokenResponse> {
+        let additionalHeaders: [String: String] = ["X-Original-URI": originalUri,
                                                   "Accept": "application/json",
                                                   "X-Token-Lifetime": "600"]
         let token = CTKit.shared.authManager.getActiveSessionToken()
