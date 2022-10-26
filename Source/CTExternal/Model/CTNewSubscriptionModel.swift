@@ -34,8 +34,24 @@ public struct CTSubscriptionStatusModel: CTBaseModel {
         case endDateString = "endDate"
         case cancelDateString = "cancelDate"
     }
+
+    // Note: we need this init for testing purposes
+    public init(feature: String? = nil,
+                startDateString: String? = nil,
+                endDateString: String? = nil,
+                cancelDateString: String? = nil) {
+        self.startDateString = startDateString
+        self.endDateString = endDateString
+        self.cancelDateString = cancelDateString
+        self.feature = nil
+    }
 }
 
 public struct CTNewSubscriptionModel: CTBaseModel {
     public let status: CTSubscriptionStatusModel?
+    
+    // Note: we need this init for testing purposes
+    public init(status: CTSubscriptionStatusModel? = nil) {
+        self.status = status
+    }
 }

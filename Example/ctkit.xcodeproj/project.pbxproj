@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A01EF9D29094CC100E50601 /* CTNewSubscriptionModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A01EF9C29094CC100E50601 /* CTNewSubscriptionModelTests.swift */; };
 		1A0207CF25F119BF006C58BF /* CTPhoneAsAGpsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0207CE25F119BF006C58BF /* CTPhoneAsAGpsServiceTests.swift */; };
 		1A6D98D825DFAFB200BA493F /* CTRidePayloadModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D98D725DFAFB200BA493F /* CTRidePayloadModelTests.swift */; };
 		1A8A1D79270EE6330064A2F9 /* CTIdsAuthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A1D78270EE6330064A2F9 /* CTIdsAuthManagerTests.swift */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		0502DB87E74326CD1237263D /* Pods_ctkit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctkit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A022129160031D4DFE4941 /* Pods-ctkit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctkit_Tests.release.xcconfig"; path = "Target Support Files/Pods-ctkit_Tests/Pods-ctkit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		1A01EF9C29094CC100E50601 /* CTNewSubscriptionModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTNewSubscriptionModelTests.swift; sourceTree = "<group>"; };
 		1A0207CE25F119BF006C58BF /* CTPhoneAsAGpsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTPhoneAsAGpsServiceTests.swift; sourceTree = "<group>"; };
 		1A6D98D725DFAFB200BA493F /* CTRidePayloadModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTRidePayloadModelTests.swift; sourceTree = "<group>"; };
 		1A8A1D78270EE6330064A2F9 /* CTIdsAuthManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTIdsAuthManagerTests.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				1A6D98D725DFAFB200BA493F /* CTRidePayloadModelTests.swift */,
 				1A8A1D78270EE6330064A2F9 /* CTIdsAuthManagerTests.swift */,
+				1A01EF9C29094CC100E50601 /* CTNewSubscriptionModelTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -791,6 +794,7 @@
 				1AEE476E25B1E1990026DB94 /* CTShareBikeServiceTests.swift in Sources */,
 				C05E5F87231680DC006DD6FB /* CTMarkdownParserTests.swift in Sources */,
 				1AEE477D25B4B5010026DB94 /* CTSubscriptionServiceTests.swift in Sources */,
+				1A01EF9D29094CC100E50601 /* CTNewSubscriptionModelTests.swift in Sources */,
 				C039847723619E0000ED5E44 /* CTKitActiveSessionTests.swift in Sources */,
 				C0CF249422BB83B700595AA1 /* CTStatisticsServiceTests.swift in Sources */,
 				1A0207CF25F119BF006C58BF /* CTPhoneAsAGpsServiceTests.swift in Sources */,
