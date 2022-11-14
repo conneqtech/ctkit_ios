@@ -235,16 +235,16 @@ public struct CTTheftCaseModel: CTBaseModel {
 
         reportDate = try container.decode(Date?.self, forKey: .reportDate)
         caseStatusRaw = try container.decode(String?.self, forKey: .caseStatusRaw)
-        bikeIsInsured = try container.decode(Bool?.self, forKey: .ownerCountry)
+        bikeIsInsured = try container.decode(Bool?.self, forKey: .bikeIsInsured)
         policeCaseNumber = try container.decode(String?.self, forKey: .policeCaseNumber)
         
-        caseFinalized = try container.decode(Bool?.self, forKey: .ownerCountry)
-        linkable = try container.decode(Bool?.self, forKey: .ownerCountry)
-        cancellable = try container.decode(Bool?.self, forKey: .ownerCountry)
+        caseFinalized = try container.decode(Bool?.self, forKey: .caseFinalized)
+        linkable = try container.decode(Bool?.self, forKey: .linkable)
+        cancellable = try container.decode(Bool?.self, forKey: .cancellable)
         
         caseStatusLog = try container.decode([CaseStatusChange]?.self, forKey: .caseStatusLog)
         
-        contactsUser = try container.decode(Bool?.self, forKey: .ownerCountry)
-        alwaysReplace = try container.decode(Bool?.self, forKey: .ownerCountry)
+        contactsUser = try container.decode(Bool?.self, forKey: .contactsUser)
+        alwaysReplace = try container.decode(Bool?.self, forKey: .alwaysReplace)
     }
 }
