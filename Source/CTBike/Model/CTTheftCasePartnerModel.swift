@@ -19,6 +19,8 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
     public let country: String
     public let logo: String
     public var filesTheftReport: Bool?
+    public var hasRecovery: Bool?
+    
     
 
      enum CodingKeys: String, CodingKey {
@@ -32,6 +34,7 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         case country = "country"
         case logo = "logo"
         case filesTheftReport = "files_theft_report"
+        case hasRecovery = "has_recovery"
     }
     
     public init(
