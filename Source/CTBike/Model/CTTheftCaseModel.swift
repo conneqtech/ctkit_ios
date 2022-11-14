@@ -220,4 +220,47 @@ public struct CTTheftCaseModel: CTBaseModel {
         try container.encode(policeCaseNumber, forKey: .policeCaseNumber)
         try container.encode(cancellable, forKey: .cancellable)
     }
+    
+    public init (from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(Int.self, forKey: .id)
+        
+        
+        caseNumber = try container.decode(String.self, forKey: .caseNumber)
+        
+        partnerCaseNumber = try container.decode(String.self, forKey: .partnerCaseNumber)
+        
+        partner = try container.decode(CTTheftCasePartnerModel.self, forKey: .partner)
+        
+        bikeId = try container.decode(Int.self, forKey: .bikeId)
+        bikeFrameType = try container.decode(String.self, forKey: .bikeFrameType)
+        bikeType = try container.decode(String.self, forKey: .bikeType)
+        bikeColor = try container.decode(String.self, forKey: .bikeColor)
+        bikeSecondaryColor = try container.decode(String.self, forKey: .bikeSecondaryColor)
+        bikeAdditionalDetails = try container.decode(String.self, forKey: .bikeAdditionalDetails)
+        bikeImages = try container.decode([String].self, forKey: .bikeImages)
+        
+        //Owner details
+        ownerName = try container.decode(String.self, forKey: .ownerName)
+        ownerEmail = try container.decode(String.self, forKey: .ownerEmail)
+        ownerPhone = try container.decode(String.self, forKey: .ownerPhone)
+        ownerAddress = try container.decode(String.self, forKey: .ownerAddress)
+        ownerPostalCode = try container.decode(String.self, forKey: .ownerPostalCode)
+        ownerCity = try container.decode(String.self, forKey: .ownerCity)
+        ownerCountry = try container.decode(String.self, forKey: .ownerCountry)
+        reportDate = try container.decode(Date.self, forKey: .reportDate)
+        caseStatusRaw = try container.decode(String.self, forKey: .caseStatusRaw)
+        bikeIsInsured = try container.decode(Bool.self, forKey: .ownerCountry)
+        policeCaseNumber = try container.decode(String.self, forKey: .policeCaseNumber)
+        
+        caseFinalized = try container.decode(Bool.self, forKey: .ownerCountry)
+        linkable = try container.decode(Bool.self, forKey: .ownerCountry)
+        cancellable = try container.decode(Bool.self, forKey: .ownerCountry)
+        
+        caseStatusLog = try container.decode([CaseStatusChange].self, forKey: .caseStatusLog)
+        
+        contactsUser = try container.decode(Bool.self, forKey: .ownerCountry)
+        alwaysReplace = try container.decode(Bool.self, forKey: .ownerCountry)
+    }
 }
