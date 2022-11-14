@@ -224,11 +224,8 @@ public struct CTTheftCaseModel: CTBaseModel {
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        id = try container.decode(Int.self, forKey: .id)
-        
-        
+        id = try container.decode(Int?.self, forKey: .id)
         caseNumber = try container.decode(String?.self, forKey: .caseNumber)
-        
         partnerCaseNumber = try container.decode(String?.self, forKey: .partnerCaseNumber)
         
         partner = try container.decode(CTTheftCasePartnerModel?.self, forKey: .partner)
