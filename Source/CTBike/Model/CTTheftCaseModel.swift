@@ -68,7 +68,6 @@ public struct CTTheftCaseModel: CTBaseModel {
 
     public let id: Int?
     public var caseNumber: String?
-    public let partnerCaseNumber: String?
 
     public var partner: CTTheftCasePartnerModel?
 
@@ -108,7 +107,6 @@ public struct CTTheftCaseModel: CTBaseModel {
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case caseNumber = "case_number"
-        case partnerCaseNumber = "partner_case_number"
         case partner = "partner"
 
         case bikeId = "bike_id"
@@ -142,7 +140,6 @@ public struct CTTheftCaseModel: CTBaseModel {
     public init(
         id: Int = 0,
         caseNumber: String? = nil,
-        partnerCaseNumber: String? = nil,
         partner: CTTheftCasePartnerModel? = nil,
         bikeId: Int = 0,
         bikeFrameType: String = "",
@@ -171,7 +168,6 @@ public struct CTTheftCaseModel: CTBaseModel {
         
         self.id = id
         self.caseNumber = caseNumber
-        self.partnerCaseNumber = partnerCaseNumber
         self.partner = partner
         self.bikeId = bikeId
         self.bikeFrameType = bikeFrameType
@@ -226,7 +222,6 @@ public struct CTTheftCaseModel: CTBaseModel {
         
         id = try container.decode(Int?.self, forKey: .id)
         caseNumber = try container.decode(String?.self, forKey: .caseNumber)
-        partnerCaseNumber = try container.decode(String?.self, forKey: .partnerCaseNumber)
         
         partner = try container.decode(CTTheftCasePartnerModel?.self, forKey: .partner)
         
