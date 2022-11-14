@@ -232,15 +232,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         bikeSecondaryColor = try container.decode(String?.self, forKey: .bikeSecondaryColor)
         bikeAdditionalDetails = try container.decode(String?.self, forKey: .bikeAdditionalDetails)
         bikeImages = try container.decode([String]?.self, forKey: .bikeImages)
-        
-        //Owner details
-        ownerName = try container.decode(String?.self, forKey: .ownerName)
-        ownerEmail = try container.decode(String?.self, forKey: .ownerEmail)
-        ownerPhone = try container.decode(String?.self, forKey: .ownerPhone)
-        ownerAddress = try container.decode(String?.self, forKey: .ownerAddress)
-        ownerPostalCode = try container.decode(String?.self, forKey: .ownerPostalCode)
-        ownerCity = try container.decode(String?.self, forKey: .ownerCity)
-        ownerCountry = try container.decode(String?.self, forKey: .ownerCountry)
+
         reportDate = try container.decode(Date?.self, forKey: .reportDate)
         caseStatusRaw = try container.decode(String?.self, forKey: .caseStatusRaw)
         bikeIsInsured = try container.decode(Bool?.self, forKey: .ownerCountry)
