@@ -68,7 +68,6 @@ public struct CTTheftCaseModel: CTBaseModel {
 
     public let id: Int?
     public var caseNumber: String?
-    public let partnerCaseNumber: String?
 
     public var partner: CTTheftCasePartnerModel?
 
@@ -108,7 +107,6 @@ public struct CTTheftCaseModel: CTBaseModel {
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case caseNumber = "case_number"
-        case partnerCaseNumber = "partner_case_number"
         case partner = "partner"
 
         case bikeId = "bike_id"
@@ -142,7 +140,6 @@ public struct CTTheftCaseModel: CTBaseModel {
     public init(
         id: Int = 0,
         caseNumber: String? = nil,
-        partnerCaseNumber: String? = nil,
         partner: CTTheftCasePartnerModel? = nil,
         bikeId: Int = 0,
         bikeFrameType: String = "",
@@ -171,7 +168,6 @@ public struct CTTheftCaseModel: CTBaseModel {
         
         self.id = id
         self.caseNumber = caseNumber
-        self.partnerCaseNumber = partnerCaseNumber
         self.partner = partner
         self.bikeId = bikeId
         self.bikeFrameType = bikeFrameType
@@ -219,5 +215,36 @@ public struct CTTheftCaseModel: CTBaseModel {
         try container.encode(bikeIsInsured, forKey: .bikeIsInsured)
         try container.encode(policeCaseNumber, forKey: .policeCaseNumber)
         try container.encode(cancellable, forKey: .cancellable)
+    }
+    
+    public init (from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(Int?.self, forKey: .id)
+        caseNumber = try container.decode(String?.self, forKey: .caseNumber)
+        
+        partner = try container.decode(CTTheftCasePartnerModel?.self, forKey: .partner)
+        
+        bikeId = try container.decode(Int?.self, forKey: .bikeId)
+        bikeFrameType = try container.decode(String?.self, forKey: .bikeFrameType)
+        bikeType = try container.decode(String?.self, forKey: .bikeType)
+        bikeColor = try container.decode(String?.self, forKey: .bikeColor)
+        bikeSecondaryColor = try container.decode(String?.self, forKey: .bikeSecondaryColor)
+        bikeAdditionalDetails = try container.decode(String?.self, forKey: .bikeAdditionalDetails)
+        bikeImages = try container.decode([String]?.self, forKey: .bikeImages)
+
+        reportDate = try container.decode(Date?.self, forKey: .reportDate)
+        caseStatusRaw = try container.decode(String?.self, forKey: .caseStatusRaw)
+        bikeIsInsured = try container.decode(Bool?.self, forKey: .bikeIsInsured)
+        policeCaseNumber = try container.decode(String?.self, forKey: .policeCaseNumber)
+        
+        caseFinalized = try container.decode(Bool?.self, forKey: .caseFinalized)
+        linkable = try container.decode(Bool?.self, forKey: .linkable)
+        cancellable = try container.decode(Bool?.self, forKey: .cancellable)
+        
+        caseStatusLog = try container.decode([CaseStatusChange]?.self, forKey: .caseStatusLog)
+        
+        contactsUser = try container.decode(Bool?.self, forKey: .contactsUser)
+        alwaysReplace = try container.decode(Bool?.self, forKey: .alwaysReplace)
     }
 }
