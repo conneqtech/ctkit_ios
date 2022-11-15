@@ -19,7 +19,7 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
     public let country: String?
     public let logo: String?
     public var filesTheftReport: Bool?
-    public var hasRecovery: Bool?
+//    public var hasRecovery: Bool?
     
     
 
@@ -34,7 +34,7 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         case country = "country"
         case logo = "logo"
         case filesTheftReport = "files_theft_report"
-        case hasRecovery = "has_recovery"
+//        case hasRecovery = "has_recovery"
     }
     
     public init(
@@ -76,6 +76,6 @@ public struct CTTheftCasePartnerModel: CTBaseModel {
         country = try container.decode(String?.self, forKey: .country)
         logo = try container.decode(String?.self, forKey: .logo)
         filesTheftReport = try container.decode(Bool?.self, forKey: .filesTheftReport)
-        hasRecovery = try container.decode(Bool?.self, forKey: .hasRecovery)
+//        hasRecovery = try container.decode(Bool?.self, forKey: .hasRecovery)
     }
 }
