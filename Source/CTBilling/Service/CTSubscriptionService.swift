@@ -43,8 +43,7 @@ public class CTSubscriptionService: NSObject {
         if !bike.isRequestingUserOwner {
             return Completable.empty()
         } else {
-            guard let accessToken = CTKit.shared.accessToken else { return Completable.empty() }
-            return CTBilling.shared.restManager.postCompletable(endpoint: "tools/start-all-in-period", useToken: accessToken, parameters: [
+            return CTKit.shared.restManager.postCompletable(endpoint: "tools/start-all-in-period", parameters: [
                 "bike_id": bike.id
             ])
         }
