@@ -33,7 +33,6 @@ class CTBikeTypeServiceTests: XCTestCase {
         stubbedBikeType = CTBikeTypeModel(id: 1,
                                           name: "CK300",
                                           registrationFlow: .imei,
-                                          secondFactorTranslationKey: "sticker.under.battery",
                                           secondFactorLocationImage: "https://example.com",
                                           images: [],
                                           features: features,
