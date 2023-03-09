@@ -12,7 +12,7 @@ public struct CTBikeTypeModel: CTBaseModel {
     public let name: String
     public let registrationFlow: CTBikeRegistrationFlow
     public let secondFactorLocationImage: String?
-    public let secondFactorOverrideImage: String?
+    public let secondFactorOverride: String?
     public let images: [String]
     public let features: CTBikeFeatureModel
     public let characteristics: [String: String]?
@@ -22,7 +22,7 @@ public struct CTBikeTypeModel: CTBaseModel {
         name: String = "",
         registrationFlow: CTBikeRegistrationFlow = .imei,
         secondFactorLocationImage: String? = nil,
-        secondFactorOverrideImage: String? = nil,
+        secondFactorOverride: String? = nil,
         images: [String] = [],
         features: CTBikeFeatureModel = CTBikeFeatureModel(),
         characteristics: [String: String]? = nil) {
@@ -31,7 +31,7 @@ public struct CTBikeTypeModel: CTBaseModel {
         self.name = name
         self.registrationFlow = registrationFlow
         self.secondFactorLocationImage = secondFactorLocationImage
-        self.secondFactorOverrideImage = secondFactorOverrideImage
+        self.secondFactorOverride = secondFactorOverride
         self.images = images
         self.features = features
         self.characteristics = characteristics
@@ -42,7 +42,7 @@ public struct CTBikeTypeModel: CTBaseModel {
         case name
         case registrationFlow = "registration_flow"
         case secondFactorLocationImage = "second_factor_location_image"
-        case secondFactorOverrideImage = "second_factor_override_image"
+        case secondFactorOverride = "second_factor_override"
         case images
         case features
         case characteristics
