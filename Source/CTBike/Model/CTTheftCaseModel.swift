@@ -173,7 +173,7 @@ public struct CTTheftCaseModel: CTBaseModel {
         self.bikeFrameType = bikeFrameType
         self.bikeType = bikeType
         self.bikeColor = bikeColor
-        self.bikeSecondaryColor = bikeColor
+        self.bikeSecondaryColor = bikeSecondaryColor
         self.bikeAdditionalDetails = bikeAdditionalDetails
         self.bikeImages = bikeImages
         self.ownerName = ownerName
