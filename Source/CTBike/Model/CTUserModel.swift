@@ -23,8 +23,9 @@ public struct CTUserModel: CTBaseModel {
         get {
             if let firstName = firstName, let lastName = lastName {
                 return "\(firstName) \(lastName)"
+            } else if let unwrappedName = name {
+                return unwrappedName
             }
-
             return ""
         }
     }
