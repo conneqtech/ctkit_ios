@@ -26,6 +26,7 @@ public struct CTBikeFeatureModel: CTBaseModel {
     public let ridesDisabled                : Bool
     public let troubleshootingDisabled      : Bool
     public let notificationSettingsDisabled : Bool
+    public let disableGeofences             : Bool
     
     
     public init(bluetooth: Bool = false,
@@ -44,7 +45,8 @@ public struct CTBikeFeatureModel: CTBaseModel {
                 uninsurable: Bool = false,
                 ridesDisabled: Bool = false,
                 troubleshootingDisabled: Bool = false,
-                notificationSettingsDisabled: Bool = false) {
+                notificationSettingsDisabled: Bool = false,
+                disableGeofences: Bool = false) {
         self.bluetooth                      = bluetooth
         self.physicalLock                   = physicalLock
         self.digitalLock                    = digitalLock
@@ -62,6 +64,7 @@ public struct CTBikeFeatureModel: CTBaseModel {
         self.ridesDisabled                  = ridesDisabled
         self.troubleshootingDisabled        = troubleshootingDisabled
         self.notificationSettingsDisabled   = notificationSettingsDisabled
+        self.disableGeofences               = disableGeofences
     }
 
     enum CodingKeys: String, CodingKey {
@@ -83,5 +86,6 @@ public struct CTBikeFeatureModel: CTBaseModel {
         case ridesDisabled                  = "rides_disabled"
         case troubleshootingDisabled        = "troubleshooting_disabled"
         case notificationSettingsDisabled   = "notification_settings_disabled"
+        case disableGeofences               = "disable_geofences"
     }
 }
