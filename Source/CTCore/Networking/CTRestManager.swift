@@ -121,8 +121,10 @@ public class CTRestManager {
         }
     }
 
-    func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Completable {
+    func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, url: String? = nil) -> Completable {
+        
         return Completable.create { (completable) in
+            
             if (!Connectivity.isConnectedToInternet) {
                 completable(.error(CTErrorHandler().handleNoInternet()))
                 return Disposables.create()
@@ -133,7 +135,12 @@ public class CTRestManager {
                 headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
             }
 
-            let url = URL(string: "https://api.ids.staging.conneq.tech/\(endpoint)")!
+            var rootUrl = self.apiConfig.fullUrl
+            if let forcedUrl = url {
+                rootUrl = forcedUrl
+            }
+            
+            let url = URL(string: "\(rootUrl)/\(endpoint)")!
             let requestReference = self.sessionManager.request(url,
                                                                method: method,
                                                                parameters: parameters,

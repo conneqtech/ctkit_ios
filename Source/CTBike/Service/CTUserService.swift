@@ -167,8 +167,8 @@ public class CTUserService: NSObject {
      
      - Returns: A completable call
      */
-    public func isUserStillLoggedIn() -> Completable {
-        return CTKit.shared.restManager.genericCompletableCall(.get, endpoint: "oauth/assert", parameters: nil, useToken: nil)
+    public func isUserStillLoggedIn(tokenApi: String) -> Completable {
+        return CTKit.shared.restManager.genericCompletableCall(.get, endpoint: "oauth/assert", parameters: nil, useToken: nil, url: tokenApi)
     }
 }
 
