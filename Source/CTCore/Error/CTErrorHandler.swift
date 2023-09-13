@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-internal class CTErrorHandler: NSObject {
+class CTErrorHandler: NSObject {
 
     func handle(withDecodingError data: Any?) -> CTErrorProtocol {
         return CTDecodingError(translationKey: "ctkit.error.decoding-failed", description: "Failed to decode object")

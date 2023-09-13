@@ -161,6 +161,15 @@ public class CTUserService: NSObject {
     public func deleteAccount() -> Completable {
         return CTKit.shared.restManager.genericCompletableCall(.patch, endpoint: "user/me", parameters: ["active_state": 2], useToken: nil)
     }
+    
+    /**
+     Check if the user account is still logged in
+     
+     - Returns: A completable call
+     */
+    public func isUserStillLoggedIn(tokenApi: String) -> Completable {
+        return CTKit.shared.restManager.genericCompletableCall(.get, endpoint: "oauth/assert", parameters: nil, useToken: nil, url: tokenApi)
+    }
 }
 
 // MARK: - Session related functions
