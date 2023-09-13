@@ -133,7 +133,7 @@ public class CTRestManager {
                 headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
             }
 
-            let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+            let url = URL(string: "https://api.ids.staging.conneq.tech /\(endpoint)")!
             let requestReference = self.sessionManager.request(url,
                                                                method: method,
                                                                parameters: parameters,
