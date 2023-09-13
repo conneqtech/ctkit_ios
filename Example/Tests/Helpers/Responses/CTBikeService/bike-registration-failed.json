@@ -1,7 +1,0 @@
-{
-    "error_translatable": "The activation code or the combination of frame number and imei is invalid, not found or already used",
-    "type": 10,
-    "title": "Unprocessable Entity",
-    "status": 422,
-    "detail": "error.api.registration.failed"
-}
