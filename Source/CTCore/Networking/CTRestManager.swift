@@ -16,14 +16,20 @@ public class CTRestManager {
 
     public init(withConfig config: CTApiConfig) {
         self.apiConfig = config
-        self.sessionManager = SessionManager()
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = NSMutableURLRequest.CachePolicy.reloadIgnoringLocalCacheData
+        configuration.urlCache = nil
+        self.sessionManager = SessionManager(configuration: configuration)
         sessionManager.adapter = CTRequestAdapter()
         sessionManager.retrier = CTRequestRetrier(apiConfig: self.apiConfig)
     }
 
     public init(withConfig config: CTApiConfig, requestAdapter: RequestAdapter, requestRetrier: RequestRetrier) {
         self.apiConfig = config
-        self.sessionManager = SessionManager()
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = NSMutableURLRequest.CachePolicy.reloadIgnoringLocalCacheData
+        configuration.urlCache = nil
+        self.sessionManager = SessionManager(configuration: configuration)
         sessionManager.adapter = requestAdapter
         sessionManager.retrier = requestRetrier
     }
