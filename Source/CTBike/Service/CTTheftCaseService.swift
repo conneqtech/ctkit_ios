@@ -84,10 +84,11 @@ public class CTTheftCaseService: NSObject {
     /**
      Cancel the theft case
      - Parameter caseId: The id of the theft case.
-     - Parameter reason: The reason for cancelling the case; either found or just cancelled
+     - Parameter reason: The reason for cancelling the case; either found or default to cancelled
      - Returns: the cancelled theft case
      */
-    public func cancel(caseId: Int, caseStatus: CTTheftCaseStatus) -> Observable<CTTheftCaseModel> {
+    public func cancel(caseId: Int, reason: String = "cancelled") -> Observable<CTTheftCaseModel> {
+        let caseStatus = CTTheftCaseStatus(caseStatus: reason)
         return CTKit.shared.restManager.patch(endpoint: "theft-case/\(caseId)", parameters: try? caseStatus.asDictionary())
     }
     
