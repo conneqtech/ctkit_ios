@@ -12,14 +12,14 @@ public struct CTMeta: CTBaseModel {
     public let offset: Int
     public let totalRecords: Int
 
-    public let availableFilterFieldNames: [String]?
-    public let availableOrderFieldNames: [String]?
+    public let availableFilterFieldnames: [String]?
+    public let availableOrderFieldnames: [String]?
 
     enum CodingKeys: String, CodingKey {
         case limit
         case offset
         case totalRecords = "total_records"
-        case availableFilterFieldNames = "available_filter_fieldnames"
-        case availableOrderFieldNames = "available_order_fieldnames"
+        case availableFilterFieldnames = "available_filter_fieldnames"
+        case availableOrderFieldnames = "available_order_fieldnames"
     }
 }

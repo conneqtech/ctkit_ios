@@ -55,7 +55,7 @@ public struct CTInviteModel: CTBaseModel {
     }
     
     static func mockPaginatedInvite() -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
-        let mockCTMeta = CTMeta(limit: 0, offset: 0, totalRecords: 0, availableFilterFieldNames: [], availableOrderFieldNames: [])
+        let mockCTMeta = CTMeta(limit: 0, offset: 0, totalRecords: 0, availableFilterFieldnames: [], availableOrderFieldnames: [])
         let mockPaginatedResponseModel: CTPaginatedResponseModel<CTInviteModel> = CTPaginatedResponseModel(filters: [], orderClauses: [], meta: mockCTMeta, data: [])
         return Observable.of(mockPaginatedResponseModel)
     }
