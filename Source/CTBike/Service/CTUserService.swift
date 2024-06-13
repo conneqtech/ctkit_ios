@@ -141,6 +141,10 @@ public class CTUserService: NSObject {
         return CTKit.shared.restManager.patch(endpoint: "user/me", parameters: try? user.asDictionary())
     }
 
+    public func patchCurrentUserSpecificParamsOnly(parameters: [String: Any]) -> Observable<CTUserModel> {
+        return CTKit.shared.restManager.patch(endpoint: "user/me", parameters: parameters)
+    }
+    
     /**
      Fetch the user that the SDK currently has an active session for. This also stores the user into the CTKit shared object.
      
