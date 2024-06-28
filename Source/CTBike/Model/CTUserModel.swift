@@ -77,9 +77,7 @@ public struct CTUserModel: CTBaseModel {
     public var privacyStatementAccepted: Bool?
     
     public var privacyStatementAcceptedOn: Date?
-    
-    public var isDemoAccount: Bool?
-    
+        
     public var creationDate: Date?
     
     enum CodingKeys: String, CodingKey {
@@ -103,7 +101,6 @@ public struct CTUserModel: CTBaseModel {
         case postalCode = "postal_code"
         case privacyStatementAccepted = "privacy_statement_accepted"
         case privacyStatementAcceptedOn = "privacy_statement_accepted_on"
-        case isDemoAccount = "is_demo_account"
         case creationDate = "creation_date"
     }
 
