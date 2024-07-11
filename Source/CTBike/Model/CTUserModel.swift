@@ -95,12 +95,6 @@ public struct CTUserModel: CTBaseModel {
         case creationDate = "creation_date"
     }
 
-    public init(withEmail email: String, andName name: String) {
-        self.id = -1
-        self.name = name
-        self.email = email
-    }
-
     /**
      Implementation of the encode function to only encode the fields the API allows us to patch.
      */
