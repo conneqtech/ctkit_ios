@@ -18,17 +18,7 @@ public struct CTUserModel: CTBaseModel {
     ///Email address the user used to login. If the login was with Facebook or Google we will use the accounts email address.
     public let email: String
 
-    //Calculated variable created from firstName and lastName
-    public var displayName: String {
-        get {
-            if let firstName = firstName, let lastName = lastName {
-                return "\(firstName) \(lastName)"
-            } else if let unwrappedName = name {
-                return unwrappedName
-            }
-            return ""
-        }
-    }
+    public var displayName: String
 
     ///First name of the user, maximum length 255 is characters
     public var firstName: String?
@@ -86,6 +76,7 @@ public struct CTUserModel: CTBaseModel {
         case firstName = "first_name"
         case lastName = "last_name"
         case name = "name"
+        case displayName = "display_name"
 
         case initials = "initials"
         case phoneNumber = "phone_number"
