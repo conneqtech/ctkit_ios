@@ -16,7 +16,7 @@ public struct CTNewSubscriptionWrapperModel: CTBaseModel {
         self.status = status
     }
     
-    static func getAllNewSubscriptions(allSubscriptionWrappers: [CTNewSubscriptionWrapperModel]) -> [CTNewSubscriptionModel] {
+    static public func getAllNewSubscriptions(allSubscriptionWrappers: [CTNewSubscriptionWrapperModel]) -> [CTNewSubscriptionModel] {
         var allSubscriptions: [CTNewSubscriptionModel] = []
         for sub in allSubscriptionWrappers {
             if let s = sub.status {
