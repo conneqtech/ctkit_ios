@@ -7,8 +7,13 @@
 
 import Foundation
 
-public struct CTSubscriptionStatusModel: CTBaseModel {
-
+public class CTSubscriptionStatusModel: CTBaseModel {
+    
+    public static func == (lhs: CTSubscriptionStatusModel, rhs: CTSubscriptionStatusModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public let id: String?
     public let feature: String?
     public let startDateString: String?
     public var startDate: Date? {
@@ -28,22 +33,28 @@ public struct CTSubscriptionStatusModel: CTBaseModel {
             return self.cancelDateString?.fromAPIDate()
         }
     }
+    public let next: CTSubscriptionStatusModel? = nil
+    
     enum CodingKeys: String, CodingKey {
+        case id
         case feature
         case startDateString = "startDate"
         case endDateString = "endDate"
         case cancelDateString = "cancelDate"
+        case next
     }
 
     // Note: we need this init for testing purposes
-    public init(feature: String? = nil,
+    public init(id: String? = nil,
+                feature: String? = nil,
                 startDateString: String? = nil,
                 endDateString: String? = nil,
                 cancelDateString: String? = nil) {
+        self.id = id
+        self.feature = nil
         self.startDateString = startDateString
         self.endDateString = endDateString
         self.cancelDateString = cancelDateString
-        self.feature = nil
     }
 }
 
