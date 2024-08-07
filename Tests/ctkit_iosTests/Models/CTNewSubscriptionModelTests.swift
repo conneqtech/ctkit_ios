@@ -18,7 +18,7 @@ class CTNewSubscriptionModelTests: XCTestCase {
         let startDateString = "2022-10-26T00:00:00+0000"
         let endDateString = "2023-10-26T00:00:00+0000"
 
-        let newSubscription = CTNewSubscriptionModel(status: CTSubscriptionStatusModel(startDateString: startDateString,
+        let newSubscription = CTNewSubscriptionWrapperModel(status: CTNewSubscriptionModel(startDateString: startDateString,
                                                                                        endDateString: endDateString,
                                                                                        cancelDateString: endDateString))
         
