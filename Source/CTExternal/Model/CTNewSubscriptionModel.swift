@@ -34,7 +34,7 @@ public class CTNewSubscriptionModel: CTBaseModel {
             return self.cancelDateString?.fromAPIDate()
         }
     }
-    public let next: CTNewSubscriptionModel? = nil
+    public let next: CTNewSubscriptionModel?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -50,11 +50,13 @@ public class CTNewSubscriptionModel: CTBaseModel {
                 feature: String? = nil,
                 startDateString: String? = nil,
                 endDateString: String? = nil,
-                cancelDateString: String? = nil) {
+                cancelDateString: String? = nil,
+                next: CTNewSubscriptionModel? = nil) {
         self.id = id
-        self.feature = nil
+        self.feature = feature
         self.startDateString = startDateString
         self.endDateString = endDateString
         self.cancelDateString = cancelDateString
+        self.next = next
     }
 }
