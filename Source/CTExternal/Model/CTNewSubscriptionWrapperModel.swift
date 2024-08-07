@@ -15,4 +15,17 @@ public struct CTNewSubscriptionWrapperModel: CTBaseModel {
     public init(status: CTNewSubscriptionModel? = nil) {
         self.status = status
     }
+    
+    static func getAllNewSubscriptions(allSubscriptionWrappers: [CTNewSubscriptionWrapperModel]) -> [CTNewSubscriptionModel] {
+        var allSubscriptions: [CTNewSubscriptionModel] = []
+        for sub in allSubscriptionWrappers {
+            if let s = sub.status {
+                allSubscriptions.append(s)
+                if let n = s.next {
+                    allSubscriptions.append(n)
+                }
+            }
+        }
+        return allSubscriptions
+    }
 }
