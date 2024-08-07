@@ -1,15 +1,16 @@
 //
 //  CTNewSubscriptionModel.swift
-//  ctkit
 //
-//  Created by Inigo Llamosas on 19/10/2022.
+//
+//  Created by Inigo Llamosas on 07/08/2024.
 //
 
 import Foundation
 
-public class CTSubscriptionStatusModel: CTBaseModel {
+
+public class CTNewSubscriptionModel: CTBaseModel {
     
-    public static func == (lhs: CTSubscriptionStatusModel, rhs: CTSubscriptionStatusModel) -> Bool {
+    public static func == (lhs: CTNewSubscriptionModel, rhs: CTNewSubscriptionModel) -> Bool {
         return lhs.id == rhs.id
     }
     
@@ -33,7 +34,7 @@ public class CTSubscriptionStatusModel: CTBaseModel {
             return self.cancelDateString?.fromAPIDate()
         }
     }
-    public let next: CTSubscriptionStatusModel? = nil
+    public let next: CTNewSubscriptionModel? = nil
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -55,14 +56,5 @@ public class CTSubscriptionStatusModel: CTBaseModel {
         self.startDateString = startDateString
         self.endDateString = endDateString
         self.cancelDateString = cancelDateString
-    }
-}
-
-public struct CTNewSubscriptionModel: CTBaseModel {
-    public let status: CTSubscriptionStatusModel?
-    
-    // Note: we need this init for testing purposes
-    public init(status: CTSubscriptionStatusModel? = nil) {
-        self.status = status
     }
 }
