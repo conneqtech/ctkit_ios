@@ -21,9 +21,6 @@ public struct CTNewSubscriptionWrapperModel: CTBaseModel {
         for sub in allSubscriptionWrappers {
             if let s = sub.status {
                 allSubscriptions.append(s)
-                if let n = s.next {
-                    allSubscriptions.append(n)
-                }
             }
         }
         return allSubscriptions
