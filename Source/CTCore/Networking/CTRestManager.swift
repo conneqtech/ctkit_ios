@@ -42,10 +42,6 @@ public class CTRestManager {
         return genericCallWithUrl(.get, url: url, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, additionalHeaders: additionalHeaders)
     }
     
-    public func getUnparsed(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Observable<String> {
-        return genericUnparsedCall(.get, endpoint: endpoint, useToken: useToken)
-    }
-    
     public func postCompletable(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Completable {
         return genericCompletableCall(.post, endpoint: endpoint, parameters: parameters, useToken: useToken)
     }
@@ -278,54 +274,6 @@ public class CTRestManager {
                 callBack?()
                 break
             }
-        }
-    }
-    
-
-    
-    private func genericUnparsedCall(_ method: Alamofire.HTTPMethod,
-                                     endpoint: String,
-                                     parameters: [String: Any]? = nil,
-                                     encoding: ParameterEncoding = JSONEncoding.default,
-                                     useToken: String?) -> Observable<String> {
-        return Observable<String>.create { (observer) -> Disposable in
-
-            if(!Connectivity.isConnectedToInternet) {
-                observer.onError(CTErrorHandler().handleNoInternet())
-                return Disposables.create()
-            }
-
-            var headers: [String: String] = self.computeHeaders()!
-
-            if let accessToken = useToken {
-                headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
-            }
-
-            let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
-            let requestReference = self.sessionManager.request(url,
-                                                               method: method,
-                                                               parameters: parameters,
-                                                               encoding: encoding,
-                                                               headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseString { (response) in
-
-                if response.result.isSuccess {
-                    if let result = response.result.value {
-                        observer.onNext(result)
-                    } else {
-                        observer.onNext("")
-                    }
-
-                    observer.onCompleted()
-                } else {
-                    observer.onError(response.error!) //CTErrorHandler().handle(response: response)
-                }
-            }
-
-            return Disposables.create(with: {
-                requestReference.cancel()
-            })
         }
     }
 }

@@ -15,8 +15,4 @@ public class CTContentService: NSObject {
             return CTMarkdownParser().parseContent(withContentString: responseModel.content)
         }
     }
-
-    public func fetchUnparsedContent(withIdentifier identifier: String) -> Observable<String> {
-        return CTContent.shared.restManager.getUnparsed(endpoint: "\(identifier)/raw")
-    }
 }
