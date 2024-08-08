@@ -12,7 +12,7 @@ public struct CTSubscriptionModel: CTBaseModel {
     public let startDate: Date?
     public let endDate: Date?
     public let cancelled: Bool?
-    public let type: CTSubscriptionProductType
+    public let type: CTSubscriptionType
     public let logoUrl: String
     public let insurance: CTInsuranceModel?
     public let active: Bool
@@ -33,7 +33,7 @@ public struct CTSubscriptionModel: CTBaseModel {
         startDate: Date? = nil,
         endDate: Date? = nil,
         cancelled: Bool? = nil,
-        productTypeId: CTSubscriptionProductType = .insurance,
+        type: CTSubscriptionType = .insurance,
         logoUrl: String = "",
         insurance: CTInsuranceModel? = nil,
         active: Bool = true
@@ -41,14 +41,14 @@ public struct CTSubscriptionModel: CTBaseModel {
         self.startDate = startDate
         self.endDate = endDate
         self.cancelled = cancelled
-        self.type = productTypeId
+        self.type = type
         self.logoUrl = logoUrl
         self.insurance = insurance
         self.active = active
     }
 }
 
-public enum CTSubscriptionProductType: Int, Codable {
+public enum CTSubscriptionType: Int, Codable {
     case connectivity = 1
     case insurance = 2
 }
