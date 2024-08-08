@@ -15,23 +15,6 @@ import RxSwift
 public class CTSubscriptionService: NSObject {
 
     /**
-     Starts a trial for a bike.
-     
-     - Parameter identifier: The bike identifier you want to start the trial for
-
-     
-     - Returns: An observable of the newly started trial.
-     */
-    @available(*, deprecated, message: "Please use claim(_, _) instead")
-    public func startTrial(withBikeId identifier: Int, imei: String) -> Observable<CTSubscriptionModel> {
-        return CTBilling.shared.restManager.post(endpoint: "trial", parameters: [
-            "bike_id": identifier,
-            "hash": imei
-            ]
-        )
-    }
-
-    /**
      Claim the bike in the billing api
 
      - Parameter identifier: The bike identifier you want to start the trial for
@@ -49,13 +32,7 @@ public class CTSubscriptionService: NSObject {
         }
     }
     
-    public func fetchProducts(withBikeId identifier: Int) -> Observable<[CTProductTypeModel]>{
+    public func fetchSubscriptions(withBikeId identifier: Int) -> Observable<[CTSubscriptionModel]>{
         return CTBilling.shared.restManager.get(endpoint: "subscription/bike/\(identifier)/product-type")
-    }
-
-    public func fetchInsuranceProducts(withBikeId identifier: Int) -> Observable<[CTProductTypeModel]> {
-        return self.fetchProducts(withBikeId: identifier).map { product in
-            product.filter({ $0.productTypeId == .insurance && $0.active })
-        }
     }
 }
