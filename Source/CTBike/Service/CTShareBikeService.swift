@@ -30,16 +30,8 @@ public class CTShareBikeService: NSObject {
         return fetchInvites(withBike: bike, status: "open")
     }
 
-    public func fetchDeniedInvites(withBike bike: CTBikeModel) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
-        return fetchInvites(withBike: bike, status: "denied")
-    }
-
     public func fetchAcceptedInvites(withBike bike: CTBikeModel) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
         return fetchInvites(withBike: bike, status: "accepted")
-    }
-
-    public func fetchRevokedInvites(withBike bike: CTBikeModel) -> Observable<CTPaginatedResponseModel<CTInviteModel>> {
-        return fetchInvites(withBike: bike, status: "revoked")
     }
 
     public func acceptOpenInvite(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {

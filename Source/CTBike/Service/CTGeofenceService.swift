@@ -11,19 +11,6 @@ import RxSwift
 public class CTGeofenceService: NSObject {
 
     /**
-     Fetch a single Geofence from the API with the geofence identifier.
-     
-     - Note: You are only able to request the geofences the user has created for their account. Requesting random other users geofences will result in a 403 error.
-     
-     - Parameter identifier: The ID used to reference the geofence
-     
-     - Returns: An observable containing the requested geofence when found
-     */
-    public func fetch(withGeofenceId identifier: Int) -> Observable<CTGeofenceModel> {
-        return CTKit.shared.restManager.get(endpoint: "bike/geofence/\(identifier)")
-    }
-
-    /**
      Fetch all the geofences that belong to a single bike
      
      - Note: You are only able to create a geofence for a bike that is linked to the current active user.
@@ -73,30 +60,6 @@ public class CTGeofenceService: NSObject {
      */
     public func patch(geofence: CTGeofenceModel) -> Observable<CTGeofenceModel> {
         return CTKit.shared.restManager.patch(endpoint: "bike/geofence/\(geofence.id)", parameters: try? geofence.asDictionary())
-    }
-
-    /**
-     Activate the geofence, at this point the API will resume / start sending push notifications when the user
-     enters / leaves the geofence
-     
-     - Parameter identifier: The id of the geofence you want to activate
-     - Returns:  An observable with the updated geofence created from the API response
-     */
-    public func activate(withGeofenceId identifier: Int) -> Observable<CTGeofenceModel> {
-        return CTKit.shared.restManager.patch(endpoint: "bike/geofence/\(identifier)", parameters: [
-            "active_state": 0])
-    }
-
-    /**
-     Deactivate the geofence, at this point the API will *stop* sending push notifications when the user
-     enters / leaves the geofence
-     
-     - Parameter identifier: The id of the geofence you want to deactivate
-     - Returns:  An observable with the updated geofence created from the API response
-     */
-    public func deactivate(withGeofenceId identifier: Int) -> Observable<CTGeofenceModel> {
-        return CTKit.shared.restManager.patch(endpoint: "bike/geofence/\(identifier)", parameters: [
-            "active_state": 1])
     }
 
     /**
