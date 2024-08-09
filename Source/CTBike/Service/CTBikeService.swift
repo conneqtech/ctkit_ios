@@ -101,64 +101,6 @@ public class CTBikeService: NSObject {
     }
 
     /**
-     Fetch all bikes the user owns
-     
-     - Note: Deleting any of these bikes results in full deletion. Another user will be able to register the bike.
-     - Returns:  An observable with the list of bikes the user is the owner of.
-     */
-    public func fetchOwned() -> Observable<[CTBikeModel]> {
-        return self.fetchAll().map { result in
-            return result.filter { $0.owner?.id == CTKit.shared.currentActiveUserId }
-        }
-    }
-
-    /**
-     Fetch all bikes the user has access to.
-     
-     - Note: Deleting any of these bikes results in breaking the shared bike connection.
-             Another user will _not_ be able to register the bike.
-     - Returns:  An observable with the list of bikes the user is the owner of.
-     */
-    public func fetchShared() -> Observable<[CTBikeModel]> {
-        return self.fetchAll().map { result in
-            return result.filter { $0.owner?.id != CTKit.shared.currentActiveUserId }
-        }
-    }
-
-    /**
-     Search for a bike based on its framenumber. This call will return the first part of the IMEI
-     so that a user has a hint of what number you need.
-     This call can return 0 or 1 results.
-     When 0 results are returned the bike could already be registered or simply doesn't exist in our database.
-     
-     - Parameter identifier: The frame number of a bike you want to fetch some information about
-     - Returns: An array with information of an unregistered bike. When the array is empty the bike doesn't exist or is already registered.
-     */
-    public func searchUnregisteredBike(withActivationCode identifier: String) -> Observable<[CTUnregisteredBikeInformationModel]> {
-        return searchBike(withActivationCode: identifier).flatMap {
-            (unregisteredBike: [CTUnregisteredBikeModel]) -> Observable<[CTUnregisteredBikeInformationModel]> in
-
-            if unregisteredBike.isEmpty {
-                let emptyResult: [CTUnregisteredBikeInformationModel] = []
-                print("🔥 EMPTYYY")
-                return Observable.of(emptyResult)
-            } else {
-                print("🔥 NOT EMPTY")
-                return self.getBikeTypeInformation(withIdentifier: unregisteredBike[0].bikeTypeId).map {
-                    (bikeType: CTBikeTypeModel) -> [CTUnregisteredBikeInformationModel] in
-                    return [CTUnregisteredBikeInformationModel(
-                        partialIMEI: unregisteredBike[0].partialIMEI,
-                        frameNumber: unregisteredBike[0].frameNumber,
-                        activationCode: unregisteredBike[0].activationCode,
-                        manufacturerSKU: unregisteredBike[0].manufacturerSKU,
-                        modelName: unregisteredBike[0].manufacturerModelName,
-                        registrationFlow: bikeType.registrationFlow)]
-                }
-            }
-        }
-    }
-
-    /**
      Search for an unregistered bike. When the array is empty the bike is registered or does not exist.
      This search can return 0 or 1 results.
 
@@ -187,19 +129,6 @@ public class CTBikeService: NSObject {
     */
     public func getBikeTypeInformation(withIdentifier identifier: Int) -> Observable<CTBikeTypeModel> {
         return CTKit.shared.restManager.get(endpoint: "bike-type/\(identifier)")
-    }
-
-    /**
-     Update the linked users array for a bike. The array that is patched will be the new list of linked users.
-     When you want to remove a linked user, remove it from the list in the model, then call this function
-     
-     - Parameter identifier: The bike with updated linked users you want to persist on the API
-     - Parameter users: The users to patch, this will overwrite any other linked users.
-     - Returns: An observable with the updated bike model in sync with the API.
-     */
-    public func updateLinkedUsers(withBikeId identifier: Int, andLinkedUsers users: [CTBasicUserModel]) -> Observable<CTBikeModel> {
-        let userDict = users.map { user in try! user.asDictionary() }
-        return CTKit.shared.restManager.patch(endpoint: "bike/\(identifier)", parameters: ["linked_users": userDict])
     }
 
     /**

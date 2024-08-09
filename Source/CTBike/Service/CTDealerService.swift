@@ -19,22 +19,6 @@ public class CTDealerService: NSObject {
         return CTKit.shared.restManager.get(endpoint: "dealer", parameters: parameters)
     }
 
-    public func searchPaginated(withSearchTerm search: String, page: Int = 1, limit: Int = 50) -> Observable<CTPaginatedResponseModel<CTDealerModel>> {
-        let parameters: [String:Any] = [
-            "filter": [
-                "or;name;like;\(search)",
-                "or;reference;like;\(search)",
-                "or;address;like;\(search)",
-                "or;city;like;\(search)",
-                "or;postal_code;like;\(search)"
-            ],
-            "limit": limit,
-            "offset": (page - 1) * limit
-        ]
-
-        return CTKit.shared.restManager.get(endpoint: "dealer", parameters: parameters)
-    }
-
     public func fetchDealer(withId identfier: Int) -> Observable<CTDealerModel> {
         return CTKit.shared.restManager.get(endpoint: "dealer/\(identfier)")
     }

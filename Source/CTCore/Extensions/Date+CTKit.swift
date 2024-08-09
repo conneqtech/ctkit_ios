@@ -8,21 +8,6 @@
 import Foundation
 
 internal extension Date {
-    static func today() -> Date {
-        let date = Date()
-        let calendar = Calendar.current
-        return calendar.startOfDay(for: date)
-    }
-
-    func startOfDay() -> Date {
-        let calendar = Calendar.current
-        return calendar.startOfDay(for: self)
-    }
-
-    func endOfDay() -> Date {
-        let calendar = Calendar.current
-        return calendar.date(bySettingHour: 23, minute: 59, second: 59, of: self)!
-    }
 
     func toAPIDate() -> String {
         let formatter = DateFormatter()
