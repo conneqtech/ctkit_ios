@@ -32,17 +32,4 @@ public class CTBikeLocationService: NSObject {
             "till": until.toAPIDate()
         ])
     }
-
-    /**
-     Retrieve the last known location of the specified bike.
-     
-     - Note: It is possible that the platform doesn't have a last known location of a bike. This can happen for instance when the bike is newly registered on the platform or when the last location is too old to be relevant.
-     
-     - Parameter withId: The identifier of the bike you want the last known location of.
-     
-     - Returns: An observable that can contain the last known location of the bike or nil.
-     */
-    public func fetchLastLocationOfBike(withId identifier: Int) -> Observable<CTBikeLocationModel?> {
-        return CTBikeService().fetch(withId: identifier).map { (bike: CTBikeModel) in return bike.lastLocation}
-    }
 }

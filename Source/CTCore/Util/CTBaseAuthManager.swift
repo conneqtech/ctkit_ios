@@ -9,11 +9,8 @@ import Foundation
 
 public protocol CTAuthManagerBase {
     func saveTokenResponse(_ tokenResponse: CTCredentialResponse)
-    
     func hasActiveSession() -> Bool
-
     func getActiveSessionEndDate() -> Date
     func getActiveSessionToken() -> String
-
     func terminateActiveSession()
 }

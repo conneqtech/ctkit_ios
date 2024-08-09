@@ -15,18 +15,12 @@ public class CTCrashDetectionService: NSObject {
     }
 
     public func removeEmergencyContact(withBikeId bikeId: Int, inviteId: String) -> Observable<CTInviteModel> {
-        return setEmergencyContactStatus(withBikeId: bikeId, inviteId: inviteId, enabled: false)
+        return self.setEmergencyContactStatus(withBikeId: bikeId, inviteId: inviteId, enabled: false)
     }
 
     public func fetchEmergencyContact(withBike bike: CTBikeModel) -> Observable<CTInviteModel?> {
         return CTShareBikeService().fetchAcceptedInvites(withBike: bike).map { (response: CTPaginatedResponseModel<CTInviteModel>) in
             return response.data.filter { $0.isEmergencyContact == true }.first
-        }
-    }
-    
-   public func fetchEmergencyContacts(withBike bike: CTBikeModel) -> Observable<[CTInviteModel]> {
-        return CTShareBikeService().fetchAcceptedInvites(withBike: bike).map { (response: CTPaginatedResponseModel<CTInviteModel>) in
-            return response.data.filter { $0.isEmergencyContact == true }
         }
     }
 }
