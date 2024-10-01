@@ -35,7 +35,7 @@ public class CTNewSubscriptionModel: CTBaseModel {
         }
     }
     public let next: CTNewSubscriptionModel?
-    public var bike: CTBikeModel?
+    public var imei: String?
     
     enum CodingKeys: String, CodingKey {
         case id
