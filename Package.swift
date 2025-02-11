@@ -17,9 +17,9 @@ let package = Package(
         .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "6.8.0"),
         .package(name: "Alamofire", url: "https://github.com/Alamofire/Alamofire.git", from: "5.10.2"),
         .package(name: "AppAuth", url: "https://github.com/openid/AppAuth-iOS.git", from: "1.7.6"),
-        .package(name: "Quick", url: "https://github.com/Quick/Quick.git", from: "v7.6.2"),
+        .package(name: "Quick", url: "https://github.com/Quick/Quick.git", from: "7.6.2"),
         .package(name: "Mockingjay", url: "https://github.com/FocusriteGroup/Mockingjay.git", from: "2.0.1"),
-        .package(name: "Nimble", url: "https://github.com/Quick/Nimble.git", from: "v13.7.1")
+        .package(name: "Nimble", url: "https://github.com/Quick/Nimble.git", from: "13.7.1")
     ],
     targets: [
         .target(
