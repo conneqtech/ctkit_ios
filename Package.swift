@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "6.8.0"),
-        .package(name: "Alamofire", url: "https://github.com/Alamofire/Alamofire.git", from: "5.10.2"),
+        .package(name: "Alamofire", url: "https://github.com/Alamofire/Alamofire.git", .exact("4.9.1")),
         .package(name: "AppAuth", url: "https://github.com/openid/AppAuth-iOS.git", from: "1.7.6"),
         .package(name: "Quick", url: "https://github.com/Quick/Quick.git", from: "7.6.2"),
         .package(name: "Mockingjay", url: "https://github.com/FocusriteGroup/Mockingjay.git", from: "2.0.1"),
