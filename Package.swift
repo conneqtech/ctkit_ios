@@ -14,12 +14,12 @@ let package = Package(
             targets: ["ctkit"]),
     ],
     dependencies: [
-        .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "5.1.2"),
-        .package(name: "Alamofire", url: "https://github.com/Alamofire/Alamofire.git", .exact("4.9.1")),
-        .package(name: "AppAuth", url: "https://github.com/openid/AppAuth-iOS.git", from: "1.4.0"),
-        .package(name: "Quick", url: "https://github.com/Quick/Quick.git", from: "2.2.0"),
-        .package(name: "Mockingjay", url: "https://github.com/FocusriteGroup/Mockingjay.git", .branch("master")),
-        .package(name: "Nimble", url: "https://github.com/Quick/Nimble.git", from: "8.0.0")
+        .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "6.8.0"),
+        .package(name: "Alamofire", url: "https://github.com/Alamofire/Alamofire.git", from: "5.10.2"),
+        .package(name: "AppAuth", url: "https://github.com/openid/AppAuth-iOS.git", from: "1.7.6"),
+        .package(name: "Quick", url: "https://github.com/Quick/Quick.git", from: "v7.6.2"),
+        .package(name: "Mockingjay", url: "https://github.com/FocusriteGroup/Mockingjay.git", from: "2.0.1"),
+        .package(name: "Nimble", url: "https://github.com/Quick/Nimble.git", from: "v13.7.1")
     ],
     targets: [
         .target(

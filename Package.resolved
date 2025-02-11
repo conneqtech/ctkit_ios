@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
           "branch": null,
-          "revision": "747c8db8d57b68d5e35275f10c92d55f982adbd4",
-          "version": "4.9.1"
+          "revision": "513364f870f6bfc468f9d2ff0a95caccc10044c5",
+          "version": "5.10.2"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
         "state": {
           "branch": null,
-          "revision": "cec68169a048a079f461ba203fe85636548d7a89",
-          "version": "5.1.3"
+          "revision": "c7c7d2cf50a3211fe2843f76869c698e4e417930",
+          "version": "6.8.0"
         }
       },
       {
