@@ -153,8 +153,7 @@ public class CTRestManager {
                 .responseJSON { (response) in
                     switch response.result {
                     case .success:
-//                        completable(.completed)
-                        completable(.error(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString)))
+                        completable(.completed)
                     case .failure(let error):
                         completable(.error(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString)))
                     }
@@ -194,8 +193,9 @@ public class CTRestManager {
                                 observer.onError(CTErrorHandler().handle(withDecodingError: nil))
                                 return
                             }
-                            observer.onNext(getResponse)
-                            observer.onCompleted()
+//                            observer.onNext(getResponse)
+//                            observer.onCompleted()
+                            observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
                         case .failure(let error):
                             observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
                         }
