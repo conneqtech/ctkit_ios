@@ -84,13 +84,14 @@ class CTErrorHandler: NSObject {
     }
 
     private func isErrorReportable(_ error: Error, response: DataResponse<Any>) -> Bool {
-
+        
         let errorCode = (error as NSError).code as Int
         // 401. Alamofire.AFError: Unauthorized
         if let innerResponse = response.response, [401].contains(innerResponse.statusCode) {
             return false
         }
         return true
+    }
     
     // Specialized handler functions
     func handleUnauthorized(body: [String: Any]) -> CTBasicError? {
