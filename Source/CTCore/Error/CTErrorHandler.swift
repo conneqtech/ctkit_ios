@@ -86,26 +86,11 @@ class CTErrorHandler: NSObject {
     private func isErrorReportable(_ error: Error, response: DataResponse<Any>) -> Bool {
 
         let errorCode = (error as NSError).code as Int
-        
         // 401. Alamofire.AFError: Unauthorized
         if let innerResponse = response.response, [401].contains(innerResponse.statusCode) {
             return false
         }
-
-        // 53 is https://developer.apple.com/forums/thread/106838 apple bug for iOS 12
-        // Rest are network errors:
-        // https://developer.apple.com/documentation/foundation/1448136-nserror_codes
-        return ![53,
-                 Int(CFNetworkErrors.cfurlErrorCancelled.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorCannotFindHost.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorCannotConnectToHost.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorNetworkConnectionLost.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorServerCertificateUntrusted.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorCallIsActive.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorNotConnectedToInternet.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorSecureConnectionFailed.rawValue)].contains(errorCode)
-    }
+        return true
     
     // Specialized handler functions
     func handleUnauthorized(body: [String: Any]) -> CTBasicError? {
