@@ -172,12 +172,3 @@ class CTErrorHandler: NSObject {
     }
     
 }
-
-//class Connectivity {
-//    class var isConnectedToInternet:Bool {
-//        if let manager = NetworkReachabilityManager() {
-//            return manager.isReachable
-//        }
-//        return true
-//    }
-//}

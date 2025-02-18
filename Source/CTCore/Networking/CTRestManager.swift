@@ -73,13 +73,7 @@ public class CTRestManager {
 
     public func upload<T: Codable>(endpoint: String, image: UIImage, useToken: String? = nil) -> Observable<T> {
         return Observable<T>.create { (observer) -> Disposable in
-            
-            
-//            if (!Connectivity.isConnectedToInternet) {
-//                let error = CTErrorHandler().handleNoInternet()
-//                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
-//                return Disposables.create()
-//            }
+
             var headers: [String: String] = [:]
             
             if let accessToken = useToken {
@@ -129,13 +123,7 @@ public class CTRestManager {
     func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, url: String? = nil) -> Completable {
         
         return Completable.create { (completable) in
-            
-            
-//            if (!Connectivity.isConnectedToInternet) {
-//                let error = CTErrorHandler().handleNoInternet()
-//                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
-//                return Disposables.create()
-//            }
+
             var headers: [String: String] = self.computeHeaders()!
 
             if let accessToken = useToken {
@@ -172,13 +160,6 @@ public class CTRestManager {
 
     private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
             return Observable<T>.create { (observer) -> Disposable in
-                                
-
-//                if (!Connectivity.isConnectedToInternet) {
-//                    let error = CTErrorHandler().handleNoInternet()
-//                    observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
-//                    return Disposables.create()
-//                }
                 
                 var headers: [String: String] = self.computeHeaders()!
 
