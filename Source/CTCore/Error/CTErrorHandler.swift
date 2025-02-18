@@ -60,9 +60,6 @@ class CTErrorHandler: NSObject {
     }
 
     func handle(response: DataResponse<Any>, error: Error, url: String) -> CTErrorProtocol {
-        if(!Connectivity.isConnectedToInternet){
-            return CTErrorHandler().handleNoInternet()
-        }
         
         if self.isErrorReportable(error, response: response) {
             var errorInfo = error.getInfoFromResponse(response)
@@ -84,27 +81,13 @@ class CTErrorHandler: NSObject {
     }
 
     private func isErrorReportable(_ error: Error, response: DataResponse<Any>) -> Bool {
-
-        let errorCode = (error as NSError).code as Int
         
+        let errorCode = (error as NSError).code as Int
         // 401. Alamofire.AFError: Unauthorized
         if let innerResponse = response.response, [401].contains(innerResponse.statusCode) {
             return false
         }
-
-        // 53 is https://developer.apple.com/forums/thread/106838 apple bug for iOS 12
-        // Rest are network errors:
-        // https://developer.apple.com/documentation/foundation/1448136-nserror_codes
-        return ![53,
-                 Int(CFNetworkErrors.cfurlErrorCancelled.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorCannotFindHost.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorCannotConnectToHost.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorNetworkConnectionLost.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorServerCertificateUntrusted.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorCallIsActive.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorNotConnectedToInternet.rawValue),
-                 Int(CFNetworkErrors.cfurlErrorSecureConnectionFailed.rawValue)].contains(errorCode)
+        return true
     }
     
     // Specialized handler functions
@@ -182,19 +165,5 @@ class CTErrorHandler: NSObject {
 
     func handleInternalServerError() -> CTBasicError? {
         return CTBasicError(translationKey: "api.error.500.internal-server-error", description: "Internal server error", code: 500)
-    }
-    
-    func handleNoInternet() -> CTErrorProtocol {
-        return CTBasicError(translationKey: "ctkit.error.no-internet", description: "Not connected to the Internet")
-    }
-    
-}
-
-class Connectivity {
-    class var isConnectedToInternet:Bool {
-        if let manager = NetworkReachabilityManager() {
-            return manager.isReachable
-        }
-        return true
     }
 }
