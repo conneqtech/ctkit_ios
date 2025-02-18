@@ -60,9 +60,9 @@ class CTErrorHandler: NSObject {
     }
 
     func handle(response: DataResponse<Any>, error: Error, url: String) -> CTErrorProtocol {
-        if(!Connectivity.isConnectedToInternet){
-            return CTErrorHandler().handleNoInternet()
-        }
+//        if(!Connectivity.isConnectedToInternet){
+//            return CTErrorHandler().handleNoInternet()
+//        }
         
         if self.isErrorReportable(error, response: response) {
             var errorInfo = error.getInfoFromResponse(response)
@@ -176,11 +176,11 @@ class CTErrorHandler: NSObject {
     
 }
 
-class Connectivity {
-    class var isConnectedToInternet:Bool {
-        if let manager = NetworkReachabilityManager() {
-            return manager.isReachable
-        }
-        return true
-    }
-}
+//class Connectivity {
+//    class var isConnectedToInternet:Bool {
+//        if let manager = NetworkReachabilityManager() {
+//            return manager.isReachable
+//        }
+//        return true
+//    }
+//}

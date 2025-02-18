@@ -73,10 +73,10 @@ public class CTRestManager {
 
     public func upload<T: Codable>(endpoint: String, image: UIImage, useToken: String? = nil) -> Observable<T> {
         return Observable<T>.create { (observer) -> Disposable in
-            if (!Connectivity.isConnectedToInternet) {
-                observer.onError(CTErrorHandler().handleNoInternet())
-                return Disposables.create()
-            }
+//            if (!Connectivity.isConnectedToInternet) {
+//                observer.onError(CTErrorHandler().handleNoInternet())
+//                return Disposables.create()
+//            }
             var headers: [String: String] = [:]
             
             if let accessToken = useToken {
@@ -127,10 +127,10 @@ public class CTRestManager {
         
         return Completable.create { (completable) in
             
-            if (!Connectivity.isConnectedToInternet) {
-                completable(.error(CTErrorHandler().handleNoInternet()))
-                return Disposables.create()
-            }
+//            if (!Connectivity.isConnectedToInternet) {
+//                completable(.error(CTErrorHandler().handleNoInternet()))
+//                return Disposables.create()
+//            }
             var headers: [String: String] = self.computeHeaders()!
 
             if let accessToken = useToken {
@@ -168,10 +168,10 @@ public class CTRestManager {
     private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
             return Observable<T>.create { (observer) -> Disposable in
                 
-                if (!Connectivity.isConnectedToInternet) {
-                    observer.onError(CTErrorHandler().handleNoInternet())
-                    return Disposables.create()
-                }
+//                if (!Connectivity.isConnectedToInternet) {
+//                    observer.onError(CTErrorHandler().handleNoInternet())
+//                    return Disposables.create()
+//                }
                 
                 var headers: [String: String] = self.computeHeaders()!
 
