@@ -73,6 +73,9 @@ public class CTRestManager {
 
     public func upload<T: Codable>(endpoint: String, image: UIImage, useToken: String? = nil) -> Observable<T> {
         return Observable<T>.create { (observer) -> Disposable in
+            
+            let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+            
             if (!Connectivity.isConnectedToInternet) {
                 let error = CTErrorHandler().handleNoInternet()
                 observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
@@ -84,7 +87,6 @@ public class CTRestManager {
                 headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
             }
 
-            let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             Alamofire.upload(multipartFormData: { formData in
                 if let fixedOrientation = image.fixedOrientation(), let imageData = fixedOrientation.pngData() {
                     formData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
@@ -128,6 +130,8 @@ public class CTRestManager {
         
         return Completable.create { (completable) in
             
+            let url = URL(string: "\(rootUrl)/\(endpoint)")!
+            
             if (!Connectivity.isConnectedToInternet) {
                 let error = CTErrorHandler().handleNoInternet()
                 observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
@@ -144,7 +148,6 @@ public class CTRestManager {
                 rootUrl = forcedUrl
             }
             
-            let url = URL(string: "\(rootUrl)/\(endpoint)")!
             let requestReference = self.sessionManager.request(url,
                                                                method: method,
                                                                parameters: parameters,
@@ -169,7 +172,9 @@ public class CTRestManager {
 
     private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
             return Observable<T>.create { (observer) -> Disposable in
-                
+                                
+                let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
+
                 if (!Connectivity.isConnectedToInternet) {
                     let error = CTErrorHandler().handleNoInternet()
                     observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
@@ -182,7 +187,6 @@ public class CTRestManager {
                     headers["Authorization"] = "\(CTKit.shared.authManager.getTokenType()) \(accessToken)"
                 }
                 
-                let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
                 let requestReference = self.sessionManager.request(url,
                                                                    method: method,
                                                                    parameters: parameters,
