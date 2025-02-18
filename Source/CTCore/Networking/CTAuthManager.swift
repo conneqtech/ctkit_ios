@@ -22,11 +22,11 @@ public class CTAuthManager: CTAuthManagerBase {
             
             let url = URL(string: "\(self.apiConfig.fullUrl)/oauth")!
             
-            if (!Connectivity.isConnectedToInternet) {
-                let error = CTErrorHandler().handleNoInternet()
-                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
-                return Disposables.create()
-            }
+//            if (!Connectivity.isConnectedToInternet) {
+//                let error = CTErrorHandler().handleNoInternet()
+//                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
+//                return Disposables.create()
+//            }
             let requestReference = Alamofire.request(url,
                                                      method: .post,
                                                      parameters: [
@@ -97,11 +97,11 @@ public class CTAuthManager: CTAuthManagerBase {
             
             let url = URL(string: "\(url)/oauth")!
             
-            if (!Connectivity.isConnectedToInternet) {
-                let error = CTErrorHandler().handleNoInternet()
-                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
-                return Disposables.create()
-            }
+//            if (!Connectivity.isConnectedToInternet) {
+//                let error = CTErrorHandler().handleNoInternet()
+//                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
+//                return Disposables.create()
+//            }
             let requestReference = Alamofire.request(url,
                                                      method: .post,
                                                      parameters: parameters)

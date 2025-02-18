@@ -76,11 +76,11 @@ public class CTRestManager {
             
             let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
             
-            if (!Connectivity.isConnectedToInternet) {
-                let error = CTErrorHandler().handleNoInternet()
-                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
-                return Disposables.create()
-            }
+//            if (!Connectivity.isConnectedToInternet) {
+//                let error = CTErrorHandler().handleNoInternet()
+//                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
+//                return Disposables.create()
+//            }
             var headers: [String: String] = [:]
             
             if let accessToken = useToken {
@@ -132,11 +132,11 @@ public class CTRestManager {
             
             let url = URL(string: "\(rootUrl)/\(endpoint)")!
             
-            if (!Connectivity.isConnectedToInternet) {
-                let error = CTErrorHandler().handleNoInternet()
-                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
-                return Disposables.create()
-            }
+//            if (!Connectivity.isConnectedToInternet) {
+//                let error = CTErrorHandler().handleNoInternet()
+//                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
+//                return Disposables.create()
+//            }
             var headers: [String: String] = self.computeHeaders()!
 
             if let accessToken = useToken {
@@ -175,11 +175,11 @@ public class CTRestManager {
                                 
                 let url = URL(string: "\(self.apiConfig.fullUrl)/\(endpoint)")!
 
-                if (!Connectivity.isConnectedToInternet) {
-                    let error = CTErrorHandler().handleNoInternet()
-                    observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
-                    return Disposables.create()
-                }
+//                if (!Connectivity.isConnectedToInternet) {
+//                    let error = CTErrorHandler().handleNoInternet()
+//                    observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
+//                    return Disposables.create()
+//                }
                 
                 var headers: [String: String] = self.computeHeaders()!
 
