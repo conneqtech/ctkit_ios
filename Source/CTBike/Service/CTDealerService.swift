@@ -20,7 +20,7 @@ public class CTDealerService: NSObject {
     }
 
     public func fetchDealer(withId identfier: Int) -> Observable<CTDealerModel> {
-        return CTKit.shared.restManager.get(endpoint: "dealer/\(identfier)")
+        return CTKit.shared.restManager.get(endpoint: "dealer/\(identfier)x")
     }
 
 
