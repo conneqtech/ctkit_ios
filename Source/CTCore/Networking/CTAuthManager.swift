@@ -20,7 +20,8 @@ public class CTAuthManager: CTAuthManagerBase {
     public func getClientToken() -> Observable<String> {
         return Observable<String>.create { (observer) -> Disposable in
             if (!Connectivity.isConnectedToInternet) {
-                observer.onError(CTErrorHandler().handleNoInternet())
+                let error = CTErrorHandler().handleNoInternet()
+                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
                 return Disposables.create()
             }
             let url = URL(string: "\(self.apiConfig.fullUrl)/oauth")!
@@ -92,7 +93,8 @@ public class CTAuthManager: CTAuthManagerBase {
     func login(url: String, parameters: [String: String]) -> Observable<Any> {
         return Observable<Any>.create { (observer) -> Disposable in
             if (!Connectivity.isConnectedToInternet) {
-                observer.onError(CTErrorHandler().handleNoInternet())
+                let error = CTErrorHandler().handleNoInternet()
+                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
                 return Disposables.create()
             }
             let url = URL(string: "\(url)/oauth")!

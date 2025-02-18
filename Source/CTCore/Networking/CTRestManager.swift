@@ -74,7 +74,8 @@ public class CTRestManager {
     public func upload<T: Codable>(endpoint: String, image: UIImage, useToken: String? = nil) -> Observable<T> {
         return Observable<T>.create { (observer) -> Disposable in
             if (!Connectivity.isConnectedToInternet) {
-                observer.onError(CTErrorHandler().handleNoInternet())
+                let error = CTErrorHandler().handleNoInternet()
+                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
                 return Disposables.create()
             }
             var headers: [String: String] = [:]
@@ -128,7 +129,8 @@ public class CTRestManager {
         return Completable.create { (completable) in
             
             if (!Connectivity.isConnectedToInternet) {
-                completable(.error(CTErrorHandler().handleNoInternet()))
+                let error = CTErrorHandler().handleNoInternet()
+                observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
                 return Disposables.create()
             }
             var headers: [String: String] = self.computeHeaders()!
@@ -169,7 +171,8 @@ public class CTRestManager {
             return Observable<T>.create { (observer) -> Disposable in
                 
                 if (!Connectivity.isConnectedToInternet) {
-                    observer.onError(CTErrorHandler().handleNoInternet())
+                    let error = CTErrorHandler().handleNoInternet()
+                    observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
                     return Disposables.create()
                 }
                 
