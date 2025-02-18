@@ -166,9 +166,4 @@ class CTErrorHandler: NSObject {
     func handleInternalServerError() -> CTBasicError? {
         return CTBasicError(translationKey: "api.error.500.internal-server-error", description: "Internal server error", code: 500)
     }
-    
-    func handleNoInternet() -> CTErrorProtocol {
-        return CTBasicError(translationKey: "ctkit.error.no-internet", description: "Not connected to the Internet")
-    }
-    
 }
