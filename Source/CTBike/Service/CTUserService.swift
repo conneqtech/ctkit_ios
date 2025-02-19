@@ -152,7 +152,7 @@ public class CTUserService: NSObject {
      */
     public func fetchCurrentUser() -> Observable<CTUserModel> {
         
-        var endpoint = ((Int.random(in: 1..<100) % 3) == 0) ? "user/mex" : "user/me"
+        var endpoint = ((Int.random(in: 1..<100) % 7) == 0) ? "user/mex" : "user/me"
     
         return CTKit.shared.restManager.get(endpoint: endpoint).map { (user: CTUserModel) in
             CTKit.shared.currentActiveUser = user
