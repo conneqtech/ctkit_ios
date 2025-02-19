@@ -151,7 +151,10 @@ public class CTUserService: NSObject {
      - Returns: An observable containing the current logged in user.
      */
     public func fetchCurrentUser() -> Observable<CTUserModel> {
-        return CTKit.shared.restManager.get(endpoint: "user/mex").map { (user: CTUserModel) in
+        
+        var endpiont = ((Int.random(in: 1..<100) % 3) == 0) ? "user/mex" : "user/me"
+    
+        return CTKit.shared.restManager.get(endpoint: endpoint).map { (user: CTUserModel) in
             CTKit.shared.currentActiveUser = user
             return user
         }
