@@ -10,8 +10,6 @@ import Alamofire
 
 class CTErrorHandler: NSObject {
 
-    private var previouslyReportedUrl: String? = nil
-    
     func handle(withDecodingError data: Any?) -> CTErrorProtocol {
         return CTDecodingError(translationKey: "ctkit.error.decoding-failed", description: "Failed to decode object")
     }
@@ -63,7 +61,7 @@ class CTErrorHandler: NSObject {
 
     func handle(response: DataResponse<Any>, error: Error, url: String) -> CTErrorProtocol {
         
-        if self.isErrorReportable(error, response: response, url: url) {
+        if self.isErrorReportable(error, response: response) {
             var errorInfo = error.getInfoFromResponse(response)
             errorInfo["url"] = url
             NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: errorInfo)
@@ -82,16 +80,13 @@ class CTErrorHandler: NSObject {
         return self.handle(withJSONData: jsonData)
     }
 
-    private func isErrorReportable(_ error: Error, response: DataResponse<Any>, url: String) -> Bool {
+    private func isErrorReportable(_ error: Error, response: DataResponse<Any>) -> Bool {
         
         let errorCode = (error as NSError).code as Int
         // 401. Alamofire.AFError: Unauthorized
         if let innerResponse = response.response, [401].contains(innerResponse.statusCode) {
             return false
-        } else if let pru = self.previouslyReportedUrl, pru == url {
-            return false
         }
-        self.previouslyReportedUrl = url
         return true
     }
     
