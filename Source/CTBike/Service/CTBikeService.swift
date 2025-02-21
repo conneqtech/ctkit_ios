@@ -88,7 +88,7 @@ public class CTBikeService: NSObject {
      - Returns An observable containing the bike.
      */
     public func fetch(withId identifier: Int) -> Observable<CTBikeModel> {
-        var endpoint = ((Int.random(in: 1..<100) % 5) == 0) ? "bikex/\(bike.id)" : "bike/\(bike.id)"
+        var endpoint = ((Int.random(in: 1..<100) % 5) == 0) ? "bikex/\(identifier)" : "bike/\(identifier)"
         return CTKit.shared.restManager.get(endpoint: endpoint)
     }
 
