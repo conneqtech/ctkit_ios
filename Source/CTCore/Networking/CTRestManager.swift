@@ -120,7 +120,7 @@ public class CTRestManager {
         }
     }
 
-    func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, url: String? = nil, reportableService: boolean = false) -> Completable {
+    func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, url: String? = nil, reportableService: Bool = false) -> Completable {
         
         return Completable.create { (completable) in
 
@@ -158,7 +158,7 @@ public class CTRestManager {
         }
     }
 
-    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, reportableService: boolean = false) -> Observable<T> where T: Codable {
+    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, reportableService: Bool = false) -> Observable<T> where T: Codable {
             return Observable<T>.create { (observer) -> Disposable in
                 
                 var headers: [String: String] = self.computeHeaders()!
@@ -200,7 +200,7 @@ public class CTRestManager {
             }
     }
 
-    private func genericCallWithUrl<T>(_ method: Alamofire.HTTPMethod, url: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, additionalHeaders: [String: String]? = nil, reportableService: boolean = false) -> Observable<T> where T: Codable {
+    private func genericCallWithUrl<T>(_ method: Alamofire.HTTPMethod, url: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, additionalHeaders: [String: String]? = nil, reportableService: Bool = false) -> Observable<T> where T: Codable {
             return Observable<T>.create { (observer) -> Disposable in
                 var headers = additionalHeaders
 
