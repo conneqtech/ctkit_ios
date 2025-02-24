@@ -61,7 +61,7 @@ class CTErrorHandler: NSObject {
 
     func handle(response: DataResponse<Any>, error: Error, url: String, reportableService: Bool = false) -> CTErrorProtocol {
 
-        if self.isErrorReportable(error, response: response && reportableService) {
+        if self.isErrorReportable(error, response: response) && reportableService {
             var errorInfo = error.getInfoFromResponse(response)
             errorInfo["url"] = url
             NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: errorInfo)
