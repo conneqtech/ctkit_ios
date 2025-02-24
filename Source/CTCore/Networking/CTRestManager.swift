@@ -34,12 +34,12 @@ public class CTRestManager {
         sessionManager.retrier = requestRetrier
     }
 
-    public func get<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil) -> Observable<T> {
-        return genericCall(.get, endpoint: endpoint, parameters: parameters, encoding: URLEncoding.default, useToken: useToken)
+    public func get<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil, reportableService: Bool = false) -> Observable<T> {
+        return genericCall(.get, endpoint: endpoint, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, reportableService: reportableService)
     }
 
-    public func getGenericUrl<T: Codable>(url: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil) -> Observable<T> {
-        return genericCallWithUrl(.get, url: url, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, additionalHeaders: additionalHeaders)
+    public func getGenericUrl<T: Codable>(url: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil, reportableService: Bool = false) -> Observable<T> {
+        return genericCallWithUrl(.get, url: url, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, additionalHeaders: additionalHeaders, reportableService: reportableService)
     }
     
     public func postCompletable(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Completable {
@@ -120,7 +120,7 @@ public class CTRestManager {
         }
     }
 
-    func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, url: String? = nil) -> Completable {
+    func genericCompletableCall(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, url: String? = nil, reportableService: Bool = false) -> Completable {
         
         return Completable.create { (completable) in
 
@@ -148,7 +148,7 @@ public class CTRestManager {
                     case .success:
                         completable(.completed)
                     case .failure(let error):
-                        completable(.error(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString)))
+                        completable(.error(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString, reportableService: reportableService)))
                     }
             }
 
@@ -158,7 +158,7 @@ public class CTRestManager {
         }
     }
 
-    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?) -> Observable<T> where T: Codable {
+    private func genericCall<T>(_ method: Alamofire.HTTPMethod, endpoint: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, reportableService: Bool = false) -> Observable<T> where T: Codable {
             return Observable<T>.create { (observer) -> Disposable in
                 
                 var headers: [String: String] = self.computeHeaders()!
@@ -190,7 +190,7 @@ public class CTRestManager {
                             observer.onNext(getResponse)
                             observer.onCompleted()
                         case .failure(let error):
-                            observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString))
+                            observer.onError(CTErrorHandler().handle(response: response, error: error, url: url.absoluteString, reportableService: reportableService))
                         }
                 }
 
@@ -200,7 +200,7 @@ public class CTRestManager {
             }
     }
 
-    private func genericCallWithUrl<T>(_ method: Alamofire.HTTPMethod, url: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, additionalHeaders: [String: String]? = nil) -> Observable<T> where T: Codable {
+    private func genericCallWithUrl<T>(_ method: Alamofire.HTTPMethod, url: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, additionalHeaders: [String: String]? = nil, reportableService: Bool = false) -> Observable<T> where T: Codable {
             return Observable<T>.create { (observer) -> Disposable in
                 var headers = additionalHeaders
 
@@ -230,7 +230,7 @@ public class CTRestManager {
                             observer.onNext(getResponse)
                             observer.onCompleted()
                         case .failure(let error):
-                            observer.onError(CTErrorHandler().handle(response: response, error: error, url: url))
+                            observer.onError(CTErrorHandler().handle(response: response, error: error, url: url, reportableService: reportableService))
                         }
                 }
 

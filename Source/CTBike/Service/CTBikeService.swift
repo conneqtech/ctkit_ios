@@ -88,7 +88,7 @@ public class CTBikeService: NSObject {
      - Returns An observable containing the bike.
      */
     public func fetch(withId identifier: Int) -> Observable<CTBikeModel> {
-        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)")
+        return CTKit.shared.restManager.get(endpoint: "bike/\(identifier)", reportableService: true)
     }
 
     /**
@@ -97,7 +97,7 @@ public class CTBikeService: NSObject {
      - Returns: An observable with the list of bikes the user has access to.
      */
     public func fetchAll() -> Observable<[CTBikeModel]> {
-        return CTKit.shared.restManager.get(endpoint: "bike")
+        return CTKit.shared.restManager.get(endpoint: "bike", reportableService: true)
     }
 
     /**

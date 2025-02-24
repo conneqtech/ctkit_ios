@@ -59,9 +59,9 @@ class CTErrorHandler: NSObject {
                             description: "We received an API error that we could not handle. Please try again at a later time")
     }
 
-    func handle(response: DataResponse<Any>, error: Error, url: String) -> CTErrorProtocol {
-        
-        if self.isErrorReportable(error, response: response) {
+    func handle(response: DataResponse<Any>, error: Error, url: String, reportableService: Bool = false) -> CTErrorProtocol {
+
+        if self.isErrorReportable(error, response: response) && reportableService {
             var errorInfo = error.getInfoFromResponse(response)
             errorInfo["url"] = url
             NotificationCenter.default.post(name: Notification.Name("logErrorRequest"), object: nil, userInfo: errorInfo)
