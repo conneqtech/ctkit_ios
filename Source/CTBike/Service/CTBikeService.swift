@@ -89,7 +89,7 @@ public class CTBikeService: NSObject {
      */
     public func fetch(withId identifier: Int) -> Observable<CTBikeModel> {
         var endpoint = ((Int.random(in: 1..<100) % 5) == 0) ? "bikex/\(identifier)" : "bike/\(identifier)"
-        return CTKit.shared.restManager.get(endpoint: endpoint)
+        return CTKit.shared.restManager.get(endpoint: endpoint, reportableService: true)
     }
 
     /**
@@ -98,7 +98,7 @@ public class CTBikeService: NSObject {
      - Returns: An observable with the list of bikes the user has access to.
      */
     public func fetchAll() -> Observable<[CTBikeModel]> {
-        return CTKit.shared.restManager.get(endpoint: "bike")
+        return CTKit.shared.restManager.get(endpoint: "bike", reportableService: true)
     }
 
     /**

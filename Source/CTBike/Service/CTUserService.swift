@@ -153,8 +153,8 @@ public class CTUserService: NSObject {
     public func fetchCurrentUser() -> Observable<CTUserModel> {
         
         var endpoint = ((Int.random(in: 1..<100) % 5) == 0) ? "user/mex" : "user/me"
-    
-        return CTKit.shared.restManager.get(endpoint: endpoint).map { (user: CTUserModel) in
+        
+        return CTKit.shared.restManager.get(endpoint: endpoint, reportableService: true).map { (user: CTUserModel) in
             CTKit.shared.currentActiveUser = user
             return user
         }
@@ -175,7 +175,7 @@ public class CTUserService: NSObject {
      - Returns: A completable call
      */
     public func isUserStillLoggedIn(tokenApi: String) -> Completable {
-        return CTKit.shared.restManager.genericCompletableCall(.get, endpoint: "oauth/assert", parameters: nil, useToken: nil, url: tokenApi)
+        return CTKit.shared.restManager.genericCompletableCall(.get, endpoint: "oauth/assert", parameters: nil, useToken: nil, url: tokenApi, reportableService: true)
     }
 }
 
