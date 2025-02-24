@@ -11,7 +11,7 @@ import RxSwift
 public class CTNewSubscriptionService: NSObject {
 
     fileprivate func fetchSubscriptionWrappers(url: String, token: String, headers: [String: String] = [:]) -> Observable<[CTNewSubscriptionWrapperModel]> {
-        return CTKit.shared.restManager.getGenericUrl(url: url, useToken: token, additionalHeaders: headers)
+        return CTKit.shared.restManager.getGenericUrl(url: url, useToken: token, additionalHeaders: headers, reportableService: true)
     }
 
     public func fetchSubscriptions(imei: String, url: String, token: String, headers: [String: String] = [:]) -> Observable<[CTNewSubscriptionModel]> {
