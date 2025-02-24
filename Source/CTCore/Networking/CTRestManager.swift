@@ -38,7 +38,7 @@ public class CTRestManager {
         return genericCall(.get, endpoint: endpoint, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, reportableService: reportableService)
     }
 
-    public func getGenericUrl<T: Codable>(url: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil) -> Observable<T> {
+    public func getGenericUrl<T: Codable>(url: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil, reportableService: boolean = false) -> Observable<T> {
         return genericCallWithUrl(.get, url: url, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, additionalHeaders: additionalHeaders, reportableService: reportableService)
     }
     
@@ -200,7 +200,7 @@ public class CTRestManager {
             }
     }
 
-    private func genericCallWithUrl<T>(_ method: Alamofire.HTTPMethod, url: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, additionalHeaders: [String: String]? = nil) -> Observable<T> where T: Codable {
+    private func genericCallWithUrl<T>(_ method: Alamofire.HTTPMethod, url: String, parameters: [String: Any]? = nil, encoding: ParameterEncoding = JSONEncoding.default, useToken: String?, additionalHeaders: [String: String]? = nil, reportableService: boolean = false) -> Observable<T> where T: Codable {
             return Observable<T>.create { (observer) -> Disposable in
                 var headers = additionalHeaders
 
@@ -230,7 +230,7 @@ public class CTRestManager {
                             observer.onNext(getResponse)
                             observer.onCompleted()
                         case .failure(let error):
-                            observer.onError(CTErrorHandler().handle(response: response, error: error, url: url))
+                            observer.onError(CTErrorHandler().handle(response: response, error: error, url: url, reportableService: reportableService))
                         }
                 }
 
