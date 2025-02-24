@@ -34,11 +34,11 @@ public class CTRestManager {
         sessionManager.retrier = requestRetrier
     }
 
-    public func get<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil, reportableService: boolean = false) -> Observable<T> {
+    public func get<T: Codable>(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil, reportableService: Bool = false) -> Observable<T> {
         return genericCall(.get, endpoint: endpoint, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, reportableService: reportableService)
     }
 
-    public func getGenericUrl<T: Codable>(url: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil, reportableService: boolean = false) -> Observable<T> {
+    public func getGenericUrl<T: Codable>(url: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil, reportableService: Bool = false) -> Observable<T> {
         return genericCallWithUrl(.get, url: url, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, additionalHeaders: additionalHeaders, reportableService: reportableService)
     }
     
