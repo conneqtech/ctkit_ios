@@ -14,7 +14,7 @@ public class CTNewSubscriptionService: NSObject {
         return CTKit.shared.restManager.getGenericUrl(url: url, useToken: token, additionalHeaders: headers)
     }
 
-    public func fetchSubscriptions(imei: String, url: String, token: String, headers: [String: String] = [:]) -> Observable<[CTNewSubscriptionModel]> {
+    public func fetchSubscriptions(imei: String, url: String, token: String, headers: [String: String] = [:], reportableService: true) -> Observable<[CTNewSubscriptionModel]> {
     
         return self.fetchSubscriptionWrappers(url: url, token: token, headers: headers).map { result in
             var allSubscriptions: [CTNewSubscriptionModel] = []
