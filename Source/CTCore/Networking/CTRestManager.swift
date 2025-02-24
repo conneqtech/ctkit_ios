@@ -39,7 +39,7 @@ public class CTRestManager {
     }
 
     public func getGenericUrl<T: Codable>(url: String, parameters: [String: Any]? = nil, useToken: String? = nil, additionalHeaders: [String: String]? = nil) -> Observable<T> {
-        return genericCallWithUrl(.get, url: url, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, additionalHeaders: additionalHeaders)
+        return genericCallWithUrl(.get, url: url, parameters: parameters, encoding: URLEncoding.default, useToken: useToken, additionalHeaders: additionalHeaders, reportableService: reportableService)
     }
     
     public func postCompletable(endpoint: String, parameters: [String: Any]? = nil, useToken: String? = nil) -> Completable {
